@@ -1,0 +1,36 @@
+feature,dtype,description
+complaint_id,string,Unique complaint ID (ward+year+seq)
+complaint_date,date,Date complaint was filed
+year,int,Year (2018–2024)
+month,int,Month (1–12)
+is_monsoon_season,int,1 if June–September
+complaint_time_of_day,string,Time band when complaint filed
+ward_code,string,BMC administrative ward (A to T)
+ward_area,string,Locality name of ward
+zone,string,BMC zone (City/Eastern/Western)
+ward_type,string,South / Central / Suburban
+population_density,string,Ward population density class
+ward_slum_percentage,int,% of ward area that is slum/chawl
+complaint_category,string,Type of civic complaint (13 categories)
+department_assigned,string,BMC department responsible
+complaint_channel,string,How complaint was filed
+severity,string,Reported severity (Low/Medium/High/Critical)
+has_photo_evidence,int,Complainant attached photo (1=Yes)
+has_gps_location,int,GPS coordinates provided (1=Yes)
+media_attention,int,Complaint covered by media (1=Yes)
+politically_sensitive,int,Involves political interest (1=Yes)
+complainant_type,string,Type of person/entity filing
+property_type,string,Type of property complaint relates to
+repeat_complainant,int,Complainant has filed before (1=Yes)
+prior_complaints_count,int,Number of prior complaints by same complainant
+resolution_days,int,Days taken to resolve complaint
+num_reassignments,int,Times complaint was reassigned across depts
+complaint_status,string,Final status of complaint
+contractor_category,string,Class of contractor assigned
+work_quality_rating,string,Quality of work done (Poor to Excellent)
+site_inspected,int,Physical site inspection done (1=Yes)
+defect_liability_claim,int,Defect liability invoked (1=Yes)
+estimated_cost_inr,int,Estimated cost of resolution (INR)
+infrastructure_age_years,int,Age of affected infrastructure (years)
+months_since_last_maintained,int,Months since last maintenance
+citizen_satisfied,int,"TARGET: Citizen satisfied with resolution (1=Yes, 0=No)"
