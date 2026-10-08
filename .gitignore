@@ -1,11 +1,6 @@
 # Environment & Credentials (NEVER commit secrets)
 .env
 
-# Large raw datasets (Exceeds GitHub's 100 MB file limit)
-dataset/bmc_train.csv
-dataset/bmc_test.csv
-dataset/bmc_sample_submission.csv
-
 # Python Cache & Checkpoints
 __pycache__/
 *.py[cod]
