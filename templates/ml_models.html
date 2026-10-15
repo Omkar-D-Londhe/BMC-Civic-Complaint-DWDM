@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><title>CivicLens | ML Models & Classification</title><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "surface-container-low": "#1b1b1b", "on-secondary": "#003061", "on-primary": "#002e6b", "surface-pitch": "#000000", "surface-container-highest": "#353535", "on-error-container": "#ffdad6", "primary-fixed-dim": "#aec6ff", "inverse-on-surface": "#303030", "surface-dim": "#131313", "status-critical": "#e00000", "on-tertiary": "#581e00", "tertiary-fixed-dim": "#ffb596", "on-surface": "#e2e2e2", "on-tertiary-container": "#fffeff", "surface-container": "#1f1f1f", "on-tertiary-fixed": "#360f00", "error-container": "#93000a", "accent-cyan": "#3291ff", "text-secondary": "#ededed", "on-secondary-fixed": "#001b3c", "background": "#131313", "on-secondary-fixed-variant": "#004788", "primary-container": "#0070f3", "surface-charcoal": "#0a0a0a", "tertiary": "#ffb596", "text-faint": "#444444", "tertiary-fixed": "#ffdbcd", "on-tertiary-fixed-variant": "#7d2d00", "border-subtle": "#1f1f1f", "secondary-container": "#3291ff", "outline-variant": "#414754", "surface-bright": "#393939", "on-secondary-container": "#002a55", "surface-subtle": "#111111", "secondary-fixed": "#d5e3ff", "text-muted": "#888888", "secondary-fixed-dim": "#a7c8ff", "border-contrast": "#2e2e2e", "on-background": "#e2e2e2", "surface-container-lowest": "#0e0e0e", "primary": "#aec6ff", "surface-container-high": "#2a2a2a", "secondary": "#a7c8ff", "surface-variant": "#353535", "status-warning": "#f5a623", "text-primary": "#ffffff", "inverse-primary": "#0059c5", "on-primary-container": "#ffffff", "on-error": "#690005", "error": "#ffb4ab", "status-success": "#10b981", "surface": "#131313", "inverse-surface": "#e2e2e2", "on-primary-fixed-variant": "#004397", "surface-elevated": "#171717", "outline": "#8b90a0", "surface-tint": "#aec6ff", "on-primary-fixed": "#001a43", "on-surface-variant": "#c1c6d7", "primary-fixed": "#d8e2ff", "tertiary-container": "#ca4e00" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-sm": "0.5rem", "gutter": "1.5rem", "space-md": "1rem", "gutter-mobile": "1rem", "margin-mobile": "1rem", "margin": "2rem", "space-lg": "1.5rem", "space-xs": "0.25rem", "space-xl": "2.5rem" }, "fontFamily": { "display-hero": ["Geist"], "headline-md": ["Geist"], "display-hero-mobile": ["Geist"], "body-sm": ["Geist"], "headline-sm": ["Geist"], "headline-lg": ["Geist"], "headline-lg-mobile": ["Geist"], "code-md": ["JetBrains Mono"], "body-lg": ["Geist"], "body-md": ["Geist"], "annotation-mono": ["JetBrains Mono"] }, "fontSize": { "display-hero": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.04em", "fontWeight": "600" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.02em", "fontWeight": "500" }], "display-hero-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.03em", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0em", "fontWeight": "400" }], "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "500" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.03em", "fontWeight": "600" }], "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "code-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }], "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "400" }], "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "-0.005em", "fontWeight": "400" }], "annotation-mono": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "500" }] } } } };</script></head><body class="bg-surface-pitch font-body-md text-body-md text-on-surface antialiased">
+<aside class="fixed left-0 top-0 h-full w-64 bg-surface-charcoal z-50 flex flex-col border-r border-border-subtle"><div class="h-14 px-space-md border-b border-border-subtle flex items-center justify-between"><div class="flex items-center gap-space-sm"><div class="w-6 h-6 rounded bg-text-primary flex items-center justify-center"><span class="material-symbols-outlined text-surface-pitch text-[16px]">polyline</span></div><div><div class="font-headline-sm text-headline-sm text-text-primary tracking-tight font-medium">CivicLens</div><div class="font-annotation-mono text-annotation-mono text-text-muted uppercase tracking-wider">BMC Civic Analytics</div></div></div><div class="w-1.5 h-1.5 rounded-full bg-status-success"></div></div><div class="flex-1 overflow-y-auto px-space-sm py-space-md"><div class="mb-space-lg"><div class="px-space-sm pb-space-xs font-annotation-mono text-annotation-mono text-text-faint uppercase tracking-wider">Explore</div><nav class="space-y-0.5"><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-subtle hover:text-on-surface transition-colors font-body-sm text-body-sm" href="/overview"><span class="material-symbols-outlined text-[18px]">grid_view</span><span>Overview</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-subtle hover:text-on-surface transition-colors font-body-sm text-body-sm" href="/complaint-explorer"><span class="material-symbols-outlined text-[18px]">search_insights</span><span>Complaint Explorer</span></a></nav></div><div class="mb-space-lg"><div class="px-space-sm pb-space-xs font-annotation-mono text-annotation-mono text-text-faint uppercase tracking-wider">Analyse</div><nav class="space-y-0.5"><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-subtle hover:text-on-surface transition-colors font-body-sm text-body-sm" href="/olap-laboratory"><span class="material-symbols-outlined text-[18px]">biotech</span><span>OLAP Laboratory</span></a><a aria-current="page" class="flex items-center gap-space-sm px-space-sm py-1.5 rounded transition-colors bg-surface-elevated text-text-primary font-medium border border-border-contrast" href="/ml-models"><span class="material-symbols-outlined text-[18px]">neurology</span><span>ML Models</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-subtle hover:text-on-surface transition-colors font-body-sm text-body-sm" href="/patterns-and-clusters"><span class="material-symbols-outlined text-[18px]">hub</span><span>Patterns & Clusters</span></a></nav></div><div><div class="px-space-sm pb-space-xs font-annotation-mono text-annotation-mono text-text-faint uppercase tracking-wider">System</div><nav class="space-y-0.5"><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-subtle hover:text-on-surface transition-colors font-body-sm text-body-sm" href="/olap-laboratory"><span class="material-symbols-outlined text-[18px]">database</span><span>Star Schema Warehouse</span></a></nav></div></div><div class="p-space-sm border-t border-border-subtle bg-surface-pitch/40"><div class="flex items-center justify-between px-space-sm py-space-xs"><div class="flex items-center gap-space-xs"><span class="w-1.5 h-1.5 rounded-full bg-status-success animate-pulse"></span><span class="font-annotation-mono text-annotation-mono text-text-muted">v2.4.1-rc3</span></div><span class="font-annotation-mono text-annotation-mono text-text-faint uppercase">Scikit-Learn 1.9</span></div></div></aside>
+
+<div class="pl-64"><header class="fixed top-0 left-64 right-0 h-14 bg-surface-charcoal/90 backdrop-blur-md border-b border-border-subtle z-40 flex items-center justify-between px-gutter"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs font-annotation-mono text-annotation-mono"><span class="text-text-muted">BMC</span><span class="text-text-faint">/</span><span class="text-text-muted">Machine Learning</span><span class="text-text-faint">/</span><span class="text-text-primary">Classification & Triage</span></div><div class="h-4 w-[1px] bg-border-contrast"></div><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-2.5 text-[16px] text-text-muted">search</span><input class="h-8 w-64 bg-surface-subtle border border-border-contrast rounded px-space-sm pl-8 font-body-sm text-body-sm text-text-secondary placeholder-text-faint focus:outline-none focus:border-accent-cyan transition-colors" placeholder="Search model metrics..." type="text"/></div></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-subtle border border-border-subtle font-annotation-mono text-annotation-mono text-text-secondary"><span class="material-symbols-outlined text-[14px] text-text-muted">calendar_today</span><span>FY 2018-2024</span></div><div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-subtle border border-border-subtle font-annotation-mono text-annotation-mono"><span class="w-1.5 h-1.5 rounded-full bg-status-success"></span><span class="text-text-secondary">Model Serving Live</span></div><div class="h-4 w-[1px] bg-border-contrast"></div><button class="p-1 text-on-surface-variant hover:text-on-surface transition-colors flex items-center justify-center"><span class="material-symbols-outlined text-[18px]">notifications</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header>
+
+<main class="w-full pt-14 min-h-screen bg-surface-pitch px-gutter py-space-lg"><div class="flex flex-col w-full">
+<!-- Top Context Header -->
+<header class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-md pb-space-lg mb-space-lg border-b border-border-subtle">
+<div class="space-y-space-xs">
+<div class="flex items-center gap-space-xs font-annotation-mono text-annotation-mono text-text-muted">
+<span>EXPERIMENT REGISTRY</span>
+<span class="text-text-faint">/</span>
+<span class="text-accent-cyan">DWDM WEEK 2–3</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container-high text-status-success font-medium">LIVE SERVING</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-text-primary tracking-tight font-semibold">Machine Learning Models & Classification</h1>
+<p class="font-body-md text-body-md text-text-muted">Supervised complaint category triage evaluation and real-time civic grievance inference pipeline.</p>
+</div>
+
+<!-- Model Switcher Tabs -->
+<div class="flex items-center p-1 rounded-lg bg-surface-charcoal border border-border-contrast self-start lg:self-end" id="modelSwitcher">
+<button onclick="selectModel('Random Forest')" id="tabRF" class="flex items-center gap-2 px-3 py-1.5 rounded text-body-sm font-body-sm font-medium bg-surface-elevated text-text-primary shadow-sm border border-border-contrast transition-all">
+<span class="w-1.5 h-1.5 rounded-full bg-status-success"></span>
+<span>Random Forest</span>
+<span class="font-annotation-mono text-annotation-mono text-text-faint uppercase ml-1">Ensemble</span>
+</button>
+<button onclick="selectModel('HistGradientBoosting')" id="tabHGB" class="flex items-center gap-2 px-3 py-1.5 rounded text-body-sm font-body-sm text-text-muted hover:text-text-primary hover:bg-surface-subtle transition-all">
+<span>HistGradientBoosting</span>
+<span class="font-annotation-mono text-annotation-mono text-text-faint uppercase ml-1">Boosting</span>
+</button>
+<button onclick="selectModel('Logistic Regression Baseline')" id="tabLR" class="flex items-center gap-2 px-3 py-1.5 rounded text-body-sm font-body-sm text-text-muted hover:text-text-primary hover:bg-surface-subtle transition-all">
+<span>Logistic Regression</span>
+<span class="font-annotation-mono text-annotation-mono text-text-faint uppercase ml-1">Baseline</span>
+</button>
+</div>
+</header>
+
+<!-- Performance KPI Band -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md mb-space-xl">
+<div class="p-space-md rounded-lg bg-surface-charcoal border border-border-subtle flex flex-col justify-between hover:border-border-contrast transition-colors">
+<div class="flex items-center justify-between text-text-muted font-annotation-mono text-annotation-mono uppercase">
+<span>Global Accuracy</span>
+<span class="text-status-success font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>Active
+</span>
+</div>
+<div class="my-space-sm flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg text-text-primary font-semibold tracking-tight" id="kpiAccuracy">--</span>
+<span class="font-annotation-mono text-annotation-mono text-text-faint">13 Categories</span>
+</div>
+<div class="font-body-sm text-body-sm text-text-muted">Trained without department target leakage</div>
+</div>
+
+<div class="p-space-md rounded-lg bg-surface-charcoal border border-border-subtle flex flex-col justify-between hover:border-border-contrast transition-colors">
+<div class="flex items-center justify-between text-text-muted font-annotation-mono text-annotation-mono uppercase">
+<span>Macro-F1 Score</span>
+<span class="text-accent-cyan font-medium">Unweighted</span>
+</div>
+<div class="my-space-sm flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg text-text-primary font-semibold tracking-tight" id="kpiMacroF1">--</span>
+<span class="font-annotation-mono text-annotation-mono text-text-faint">multi-class</span>
+</div>
+<div class="font-body-sm text-body-sm text-text-muted">Evaluated on 20,000 held-out test records</div>
+</div>
+
+<div class="p-space-md rounded-lg bg-surface-charcoal border border-border-subtle flex flex-col justify-between hover:border-border-contrast transition-colors">
+<div class="flex items-center justify-between text-text-muted font-annotation-mono text-annotation-mono uppercase">
+<span>Weighted-F1</span>
+<span class="text-status-success font-medium flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>Tuned
+</span>
+</div>
+<div class="my-space-sm flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg text-text-primary font-semibold tracking-tight" id="kpiWeightedF1">--</span>
+<span class="font-annotation-mono text-annotation-mono text-text-faint">class-balanced</span>
+</div>
+<div class="font-body-sm text-body-sm text-text-muted">Stratified sample across all BMC wards</div>
+</div>
+
+<div class="p-space-md rounded-lg bg-surface-charcoal border border-border-subtle flex flex-col justify-between hover:border-border-contrast transition-colors">
+<div class="flex items-center justify-between text-text-muted font-annotation-mono text-annotation-mono uppercase">
+<span>Multi-Class Log-Loss</span>
+<span class="text-text-secondary font-medium">Calibrated</span>
+</div>
+<div class="my-space-sm flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg text-text-primary font-semibold tracking-tight" id="kpiLogLoss">--</span>
+<span class="font-annotation-mono text-annotation-mono text-text-faint">probability cross-entropy</span>
+</div>
+<div class="font-body-sm text-body-sm text-text-muted">Calibrated multi-class probability scores</div>
+</div>
+</section>
+
+<!-- Workspace Grid (2 Columns) -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-space-lg items-start">
+<!-- LEFT: Confusion Matrix & Per-Class Table -->
+<div class="flex flex-col gap-space-lg">
+<section class="p-space-lg rounded-lg bg-surface-charcoal border border-border-subtle">
+<div class="flex items-center justify-between pb-space-md border-b border-border-subtle mb-space-md">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-accent-cyan text-[20px]">grid_4x4</span>
+<h2 class="font-headline-sm text-headline-sm text-text-primary font-medium">Confusion Matrix (Primary Classes)</h2>
+</div>
+<span class="font-annotation-mono text-annotation-mono text-text-faint">N = 20,000 TEST SAMPLES</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-muted mb-space-md">
+Diagonal indicates true class recall. Off-diagonal represents inter-category cross-talk across municipal departments.
+</p>
+<div class="overflow-x-auto pb-2">
+<table class="w-full text-center font-code-md text-code-md border-collapse" id="cmTable">
+<!-- Generated dynamically -->
+</table>
+</div>
+</section>
+
+<!-- Per-Class Disaggregated Metrics -->
+<section class="p-space-lg rounded-lg bg-surface-charcoal border border-border-subtle">
+<div class="flex items-center justify-between pb-space-md border-b border-border-subtle mb-space-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-text-muted text-[20px]">table_chart</span>
+<h2 class="font-headline-sm text-headline-sm text-text-primary font-medium">Per-Class Disaggregated Performance</h2>
+</div>
+<span class="font-annotation-mono text-annotation-mono text-status-success">13 BMC CATEGORIES</span>
+</div>
+<div class="w-full overflow-x-auto max-h-[420px]">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-border-contrast text-text-muted font-annotation-mono text-annotation-mono uppercase">
+<th class="py-2.5 px-3">Complaint Category</th>
+<th class="py-2.5 px-3 text-right">Support</th>
+<th class="py-2.5 px-3 text-right">Precision</th>
+<th class="py-2.5 px-3 text-right">Recall</th>
+<th class="py-2.5 px-3 text-right">F1-Score</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-subtle/50 font-body-sm text-body-sm" id="perClassTableBody">
+<!-- Populated dynamically via JS -->
+</tbody>
+</table>
+</div>
+</section>
+</div>
+
+<!-- RIGHT: Live Inference Sandbox -->
+<div class="flex flex-col gap-space-lg">
+<section class="p-space-lg rounded-lg bg-surface-charcoal border border-border-subtle relative overflow-hidden">
+<div class="flex items-center justify-between pb-space-md border-b border-border-subtle mb-space-md">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-status-success text-[20px]">bolt</span>
+<h2 class="font-headline-sm text-headline-sm text-text-primary font-medium">Live Inference Sandbox & Intake Triage</h2>
+</div>
+<span class="px-2 py-0.5 rounded bg-surface-elevated border border-border-contrast text-text-muted font-annotation-mono text-annotation-mono">
+  ENDPOINT: /api/ml/predict
+</span>
+</div>
+
+<div class="space-y-space-md">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<div>
+<label class="block font-annotation-mono text-annotation-mono text-text-muted uppercase mb-1.5">Administrative Ward</label>
+<select id="predWard" class="w-full h-9 bg-surface-subtle border border-border-contrast rounded px-3 font-body-sm text-body-sm text-text-secondary focus:outline-none focus:border-accent-cyan cursor-pointer">
+<option value="K/W" selected>Ward K/W - Andheri West</option>
+<option value="G/N">Ward G/N - Dharavi / Dadar</option>
+<option value="H/E">Ward H/E - Bandra East</option>
+<option value="D">Ward D - Malabar Hill</option>
+<option value="L">Ward L - Kurla</option>
+<option value="A">Ward A - Colaba</option>
+<option value="P/N">Ward P/N - Malad</option>
+</select>
+</div>
+
+<div>
+<label class="block font-annotation-mono text-annotation-mono text-text-muted uppercase mb-1.5">Ingestion Channel</label>
+<select id="predChannel" class="w-full h-9 bg-surface-subtle border border-border-contrast rounded px-3 font-body-sm text-body-sm text-text-secondary focus:outline-none focus:border-accent-cyan cursor-pointer">
+<option value="MyBMC App" selected>MyBMC Citizen App (24/7)</option>
+<option value="1916 Helpline">1916 Toll-Free Helpline</option>
+<option value="WhatsApp">WhatsApp Grievance Desk</option>
+<option value="Online Portal">Web Grievance Portal</option>
+<option value="Walk-in CFC">Ward CFC Walk-in</option>
+</select>
+</div>
+</div>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<div>
+<label class="block font-annotation-mono text-annotation-mono text-text-muted uppercase mb-1.5">Severity Level</label>
+<select id="predSeverity" class="w-full h-9 bg-surface-subtle border border-border-contrast rounded px-3 font-body-sm text-body-sm text-text-secondary focus:outline-none focus:border-accent-cyan cursor-pointer">
+<option value="Critical">Critical (Immediate SLA)</option>
+<option value="High" selected>High Severity</option>
+<option value="Medium">Medium Priority</option>
+<option value="Low">Low Priority</option>
+</select>
+</div>
+
+<div>
+<label class="block font-annotation-mono text-annotation-mono text-text-muted uppercase mb-1.5">Monsoon Window</label>
+<select id="predMonsoon" class="w-full h-9 bg-surface-subtle border border-border-contrast rounded px-3 font-body-sm text-body-sm text-text-secondary focus:outline-none focus:border-accent-cyan cursor-pointer">
+<option value="1" selected>Active Monsoon (Jun–Sep)</option>
+<option value="0">Dry / Non-Monsoon</option>
+</select>
+</div>
+</div>
+
+<div>
+<div class="flex items-center justify-between mb-1.5">
+<label class="font-annotation-mono text-annotation-mono text-text-muted uppercase">Grievance Payload (Incident Description)</label>
+<span class="font-annotation-mono text-annotation-mono text-text-faint" id="charCount">83 characters</span>
+</div>
+<textarea id="predText" class="w-full bg-surface-subtle border border-border-contrast rounded p-space-sm font-code-md text-code-md text-text-primary focus:outline-none focus:border-accent-cyan transition-colors resize-none leading-relaxed" rows="3" oninput="document.getElementById('charCount').textContent = this.value.length + ' characters'">Overflowing garbage dump and uncleared debris blocking street corner near metro station.</textarea>
+</div>
+
+<button onclick="runInference()" class="w-full h-10 rounded bg-text-primary hover:bg-[#eaeaea] text-surface-pitch font-body-sm font-semibold flex items-center justify-center gap-2 transition-all shadow-sm active:scale-[0.99]" id="inferenceBtn">
+<span class="material-symbols-outlined text-[18px]">play_arrow</span>
+<span>Run Model Inference & Triage Routing</span>
+</button>
+</div>
+
+<!-- Result Card -->
+<div class="mt-space-lg pt-space-lg border-t border-border-subtle space-y-space-md" id="inferenceResultCard">
+<div class="flex items-center justify-between">
+<span class="font-annotation-mono text-annotation-mono uppercase text-text-muted">Inference Output & Confidence</span>
+<div class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-status-success/10 border border-status-success/30 font-annotation-mono text-annotation-mono text-status-success" id="predConfidenceBadge">
+<span class="w-1.5 h-1.5 rounded-full bg-status-success"></span>
+<span id="predConfidenceText">CALIBRATED (94.2%)</span>
+</div>
+</div>
+
+<div class="p-space-md rounded bg-surface-subtle border border-border-contrast">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-space-sm">
+<div>
+<span class="font-annotation-mono text-annotation-mono text-text-faint uppercase">Primary Prediction</span>
+<div class="font-headline-md text-headline-md text-text-primary font-medium tracking-tight" id="predCategoryName">Solid Waste / Garbage</div>
+</div>
+<div class="text-left sm:text-right">
+<span class="font-annotation-mono text-annotation-mono text-text-faint uppercase">Routing Department</span>
+<div class="font-body-sm text-body-sm text-accent-cyan font-code-md font-medium" id="predRoutingTarget">Dept-Solid-K/W</div>
+</div>
+</div>
+
+<!-- Probability Distribution Bars -->
+<div class="space-y-2 mt-4" id="probBarsContainer">
+<!-- Populated dynamically via JS -->
+</div>
+
+<!-- Top Feature Attributions -->
+<div class="pt-space-sm border-t border-border-subtle mt-4">
+<div class="flex items-center justify-between mb-2">
+<span class="font-annotation-mono text-annotation-mono text-text-muted uppercase">Key Feature Attributions</span>
+<span class="font-annotation-mono text-annotation-mono text-text-faint">Weights</span>
+</div>
+<div class="flex flex-wrap gap-2" id="attributionPills">
+<!-- Populated dynamically -->
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+
+<script>
+  let metricsData = null;
+  let currentModelKey = 'Random Forest';
+
+  async function loadMetrics() {
+    try {
+      const res = await fetch('/api/ml/metrics');
+      metricsData = await res.json();
+      updateModelView(currentModelKey);
+    } catch (e) {
+      console.error('Error loading ML metrics:', e);
+    }
+  }
+
+  function selectModel(modelKey) {
+    currentModelKey = modelKey;
+    const tabRF = document.getElementById('tabRF');
+    const tabHGB = document.getElementById('tabHGB');
+    const tabLR = document.getElementById('tabLR');
+
+    [tabRF, tabHGB, tabLR].forEach(tab => {
+      tab.className = "flex items-center gap-2 px-3 py-1.5 rounded text-body-sm font-body-sm text-text-muted hover:text-text-primary hover:bg-surface-subtle transition-all";
+    });
+
+    if (modelKey === 'Random Forest') {
+      tabRF.className = "flex items-center gap-2 px-3 py-1.5 rounded text-body-sm font-body-sm font-medium bg-surface-elevated text-text-primary shadow-sm border border-border-contrast transition-all";
+    } else if (modelKey === 'HistGradientBoosting') {
+      tabHGB.className = "flex items-center gap-2 px-3 py-1.5 rounded text-body-sm font-body-sm font-medium bg-surface-elevated text-text-primary shadow-sm border border-border-contrast transition-all";
+    } else {
+      tabLR.className = "flex items-center gap-2 px-3 py-1.5 rounded text-body-sm font-body-sm font-medium bg-surface-elevated text-text-primary shadow-sm border border-border-contrast transition-all";
+    }
+
+    updateModelView(modelKey);
+  }
+
+  function updateModelView(modelKey) {
+    if (!metricsData || !metricsData.models[modelKey]) return;
+    const m = metricsData.models[modelKey];
+
+    document.getElementById('kpiAccuracy').textContent = (m.accuracy * 100).toFixed(1) + '%';
+    document.getElementById('kpiMacroF1').textContent = m.macro_f1.toFixed(3);
+    document.getElementById('kpiWeightedF1').textContent = m.weighted_f1.toFixed(3);
+    document.getElementById('kpiLogLoss').textContent = m.log_loss.toFixed(3);
+
+    // Confusion Matrix (show top 5 categories)
+    const cmTable = document.getElementById('cmTable');
+    const topClasses = metricsData.classes.slice(0, 5);
+    const cmNorm = m.confusion_matrix_normalized;
+
+    let headHtml = '<tr class="text-text-muted font-annotation-mono text-annotation-mono border-b border-border-subtle"><th class="text-left py-2 px-2">True \\ Pred</th>';
+    topClasses.forEach(c => {
+      headHtml += `<th class="py-2 px-2 text-center truncate max-w-[80px]" title="${c}">${c.split('/')[0].trim()}</th>`;
+    });
+    headHtml += '</tr>';
+
+    let bodyHtml = '';
+    topClasses.forEach((c, rIdx) => {
+      bodyHtml += `<tr class="border-b border-border-subtle/40"><td class="text-left py-2 px-2 text-text-secondary truncate max-w-[120px] font-medium" title="${c}">${c.split('/')[0].trim()}</td>`;
+      topClasses.forEach((_, cIdx) => {
+        const val = cmNorm[rIdx][cIdx];
+        const isDiag = rIdx === cIdx;
+        const bg = isDiag ? 'bg-primary-container/80 text-white font-semibold' : val > 0.08 ? 'bg-surface-elevated text-text-secondary' : 'bg-surface-subtle text-text-faint';
+        bodyHtml += `<td class="py-2 px-2"><div class="rounded p-1.5 ${bg}">${val.toFixed(2)}</div></td>`;
+      });
+      bodyHtml += '</tr>';
+    });
+    cmTable.innerHTML = headHtml + bodyHtml;
+
+    // Per-Class Table
+    const perClassTbody = document.getElementById('perClassTableBody');
+    perClassTbody.innerHTML = '';
+    m.per_class.forEach(row => {
+      perClassTbody.innerHTML += `
+        <tr class="hover:bg-surface-elevated transition-colors">
+          <td class="py-2.5 px-3 font-medium text-text-primary">
+            <div>${row.class_name}</div>
+            <div class="font-annotation-mono text-annotation-mono text-text-muted text-[11px]">${row.department}</div>
+          </td>
+          <td class="py-2.5 px-3 text-right font-code-md text-code-md text-text-muted">${row.support.toLocaleString()}</td>
+          <td class="py-2.5 px-3 text-right font-code-md text-code-md text-text-secondary">${row.precision.toFixed(3)}</td>
+          <td class="py-2.5 px-3 text-right font-code-md text-code-md text-text-secondary">${row.recall.toFixed(3)}</td>
+          <td class="py-2.5 px-3 text-right font-code-md text-code-md text-text-primary font-medium">${row.f1_score.toFixed(3)}</td>
+        </tr>
+      `;
+    });
+  }
+
+  async function runInference() {
+    const btn = document.getElementById('inferenceBtn');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin">refresh</span><span>Evaluating Inference Pipeline...</span>';
+
+    const payload = {
+      ward_code: document.getElementById('predWard').value,
+      complaint_channel: document.getElementById('predChannel').value,
+      severity: document.getElementById('predSeverity').value,
+      is_monsoon_season: parseInt(document.getElementById('predMonsoon').value),
+      grievance_text: document.getElementById('predText').value
+    };
+
+    try {
+      const res = await fetch('/api/ml/predict', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+
+      document.getElementById('predCategoryName').textContent = data.prediction;
+      document.getElementById('predRoutingTarget').textContent = data.routing_target;
+      document.getElementById('predConfidenceText').textContent = `CALIBRATED (${data.confidence}%)`;
+
+      // Prob bars
+      const probContainer = document.getElementById('probBarsContainer');
+      probContainer.innerHTML = '';
+      data.probabilities.forEach(p => {
+        probContainer.innerHTML += `
+          <div>
+            <div class="flex justify-between font-annotation-mono text-annotation-mono text-text-secondary mb-1">
+              <span>${p.category}</span>
+              <span class="font-code-md">${p.probability}%</span>
+            </div>
+            <div class="w-full h-1.5 rounded-full bg-surface-container overflow-hidden">
+              <div class="bg-accent-cyan h-full rounded-full" style="width: ${p.probability}%"></div>
+            </div>
+          </div>
+        `;
+      });
+
+      // Attribution pills
+      const attrPills = document.getElementById('attributionPills');
+      attrPills.innerHTML = '';
+      data.feature_attributions.forEach(item => {
+        attrPills.innerHTML += `
+          <div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-elevated border border-border-contrast text-text-primary font-annotation-mono text-annotation-mono">
+            <span class="text-accent-cyan font-medium">${item.token}</span>
+            <span class="text-status-success font-code-md text-[11px]">${item.weight}</span>
+          </div>
+        `;
+      });
+    } catch (e) {
+      console.error('Inference error:', e);
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = '<span class="material-symbols-outlined text-[18px]">play_arrow</span><span>Run Model Inference & Triage Routing</span>';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    loadMetrics();
+    runInference();
+  });
+</script>
+</main></div></body></html>

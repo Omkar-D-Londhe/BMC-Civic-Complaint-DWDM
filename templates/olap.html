@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><title>CivicLens | OLAP Multi-Dimensional Laboratory</title><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "surface-container-low": "#1b1b1b", "on-secondary": "#003061", "on-primary": "#002e6b", "surface-pitch": "#000000", "surface-container-highest": "#353535", "on-error-container": "#ffdad6", "primary-fixed-dim": "#aec6ff", "inverse-on-surface": "#303030", "surface-dim": "#131313", "status-critical": "#e00000", "on-tertiary": "#581e00", "tertiary-fixed-dim": "#ffb596", "on-surface": "#e2e2e2", "on-tertiary-container": "#fffeff", "surface-container": "#1f1f1f", "on-tertiary-fixed": "#360f00", "error-container": "#93000a", "accent-cyan": "#3291ff", "text-secondary": "#ededed", "on-secondary-fixed": "#001b3c", "background": "#131313", "on-secondary-fixed-variant": "#004788", "primary-container": "#0070f3", "surface-charcoal": "#0a0a0a", "tertiary": "#ffb596", "text-faint": "#444444", "tertiary-fixed": "#ffdbcd", "on-tertiary-fixed-variant": "#7d2d00", "border-subtle": "#1f1f1f", "secondary-container": "#3291ff", "outline-variant": "#414754", "surface-bright": "#393939", "on-secondary-container": "#002a55", "surface-subtle": "#111111", "secondary-fixed": "#d5e3ff", "text-muted": "#888888", "secondary-fixed-dim": "#a7c8ff", "border-contrast": "#2e2e2e", "on-background": "#e2e2e2", "surface-container-lowest": "#0e0e0e", "primary": "#aec6ff", "surface-container-high": "#2a2a2a", "secondary": "#a7c8ff", "surface-variant": "#353535", "status-warning": "#f5a623", "text-primary": "#ffffff", "inverse-primary": "#0059c5", "on-primary-container": "#ffffff", "on-error": "#690005", "error": "#ffb4ab", "status-success": "#10b981", "surface": "#131313", "inverse-surface": "#e2e2e2", "on-primary-fixed-variant": "#004397", "surface-elevated": "#171717", "outline": "#8b90a0", "surface-tint": "#aec6ff", "on-primary-fixed": "#001a43", "on-surface-variant": "#c1c6d7", "primary-fixed": "#d8e2ff", "tertiary-container": "#ca4e00" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-sm": "0.5rem", "gutter": "1.5rem", "space-md": "1rem", "gutter-mobile": "1rem", "margin-mobile": "1rem", "margin": "2rem", "space-lg": "1.5rem", "space-xs": "0.25rem", "space-xl": "2.5rem" }, "fontFamily": { "display-hero": ["Geist"], "headline-md": ["Geist"], "display-hero-mobile": ["Geist"], "body-sm": ["Geist"], "headline-sm": ["Geist"], "headline-lg": ["Geist"], "headline-lg-mobile": ["Geist"], "code-md": ["JetBrains Mono"], "body-lg": ["Geist"], "body-md": ["Geist"], "annotation-mono": ["JetBrains Mono"] }, "fontSize": { "display-hero": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.04em", "fontWeight": "600" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.02em", "fontWeight": "500" }], "display-hero-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.03em", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0em", "fontWeight": "400" }], "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "500" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.03em", "fontWeight": "600" }], "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "code-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }], "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "400" }], "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "-0.005em", "fontWeight": "400" }], "annotation-mono": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "500" }] } } } };</script></head><body class="bg-surface-pitch font-body-md text-body-md text-on-surface antialiased">
+<aside class="fixed left-0 top-0 h-full w-64 bg-surface-charcoal z-50 flex flex-col border-r border-border-subtle"><div class="h-14 px-space-md border-b border-border-subtle flex items-center justify-between"><div class="flex items-center gap-space-sm"><div class="w-6 h-6 rounded bg-text-primary flex items-center justify-center"><span class="material-symbols-outlined text-surface-pitch text-[16px]">polyline</span></div><div><div class="font-headline-sm text-headline-sm text-text-primary tracking-tight font-medium">CivicLens</div><div class="font-annotation-mono text-annotation-mono text-text-muted uppercase tracking-wider">BMC Civic Analytics</div></div></div><div class="w-1.5 h-1.5 rounded-full bg-status-success"></div></div><div class="flex-1 overflow-y-auto px-space-sm py-space-md"><div class="mb-space-lg"><div class="px-space-sm pb-space-xs font-annotation-mono text-annotation-mono text-text-faint uppercase tracking-wider">Explore</div><nav class="space-y-0.5"><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-subtle hover:text-on-surface transition-colors font-body-sm text-body-sm" href="/overview"><span class="material-symbols-outlined text-[18px]">grid_view</span><span>Overview</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-subtle hover:text-on-surface transition-colors font-body-sm text-body-sm" href="/complaint-explorer"><span class="material-symbols-outlined text-[18px]">search_insights</span><span>Complaint Explorer</span></a></nav></div><div class="mb-space-lg"><div class="px-space-sm pb-space-xs font-annotation-mono text-annotation-mono text-text-faint uppercase tracking-wider">Analyse</div><nav class="space-y-0.5"><a aria-current="page" class="flex items-center gap-space-sm px-space-sm py-1.5 rounded transition-colors bg-surface-elevated text-text-primary font-medium border border-border-contrast" href="/olap-laboratory"><span class="material-symbols-outlined text-[18px]">biotech</span><span>OLAP Laboratory</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-subtle hover:text-on-surface transition-colors font-body-sm text-body-sm" href="/ml-models"><span class="material-symbols-outlined text-[18px]">neurology</span><span>ML Models</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-subtle hover:text-on-surface transition-colors font-body-sm text-body-sm" href="/patterns-and-clusters"><span class="material-symbols-outlined text-[18px]">hub</span><span>Patterns & Clusters</span></a></nav></div><div><div class="px-space-sm pb-space-xs font-annotation-mono text-annotation-mono text-text-faint uppercase tracking-wider">System</div><nav class="space-y-0.5"><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-subtle hover:text-on-surface transition-colors font-body-sm text-body-sm" href="/olap-laboratory"><span class="material-symbols-outlined text-[18px]">database</span><span>Star Schema Warehouse</span></a></nav></div></div><div class="p-space-sm border-t border-border-subtle bg-surface-pitch/40"><div class="flex items-center justify-between px-space-sm py-space-xs"><div class="flex items-center gap-space-xs"><span class="w-1.5 h-1.5 rounded-full bg-status-success animate-pulse"></span><span class="font-annotation-mono text-annotation-mono text-text-muted">v2.4.1-rc3</span></div><span class="font-annotation-mono text-annotation-mono text-text-faint uppercase">Cube Engine</span></div></div></aside>
+
+<div class="pl-64"><header class="fixed top-0 left-64 right-0 h-14 bg-surface-charcoal/90 backdrop-blur-md border-b border-border-subtle z-40 flex items-center justify-between px-gutter"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs font-annotation-mono text-annotation-mono"><span class="text-text-muted">BMC</span><span class="text-text-faint">/</span><span class="text-text-muted">Multi-Dimensional Warehouse</span><span class="text-text-faint">/</span><span class="text-text-primary">OLAP Laboratory</span></div><div class="h-4 w-[1px] bg-border-contrast"></div><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-2.5 text-[16px] text-text-muted">search</span><input class="h-8 w-64 bg-surface-subtle border border-border-contrast rounded px-space-sm pl-8 font-body-sm text-body-sm text-text-secondary placeholder-text-faint focus:outline-none focus:border-accent-cyan transition-colors" placeholder="Search cube dimensions..." type="text"/></div></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-subtle border border-border-subtle font-annotation-mono text-annotation-mono text-text-secondary"><span class="material-symbols-outlined text-[14px] text-text-muted">calendar_today</span><span>FY 2018-2024</span></div><div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-subtle border border-border-subtle font-annotation-mono text-annotation-mono"><span class="w-1.5 h-1.5 rounded-full bg-status-success"></span><span class="text-text-secondary">Cluster Synchronized</span></div><div class="h-4 w-[1px] bg-border-contrast"></div><button class="p-1 text-on-surface-variant hover:text-on-surface transition-colors flex items-center justify-center"><span class="material-symbols-outlined text-[18px]">notifications</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header>
+
+<main class="w-full pt-14 min-h-screen bg-surface-pitch px-gutter py-space-lg"><div class="flex flex-col w-full space-y-space-xl">
+<!-- Top Operational Header -->
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-md border-b border-border-subtle pb-space-lg">
+<div class="space-y-space-xs max-w-3xl">
+<div class="flex items-center gap-space-sm text-text-muted font-annotation-mono text-annotation-mono tracking-wider uppercase">
+<span>OLAP Engine</span>
+<span>/</span>
+<span>Analytical Cube Engine v4.2</span>
+<span>/</span>
+<span class="text-status-success flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-status-success animate-pulse"></span>
+          960k Fact Grain
+        </span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-text-primary tracking-tight font-semibold">
+        OLAP Multi-Dimensional Laboratory
+      </h1>
+<p class="font-body-md text-body-md text-text-muted leading-relaxed">
+        Execute multi-dimensional cube aggregations across BMC geographical and temporal hierarchies with live MySQL warehouse queries.
+      </p>
+</div>
+
+<!-- Segmented Operational Mode Switcher -->
+<div class="flex items-center p-1 rounded-xl bg-surface-subtle border border-border-subtle self-start lg:self-auto" id="olapSwitchers">
+<button onclick="switchOLAP('rollup')" id="btnRollup" class="px-space-md py-1.5 rounded font-body-sm text-body-sm font-medium transition-all bg-surface-elevated text-text-primary border border-border-contrast shadow-sm flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-accent-cyan">vertical_align_top</span>
+<span>Roll-up</span>
+</button>
+<button onclick="switchOLAP('drilldown')" id="btnDrilldown" class="px-space-md py-1.5 rounded font-body-sm text-body-sm font-medium transition-all text-text-muted hover:text-text-secondary hover:bg-surface-elevated/40 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px]">vertical_align_bottom</span>
+<span>Drill-down</span>
+</button>
+<button onclick="switchOLAP('slice')" id="btnSlice" class="px-space-md py-1.5 rounded font-body-sm text-body-sm font-medium transition-all text-text-muted hover:text-text-secondary hover:bg-surface-elevated/40 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px]">content_cut</span>
+<span>Slice</span>
+</button>
+<button onclick="switchOLAP('dice')" id="btnDice" class="px-space-md py-1.5 rounded font-body-sm text-body-sm font-medium transition-all text-text-muted hover:text-text-secondary hover:bg-surface-elevated/40 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px]">view_in_ar</span>
+<span>Dice</span>
+</button>
+<button onclick="switchOLAP('pivot')" id="btnPivot" class="px-space-md py-1.5 rounded font-body-sm text-body-sm font-medium transition-all text-text-muted hover:text-text-secondary hover:bg-surface-elevated/40 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px]">sync_alt</span>
+<span>Pivot</span>
+</button>
+</div>
+</div>
+
+<!-- Primary Workspace Grid -->
+<div class="grid grid-cols-12 gap-gutter items-start">
+<!-- Left Column (4/12): Parameter Scaffolding -->
+<div class="col-span-12 lg:col-span-4 space-y-gutter">
+<div class="rounded-xl bg-surface-charcoal border border-border-subtle p-space-lg shadow-sm space-y-space-lg relative overflow-hidden">
+<div class="flex items-center justify-between border-b border-border-subtle pb-space-sm">
+<div class="flex items-center gap-space-xs font-headline-sm text-headline-sm text-text-primary font-medium">
+<span class="material-symbols-outlined text-text-muted text-[18px]">tune</span>
+<span>Operation Configuration</span>
+</div>
+<span class="font-annotation-mono text-annotation-mono px-2 py-0.5 rounded bg-surface-subtle text-accent-cyan border border-accent-cyan/20" id="activeBadge">
+  Active: ROLLUP
+</span>
+</div>
+
+<!-- Traversal Hierarchy -->
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<label class="font-annotation-mono text-annotation-mono text-text-muted uppercase tracking-wider">Dimension Hierarchy Traversal</label>
+<span class="font-annotation-mono text-annotation-mono text-status-success" id="opFactor">8.0x reduction</span>
+</div>
+<div class="p-space-md rounded bg-surface-subtle border border-border-subtle space-y-space-md" id="hierarchyCard">
+<div class="flex items-start justify-between">
+<div>
+<div class="font-annotation-mono text-annotation-mono text-text-faint">SOURCE GRAIN</div>
+<div class="font-body-md text-body-md text-text-primary font-medium mt-0.5" id="srcGrain">Municipal Ward Level</div>
+<div class="font-body-sm text-body-sm text-text-muted" id="srcDesc">24 Distinct Administrative Wards</div>
+</div>
+<span class="material-symbols-outlined text-text-faint text-[20px]">layers</span>
+</div>
+<div class="flex items-center justify-center -my-1 text-text-faint">
+<span class="material-symbols-outlined text-[18px] text-accent-cyan">arrow_downward</span>
+</div>
+<div class="flex items-start justify-between border-t border-border-contrast pt-space-sm">
+<div>
+<div class="font-annotation-mono text-annotation-mono text-accent-cyan">TARGET GRAIN</div>
+<div class="font-body-md text-body-md text-text-primary font-medium mt-0.5" id="targetGrain">Administrative Zone</div>
+<div class="font-body-sm text-body-sm text-text-muted" id="targetDesc">3 Super-Zones: Western, Eastern, City</div>
+</div>
+<span class="material-symbols-outlined text-accent-cyan text-[20px]">domain</span>
+</div>
+</div>
+</div>
+
+<!-- Measures Matrix -->
+<div class="space-y-space-sm">
+<label class="font-annotation-mono text-annotation-mono text-text-muted uppercase tracking-wider">Aggregated Measures</label>
+<div class="space-y-2">
+<div class="flex items-center justify-between p-space-sm rounded bg-surface-subtle border border-border-subtle">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-accent-cyan"></span>
+<span class="font-code-md text-code-md text-text-primary">COUNT(complaint_key)</span>
+</div>
+<span class="font-annotation-mono text-annotation-mono text-text-faint">Additive volume</span>
+</div>
+<div class="flex items-center justify-between p-space-sm rounded bg-surface-subtle border border-border-subtle">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-status-warning"></span>
+<span class="font-code-md text-code-md text-text-primary">AVG(resolution_days)</span>
+</div>
+<span class="font-annotation-mono text-annotation-mono text-text-faint">Non-additive latency</span>
+</div>
+<div class="flex items-center justify-between p-space-sm rounded bg-surface-subtle border border-border-subtle">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-status-success"></span>
+<span class="font-code-md text-code-md text-text-primary">SUM(estimated_cost_inr)</span>
+</div>
+<span class="font-annotation-mono text-annotation-mono text-text-faint">Financial outlay</span>
+</div>
+</div>
+</div>
+
+<!-- Execute Button -->
+<button onclick="runCurrentOLAP()" class="w-full h-11 rounded bg-text-primary hover:bg-[#ececec] text-surface-pitch font-body-sm font-semibold flex items-center justify-center gap-2 transition-all shadow-sm active:scale-[0.99]" id="executeBtn">
+<span class="material-symbols-outlined text-[18px]">play_circle</span>
+<span>Re-Execute Cube Query</span>
+</button>
+</div>
+</div>
+
+<!-- Right Column (8/12): SQL & Live Cube Table -->
+<div class="col-span-12 lg:col-span-8 space-y-gutter">
+<!-- Live Generated SQL Console -->
+<div class="rounded-xl bg-surface-charcoal border border-border-subtle p-space-md shadow-sm space-y-space-xs">
+<div class="flex items-center justify-between pb-2 border-b border-border-subtle">
+<div class="flex items-center gap-2 font-annotation-mono text-annotation-mono text-text-muted">
+<span class="material-symbols-outlined text-[16px] text-accent-cyan">terminal</span>
+<span>COMPILED SQL QUERY (MySQL 8.0)</span>
+</div>
+<span class="font-annotation-mono text-annotation-mono text-status-success" id="sqlLatency">-- ms</span>
+</div>
+<pre class="bg-surface-pitch p-space-md rounded font-code-md text-code-md text-text-secondary overflow-x-auto border border-border-subtle text-[12px] leading-relaxed" id="sqlDisplay">-- Loading SQL...</pre>
+</div>
+
+<!-- Aggregation Table -->
+<div class="rounded-xl bg-surface-charcoal border border-border-subtle overflow-hidden shadow-sm">
+<div class="px-space-md py-3.5 bg-surface-elevated/40 flex items-center justify-between border-b border-border-subtle">
+<div class="flex items-center gap-3">
+<span class="font-annotation-mono text-annotation-mono uppercase text-text-muted tracking-wider" id="tableTitle">CUBE AGGREGATION VIEW</span>
+<span class="px-2 py-0.5 rounded bg-surface-pitch text-status-success font-annotation-mono text-annotation-mono" id="tableRowCount">-- rows</span>
+</div>
+<span class="font-annotation-mono text-annotation-mono text-text-faint">fact_complaint grain</span>
+</div>
+<div class="overflow-x-auto max-h-[500px]">
+<table class="w-full text-left font-body-sm text-body-sm" id="olapTable">
+<thead id="olapTableHead">
+<tr class="font-annotation-mono text-annotation-mono text-text-muted uppercase border-b border-border-subtle">
+<th class="py-2.5 px-3">Column</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-subtle/50 text-text-secondary font-code-md text-code-md" id="olapTableBody">
+<tr><td class="py-8 text-center text-text-muted">Executing query against warehouse...</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<script>
+  let currentOp = 'rollup';
+
+  const opDetails = {
+    rollup: {
+      factor: '8.0x reduction',
+      srcGrain: 'Municipal Ward Level',
+      srcDesc: '24 Distinct Administrative Wards',
+      targetGrain: 'Administrative Zone',
+      targetDesc: '3 Super-Zones: Western, Eastern, City'
+    },
+    drilldown: {
+      factor: '12x expansion',
+      srcGrain: 'Annual Temporal Level (2024)',
+      srcDesc: '1 Consolidated Year',
+      targetGrain: 'Quarter & Month Hierarchy',
+      targetDesc: 'Quarter -> Month temporal breakdown'
+    },
+    slice: {
+      factor: 'Category = Pothole',
+      srcGrain: 'Full Multi-Dimensional Cube',
+      srcDesc: '13 Complaint Categories',
+      targetGrain: 'Category Slice across 24 Wards',
+      targetDesc: 'Fixed Category: Pothole / Road Damage'
+    },
+    dice: {
+      factor: 'Sub-Cube Multi-Filter',
+      srcGrain: 'Full Cube (24 Wards x 13 Cats)',
+      srcDesc: 'All Dimensions unrestricted',
+      targetGrain: 'Sub-Cube: 3 Cats x 2 Zones (2024)',
+      targetDesc: 'Western & Eastern Suburbs, Year 2024'
+    },
+    pivot: {
+      factor: 'Cross-Tabulation Matrix',
+      srcGrain: 'Normalized Fact Complaint Rows',
+      srcDesc: 'Standard relational grain',
+      targetGrain: 'Wards (Rows) x Categories (Columns)',
+      targetDesc: 'Pothole, Water Supply, SWM, SWD'
+    }
+  };
+
+  function switchOLAP(op) {
+    currentOp = op;
+    ['rollup', 'drilldown', 'slice', 'dice', 'pivot'].forEach(name => {
+      const btn = document.getElementById('btn' + name.charAt(0).toUpperCase() + name.slice(1));
+      if (btn) {
+        if (name === op) {
+          btn.className = "px-space-md py-1.5 rounded font-body-sm text-body-sm font-medium transition-all bg-surface-elevated text-text-primary border border-border-contrast shadow-sm flex items-center gap-1.5";
+        } else {
+          btn.className = "px-space-md py-1.5 rounded font-body-sm text-body-sm font-medium transition-all text-text-muted hover:text-text-secondary hover:bg-surface-elevated/40 flex items-center gap-1.5";
+        }
+      }
+    });
+
+    document.getElementById('activeBadge').textContent = 'Active: ' + op.toUpperCase();
+    const info = opDetails[op];
+    if (info) {
+      document.getElementById('opFactor').textContent = info.factor;
+      document.getElementById('srcGrain').textContent = info.srcGrain;
+      document.getElementById('srcDesc').textContent = info.srcDesc;
+      document.getElementById('targetGrain').textContent = info.targetGrain;
+      document.getElementById('targetDesc').textContent = info.targetDesc;
+    }
+
+    runCurrentOLAP();
+  }
+
+  async function runCurrentOLAP() {
+    const tableHead = document.getElementById('olapTableHead');
+    const tableBody = document.getElementById('olapTableBody');
+    tableBody.innerHTML = '<tr><td colspan="6" class="py-8 text-center text-text-muted">Executing query against warehouse...</td></tr>';
+
+    try {
+      const res = await fetch('/api/olap/query', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ operation: currentOp })
+      });
+      const data = await res.json();
+
+      document.getElementById('sqlDisplay').textContent = data.sql;
+      document.getElementById('sqlLatency').textContent = `${data.execution_time_ms} ms latency`;
+      document.getElementById('tableRowCount').textContent = `${data.row_count} rows`;
+      document.getElementById('tableTitle').textContent = `${data.operation} AGGREGATION VIEW`;
+
+      // Render Head
+      tableHead.innerHTML = `
+        <tr class="font-annotation-mono text-annotation-mono text-text-muted uppercase border-b border-border-subtle">
+          ${data.columns.map(c => `<th class="py-2.5 px-3">${c.replace(/_/g, ' ')}</th>`).join('')}
+        </tr>
+      `;
+
+      // Render Body
+      tableBody.innerHTML = '';
+      data.rows.forEach(row => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-surface-subtle transition-colors';
+        tr.innerHTML = data.columns.map((col, idx) => {
+          let val = row[col];
+          if (typeof val === 'number') {
+            val = val.toLocaleString();
+          }
+          const isKey = idx === 0;
+          return `<td class="py-2.5 px-3 ${isKey ? 'text-text-primary font-medium' : 'text-text-secondary'}">${val}</td>`;
+        }).join('');
+        tableBody.appendChild(tr);
+      });
+    } catch (e) {
+      console.error('Error executing OLAP:', e);
+      tableBody.innerHTML = '<tr><td colspan="6" class="py-8 text-center text-status-critical">Error executing OLAP query.</td></tr>';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    switchOLAP('rollup');
+  });
+</script>
+</main></div></body></html>

@@ -1,0 +1,242 @@
+[
+  {
+    "ward": "K/E",
+    "ward_area": "Andheri East",
+    "zone": "Western",
+    "ward_type": "Suburban",
+    "ward_slum_percentage": 30.0,
+    "total_complaints": 59673,
+    "avg_resolution_days": 13.4,
+    "satisfaction_pct": 76.2
+  },
+  {
+    "ward": "L",
+    "ward_area": "Kurla-Vidyavihar",
+    "zone": "Eastern",
+    "ward_type": "Suburban",
+    "ward_slum_percentage": 45.0,
+    "total_complaints": 59459,
+    "avg_resolution_days": 16.0,
+    "satisfaction_pct": 75.1
+  },
+  {
+    "ward": "M/E",
+    "ward_area": "Govandi-Mankhurd",
+    "zone": "Eastern",
+    "ward_type": "Suburban",
+    "ward_slum_percentage": 65.0,
+    "total_complaints": 49648,
+    "avg_resolution_days": 13.4,
+    "satisfaction_pct": 76.1
+  },
+  {
+    "ward": "P/N",
+    "ward_area": "Malad",
+    "zone": "Western",
+    "ward_type": "Suburban",
+    "ward_slum_percentage": 35.0,
+    "total_complaints": 49548,
+    "avg_resolution_days": 13.5,
+    "satisfaction_pct": 76.1
+  },
+  {
+    "ward": "F/N",
+    "ward_area": "Sion-Dharavi",
+    "zone": "City",
+    "ward_type": "Central",
+    "ward_slum_percentage": 55.0,
+    "total_complaints": 49375,
+    "avg_resolution_days": 16.1,
+    "satisfaction_pct": 75.1
+  },
+  {
+    "ward": "N",
+    "ward_area": "Ghatkopar",
+    "zone": "Eastern",
+    "ward_type": "Suburban",
+    "ward_slum_percentage": 28.0,
+    "total_complaints": 49316,
+    "avg_resolution_days": 13.4,
+    "satisfaction_pct": 76.0
+  },
+  {
+    "ward": "H/E",
+    "ward_area": "Bandra East",
+    "zone": "Western",
+    "ward_type": "Suburban",
+    "ward_slum_percentage": 38.0,
+    "total_complaints": 49269,
+    "avg_resolution_days": 13.5,
+    "satisfaction_pct": 76.0
+  },
+  {
+    "ward": "G/N",
+    "ward_area": "Dharavi-Matunga",
+    "zone": "City",
+    "ward_type": "Central",
+    "ward_slum_percentage": 60.0,
+    "total_complaints": 49162,
+    "avg_resolution_days": 16.1,
+    "satisfaction_pct": 75.1
+  },
+  {
+    "ward": "E",
+    "ward_area": "Byculla-Mazgaon",
+    "zone": "City",
+    "ward_type": "South",
+    "ward_slum_percentage": 35.0,
+    "total_complaints": 39839,
+    "avg_resolution_days": 13.9,
+    "satisfaction_pct": 81.4
+  },
+  {
+    "ward": "G/S",
+    "ward_area": "Dadar-Mahim",
+    "zone": "City",
+    "ward_type": "Central",
+    "ward_slum_percentage": 25.0,
+    "total_complaints": 39768,
+    "avg_resolution_days": 13.5,
+    "satisfaction_pct": 75.8
+  },
+  {
+    "ward": "D",
+    "ward_area": "Worli-Prabhadevi",
+    "zone": "City",
+    "ward_type": "South",
+    "ward_slum_percentage": 22.0,
+    "total_complaints": 39736,
+    "avg_resolution_days": 11.7,
+    "satisfaction_pct": 82.0
+  },
+  {
+    "ward": "S",
+    "ward_area": "Bhandup-Mulund",
+    "zone": "Eastern",
+    "ward_type": "Suburban",
+    "ward_slum_percentage": 25.0,
+    "total_complaints": 39718,
+    "avg_resolution_days": 13.3,
+    "satisfaction_pct": 75.7
+  },
+  {
+    "ward": "F/S",
+    "ward_area": "Wadala-Antop Hill",
+    "zone": "City",
+    "ward_type": "Central",
+    "ward_slum_percentage": 40.0,
+    "total_complaints": 39712,
+    "avg_resolution_days": 13.5,
+    "satisfaction_pct": 76.0
+  },
+  {
+    "ward": "K/W",
+    "ward_area": "Andheri West-Juhu",
+    "zone": "Western",
+    "ward_type": "Suburban",
+    "ward_slum_percentage": 18.0,
+    "total_complaints": 39693,
+    "avg_resolution_days": 13.4,
+    "satisfaction_pct": 76.0
+  },
+  {
+    "ward": "M/W",
+    "ward_area": "Chembur West",
+    "zone": "Eastern",
+    "ward_type": "Suburban",
+    "ward_slum_percentage": 32.0,
+    "total_complaints": 39361,
+    "avg_resolution_days": 13.5,
+    "satisfaction_pct": 75.4
+  },
+  {
+    "ward": "P/S",
+    "ward_area": "Goregaon",
+    "zone": "Western",
+    "ward_type": "Suburban",
+    "ward_slum_percentage": 30.0,
+    "total_complaints": 39328,
+    "avg_resolution_days": 13.5,
+    "satisfaction_pct": 76.4
+  },
+  {
+    "ward": "C",
+    "ward_area": "Girgaon-Marine Lines",
+    "zone": "City",
+    "ward_type": "South",
+    "ward_slum_percentage": 15.0,
+    "total_complaints": 29882,
+    "avg_resolution_days": 11.8,
+    "satisfaction_pct": 81.5
+  },
+  {
+    "ward": "H/W",
+    "ward_area": "Bandra West",
+    "zone": "Western",
+    "ward_type": "Suburban",
+    "ward_slum_percentage": 10.0,
+    "total_complaints": 29773,
+    "avg_resolution_days": 13.6,
+    "satisfaction_pct": 75.8
+  },
+  {
+    "ward": "R/S",
+    "ward_area": "Kandivali",
+    "zone": "Western",
+    "ward_type": "Suburban",
+    "ward_slum_percentage": 18.0,
+    "total_complaints": 29694,
+    "avg_resolution_days": 13.6,
+    "satisfaction_pct": 75.6
+  },
+  {
+    "ward": "B",
+    "ward_area": "Mandvi-Masjid",
+    "zone": "City",
+    "ward_type": "South",
+    "ward_slum_percentage": 28.0,
+    "total_complaints": 29658,
+    "avg_resolution_days": 13.8,
+    "satisfaction_pct": 81.2
+  },
+  {
+    "ward": "A",
+    "ward_area": "Colaba-Fort",
+    "zone": "City",
+    "ward_type": "South",
+    "ward_slum_percentage": 12.0,
+    "total_complaints": 29637,
+    "avg_resolution_days": 11.7,
+    "satisfaction_pct": 81.8
+  },
+  {
+    "ward": "R/N",
+    "ward_area": "Dahisar",
+    "zone": "Western",
+    "ward_type": "Suburban",
+    "ward_slum_percentage": 20.0,
+    "total_complaints": 29533,
+    "avg_resolution_days": 13.4,
+    "satisfaction_pct": 75.6
+  },
+  {
+    "ward": "R/C",
+    "ward_area": "Borivali Central",
+    "zone": "Western",
+    "ward_type": "Suburban",
+    "ward_slum_percentage": 22.0,
+    "total_complaints": 29473,
+    "avg_resolution_days": 13.5,
+    "satisfaction_pct": 76.1
+  },
+  {
+    "ward": "T",
+    "ward_area": "Mulund",
+    "zone": "Eastern",
+    "ward_type": "Suburban",
+    "ward_slum_percentage": 15.0,
+    "total_complaints": 19745,
+    "avg_resolution_days": 13.3,
+    "satisfaction_pct": 76.4
+  }
+]

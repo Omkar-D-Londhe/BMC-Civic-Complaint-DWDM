@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "surface-container-low": "#1b1b1b", "on-secondary": "#003061", "on-primary": "#002e6b", "surface-pitch": "#000000", "surface-container-highest": "#353535", "on-error-container": "#ffdad6", "primary-fixed-dim": "#aec6ff", "inverse-on-surface": "#303030", "surface-dim": "#131313", "status-critical": "#e00000", "on-tertiary": "#581e00", "tertiary-fixed-dim": "#ffb596", "on-surface": "#e2e2e2", "on-tertiary-container": "#fffeff", "surface-container": "#1f1f1f", "on-tertiary-fixed": "#360f00", "error-container": "#93000a", "accent-cyan": "#3291ff", "text-secondary": "#ededed", "on-secondary-fixed": "#001b3c", "background": "#131313", "on-secondary-fixed-variant": "#004788", "primary-container": "#0070f3", "surface-charcoal": "#0a0a0a", "tertiary": "#ffb596", "text-faint": "#444444", "tertiary-fixed": "#ffdbcd", "on-tertiary-fixed-variant": "#7d2d00", "border-subtle": "#1f1f1f", "secondary-container": "#3291ff", "outline-variant": "#414754", "surface-bright": "#393939", "on-secondary-container": "#002a55", "surface-subtle": "#111111", "secondary-fixed": "#d5e3ff", "text-muted": "#888888", "secondary-fixed-dim": "#a7c8ff", "border-contrast": "#2e2e2e", "on-background": "#e2e2e2", "surface-container-lowest": "#0e0e0e", "primary": "#aec6ff", "surface-container-high": "#2a2a2a", "secondary": "#a7c8ff", "surface-variant": "#353535", "status-warning": "#f5a623", "text-primary": "#ffffff", "inverse-primary": "#0059c5", "on-primary-container": "#ffffff", "on-error": "#690005", "error": "#ffb4ab", "status-success": "#10b981", "surface": "#131313", "inverse-surface": "#e2e2e2", "on-primary-fixed-variant": "#004397", "surface-elevated": "#171717", "outline": "#8b90a0", "surface-tint": "#aec6ff", "on-primary-fixed": "#001a43", "on-surface-variant": "#c1c6d7", "primary-fixed": "#d8e2ff", "tertiary-container": "#ca4e00" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-sm": "0.5rem", "gutter": "1.5rem", "space-md": "1rem", "gutter-mobile": "1rem", "margin-mobile": "1rem", "margin": "2rem", "space-lg": "1.5rem", "space-xs": "0.25rem", "space-xl": "2.5rem" }, "fontFamily": { "display-hero": ["Geist"], "headline-md": ["Geist"], "display-hero-mobile": ["Geist"], "body-sm": ["Geist"], "headline-sm": ["Geist"], "headline-lg": ["Geist"], "headline-lg-mobile": ["Geist"], "code-md": ["JetBrains Mono"], "body-lg": ["Geist"], "body-md": ["Geist"], "annotation-mono": ["JetBrains Mono"] }, "fontSize": { "display-hero": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.04em", "fontWeight": "600" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.02em", "fontWeight": "500" }], "display-hero-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.03em", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0em", "fontWeight": "400" }], "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "500" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.03em", "fontWeight": "600" }], "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "code-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }], "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "400" }], "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "-0.005em", "fontWeight": "400" }], "annotation-mono": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "500" }] } } } };</script></head><body class="bg-surface-pitch font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-charcoal z-50 flex flex-col border-r border-border-subtle"><div class="h-14 px-space-md border-b border-border-subtle flex items-center justify-between"><div class="flex items-center gap-space-sm"><div class="w-6 h-6 rounded bg-text-primary flex items-center justify-center"><span class="material-symbols-outlined text-surface-pitch text-[16px]">polyline</span></div><div><div class="font-headline-sm text-headline-sm text-text-primary tracking-tight font-medium">CivicLens</div><div class="font-annotation-mono text-annotation-mono text-text-muted uppercase tracking-wider">BMC Civic Analytics</div></div></div><div class="w-1.5 h-1.5 rounded-full bg-status-success"></div></div><div class="flex-1 overflow-y-auto px-space-sm py-space-md"><div class="mb-space-lg"><div class="px-space-sm pb-space-xs font-annotation-mono text-annotation-mono text-text-faint uppercase tracking-wider">Explore</div><nav class="space-y-0.5" data-active-classes="bg-surface-elevated text-text-primary font-medium border border-border-contrast"><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-subtle hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="overview" href="#"><span class="material-symbols-outlined text-[18px]">grid_view</span><span>Overview</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-subtle hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="complaint-explorer" href="#"><span class="material-symbols-outlined text-[18px]">search_insights</span><span>Complaint Explorer</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-subtle hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="trends-and-geography" href="#"><span class="material-symbols-outlined text-[18px]">map</span><span>Trends & Geography</span></a></nav></div><div class="mb-space-lg"><div class="px-space-sm pb-space-xs font-annotation-mono text-annotation-mono text-text-faint uppercase tracking-wider">Analyse</div><nav class="space-y-0.5" data-active-classes="bg-surface-elevated text-text-primary font-medium border border-border-contrast"><a aria-current="page" class="flex items-center gap-space-sm px-space-sm py-1.5 rounded transition-colors bg-surface-elevated text-text-primary font-medium border border-border-contrast" data-path="olap-laboratory" href="#"><span class="material-symbols-outlined text-[18px]">biotech</span><span>OLAP Laboratory</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-subtle hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="ml-models" href="#"><span class="material-symbols-outlined text-[18px]">neurology</span><span>ML Models</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-subtle hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="patterns-and-clusters" href="#"><span class="material-symbols-outlined text-[18px]">hub</span><span>Patterns & Clusters</span></a></nav></div><div><div class="px-space-sm pb-space-xs font-annotation-mono text-annotation-mono text-text-faint uppercase tracking-wider">System</div><nav class="space-y-0.5" data-active-classes="bg-surface-elevated text-text-primary font-medium border border-border-contrast"><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-subtle hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="data-quality" href="#"><span class="material-symbols-outlined text-[18px]">verified</span><span>Data Quality</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-subtle hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="data-warehouse" href="#"><span class="material-symbols-outlined text-[18px]">database</span><span>Data Warehouse</span></a></nav></div></div><div class="p-space-sm border-t border-border-subtle bg-surface-pitch/40"><div class="flex items-center justify-between px-space-sm py-space-xs"><div class="flex items-center gap-space-xs"><span class="w-1.5 h-1.5 rounded-full bg-status-success animate-pulse"></span><span class="font-annotation-mono text-annotation-mono text-text-muted">v2.4.1-rc3</span></div><span class="font-annotation-mono text-annotation-mono text-text-faint uppercase">Zone: West</span></div></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-14 bg-surface-charcoal/90 backdrop-blur-md border-b border-border-subtle z-40 flex items-center justify-between px-gutter"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs font-annotation-mono text-annotation-mono"><span class="text-text-muted">BMC</span><span class="text-text-faint">/</span><span class="text-text-muted">Municipal Intelligence</span><span class="text-text-faint">/</span><span class="text-text-primary">Live Telemetry</span></div><div class="h-4 w-[1px] bg-border-contrast"></div><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-2.5 text-[16px] text-text-muted">search</span><input class="h-8 w-64 bg-surface-subtle border border-border-contrast rounded px-space-sm pl-8 font-body-sm text-body-sm text-text-secondary placeholder-text-faint focus:outline-none focus:border-accent-cyan transition-colors" placeholder="Search complaints, wards, codes (⌘K)..." type="text"/></div></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-subtle border border-border-subtle font-annotation-mono text-annotation-mono text-text-secondary"><span class="material-symbols-outlined text-[14px] text-text-muted">calendar_today</span><span>FY 2018-2024</span><span class="material-symbols-outlined text-[14px] text-text-faint">arrow_drop_down</span></div><div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-subtle border border-border-subtle font-annotation-mono text-annotation-mono"><span class="w-1.5 h-1.5 rounded-full bg-status-success"></span><span class="text-text-secondary">Engine Online</span></div><div class="h-4 w-[1px] bg-border-contrast"></div><button class="p-1 text-on-surface-variant hover:text-on-surface transition-colors flex items-center justify-center"><span class="material-symbols-outlined text-[18px]">notifications</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><main class="w-full pt-14 min-h-screen bg-surface-pitch px-gutter py-space-lg"><div class="flex flex-col w-full space-y-space-xl">
+<!-- Top Operational Header & Analytical Context -->
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-md border-b border-border-subtle pb-space-lg">
+<div class="space-y-space-xs max-w-3xl">
+<div class="flex items-center gap-space-sm text-text-muted font-annotation-mono text-annotation-mono tracking-wider uppercase">
+<span>OLAP Engine</span>
+<span>/</span>
+<span>Analytical Cube Engine v4.2</span>
+<span>/</span>
+<span class="text-status-success flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-status-success animate-pulse"></span>
+          Cluster Synchronized
+        </span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-text-primary tracking-tight font-semibold">
+        OLAP Multi-Dimensional Laboratory
+      </h1>
+<p class="font-body-md text-body-md text-text-muted leading-relaxed">
+        Execute multi-dimensional cube aggregations across BMC geographical and temporal hierarchies with microsecond OLAP compilation.
+      </p>
+</div>
+<!-- Segmented Operational Mode Switcher -->
+<div class="flex items-center p-1 rounded-xl bg-surface-subtle border border-border-subtle self-start lg:self-auto">
+<button class="px-space-md py-1.5 rounded font-body-sm text-body-sm font-medium transition-all bg-surface-elevated text-text-primary border border-border-contrast shadow-sm flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-accent-cyan">vertical_align_top</span>
+<span>Roll-up</span>
+</button>
+<button class="px-space-md py-1.5 rounded font-body-sm text-body-sm font-medium transition-all text-text-muted hover:text-text-secondary hover:bg-surface-elevated/40 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px]">vertical_align_bottom</span>
+<span>Drill-down</span>
+</button>
+<button class="px-space-md py-1.5 rounded font-body-sm text-body-sm font-medium transition-all text-text-muted hover:text-text-secondary hover:bg-surface-elevated/40 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px]">content_cut</span>
+<span>Slice</span>
+</button>
+<button class="px-space-md py-1.5 rounded font-body-sm text-body-sm font-medium transition-all text-text-muted hover:text-text-secondary hover:bg-surface-elevated/40 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px]">view_in_ar</span>
+<span>Dice</span>
+</button>
+<button class="px-space-md py-1.5 rounded font-body-sm text-body-sm font-medium transition-all text-text-muted hover:text-text-secondary hover:bg-surface-elevated/40 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px]">sync_alt</span>
+<span>Pivot</span>
+</button>
+</div>
+</div>
+<!-- Primary Workspace: 12-Column Balanced Architecture -->
+<div class="grid grid-cols-12 gap-gutter items-start">
+<!-- Left Column (4/12): Parameter Scaffolding -->
+<div class="col-span-12 lg:col-span-4 space-y-gutter">
+<!-- Cube Operation Configuration Card -->
+<div class="rounded-xl bg-surface-charcoal border border-border-subtle p-space-lg shadow-sm space-y-space-lg relative overflow-hidden">
+<div class="flex items-center justify-between border-b border-border-subtle pb-space-sm">
+<div class="flex items-center gap-space-xs font-headline-sm text-headline-sm text-text-primary font-medium">
+<span class="material-symbols-outlined text-text-muted text-[18px]">tune</span>
+<span>Cube Operation Configuration</span>
+</div>
+<span class="font-annotation-mono text-annotation-mono px-2 py-0.5 rounded bg-surface-subtle text-accent-cyan border border-accent-cyan/20">
+            Active: ROLLUP
+          </span>
+</div>
+<!-- Traversal Hierarchy -->
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<label class="font-annotation-mono text-annotation-mono text-text-muted uppercase tracking-wider">Dimension Hierarchy Traversal</label>
+<span class="font-annotation-mono text-annotation-mono text-status-success">8.0× reduction factor</span>
+</div>
+<div class="p-space-md rounded bg-surface-subtle border border-border-subtle space-y-space-md">
+<div class="flex items-start justify-between">
+<div>
+<div class="font-annotation-mono text-annotation-mono text-text-faint">SOURCE GRAIN</div>
+<div class="font-body-md text-body-md text-text-primary font-medium mt-0.5">Municipal Ward Level</div>
+<div class="font-body-sm text-body-sm text-text-muted">24 Distinct Administrative Wards</div>
+</div>
+<span class="material-symbols-outlined text-text-faint text-[20px]">layers</span>
+</div>
+<div class="flex items-center justify-center -my-1 text-text-faint">
+<span class="material-symbols-outlined text-[18px] text-accent-cyan">arrow_downward</span>
+</div>
+<div class="flex items-start justify-between border-t border-border-contrast pt-space-sm">
+<div>
+<div class="font-annotation-mono text-annotation-mono text-accent-cyan">TARGET GRAIN</div>
+<div class="font-body-md text-body-md text-text-primary font-medium mt-0.5">Administrative Zone</div>
+<div class="font-body-sm text-body-sm text-text-muted">3 Super-Zones: Western, Eastern, Island City</div>
+</div>
+<span class="material-symbols-outlined text-accent-cyan text-[20px]">domain</span>
+</div>
+</div>
+</div>
+<!-- Measures Matrix -->
+<div class="space-y-space-sm">
+<label class="font-annotation-mono text-annotation-mono text-text-muted uppercase tracking-wider">Aggregated Measures</label>
+<div class="space-y-2">
+<div class="flex items-center justify-between p-space-sm rounded bg-surface-subtle border border-border-subtle">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-accent-cyan"></span>
+<span class="font-code-md text-code-md text-text-primary">SUM(complaint_count)</span>
+</div>
+<span class="font-annotation-mono text-annotation-mono text-text-faint">Additive volume</span>
+</div>
+<div class="flex items-center justify-between p-space-sm rounded bg-surface-subtle border border-border-subtle">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-status-warning"></span>
+<span class="font-code-md text-code-md text-text-primary">AVG(resolution_duration_days)</span>
+</div>
+<span class="font-annotation-mono text-annotation-mono text-text-faint">Non-additive latency</span>
+</div>
+</div>
+</div>
+<!-- Temporal Partition -->
+<div class="space-y-space-xs">
+<label class="font-annotation-mono text-annotation-mono text-text-muted uppercase tracking-wider">Temporal Partition Window</label>
+<div class="relative">
+<select class="w-full h-9 bg-surface-subtle border border-border-subtle rounded px-space-sm font-body-sm text-body-sm text-text-primary appearance-none focus:outline-none focus:border-accent-cyan transition-colors">
+<option selected="">FY 2023–2024 (Annual Grain · Consolidated)</option>
+<option>FY 2022–2023 (Annual Grain · Historical)</option>
+<option>Q3-Q4 FY 2023–2024 (Monsoon Shift Window)</option>
+<option>All History (2018–2024 Multi-Year Rollup)</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-2.5 text-text-muted pointer-events-none text-[16px]">expand_more</span>
+</div>
+</div>
+<!-- Action Panel -->
+<div class="pt-space-xs space-y-space-sm border-t border-border-subtle">
+<div class="flex items-center gap-space-sm">
+<button class="flex-1 h-9 rounded bg-text-primary text-surface-pitch font-body-sm text-body-sm font-semibold hover:bg-text-secondary transition-all flex items-center justify-center gap-1.5 focus:ring-2 focus:ring-accent-cyan focus:ring-offset-2 focus:ring-offset-surface-pitch" id="btnExecute">
+<span class="material-symbols-outlined text-[16px]">play_arrow</span>
+<span>Execute Aggregation</span>
+</button>
+<button class="h-9 px-space-md rounded bg-surface-pitch border border-border-subtle text-text-muted hover:text-text-primary hover:border-border-contrast transition-all font-body-sm text-body-sm flex items-center justify-center">
+              Reset
+            </button>
+</div>
+<!-- Cache & Execution Telemetry -->
+<div class="flex items-center justify-between px-space-sm py-2 rounded bg-surface-pitch border border-border-subtle">
+<div class="flex items-center gap-1.5 font-annotation-mono text-annotation-mono text-text-muted">
+<span class="material-symbols-outlined text-[14px] text-status-success">bolt</span>
+<span>In-Memory Cache Hit</span>
+</div>
+<span class="font-annotation-mono text-annotation-mono text-accent-cyan">0.042s latency</span>
+</div>
+</div>
+</div>
+<!-- Dimension Context Card -->
+<div class="rounded-xl bg-surface-charcoal border border-border-subtle p-space-md space-y-space-sm text-text-muted">
+<div class="font-annotation-mono text-annotation-mono text-text-faint uppercase">Dimensionality Blueprint</div>
+<div class="grid grid-cols-2 gap-space-sm text-body-sm">
+<div class="p-2 rounded bg-surface-pitch border border-border-subtle">
+<div class="font-annotation-mono text-annotation-mono text-text-faint">GEOGRAPHY GRAIN</div>
+<div class="font-code-md text-code-md text-text-primary mt-1">Zone > Ward</div>
+</div>
+<div class="p-2 rounded bg-surface-pitch border border-border-subtle">
+<div class="font-annotation-mono text-annotation-mono text-text-faint">TIME HORIZON</div>
+<div class="font-code-md text-code-md text-text-primary mt-1">Annual (FY)</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column (8/12): Results, Query Blueprint & Visual Diagnostics -->
+<div class="col-span-12 lg:col-span-8 space-y-gutter">
+<!-- SQL Translation Box -->
+<div class="rounded-xl bg-surface-charcoal border border-border-subtle overflow-hidden shadow-sm">
+<div class="flex items-center justify-between px-space-md py-2.5 bg-surface-subtle border-b border-border-subtle">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-text-muted text-[16px]">terminal</span>
+<span class="font-annotation-mono text-annotation-mono text-text-secondary uppercase">Materialized SQL Engine Translation</span>
+</div>
+<button class="flex items-center gap-1 px-2.5 py-1 rounded bg-surface-pitch border border-border-subtle text-text-muted hover:text-text-primary hover:border-border-contrast transition-colors font-annotation-mono text-annotation-mono" id="copyBtn" onclick="copySqlCode()">
+<span class="material-symbols-outlined text-[13px]" id="copyIcon">content_copy</span>
+<span id="copyLabel">Copy SQL</span>
+</button>
+</div>
+<div class="p-space-md bg-surface-pitch overflow-x-auto">
+<pre class="font-code-md text-code-md text-text-secondary leading-relaxed selection:bg-accent-cyan selection:text-surface-pitch" id="sqlBlock"><code><span class="text-accent-cyan">SELECT</span> 
+    z.zone_name, 
+    <span class="text-status-warning">COUNT</span>(f.complaint_key) <span class="text-accent-cyan">AS</span> total_complaints, 
+    <span class="text-status-warning">ROUND</span>(<span class="text-status-warning">AVG</span>(f.resolution_days), <span class="text-accent-cyan">2</span>) <span class="text-accent-cyan">AS</span> avg_resolution_days
+<span class="text-accent-cyan">FROM</span> 
+    fact_civic_complaints f
+<span class="text-accent-cyan">JOIN</span> 
+    dim_geography g <span class="text-accent-cyan">ON</span> f.geo_key = g.geo_key
+<span class="text-accent-cyan">JOIN</span> 
+    dim_zone z <span class="text-accent-cyan">ON</span> g.zone_id = z.zone_id
+<span class="text-accent-cyan">GROUP BY</span> 
+    z.zone_name <span class="text-accent-cyan">WITH ROLLUP</span>;</code></pre>
+</div>
+</div>
+<!-- Multi-Dimensional Aggregation Results Table -->
+<div class="rounded-xl bg-surface-charcoal border border-border-subtle overflow-hidden shadow-sm">
+<div class="px-space-md py-space-sm border-b border-border-subtle flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-accent-cyan text-[18px]">table_chart</span>
+<div class="font-headline-sm text-headline-sm text-text-primary font-medium">
+              Multi-Dimensional Roll-Up Results
+            </div>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="font-annotation-mono text-annotation-mono text-text-muted">4 tuples generated</span>
+<button class="p-1 text-text-muted hover:text-text-primary transition-colors">
+<span class="material-symbols-outlined text-[16px]">download</span>
+</button>
+</div>
+</div>
+<!-- Spacious Monochromatic Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-border-subtle bg-surface-subtle/50 font-annotation-mono text-annotation-mono text-text-muted uppercase">
+<th class="px-space-md py-3 font-medium">Zone Name</th>
+<th class="px-space-md py-3 font-medium">Wards Included</th>
+<th class="px-space-md py-3 font-medium text-right">Total Complaints</th>
+<th class="px-space-md py-3 font-medium text-right">Avg Turnaround</th>
+<th class="px-space-md py-3 font-medium text-right">SLA Compliance</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-subtle font-body-sm text-body-sm text-text-secondary">
+<!-- Row 1: Western Suburbs -->
+<tr class="hover:bg-surface-elevated transition-colors">
+<td class="px-space-md py-3.5 font-medium text-text-primary flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-accent-cyan"></span>
+<span>Western Suburbs</span>
+</td>
+<td class="px-space-md py-3.5 text-text-muted">
+                  Wards H, K, P, R (8 wards)
+                </td>
+<td class="px-space-md py-3.5 text-right font-code-md text-code-md text-text-primary">
+                  182,410
+                </td>
+<td class="px-space-md py-3.5 text-right font-code-md text-code-md">
+                  6.8 days
+                </td>
+<td class="px-space-md py-3.5 text-right font-code-md text-code-md text-status-warning">
+                  84.2%
+                </td>
+</tr>
+<!-- Row 2: Eastern Suburbs -->
+<tr class="hover:bg-surface-elevated transition-colors">
+<td class="px-space-md py-3.5 font-medium text-text-primary flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary-fixed-dim"></span>
+<span>Eastern Suburbs</span>
+</td>
+<td class="px-space-md py-3.5 text-text-muted">
+                  Wards L, M, N, S, T (6 wards)
+                </td>
+<td class="px-space-md py-3.5 text-right font-code-md text-code-md text-text-primary">
+                  104,180
+                </td>
+<td class="px-space-md py-3.5 text-right font-code-md text-code-md">
+                  6.2 days
+                </td>
+<td class="px-space-md py-3.5 text-right font-code-md text-code-md text-status-success">
+                  86.8%
+                </td>
+</tr>
+<!-- Row 3: Island City -->
+<tr class="hover:bg-surface-elevated transition-colors">
+<td class="px-space-md py-3.5 font-medium text-text-primary flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span>Island City</span>
+</td>
+<td class="px-space-md py-3.5 text-text-muted">
+                  Wards A, B, C, D, E, F, G (10 wards)
+                </td>
+<td class="px-space-md py-3.5 text-right font-code-md text-code-md text-text-primary">
+                  61,629
+                </td>
+<td class="px-space-md py-3.5 text-right font-code-md text-code-md">
+                  5.7 days
+                </td>
+<td class="px-space-md py-3.5 text-right font-code-md text-code-md text-status-success">
+                  89.1%
+                </td>
+</tr>
+<!-- Row 4: Rollup Consolidate -->
+<tr class="bg-surface-subtle font-medium border-t border-border-contrast">
+<td class="px-space-md py-4 text-text-primary flex items-center gap-2 font-code-md text-code-md font-semibold">
+<span class="material-symbols-outlined text-[15px] text-accent-cyan">functions</span>
+<span>Greater Mumbai (ROLLUP ALL)</span>
+</td>
+<td class="px-space-md py-4 text-text-muted font-annotation-mono text-annotation-mono">
+                  All 24 Wards Consolidated
+                </td>
+<td class="px-space-md py-4 text-right font-code-md text-code-md font-semibold text-text-primary">
+                  348,219
+                </td>
+<td class="px-space-md py-4 text-right font-code-md text-code-md font-semibold text-text-primary">
+                  6.4 days
+                </td>
+<td class="px-space-md py-4 text-right font-code-md text-code-md font-semibold text-status-success">
+                  85.9%
+                </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Key Insight Callout Strip -->
+<div class="rounded-xl bg-surface-charcoal border border-border-subtle p-space-md flex items-start gap-space-md">
+<div class="w-8 h-8 rounded bg-accent-cyan/10 border border-accent-cyan/20 flex items-center justify-center shrink-0 text-accent-cyan">
+<span class="material-symbols-outlined text-[18px]">lightbulb</span>
+</div>
+<div class="space-y-1">
+<div class="font-annotation-mono text-annotation-mono text-accent-cyan uppercase tracking-wider">Analytical Synthesis</div>
+<p class="font-body-md text-body-md text-text-primary leading-relaxed">
+<span class="font-semibold text-text-primary">Insight:</span> Western suburbs generate <strong class="text-accent-cyan font-code-md">52.4%</strong> of total municipal complaints with significantly higher resolution latency (<span class="font-code-md text-status-warning">6.8 days</span>) during monsoon surge windows compared to Island City wards.
+          </p>
+</div>
+</div>
+<!-- Analytical Bar Matrix Visualizer -->
+<div class="rounded-xl bg-surface-charcoal border border-border-subtle p-space-md space-y-space-md">
+<div class="flex items-center justify-between text-annotation-mono text-annotation-mono font-annotation-mono text-text-muted">
+<span class="uppercase">Volume Distribution Ratio</span>
+<span>Target Partition: FY 2023–24</span>
+</div>
+<div class="space-y-space-sm">
+<div>
+<div class="flex justify-between font-body-sm text-body-sm mb-1 text-text-muted">
+<span>Western Suburbs</span>
+<span class="font-code-md text-text-primary">52.4% (182,410)</span>
+</div>
+<div class="w-full h-2 rounded bg-surface-subtle overflow-hidden">
+<div class="bg-accent-cyan h-full rounded" style="width: 52.4%;"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-body-sm text-body-sm mb-1 text-text-muted">
+<span>Eastern Suburbs</span>
+<span class="font-code-md text-text-primary">29.9% (104,180)</span>
+</div>
+<div class="w-full h-2 rounded bg-surface-subtle overflow-hidden">
+<div class="bg-primary-fixed-dim h-full rounded" style="width: 29.9%;"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-body-sm text-body-sm mb-1 text-text-muted">
+<span>Island City</span>
+<span class="font-code-md text-text-primary">17.7% (61,629)</span>
+</div>
+<div class="w-full h-2 rounded bg-surface-subtle overflow-hidden">
+<div class="bg-tertiary h-full rounded" style="width: 17.7%;"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  function copySqlCode() {
+    const sqlText = `SELECT z.zone_name, COUNT(f.complaint_key) AS total_complaints, ROUND(AVG(f.resolution_days), 2) AS avg_resolution_days\nFROM fact_civic_complaints f\nJOIN dim_geography g ON f.geo_key = g.geo_key\nJOIN dim_zone z ON g.zone_id = z.zone_id\nGROUP BY z.zone_name WITH ROLLUP;`;
+    navigator.clipboard.writeText(sqlText).then(() => {
+      const copyIcon = document.getElementById('copyIcon');
+      const copyLabel = document.getElementById('copyLabel');
+      copyIcon.textContent = 'check';
+      copyLabel.textContent = 'Copied!';
+      setTimeout(() => {
+        copyIcon.textContent = 'content_copy';
+        copyLabel.textContent = 'Copy SQL';
+      }, 2000);
+    });
+  }
+
+  document.getElementById('btnExecute').addEventListener('click', function() {
+    const originalText = this.innerHTML;
+    this.innerHTML = '<span class="material-symbols-outlined text-[16px] animate-spin">refresh</span><span>Computing Cube...</span>';
+    setTimeout(() => {
+      this.innerHTML = originalText;
+    }, 450);
+  });
+</script></main></div></body></html>

@@ -1,0 +1,331 @@
+{
+  "kpis": {
+    "total_complaints": 960000,
+    "repeat_complaints_count": 296816,
+    "repeat_complaint_rate": 30.92,
+    "avg_prior_complaints": 1.0,
+    "repeat_satisfaction_rate": 74.88,
+    "first_time_satisfaction_rate": 77.68,
+    "repeat_avg_resolution_days": 13.8,
+    "first_time_avg_resolution_days": 13.7
+  },
+  "by_category": [
+    {
+      "category_name": "Stray Animal Menace",
+      "total": 18962,
+      "repeat_count": 5904.0,
+      "repeat_pct": 31.14,
+      "avg_prior_complaints": 1.01
+    },
+    {
+      "category_name": "Illegal Construction",
+      "total": 66867,
+      "repeat_count": 20809.0,
+      "repeat_pct": 31.12,
+      "avg_prior_complaints": 1.01
+    },
+    {
+      "category_name": "Pothole / Road Damage",
+      "total": 172475,
+      "repeat_count": 53614.0,
+      "repeat_pct": 31.09,
+      "avg_prior_complaints": 1.01
+    },
+    {
+      "category_name": "Encroachment",
+      "total": 57630,
+      "repeat_count": 17892.0,
+      "repeat_pct": 31.05,
+      "avg_prior_complaints": 1.0
+    },
+    {
+      "category_name": "Health / Epidemic",
+      "total": 9776,
+      "repeat_count": 3034.0,
+      "repeat_pct": 31.04,
+      "avg_prior_complaints": 0.99
+    },
+    {
+      "category_name": "Water Leakage / Pipe Burst",
+      "total": 38121,
+      "repeat_count": 11819.0,
+      "repeat_pct": 31.0,
+      "avg_prior_complaints": 1.0
+    },
+    {
+      "category_name": "Noise / Air Pollution",
+      "total": 28752,
+      "repeat_count": 8905.0,
+      "repeat_pct": 30.97,
+      "avg_prior_complaints": 1.0
+    },
+    {
+      "category_name": "Solid Waste / Garbage",
+      "total": 134953,
+      "repeat_count": 41688.0,
+      "repeat_pct": 30.89,
+      "avg_prior_complaints": 1.0
+    },
+    {
+      "category_name": "Street Light Failure",
+      "total": 86380,
+      "repeat_count": 26687.0,
+      "repeat_pct": 30.89,
+      "avg_prior_complaints": 1.0
+    },
+    {
+      "category_name": "Public Toilet Condition",
+      "total": 38225,
+      "repeat_count": 11797.0,
+      "repeat_pct": 30.86,
+      "avg_prior_complaints": 1.01
+    },
+    {
+      "category_name": "Water Supply Disruption",
+      "total": 153875,
+      "repeat_count": 47408.0,
+      "repeat_pct": 30.81,
+      "avg_prior_complaints": 1.0
+    },
+    {
+      "category_name": "Drainage Overflow / Flooding",
+      "total": 105867,
+      "repeat_count": 32572.0,
+      "repeat_pct": 30.77,
+      "avg_prior_complaints": 1.0
+    },
+    {
+      "category_name": "Tree Fallen / Dangerous Tree",
+      "total": 48117,
+      "repeat_count": 14687.0,
+      "repeat_pct": 30.52,
+      "avg_prior_complaints": 0.99
+    }
+  ],
+  "by_ward": [
+    {
+      "ward": "R/S",
+      "ward_area": "Kandivali",
+      "zone": "Western",
+      "total": 29694,
+      "repeat_count": 9292.0,
+      "repeat_pct": 31.29
+    },
+    {
+      "ward": "B",
+      "ward_area": "Mandvi-Masjid",
+      "zone": "City",
+      "total": 29658,
+      "repeat_count": 9278.0,
+      "repeat_pct": 31.28
+    },
+    {
+      "ward": "G/N",
+      "ward_area": "Dharavi-Matunga",
+      "zone": "City",
+      "total": 49162,
+      "repeat_count": 15347.0,
+      "repeat_pct": 31.22
+    },
+    {
+      "ward": "N",
+      "ward_area": "Ghatkopar",
+      "zone": "Eastern",
+      "total": 49316,
+      "repeat_count": 15369.0,
+      "repeat_pct": 31.16
+    },
+    {
+      "ward": "P/S",
+      "ward_area": "Goregaon",
+      "zone": "Western",
+      "total": 39328,
+      "repeat_count": 12253.0,
+      "repeat_pct": 31.16
+    },
+    {
+      "ward": "D",
+      "ward_area": "Worli-Prabhadevi",
+      "zone": "City",
+      "total": 39736,
+      "repeat_count": 12357.0,
+      "repeat_pct": 31.1
+    },
+    {
+      "ward": "M/W",
+      "ward_area": "Chembur West",
+      "zone": "Eastern",
+      "total": 39361,
+      "repeat_count": 12227.0,
+      "repeat_pct": 31.06
+    },
+    {
+      "ward": "S",
+      "ward_area": "Bhandup-Mulund",
+      "zone": "Eastern",
+      "total": 39718,
+      "repeat_count": 12326.0,
+      "repeat_pct": 31.03
+    },
+    {
+      "ward": "G/S",
+      "ward_area": "Dadar-Mahim",
+      "zone": "City",
+      "total": 39768,
+      "repeat_count": 12321.0,
+      "repeat_pct": 30.98
+    },
+    {
+      "ward": "R/C",
+      "ward_area": "Borivali Central",
+      "zone": "Western",
+      "total": 29473,
+      "repeat_count": 9130.0,
+      "repeat_pct": 30.98
+    },
+    {
+      "ward": "E",
+      "ward_area": "Byculla-Mazgaon",
+      "zone": "City",
+      "total": 39839,
+      "repeat_count": 12333.0,
+      "repeat_pct": 30.96
+    },
+    {
+      "ward": "F/N",
+      "ward_area": "Sion-Dharavi",
+      "zone": "City",
+      "total": 49375,
+      "repeat_count": 15280.0,
+      "repeat_pct": 30.95
+    },
+    {
+      "ward": "H/E",
+      "ward_area": "Bandra East",
+      "zone": "Western",
+      "total": 49269,
+      "repeat_count": 15250.0,
+      "repeat_pct": 30.95
+    },
+    {
+      "ward": "H/W",
+      "ward_area": "Bandra West",
+      "zone": "Western",
+      "total": 29773,
+      "repeat_count": 9192.0,
+      "repeat_pct": 30.87
+    },
+    {
+      "ward": "L",
+      "ward_area": "Kurla-Vidyavihar",
+      "zone": "Eastern",
+      "total": 59459,
+      "repeat_count": 18351.0,
+      "repeat_pct": 30.86
+    },
+    {
+      "ward": "K/W",
+      "ward_area": "Andheri West-Juhu",
+      "zone": "Western",
+      "total": 39693,
+      "repeat_count": 12244.0,
+      "repeat_pct": 30.85
+    },
+    {
+      "ward": "R/N",
+      "ward_area": "Dahisar",
+      "zone": "Western",
+      "total": 29533,
+      "repeat_count": 9110.0,
+      "repeat_pct": 30.85
+    },
+    {
+      "ward": "C",
+      "ward_area": "Girgaon-Marine Lines",
+      "zone": "City",
+      "total": 29882,
+      "repeat_count": 9214.0,
+      "repeat_pct": 30.83
+    },
+    {
+      "ward": "F/S",
+      "ward_area": "Wadala-Antop Hill",
+      "zone": "City",
+      "total": 39712,
+      "repeat_count": 12227.0,
+      "repeat_pct": 30.79
+    },
+    {
+      "ward": "M/E",
+      "ward_area": "Govandi-Mankhurd",
+      "zone": "Eastern",
+      "total": 49648,
+      "repeat_count": 15237.0,
+      "repeat_pct": 30.69
+    },
+    {
+      "ward": "T",
+      "ward_area": "Mulund",
+      "zone": "Eastern",
+      "total": 19745,
+      "repeat_count": 6060.0,
+      "repeat_pct": 30.69
+    },
+    {
+      "ward": "P/N",
+      "ward_area": "Malad",
+      "zone": "Western",
+      "total": 49548,
+      "repeat_count": 15191.0,
+      "repeat_pct": 30.66
+    },
+    {
+      "ward": "K/E",
+      "ward_area": "Andheri East",
+      "zone": "Western",
+      "total": 59673,
+      "repeat_count": 18225.0,
+      "repeat_pct": 30.54
+    },
+    {
+      "ward": "A",
+      "ward_area": "Colaba-Fort",
+      "zone": "City",
+      "total": 29637,
+      "repeat_count": 9002.0,
+      "repeat_pct": 30.37
+    }
+  ],
+  "prior_distribution": [
+    {
+      "prior_bucket": "0 prior",
+      "count": 663184,
+      "satisfaction_rate": 77.68
+    },
+    {
+      "prior_bucket": "3 prior",
+      "count": 66068,
+      "satisfaction_rate": 74.77
+    },
+    {
+      "prior_bucket": "5+ prior",
+      "count": 65323,
+      "satisfaction_rate": 74.89
+    },
+    {
+      "prior_bucket": "2 prior",
+      "count": 61872,
+      "satisfaction_rate": 74.68
+    },
+    {
+      "prior_bucket": "4 prior",
+      "count": 52763,
+      "satisfaction_rate": 74.85
+    },
+    {
+      "prior_bucket": "1 prior",
+      "count": 50790,
+      "satisfaction_rate": 75.26
+    }
+  ]
+}

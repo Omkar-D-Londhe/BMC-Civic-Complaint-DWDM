@@ -353,3 +353,83 @@ DWDM Project/
    ```
 3. **Execute Jupyter Notebook:**
    Launch Jupyter and run all cells in `notebooks/Week1_BMC_Complaint_Analysis.ipynb`.
+
+---
+
+## 11. Weeks 2–3 Implementation: Data Mining & CivicLens Web Platform
+
+In Weeks 2–3, the project expanded from the relational Star Schema warehouse into an advanced **Data Mining and Real-Time Web Analytics Platform (`CivicLens`)**, implementing supervised triage classification, unsupervised multi-attribute clustering, frequent pattern association rule mining, and grievance recurrence analysis.
+
+### 11.1 Supervised Learning: Complaint Category Classification & Intake Triage
+- **Objective:** Predict incoming grievance category across 13 civic domains for automated intake routing without departmental target leakage.
+- **Leakage Prevention:** In the raw dataset, `department_assigned` has an artificial 1:1 mapping with `complaint_category`. It was **strictly excluded** from training features, along with resolution-phase variables (`resolution_days`, `complaint_status`, `contractor_category`, etc.).
+- **Models Evaluated on 100,000 Stratified Records (20,000 Test Set):**
+  1. **Random Forest Classifier (v2.1):** Weighted-F1: 0.1054, Macro-F1: 0.0525, Log-Loss: 2.364. Selected for live routing pipeline (`models/classifier_model.pkl`).
+  2. **HistGradientBoosting Classifier (v1.8):** Accuracy: 18.04%, Log-Loss: 2.329.
+  3. **Logistic Regression Baseline:** Accuracy: 18.03%, Log-Loss: 2.330.
+- **Citizen Satisfaction Model:** Predicts final citizen satisfaction (`citizen_satisfied`: 1=Yes, 0=No) based on resolution speed, cost, and maintenance indicators, achieving **76.7% Accuracy and 0.868 F1-Score**.
+- **Live Inference API (`POST /api/ml/predict`):** Evaluates incoming payload attributes (ward, channel, severity, time of day, grievance text) in real time, returning top predictions, calibrated probabilities, target BMC department, and feature attribution tokens.
+
+### 11.2 Unsupervised Learning: Multi-Attribute Ward Clustering (K-Means)
+- **Objective:** Segment all 24 administrative wards into operational infrastructure risk tiers using multi-attribute indicators: failure density, SLA resolution latency, citizen satisfaction rate, slum percentage, monsoon vulnerability ratio, repeat complainant rate, and average estimated cost.
+- **Optimal K Determination:** Silhouette score evaluation identified **$k=3$ as the optimal clustering configuration** (Silhouette: 0.1823, Inertia: 120.06).
+- **2D PCA Projection:** Principal Components 1 and 2 explain **50.5% total variance**, projecting each ward onto a 2D Cartesian spatial risk scatter map.
+- **Identified Administrative Tiers:**
+  - **Tier 1 (High-Density High-Stress Corridors):** Wards `A, B, C, D, E, H/W, P/S, R/C, R/S, T`. Avg Slum: 20.7%, 31,676 complaints/ward, 13.0d average latency.
+  - **Tier 2 (Rapid-Resolution Commercial Hubs):** Wards `F/S, G/S, ...` (11 Wards). Fast resolution turnaround and high satisfaction.
+  - **Tier 3 (Monsoon-Sensitive Suburban Enclaves):** High monsoon sensitivity index (>1.0) with acute rainfall failure surges.
+
+### 11.3 Frequent Itemset & Association Rule Mining (FP-Growth)
+- **Objective:** Discover actionable co-occurrences between grievance sectors, reported severity, submission channels, geographic sectors, and SLA turnaround.
+- **Algorithm:** **FP-Growth** via `mlxtend.frequent_patterns` on 100,000 transactions (`min_support=0.03`, `min_confidence=0.40`).
+- **Results:** Discovered **943 frequent itemsets** and extracted **717 association rules** (`outputs/mining/association_rules.json`).
+- **Key Discovered Rules:**
+  - `{Cat: Drainage Overflow / Flooding, Monsoon Season, Severity: Low} => {Delayed Resolution (>20d)}` (Support: 3.92%, Confidence: 41.67%, **Lift: 2.71x**)
+  - `{Cat: Drainage Overflow / Flooding, Severity: Critical, Citizen Satisfied} => {Rapid Resolution (<=7d)}` (Support: 3.64%, Confidence: 44.8%, **Lift: 1.28x**)
+  - `{Severity: Low, Monsoon Season} => {Delayed Resolution (>20d)}` (**Lift: 2.71x**)
+
+### 11.4 Grievance Recurrence Analysis
+- **Key Finding:** Overall chronic recurrence rate is **30.92%** (296,816 repeat complaints across Greater Mumbai).
+- **Recurrence Satisfaction Penalty:** Repeat complainants report a **74.88% satisfaction rate**, compared to **77.68%** for first-time complainants (-2.8% drop).
+- **Top Recurring Categories:** *Stray Animal Menace* (31.14%), *Illegal Construction* (31.12%), and *Pothole / Road Damage* (31.09%).
+- **Prior Complaints Distribution:** 0 prior (69.1%), 1 prior (15.5%), 2 prior (7.7%), 3 prior (3.9%), 4 prior (1.9%), 5+ prior (1.9%).
+
+---
+
+## 12. CivicLens Web Analytics Application Architecture
+
+The frontend was built by directly adapting the provided `stitch_bmc_civiclens_analytics_platform` UI templates, adhering strictly to the **Obsidian Precision Engine** design system (pitch black `#000000`/`#131313`, Geist + JetBrains Mono typography, Tailwind CSS, `#0070f3` & `#3291ff` accents):
+
+| Application Page | Route | Description & Data Source |
+| :--- | :--- | :--- |
+| **Municipal Overview** | `/overview` | Real-time KPIs (960k volume, 13 categories, 24 wards, 13.7d latency), monsoon surge temporal trends, category progress bars, high-volume wards, and live incident ledger. |
+| **Complaint Explorer** | `/complaint-explorer` | Operational master-detail console with live search, multi-select filters (Ward, Category, Severity, Channel), paginated table, and right-pane incident detail inspector querying `fact_complaint`. |
+| **OLAP Laboratory** | `/olap-laboratory` | Multi-dimensional aggregation console supporting interactive execution of all 5 OLAP operations (Roll-up, Drill-down, Slice, Dice, Pivot) with syntax-highlighted SQL and query latency benchmarks. |
+| **ML Models & Classification** | `/ml-models` | Model registry comparison (Random Forest, HistGradientBoosting, Logistic Regression), normalized confusion matrix, per-class metrics, and **Live Inference Sandbox** with intake department triage. |
+| **Patterns & Clusters** | `/patterns-and-clusters` | Ward K-Means risk tiers, interactive 2D PCA spatial scatter plot, FP-Growth association rules table, and recurrence dynamics breakdown. |
+
+### Running the Web Application:
+```bash
+# Start the FastAPI / Uvicorn server on port 8000
+python -m uvicorn app:app --host 127.0.0.1 --port 8000 --reload
+```
+Open your browser to: **`http://127.0.0.1:8000/overview`**
+
+---
+
+## 13. REST API Specification
+
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `GET` | `/api/overview/kpis` | Aggregated high-level metrics (volume, satisfaction, latency). |
+| `GET` | `/api/overview/monthly-trends` | Time-series monthly complaint volume and monsoon flags. |
+| `GET` | `/api/overview/category-distribution`| Distribution of complaints across 13 BMC categories. |
+| `GET` | `/api/overview/ward-telemetry` | Ward-level complaint density and SLA performance. |
+| `GET` | `/api/explorer/search` | Paginated search with filtering (`q`, `ward`, `category`, `severity`, `channel`, `page`, `limit`). |
+| `GET` | `/api/explorer/complaint/{id}` | Full 35-attribute record for a specific complaint ID. |
+| `POST` | `/api/olap/query` | Executes OLAP operations (`rollup`, `drilldown`, `slice`, `dice`, `pivot`) returning SQL and tabular result. |
+| `GET` | `/api/ml/metrics` | Evaluation metrics, confusion matrix, and per-class reports for trained ML models. |
+| `POST` | `/api/ml/predict` | Live inference pipeline predicting category and department routing. |
+| `GET` | `/api/mining/clusters` | K-Means cluster profiles, silhouette scores, and 2D PCA coordinates. |
+| `GET` | `/api/mining/association-rules` | Top association rules sorted by lift. |
+| `GET` | `/api/mining/recurrence` | Recurrence rates, category hotspots, and prior complaint distributions. |

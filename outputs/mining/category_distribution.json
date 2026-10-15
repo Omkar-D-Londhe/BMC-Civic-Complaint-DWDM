@@ -1,0 +1,106 @@
+[
+  {
+    "category_name": "Pothole / Road Damage",
+    "department_assigned": "Roads",
+    "count": 172475,
+    "percentage": 18.0,
+    "avg_resolution_days": 15.5,
+    "satisfaction_pct": 76.4
+  },
+  {
+    "category_name": "Water Supply Disruption",
+    "department_assigned": "Hydraulic",
+    "count": 153875,
+    "percentage": 16.0,
+    "avg_resolution_days": 9.3,
+    "satisfaction_pct": 77.8
+  },
+  {
+    "category_name": "Solid Waste / Garbage",
+    "department_assigned": "SWM",
+    "count": 134953,
+    "percentage": 14.1,
+    "avg_resolution_days": 7.7,
+    "satisfaction_pct": 78.3
+  },
+  {
+    "category_name": "Drainage Overflow / Flooding",
+    "department_assigned": "Storm Water Drain",
+    "count": 105867,
+    "percentage": 11.0,
+    "avg_resolution_days": 12.4,
+    "satisfaction_pct": 77.1
+  },
+  {
+    "category_name": "Street Light Failure",
+    "department_assigned": "Electric",
+    "count": 86380,
+    "percentage": 9.0,
+    "avg_resolution_days": 10.8,
+    "satisfaction_pct": 77.3
+  },
+  {
+    "category_name": "Illegal Construction",
+    "department_assigned": "Building Proposal",
+    "count": 66867,
+    "percentage": 7.0,
+    "avg_resolution_days": 36.9,
+    "satisfaction_pct": 71.3
+  },
+  {
+    "category_name": "Encroachment",
+    "department_assigned": "Encroachment",
+    "count": 57630,
+    "percentage": 6.0,
+    "avg_resolution_days": 26.2,
+    "satisfaction_pct": 74.3
+  },
+  {
+    "category_name": "Tree Fallen / Dangerous Tree",
+    "department_assigned": "Garden",
+    "count": 48117,
+    "percentage": 5.0,
+    "avg_resolution_days": 6.3,
+    "satisfaction_pct": 78.5
+  },
+  {
+    "category_name": "Public Toilet Condition",
+    "department_assigned": "Sanitation",
+    "count": 38225,
+    "percentage": 4.0,
+    "avg_resolution_days": 9.3,
+    "satisfaction_pct": 77.9
+  },
+  {
+    "category_name": "Water Leakage / Pipe Burst",
+    "department_assigned": "Hydraulic",
+    "count": 38121,
+    "percentage": 4.0,
+    "avg_resolution_days": 7.8,
+    "satisfaction_pct": 78.1
+  },
+  {
+    "category_name": "Noise / Air Pollution",
+    "department_assigned": "Environment",
+    "count": 28752,
+    "percentage": 3.0,
+    "avg_resolution_days": 20.0,
+    "satisfaction_pct": 75.4
+  },
+  {
+    "category_name": "Stray Animal Menace",
+    "department_assigned": "Veterinary",
+    "count": 18962,
+    "percentage": 2.0,
+    "avg_resolution_days": 12.3,
+    "satisfaction_pct": 76.9
+  },
+  {
+    "category_name": "Health / Epidemic",
+    "department_assigned": "Health",
+    "count": 9776,
+    "percentage": 1.0,
+    "avg_resolution_days": 6.2,
+    "satisfaction_pct": 79.0
+  }
+]

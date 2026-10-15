@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><title>CivicLens | Complaint Explorer</title><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "surface-container-low": "#1b1b1b", "on-secondary": "#003061", "on-primary": "#002e6b", "surface-pitch": "#000000", "surface-container-highest": "#353535", "on-error-container": "#ffdad6", "primary-fixed-dim": "#aec6ff", "inverse-on-surface": "#303030", "surface-dim": "#131313", "status-critical": "#e00000", "on-tertiary": "#581e00", "tertiary-fixed-dim": "#ffb596", "on-surface": "#e2e2e2", "on-tertiary-container": "#fffeff", "surface-container": "#1f1f1f", "on-tertiary-fixed": "#360f00", "error-container": "#93000a", "accent-cyan": "#3291ff", "text-secondary": "#ededed", "on-secondary-fixed": "#001b3c", "background": "#131313", "on-secondary-fixed-variant": "#004788", "primary-container": "#0070f3", "surface-charcoal": "#0a0a0a", "tertiary": "#ffb596", "text-faint": "#444444", "tertiary-fixed": "#ffdbcd", "on-tertiary-fixed-variant": "#7d2d00", "border-subtle": "#1f1f1f", "secondary-container": "#3291ff", "outline-variant": "#414754", "surface-bright": "#393939", "on-secondary-container": "#002a55", "surface-subtle": "#111111", "secondary-fixed": "#d5e3ff", "text-muted": "#888888", "secondary-fixed-dim": "#a7c8ff", "border-contrast": "#2e2e2e", "on-background": "#e2e2e2", "surface-container-lowest": "#0e0e0e", "primary": "#aec6ff", "surface-container-high": "#2a2a2a", "secondary": "#a7c8ff", "surface-variant": "#353535", "status-warning": "#f5a623", "text-primary": "#ffffff", "inverse-primary": "#0059c5", "on-primary-container": "#ffffff", "on-error": "#690005", "error": "#ffb4ab", "status-success": "#10b981", "surface": "#131313", "inverse-surface": "#e2e2e2", "on-primary-fixed-variant": "#004397", "surface-elevated": "#171717", "outline": "#8b90a0", "surface-tint": "#aec6ff", "on-primary-fixed": "#001a43", "on-surface-variant": "#c1c6d7", "primary-fixed": "#d8e2ff", "tertiary-container": "#ca4e00" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-sm": "0.5rem", "gutter": "1.5rem", "space-md": "1rem", "gutter-mobile": "1rem", "margin-mobile": "1rem", "margin": "2rem", "space-lg": "1.5rem", "space-xs": "0.25rem", "space-xl": "2.5rem" }, "fontFamily": { "display-hero": ["Geist"], "headline-md": ["Geist"], "display-hero-mobile": ["Geist"], "body-sm": ["Geist"], "headline-sm": ["Geist"], "headline-lg": ["Geist"], "headline-lg-mobile": ["Geist"], "code-md": ["JetBrains Mono"], "body-lg": ["Geist"], "body-md": ["Geist"], "annotation-mono": ["JetBrains Mono"] }, "fontSize": { "display-hero": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.04em", "fontWeight": "600" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.02em", "fontWeight": "500" }], "display-hero-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.03em", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0em", "fontWeight": "400" }], "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "500" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.03em", "fontWeight": "600" }], "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "code-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }], "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "400" }], "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "-0.005em", "fontWeight": "400" }], "annotation-mono": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "500" }] } } } };</script></head><body class="bg-surface-pitch font-body-md text-body-md text-on-surface antialiased">
+<aside class="fixed left-0 top-0 h-full w-64 bg-surface-charcoal z-50 flex flex-col border-r border-border-subtle"><div class="h-14 px-space-md border-b border-border-subtle flex items-center justify-between"><div class="flex items-center gap-space-sm"><div class="w-6 h-6 rounded bg-text-primary flex items-center justify-center"><span class="material-symbols-outlined text-surface-pitch text-[16px]">polyline</span></div><div><div class="font-headline-sm text-headline-sm text-text-primary tracking-tight font-medium">CivicLens</div><div class="font-annotation-mono text-annotation-mono text-text-muted uppercase tracking-wider">BMC Civic Analytics</div></div></div><div class="w-1.5 h-1.5 rounded-full bg-status-success"></div></div><div class="flex-1 overflow-y-auto px-space-sm py-space-md"><div class="mb-space-lg"><div class="px-space-sm pb-space-xs font-annotation-mono text-annotation-mono text-text-faint uppercase tracking-wider">Explore</div><nav class="space-y-0.5"><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-subtle hover:text-on-surface transition-colors font-body-sm text-body-sm" href="/overview"><span class="material-symbols-outlined text-[18px]">grid_view</span><span>Overview</span></a><a aria-current="page" class="flex items-center gap-space-sm px-space-sm py-1.5 rounded transition-colors bg-surface-elevated text-text-primary font-medium border border-border-contrast" href="/complaint-explorer"><span class="material-symbols-outlined text-[18px]">search_insights</span><span>Complaint Explorer</span></a></nav></div><div class="mb-space-lg"><div class="px-space-sm pb-space-xs font-annotation-mono text-annotation-mono text-text-faint uppercase tracking-wider">Analyse</div><nav class="space-y-0.5"><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-subtle hover:text-on-surface transition-colors font-body-sm text-body-sm" href="/olap-laboratory"><span class="material-symbols-outlined text-[18px]">biotech</span><span>OLAP Laboratory</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-subtle hover:text-on-surface transition-colors font-body-sm text-body-sm" href="/ml-models"><span class="material-symbols-outlined text-[18px]">neurology</span><span>ML Models</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-subtle hover:text-on-surface transition-colors font-body-sm text-body-sm" href="/patterns-and-clusters"><span class="material-symbols-outlined text-[18px]">hub</span><span>Patterns & Clusters</span></a></nav></div><div><div class="px-space-sm pb-space-xs font-annotation-mono text-annotation-mono text-text-faint uppercase tracking-wider">System</div><nav class="space-y-0.5"><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-subtle hover:text-on-surface transition-colors font-body-sm text-body-sm" href="/olap-laboratory"><span class="material-symbols-outlined text-[18px]">database</span><span>Star Schema Warehouse</span></a></nav></div></div><div class="p-space-sm border-t border-border-subtle bg-surface-pitch/40"><div class="flex items-center justify-between px-space-sm py-space-xs"><div class="flex items-center gap-space-xs"><span class="w-1.5 h-1.5 rounded-full bg-status-success animate-pulse"></span><span class="font-annotation-mono text-annotation-mono text-text-muted">v2.4.1-rc3</span></div><span class="font-annotation-mono text-annotation-mono text-text-faint uppercase">960k Records</span></div></div></aside>
+
+<div class="pl-64"><header class="fixed top-0 left-64 right-0 h-14 bg-surface-charcoal/90 backdrop-blur-md border-b border-border-subtle z-40 flex items-center justify-between px-gutter"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs font-annotation-mono text-annotation-mono"><span class="text-text-muted">BMC</span><span class="text-text-faint">/</span><span class="text-text-muted">Operational Queue</span><span class="text-text-faint">/</span><span class="text-text-primary">Complaint Explorer</span></div><div class="h-4 w-[1px] bg-border-contrast"></div><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-2.5 text-[16px] text-text-muted">search</span><input id="headerSearch" class="h-8 w-64 bg-surface-subtle border border-border-contrast rounded px-space-sm pl-8 font-body-sm text-body-sm text-text-secondary placeholder-text-faint focus:outline-none focus:border-accent-cyan transition-colors" placeholder="Filter complaints..." type="text" onkeydown="if(event.key==='Enter') applyFilters()"/></div></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-subtle border border-border-subtle font-annotation-mono text-annotation-mono text-text-secondary"><span class="material-symbols-outlined text-[14px] text-text-muted">calendar_today</span><span>FY 2018-2024</span></div><div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-subtle border border-border-subtle font-annotation-mono text-annotation-mono"><span class="w-1.5 h-1.5 rounded-full bg-status-success"></span><span class="text-text-secondary">Engine Online</span></div><div class="h-4 w-[1px] bg-border-contrast"></div><button class="p-1 text-on-surface-variant hover:text-on-surface transition-colors flex items-center justify-center"><span class="material-symbols-outlined text-[18px]">notifications</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header>
+
+<main class="w-full pt-14 min-h-screen bg-surface-pitch px-gutter py-space-lg"><div class="flex flex-col w-full">
+<!-- Workspace Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md pb-space-lg">
+<div>
+<div class="flex items-center gap-2 mb-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-status-success"></span>
+<span class="font-annotation-mono text-annotation-mono text-text-muted uppercase tracking-wider">Operational Master-Detail Console</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-text-primary tracking-tight font-semibold">Complaint Explorer</h1>
+<p class="font-body-md text-body-md text-text-muted mt-0.5">Search, trace, and inspect 960,000 municipal grievance records across Greater Mumbai.</p>
+</div>
+<div class="flex items-center gap-space-sm font-annotation-mono text-annotation-mono">
+<div class="px-space-md py-2 rounded bg-surface-charcoal border border-border-subtle flex items-center gap-3">
+<span class="text-text-faint">WAREHOUSE TOTAL</span>
+<span class="text-text-primary font-medium">960,000</span>
+</div>
+<div class="px-space-md py-2 rounded bg-surface-charcoal border border-border-subtle flex items-center gap-3">
+<span class="text-text-faint">AVG RESOLUTION</span>
+<span class="text-accent-cyan font-medium">13.7 Days</span>
+</div>
+</div>
+</div>
+
+<!-- Streamlined Filter Bar -->
+<div class="bg-surface-charcoal rounded-lg p-space-md shadow-sm mb-space-lg border border-border-subtle">
+<div class="flex flex-col xl:flex-row gap-space-md items-stretch xl:items-center justify-between">
+<!-- Search Field -->
+<div class="relative flex-1 min-w-[280px]">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-faint text-[18px]">search</span>
+<input id="searchInput" class="w-full h-10 pl-10 pr-4 bg-surface-pitch border border-border-subtle rounded font-body-sm text-body-sm text-text-primary placeholder-text-faint focus:outline-none focus:border-accent-cyan transition-all" placeholder="Search complaint ID (e.g. BMC-24-...), ward, or locality..." type="text"/>
+</div>
+<!-- Selects -->
+<div class="flex flex-wrap items-center gap-space-xs sm:gap-space-sm">
+<!-- Ward Select -->
+<select id="filterWard" class="h-10 px-3 bg-surface-pitch border border-border-subtle text-text-secondary rounded font-body-sm text-body-sm focus:outline-none focus:border-accent-cyan cursor-pointer">
+<option value="All">All Wards (24)</option>
+<option value="A">Ward A (Colaba)</option>
+<option value="B">Ward B (Sandhurst Rd)</option>
+<option value="C">Ward C (Marine Lines)</option>
+<option value="D">Ward D (Malabar Hill)</option>
+<option value="E">Ward E (Byculla)</option>
+<option value="F/N">Ward F/N (Matunga)</option>
+<option value="F/S">Ward F/S (Parel)</option>
+<option value="G/N">Ward G/N (Dharavi)</option>
+<option value="G/S">Ward G/S (Worli)</option>
+<option value="H/E">Ward H/E (Bandra E)</option>
+<option value="H/W">Ward H/W (Bandra W)</option>
+<option value="K/E">Ward K/E (Andheri E)</option>
+<option value="K/W">Ward K/W (Andheri W)</option>
+<option value="L">Ward L (Kurla)</option>
+<option value="M/E">Ward M/E (Chembur E)</option>
+<option value="M/W">Ward M/W (Chembur W)</option>
+<option value="N">Ward N (Ghatkopar)</option>
+<option value="P/N">Ward P/N (Malad)</option>
+<option value="P/S">Ward P/S (Goregaon)</option>
+<option value="R/C">Ward R/C (Borivali)</option>
+<option value="R/N">Ward R/N (Dahisar)</option>
+<option value="R/S">Ward R/S (Kandivali)</option>
+<option value="S">Ward S (Bhandup)</option>
+<option value="T">Ward T (Mulund)</option>
+</select>
+
+<!-- Category Select -->
+<select id="filterCategory" class="h-10 px-3 bg-surface-pitch border border-border-subtle text-text-secondary rounded font-body-sm text-body-sm focus:outline-none focus:border-accent-cyan cursor-pointer">
+<option value="All">All Categories (13)</option>
+<option value="Solid Waste / Garbage">Solid Waste / Garbage</option>
+<option value="Pothole / Road Damage">Pothole / Road Damage</option>
+<option value="Water Supply Disruption">Water Supply Disruption</option>
+<option value="Drainage Overflow / Flooding">Drainage Overflow / Flooding</option>
+<option value="Water Leakage / Pipe Burst">Water Leakage / Pipe Burst</option>
+<option value="Street Light Failure">Street Light Failure</option>
+<option value="Illegal Construction">Illegal Construction</option>
+<option value="Encroachment">Encroachment</option>
+<option value="Public Toilet Condition">Public Toilet Condition</option>
+<option value="Tree Fallen / Dangerous Tree">Tree Fallen / Dangerous Tree</option>
+<option value="Noise / Air Pollution">Noise / Air Pollution</option>
+<option value="Stray Animal Menace">Stray Animal Menace</option>
+<option value="Health / Epidemic">Health / Epidemic</option>
+</select>
+
+<!-- Severity Select -->
+<select id="filterSeverity" class="h-10 px-3 bg-surface-pitch border border-border-subtle text-text-secondary rounded font-body-sm text-body-sm focus:outline-none focus:border-accent-cyan cursor-pointer">
+<option value="All">All Severities</option>
+<option value="Critical">Critical</option>
+<option value="High">High</option>
+<option value="Medium">Medium</option>
+<option value="Low">Low</option>
+</select>
+
+<!-- Channel Select -->
+<select id="filterChannel" class="h-10 px-3 bg-surface-pitch border border-border-subtle text-text-secondary rounded font-body-sm text-body-sm focus:outline-none focus:border-accent-cyan cursor-pointer">
+<option value="All">All Channels</option>
+<option value="MyBMC App">MyBMC App</option>
+<option value="1916 Helpline">1916 Helpline</option>
+<option value="WhatsApp">WhatsApp</option>
+<option value="Online Portal">Online Portal</option>
+<option value="Walk-in CFC">Walk-in CFC</option>
+<option value="Twitter/Social Media">Twitter/Social Media</option>
+</select>
+
+<!-- Search Button -->
+<button onclick="applyFilters()" class="h-10 px-4 bg-text-primary text-surface-pitch hover:bg-text-secondary rounded font-body-sm text-body-sm font-semibold flex items-center gap-1.5 transition-colors">
+<span class="material-symbols-outlined text-[16px]">filter_alt</span>
+<span>Filter</span>
+</button>
+
+<!-- Reset Button -->
+<button onclick="resetFilters()" class="h-10 px-3 rounded text-text-muted hover:text-text-primary text-body-sm font-body-sm transition-colors flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">refresh</span>
+<span>Reset</span>
+</button>
+</div>
+</div>
+
+<!-- Active Filter Stats Bar -->
+<div class="mt-space-md pt-space-sm flex flex-wrap items-center justify-between gap-space-sm font-annotation-mono text-annotation-mono text-text-muted border-t border-border-subtle/40">
+<div class="flex items-center gap-2">
+<span class="text-text-secondary font-medium" id="recordCounter">Showing 1–10 of 960,000 records</span>
+<span class="text-text-faint">•</span>
+<span class="text-accent-cyan" id="queryLatency">Query latency: -- ms</span>
+</div>
+<div class="flex items-center gap-2">
+<button onclick="changePage(-1)" id="prevBtn" class="px-2 py-1 rounded bg-surface-pitch border border-border-subtle hover:bg-surface-elevated text-text-secondary disabled:opacity-40 disabled:cursor-not-allowed">Previous</button>
+<span id="pageIndicator" class="text-text-primary px-2">Page 1</span>
+<button onclick="changePage(1)" id="nextBtn" class="px-2 py-1 rounded bg-surface-pitch border border-border-subtle hover:bg-surface-elevated text-text-secondary disabled:opacity-40 disabled:cursor-not-allowed">Next</button>
+</div>
+</div>
+</div>
+
+<!-- Master Table & Incident Detail Inspector -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- LEFT PANE: Master Table -->
+<div class="lg:col-span-7 bg-surface-charcoal rounded-lg overflow-hidden flex flex-col shadow-sm border border-border-subtle">
+<div class="px-space-md py-3.5 bg-surface-elevated/40 flex items-center justify-between border-b border-border-subtle">
+<div class="flex items-center gap-3">
+<span class="font-annotation-mono text-annotation-mono uppercase text-text-muted tracking-wider">Live Grievance Queue</span>
+<span class="px-2 py-0.5 rounded bg-surface-pitch text-accent-cyan font-annotation-mono text-annotation-mono">WAREHOUSE VIEW</span>
+</div>
+<span class="font-annotation-mono text-annotation-mono text-text-faint">Click row to inspect</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead>
+<tr class="font-annotation-mono text-annotation-mono text-text-muted uppercase border-b border-border-subtle">
+<th class="py-2.5 px-3">Complaint ID</th>
+<th class="py-2.5 px-3">Ward</th>
+<th class="py-2.5 px-3">Category</th>
+<th class="py-2.5 px-3">Severity</th>
+<th class="py-2.5 px-3 text-right">Latency</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-subtle/50 text-text-secondary" id="complaintsTableBody">
+<!-- Populated dynamically via JS -->
+<tr><td colspan="5" class="py-8 text-center text-text-muted">Loading warehouse records...</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<!-- RIGHT PANE: Incident Detail Inspector -->
+<div class="lg:col-span-5 bg-surface-charcoal rounded-lg p-space-lg shadow-sm border border-border-subtle space-y-space-md" id="detailInspector">
+<div class="flex items-center justify-between border-b border-border-subtle pb-space-sm">
+<div>
+<span class="font-annotation-mono text-annotation-mono text-text-muted uppercase tracking-wider">Incident Telemetry</span>
+<h2 class="font-headline-sm text-headline-sm text-text-primary font-medium" id="inspectorId">Select a complaint</h2>
+</div>
+<span class="px-2 py-0.5 rounded bg-surface-pitch text-status-success font-annotation-mono text-annotation-mono" id="inspectorStatus">Ready</span>
+</div>
+
+<div class="space-y-space-md" id="inspectorContent">
+<div class="text-text-muted font-body-sm py-8 text-center">
+Select any record in the queue table to view full multi-dimensional attributes, resolution timeline, cost metrics, and quality ratings.
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<script>
+  let currentPage = 1;
+  const pageSize = 10;
+  let totalPages = 1;
+  let selectedComplaintId = null;
+
+  async function loadComplaints() {
+    const q = document.getElementById('searchInput').value;
+    const ward = document.getElementById('filterWard').value;
+    const category = document.getElementById('filterCategory').value;
+    const severity = document.getElementById('filterSeverity').value;
+    const channel = document.getElementById('filterChannel').value;
+
+    let url = `/api/explorer/search?page=${currentPage}&limit=${pageSize}`;
+    if (q) url += `&q=${encodeURIComponent(q)}`;
+    if (ward !== 'All') url += `&ward=${encodeURIComponent(ward)}`;
+    if (category !== 'All') url += `&category=${encodeURIComponent(category)}`;
+    if (severity !== 'All') url += `&severity=${encodeURIComponent(severity)}`;
+    if (channel !== 'All') url += `&channel=${encodeURIComponent(channel)}`;
+
+    const tbody = document.getElementById('complaintsTableBody');
+    tbody.innerHTML = '<tr><td colspan="5" class="py-8 text-center text-text-muted">Loading records...</td></tr>';
+
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
+      totalPages = data.total_pages;
+
+      document.getElementById('recordCounter').textContent = `Showing ${(currentPage-1)*pageSize + 1}–${Math.min(currentPage*pageSize, data.total)} of ${data.total.toLocaleString()} records`;
+      document.getElementById('queryLatency').textContent = `Query latency: ${data.latency_ms}ms`;
+      document.getElementById('pageIndicator').textContent = `Page ${currentPage} of ${totalPages || 1}`;
+      document.getElementById('prevBtn').disabled = currentPage <= 1;
+      document.getElementById('nextBtn').disabled = currentPage >= totalPages;
+
+      tbody.innerHTML = '';
+      if (data.records.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5" class="py-8 text-center text-text-muted">No matching complaints found.</td></tr>';
+        return;
+      }
+
+      data.records.forEach((rec, idx) => {
+        const sevClass = rec.severity === 'Critical' ? 'text-status-critical bg-status-critical/10' : rec.severity === 'High' ? 'text-status-warning bg-status-warning/10' : 'text-accent-cyan bg-accent-cyan/10';
+        const isSelected = rec.complaint_id === selectedComplaintId || (idx === 0 && !selectedComplaintId);
+        if (isSelected && !selectedComplaintId) {
+          inspectComplaint(rec.complaint_id);
+        }
+
+        const tr = document.createElement('tr');
+        tr.className = `cursor-pointer transition-colors ${isSelected ? 'bg-surface-elevated/70' : 'hover:bg-surface-subtle'}`;
+        tr.onclick = () => {
+          document.querySelectorAll('#complaintsTableBody tr').forEach(r => r.classList.remove('bg-surface-elevated/70'));
+          tr.classList.add('bg-surface-elevated/70');
+          inspectComplaint(rec.complaint_id);
+        };
+        tr.innerHTML = `
+          <td class="py-3 px-3 font-code-md text-code-md text-accent-cyan font-medium">${rec.complaint_id}</td>
+          <td class="py-3 px-3 font-annotation-mono text-annotation-mono text-text-secondary">${rec.ward} (${rec.ward_area})</td>
+          <td class="py-3 px-3 text-text-primary truncate max-w-[180px]">${rec.category_name}</td>
+          <td class="py-3 px-3">
+            <span class="font-annotation-mono text-annotation-mono px-2 py-0.5 rounded ${sevClass}">
+              ${rec.severity}
+            </span>
+          </td>
+          <td class="py-3 px-3 text-right font-code-md text-code-md text-text-muted">${rec.resolution_days}d</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    } catch (e) {
+      console.error('Error fetching complaints:', e);
+      tbody.innerHTML = '<tr><td colspan="5" class="py-8 text-center text-status-critical">Error fetching warehouse records.</td></tr>';
+    }
+  }
+
+  async function inspectComplaint(id) {
+    selectedComplaintId = id;
+    document.getElementById('inspectorId').textContent = id;
+    const inspector = document.getElementById('inspectorContent');
+    inspector.innerHTML = '<div class="py-8 text-center text-text-muted">Loading complaint details...</div>';
+
+    try {
+      const res = await fetch(`/api/explorer/complaint/${id}`);
+      if (!res.ok) throw new Error('Not found');
+      const d = await res.json();
+
+      document.getElementById('inspectorStatus').textContent = d.status_name || 'Processed';
+
+      inspector.innerHTML = `
+        <div class="grid grid-cols-2 gap-space-sm bg-surface-subtle p-space-md rounded border border-border-subtle font-body-sm">
+          <div>
+            <div class="font-annotation-mono text-annotation-mono text-text-faint">CATEGORY</div>
+            <div class="font-medium text-text-primary mt-0.5">${d.category_name}</div>
+          </div>
+          <div>
+            <div class="font-annotation-mono text-annotation-mono text-text-faint">BMC DEPARTMENT</div>
+            <div class="font-medium text-accent-cyan mt-0.5">${d.department_assigned}</div>
+          </div>
+          <div class="pt-2 border-t border-border-subtle/40">
+            <div class="font-annotation-mono text-annotation-mono text-text-faint">ADMINISTRATIVE WARD</div>
+            <div class="text-text-primary mt-0.5">Ward ${d.ward} (${d.ward_area})</div>
+            <div class="font-annotation-mono text-annotation-mono text-text-muted">${d.zone} Zone • Slum ${d.ward_slum_percentage}%</div>
+          </div>
+          <div class="pt-2 border-t border-border-subtle/40">
+            <div class="font-annotation-mono text-annotation-mono text-text-faint">INGESTION CHANNEL</div>
+            <div class="text-text-primary mt-0.5">${d.complaint_channel}</div>
+            <div class="font-annotation-mono text-annotation-mono text-text-muted">${d.complaint_time_of_day} • Severity ${d.severity}</div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-space-xs font-annotation-mono text-annotation-mono">
+          <div class="bg-surface-subtle p-3 rounded border border-border-subtle text-center">
+            <div class="text-text-faint text-[10px]">RESOLUTION</div>
+            <div class="text-text-primary font-semibold text-[14px] mt-1">${d.resolution_days} Days</div>
+          </div>
+          <div class="bg-surface-subtle p-3 rounded border border-border-subtle text-center">
+            <div class="text-text-faint text-[10px]">EST. COST</div>
+            <div class="text-accent-cyan font-semibold text-[14px] mt-1">₹${Number(d.estimated_cost_inr).toLocaleString()}</div>
+          </div>
+          <div class="bg-surface-subtle p-3 rounded border border-border-subtle text-center">
+            <div class="text-text-faint text-[10px]">SATISFACTION</div>
+            <div class="${d.citizen_satisfied ? 'text-status-success' : 'text-status-warning'} font-semibold text-[14px] mt-1">${d.citizen_satisfied ? 'Satisfied' : 'Unsatisfied'}</div>
+          </div>
+        </div>
+
+        <div class="space-y-2 pt-2 border-t border-border-subtle font-body-sm text-body-sm">
+          <div class="flex items-center justify-between">
+            <span class="text-text-muted">Work Quality Rating:</span>
+            <span class="text-text-primary font-medium">${d.work_quality_rating || 'Standard'}</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-text-muted">Contractor Category:</span>
+            <span class="text-text-secondary">${d.contractor_category || 'Class A'}</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-text-muted">Prior Complaints by Citizen:</span>
+            <span class="text-text-primary font-code-md">${d.prior_complaints_count} ${d.repeat_complainant ? '(Repeat Complainant)' : '(First Time)'}</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-text-muted">Infrastructure Age:</span>
+            <span class="text-text-secondary">${d.infrastructure_age_years} years (${d.months_since_last_maintained} mo since maint)</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-text-muted">Site Inspection / Photo:</span>
+            <span class="text-text-secondary">${d.site_inspected ? 'Inspected' : 'None'} • ${d.has_photo_evidence ? 'Photo Attached' : 'No Photo'}</span>
+          </div>
+        </div>
+      `;
+    } catch (e) {
+      inspector.innerHTML = '<div class="py-8 text-center text-status-critical">Error loading details.</div>';
+    }
+  }
+
+  function applyFilters() {
+    currentPage = 1;
+    loadComplaints();
+  }
+
+  function resetFilters() {
+    document.getElementById('searchInput').value = '';
+    document.getElementById('filterWard').value = 'All';
+    document.getElementById('filterCategory').value = 'All';
+    document.getElementById('filterSeverity').value = 'All';
+    document.getElementById('filterChannel').value = 'All';
+    currentPage = 1;
+    loadComplaints();
+  }
+
+  function changePage(delta) {
+    if (currentPage + delta >= 1 && currentPage + delta <= totalPages) {
+      currentPage += delta;
+      loadComplaints();
+    }
+  }
+
+  // Pre-fill query param if present
+  window.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const qParam = urlParams.get('q');
+    if (qParam) {
+      document.getElementById('searchInput').value = qParam;
+    }
+    loadComplaints();
+  });
+</script>
+</main></div></body></html>

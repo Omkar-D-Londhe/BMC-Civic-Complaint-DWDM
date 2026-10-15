@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "surface-container-low": "#1b1b1b", "on-secondary": "#003061", "on-primary": "#002e6b", "surface-pitch": "#000000", "surface-container-highest": "#353535", "on-error-container": "#ffdad6", "primary-fixed-dim": "#aec6ff", "inverse-on-surface": "#303030", "surface-dim": "#131313", "status-critical": "#e00000", "on-tertiary": "#581e00", "tertiary-fixed-dim": "#ffb596", "on-surface": "#e2e2e2", "on-tertiary-container": "#fffeff", "surface-container": "#1f1f1f", "on-tertiary-fixed": "#360f00", "error-container": "#93000a", "accent-cyan": "#3291ff", "text-secondary": "#ededed", "on-secondary-fixed": "#001b3c", "background": "#131313", "on-secondary-fixed-variant": "#004788", "primary-container": "#0070f3", "surface-charcoal": "#0a0a0a", "tertiary": "#ffb596", "text-faint": "#444444", "tertiary-fixed": "#ffdbcd", "on-tertiary-fixed-variant": "#7d2d00", "border-subtle": "#1f1f1f", "secondary-container": "#3291ff", "outline-variant": "#414754", "surface-bright": "#393939", "on-secondary-container": "#002a55", "surface-subtle": "#111111", "secondary-fixed": "#d5e3ff", "text-muted": "#888888", "secondary-fixed-dim": "#a7c8ff", "border-contrast": "#2e2e2e", "on-background": "#e2e2e2", "surface-container-lowest": "#0e0e0e", "primary": "#aec6ff", "surface-container-high": "#2a2a2a", "secondary": "#a7c8ff", "surface-variant": "#353535", "status-warning": "#f5a623", "text-primary": "#ffffff", "inverse-primary": "#0059c5", "on-primary-container": "#ffffff", "on-error": "#690005", "error": "#ffb4ab", "status-success": "#10b981", "surface": "#131313", "inverse-surface": "#e2e2e2", "on-primary-fixed-variant": "#004397", "surface-elevated": "#171717", "outline": "#8b90a0", "surface-tint": "#aec6ff", "on-primary-fixed": "#001a43", "on-surface-variant": "#c1c6d7", "primary-fixed": "#d8e2ff", "tertiary-container": "#ca4e00" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-sm": "0.5rem", "gutter": "1.5rem", "space-md": "1rem", "gutter-mobile": "1rem", "margin-mobile": "1rem", "margin": "2rem", "space-lg": "1.5rem", "space-xs": "0.25rem", "space-xl": "2.5rem" }, "fontFamily": { "display-hero": ["Geist"], "headline-md": ["Geist"], "display-hero-mobile": ["Geist"], "body-sm": ["Geist"], "headline-sm": ["Geist"], "headline-lg": ["Geist"], "headline-lg-mobile": ["Geist"], "code-md": ["JetBrains Mono"], "body-lg": ["Geist"], "body-md": ["Geist"], "annotation-mono": ["JetBrains Mono"] }, "fontSize": { "display-hero": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.04em", "fontWeight": "600" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.02em", "fontWeight": "500" }], "display-hero-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.03em", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0em", "fontWeight": "400" }], "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "500" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.03em", "fontWeight": "600" }], "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "code-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }], "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "400" }], "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "-0.005em", "fontWeight": "400" }], "annotation-mono": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "500" }] } } } };</script></head><body class="bg-surface-pitch font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-charcoal z-50 flex flex-col border-r border-border-subtle"><div class="h-14 px-space-md border-b border-border-subtle flex items-center justify-between"><div class="flex items-center gap-space-sm"><div class="w-6 h-6 rounded bg-text-primary flex items-center justify-center"><span class="material-symbols-outlined text-surface-pitch text-[16px]">polyline</span></div><div><div class="font-headline-sm text-headline-sm text-text-primary tracking-tight font-medium">CivicLens</div><div class="font-annotation-mono text-annotation-mono text-text-muted uppercase tracking-wider">BMC Civic Analytics</div></div></div><div class="w-1.5 h-1.5 rounded-full bg-status-success"></div></div><div class="flex-1 overflow-y-auto px-space-sm py-space-md"><div class="mb-space-lg"><div class="px-space-sm pb-space-xs font-annotation-mono text-annotation-mono text-text-faint uppercase tracking-wider">Explore</div><nav class="space-y-0.5" data-active-classes="bg-surface-elevated text-text-primary font-medium border border-border-contrast"><a aria-current="page" class="flex items-center gap-space-sm px-space-sm py-1.5 rounded transition-colors bg-surface-elevated text-text-primary font-medium border border-border-contrast" data-path="overview" href="#"><span class="material-symbols-outlined text-[18px]">grid_view</span><span>Overview</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-subtle hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="complaint-explorer" href="#"><span class="material-symbols-outlined text-[18px]">search_insights</span><span>Complaint Explorer</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-subtle hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="trends-and-geography" href="#"><span class="material-symbols-outlined text-[18px]">map</span><span>Trends & Geography</span></a></nav></div><div class="mb-space-lg"><div class="px-space-sm pb-space-xs font-annotation-mono text-annotation-mono text-text-faint uppercase tracking-wider">Analyse</div><nav class="space-y-0.5" data-active-classes="bg-surface-elevated text-text-primary font-medium border border-border-contrast"><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-subtle hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="olap-laboratory" href="#"><span class="material-symbols-outlined text-[18px]">biotech</span><span>OLAP Laboratory</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-subtle hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="ml-models" href="#"><span class="material-symbols-outlined text-[18px]">neurology</span><span>ML Models</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-subtle hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="patterns-and-clusters" href="#"><span class="material-symbols-outlined text-[18px]">hub</span><span>Patterns & Clusters</span></a></nav></div><div><div class="px-space-sm pb-space-xs font-annotation-mono text-annotation-mono text-text-faint uppercase tracking-wider">System</div><nav class="space-y-0.5" data-active-classes="bg-surface-elevated text-text-primary font-medium border border-border-contrast"><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-subtle hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="data-quality" href="#"><span class="material-symbols-outlined text-[18px]">verified</span><span>Data Quality</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-subtle hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="data-warehouse" href="#"><span class="material-symbols-outlined text-[18px]">database</span><span>Data Warehouse</span></a></nav></div></div><div class="p-space-sm border-t border-border-subtle bg-surface-pitch/40"><div class="flex items-center justify-between px-space-sm py-space-xs"><div class="flex items-center gap-space-xs"><span class="w-1.5 h-1.5 rounded-full bg-status-success animate-pulse"></span><span class="font-annotation-mono text-annotation-mono text-text-muted">v2.4.1-rc3</span></div><span class="font-annotation-mono text-annotation-mono text-text-faint uppercase">Zone: West</span></div></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-14 bg-surface-charcoal/90 backdrop-blur-md border-b border-border-subtle z-40 flex items-center justify-between px-gutter"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs font-annotation-mono text-annotation-mono"><span class="text-text-muted">BMC</span><span class="text-text-faint">/</span><span class="text-text-muted">Municipal Intelligence</span><span class="text-text-faint">/</span><span class="text-text-primary">Live Telemetry</span></div><div class="h-4 w-[1px] bg-border-contrast"></div><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-2.5 text-[16px] text-text-muted">search</span><input class="h-8 w-64 bg-surface-subtle border border-border-contrast rounded px-space-sm pl-8 font-body-sm text-body-sm text-text-secondary placeholder-text-faint focus:outline-none focus:border-accent-cyan transition-colors" placeholder="Search complaints, wards, codes (⌘K)..." type="text"/></div></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-subtle border border-border-subtle font-annotation-mono text-annotation-mono text-text-secondary"><span class="material-symbols-outlined text-[14px] text-text-muted">calendar_today</span><span>FY 2018-2024</span><span class="material-symbols-outlined text-[14px] text-text-faint">arrow_drop_down</span></div><div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-subtle border border-border-subtle font-annotation-mono text-annotation-mono"><span class="w-1.5 h-1.5 rounded-full bg-status-success"></span><span class="text-text-secondary">Engine Online</span></div><div class="h-4 w-[1px] bg-border-contrast"></div><button class="p-1 text-on-surface-variant hover:text-on-surface transition-colors flex items-center justify-center"><span class="material-symbols-outlined text-[18px]">notifications</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><main class="w-full pt-14 min-h-screen bg-surface-pitch px-gutter py-space-lg"><div class="flex flex-col w-full">
+<!-- Top Ambient Glow Field (Contained subtle highlight) -->
+<div class="relative w-full">
+<div class="absolute -top-10 left-1/4 w-96 h-36 bg-accent-cyan/10 blur-[100px] pointer-events-none"></div>
+</div>
+<!-- Page Header -->
+<header class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md pb-space-xl">
+<div class="space-y-1.5">
+<div class="flex items-center gap-space-sm">
+<h1 class="font-headline-lg text-headline-lg text-text-primary tracking-tight">Municipal Civic Overview</h1>
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-annotation-mono text-annotation-mono tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-accent-cyan"></span>
+          Synthetic Dataset 2018–2024
+        </span>
+</div>
+<p class="font-body-md text-body-md text-text-muted">
+        Brihanmumbai Municipal Corporation operational metrics, seasonal patterns, and ward telemetry.
+      </p>
+</div>
+<!-- Quick Actions Bar -->
+<div class="flex items-center gap-space-sm flex-wrap">
+<div class="relative">
+<select class="h-9 px-3 pr-8 rounded bg-surface-elevated text-text-secondary font-body-sm text-body-sm appearance-none cursor-pointer focus:outline-none focus:bg-surface-container-high transition-colors" id="timeRangeSelect">
+<option>Last 12 Months</option>
+<option>FY 2023–24</option>
+<option>Monsoon Surge (Jun–Sep)</option>
+<option>All-Time Archive (2018–2024)</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-text-muted text-[16px]">expand_more</span>
+</div>
+<button class="h-9 px-3 rounded bg-surface-elevated hover:bg-surface-container-high text-text-secondary font-body-sm text-body-sm flex items-center gap-1.5 transition-colors" id="exportBtn">
+<span class="material-symbols-outlined text-[16px]">download</span>
+<span>Export Summary</span>
+</button>
+<button class="h-9 px-3 rounded bg-surface-elevated hover:bg-surface-container-high text-text-secondary font-body-sm text-body-sm flex items-center gap-1.5 transition-colors" id="refreshBtn">
+<span class="material-symbols-outlined text-[16px] transition-transform duration-500" id="refreshIcon">sync</span>
+<span>Refresh</span>
+</button>
+</div>
+</header>
+<!-- 4-Column Top KPI Grid -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md mb-space-xl">
+<!-- Card 1: Total Volume -->
+<div class="bg-surface-charcoal p-6 rounded-xl flex flex-col justify-between hover:bg-surface-subtle transition-all duration-200">
+<div class="flex items-center justify-between text-text-muted mb-4">
+<span class="font-annotation-mono text-annotation-mono uppercase tracking-wider">Total Volume</span>
+<span class="material-symbols-outlined text-text-faint text-[20px]">layers</span>
+</div>
+<div>
+<div class="font-headline-lg text-headline-lg text-text-primary tracking-tight font-semibold">348,219</div>
+<div class="flex items-center gap-2 mt-2">
+<span class="inline-flex items-center text-status-success font-code-md text-code-md">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+            +4.2%
+          </span>
+<span class="font-body-sm text-body-sm text-text-muted">YoY baseline</span>
+</div>
+</div>
+<!-- Inline Sparkline (SVG) -->
+<div class="w-full h-8 mt-5 pt-1">
+<svg class="w-full h-full text-accent-cyan" fill="none" preserveaspectratio="none" viewbox="0 0 100 24">
+<path d="M0 19 L12 16 L24 18 L36 12 L48 14 L60 8 L72 13 L84 5 L100 2" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M0 19 L12 16 L24 18 L36 12 L48 14 L60 8 L72 13 L84 5 L100 2 V 24 H 0 Z" fill="currentColor" fill-opacity="0.1"></path>
+</svg>
+</div>
+</div>
+<!-- Card 2: Active Categories -->
+<div class="bg-surface-charcoal p-6 rounded-xl flex flex-col justify-between hover:bg-surface-subtle transition-all duration-200">
+<div class="flex items-center justify-between text-text-muted mb-4">
+<span class="font-annotation-mono text-annotation-mono uppercase tracking-wider">Active Categories</span>
+<span class="material-symbols-outlined text-text-faint text-[20px]">category</span>
+</div>
+<div>
+<div class="font-headline-lg text-headline-lg text-text-primary tracking-tight font-semibold">18 Depts</div>
+<div class="flex items-center gap-2 mt-2">
+<span class="inline-flex items-center text-accent-cyan font-code-md text-code-md">
+<span class="w-1.5 h-1.5 rounded-full bg-accent-cyan mr-1.5"></span>
+            100% Ingested
+          </span>
+<span class="font-body-sm text-body-sm text-text-muted">Civic registry</span>
+</div>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full mt-5 overflow-hidden">
+<div class="bg-accent-cyan h-full rounded-full w-full"></div>
+</div>
+</div>
+<!-- Card 3: Administrative Wards -->
+<div class="bg-surface-charcoal p-6 rounded-xl flex flex-col justify-between hover:bg-surface-subtle transition-all duration-200">
+<div class="flex items-center justify-between text-text-muted mb-4">
+<span class="font-annotation-mono text-annotation-mono uppercase tracking-wider">Administrative Wards</span>
+<span class="material-symbols-outlined text-text-faint text-[20px]">apartment</span>
+</div>
+<div>
+<div class="font-headline-lg text-headline-lg text-text-primary tracking-tight font-semibold">24 Wards</div>
+<div class="flex items-center gap-2 mt-2">
+<span class="font-code-md text-code-md text-text-secondary">3 Geographic Zones</span>
+<span class="font-body-sm text-body-sm text-text-muted">(City, East, West)</span>
+</div>
+</div>
+<div class="flex items-center gap-1 mt-5">
+<div class="flex-1 h-1.5 rounded-full bg-primary-container"></div>
+<div class="flex-1 h-1.5 rounded-full bg-primary"></div>
+<div class="flex-1 h-1.5 rounded-full bg-surface-container-highest"></div>
+</div>
+</div>
+<!-- Card 4: Median SLA -->
+<div class="bg-surface-charcoal p-6 rounded-xl flex flex-col justify-between hover:bg-surface-subtle transition-all duration-200">
+<div class="flex items-center justify-between text-text-muted mb-4">
+<span class="font-annotation-mono text-annotation-mono uppercase tracking-wider">Median Resolution</span>
+<span class="material-symbols-outlined text-text-faint text-[20px]">timelapse</span>
+</div>
+<div>
+<div class="font-headline-lg text-headline-lg text-text-primary tracking-tight font-semibold">6.4 Days</div>
+<div class="flex items-center gap-2 mt-2">
+<span class="inline-flex items-center text-status-success font-code-md text-code-md">
+            -0.8d
+          </span>
+<span class="font-body-sm text-body-sm text-text-muted">vs 2022 (85.9% SLA)</span>
+</div>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full mt-5 overflow-hidden">
+<div class="bg-status-success h-full rounded-full" style="width: 85.9%;"></div>
+</div>
+</div>
+</section>
+<!-- Main Analytical Grid (60% / 40%) -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg mb-space-xl">
+<!-- Left Column (60%): Temporal Trend Chart -->
+<div class="lg:col-span-7 bg-surface-charcoal p-6 rounded-xl flex flex-col justify-between">
+<div>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm mb-6">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-text-primary">Complaint Volume & Monsoon Surges</h2>
+<p class="font-body-sm text-body-sm text-text-muted">Monthly aggregation with historical monsoon influx bounds</p>
+</div>
+<!-- View Granularity Switcher -->
+<div class="inline-flex p-0.5 rounded bg-surface-elevated font-annotation-mono text-annotation-mono">
+<button class="px-2.5 py-1 rounded bg-surface-container-high text-text-primary transition-colors" id="viewMonth">Monthly</button>
+<button class="px-2.5 py-1 rounded text-text-muted hover:text-text-secondary transition-colors" id="viewQuarter">Quarterly</button>
+</div>
+</div>
+<!-- SVG Temporal Chart -->
+<div class="relative w-full h-64 mb-4">
+<!-- Seasonal Highlights Overlay -->
+<div class="absolute inset-y-0 left-[48%] width-[20%] w-[20%] bg-accent-cyan/[0.04] rounded pointer-events-none flex flex-col justify-start items-center pt-2">
+<span class="font-annotation-mono text-annotation-mono text-accent-cyan uppercase tracking-widest text-[9px] px-1 py-0.5 rounded bg-accent-cyan/10">Monsoon Peak</span>
+</div>
+<svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 540 200">
+<!-- Grid lines -->
+<line class="text-surface-container" stroke="currentColor" stroke-dasharray="3 3" stroke-width="1" x1="0" x2="540" y1="40" y2="40"></line>
+<line class="text-surface-container" stroke="currentColor" stroke-dasharray="3 3" stroke-width="1" x1="0" x2="540" y1="90" y2="90"></line>
+<line class="text-surface-container" stroke="currentColor" stroke-dasharray="3 3" stroke-width="1" x1="0" x2="540" y1="140" y2="140"></line>
+<line class="text-surface-container-high" stroke="currentColor" stroke-width="1" x1="0" x2="540" y1="190" y2="190"></line>
+<!-- Area Fill -->
+<path d="M 0 160 
+                     Q 45 155, 90 148 
+                     T 180 135 
+                     T 270 30 
+                     T 360 85 
+                     T 450 140 
+                     T 540 152 
+                     L 540 190 L 0 190 Z" fill="url(#blueGradient)" opacity="0.3"></path>
+<!-- Line Path -->
+<path d="M 0 160 
+                     Q 45 155, 90 148 
+                     T 180 135 
+                     T 270 30 
+                     T 360 85 
+                     T 450 140 
+                     T 540 152" fill="none" id="temporalPath" stroke="#3291ff" stroke-linecap="round" stroke-width="2.5"></path>
+<!-- Peak Callout Point -->
+<circle class="animate-pulse" cx="270" cy="30" fill="#3291ff" r="4.5"></circle>
+<circle cx="270" cy="30" fill="none" r="8" stroke="#3291ff" stroke-opacity="0.4" stroke-width="1.5"></circle>
+<defs>
+<lineargradient id="blueGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#3291ff" stop-opacity="0.4"></stop>
+<stop offset="100%" stop-color="#3291ff" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+</svg>
+<!-- Interactive Tooltip Overlay Indicator -->
+<div class="absolute top-2 left-[50%] -translate-x-1/2 bg-surface-pitch/95 px-3 py-1.5 rounded shadow-xl flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-accent-cyan"></span>
+<span class="font-code-md text-code-md text-text-primary font-medium">Jul: 13,842 complaints</span>
+<span class="font-annotation-mono text-annotation-mono text-status-critical bg-status-critical/10 px-1.5 py-0.5 rounded">+142% surge</span>
+</div>
+</div>
+<!-- Horizontal X-Axis Labels -->
+<div class="flex justify-between items-center px-1 font-annotation-mono text-annotation-mono text-text-muted uppercase">
+<span>Jan</span>
+<span>Mar</span>
+<span>May</span>
+<span class="text-accent-cyan font-semibold">Jul (Spike)</span>
+<span>Sep</span>
+<span>Nov</span>
+<span>Dec</span>
+</div>
+</div>
+<!-- Insight Strip -->
+<div class="mt-6 p-3 rounded-lg bg-surface-subtle flex items-center gap-space-sm text-text-secondary font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-accent-cyan text-[18px]">info</span>
+<span>Monsoon quarters account for <strong class="text-text-primary font-medium">63.4%</strong> of annual drainage and road defect grievances across Western suburbs.</span>
+</div>
+</div>
+<!-- Right Column (40%): Top Grievance Categories -->
+<div class="lg:col-span-5 bg-surface-charcoal p-6 rounded-xl flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-6">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-text-primary">Top Civic Grievances</h2>
+<p class="font-body-sm text-body-sm text-text-muted">Relative department distribution</p>
+</div>
+<span class="font-annotation-mono text-annotation-mono text-text-muted">5 of 18</span>
+</div>
+<!-- Progress Bars List -->
+<div class="space-y-4">
+<!-- Item 1 -->
+<div class="group">
+<div class="flex items-center justify-between font-body-sm text-body-sm mb-1.5">
+<span class="text-text-primary font-medium">Solid Waste Management</span>
+<span class="font-code-md text-code-md text-text-secondary">84,120 <span class="text-text-muted ml-1">(24.1%)</span></span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container overflow-hidden">
+<div class="bg-accent-cyan h-full rounded-full transition-all duration-500" style="width: 24.1%;"></div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="group">
+<div class="flex items-center justify-between font-body-sm text-body-sm mb-1.5">
+<span class="text-text-primary font-medium">Potholes & Road Maintenance</span>
+<span class="font-code-md text-code-md text-text-secondary">62,450 <span class="text-text-muted ml-1">(17.9%)</span></span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container overflow-hidden">
+<div class="bg-accent-cyan/90 h-full rounded-full transition-all duration-500" style="width: 17.9%;"></div>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="group">
+<div class="flex items-center justify-between font-body-sm text-body-sm mb-1.5">
+<span class="text-text-primary font-medium">Water Supply Contamination</span>
+<span class="font-code-md text-code-md text-text-secondary">53,890 <span class="text-text-muted ml-1">(15.5%)</span></span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container overflow-hidden">
+<div class="bg-accent-cyan/80 h-full rounded-full transition-all duration-500" style="width: 15.5%;"></div>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="group">
+<div class="flex items-center justify-between font-body-sm text-body-sm mb-1.5">
+<span class="text-text-primary font-medium">Stormwater Drainage</span>
+<span class="font-code-md text-code-md text-text-secondary">41,200 <span class="text-text-muted ml-1">(11.8%)</span></span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container overflow-hidden">
+<div class="bg-accent-cyan/70 h-full rounded-full transition-all duration-500" style="width: 11.8%;"></div>
+</div>
+</div>
+<!-- Item 5 -->
+<div class="group">
+<div class="flex items-center justify-between font-body-sm text-body-sm mb-1.5">
+<span class="text-text-primary font-medium">Street Lighting</span>
+<span class="font-code-md text-code-md text-text-secondary">35,110 <span class="text-text-muted ml-1">(10.1%)</span></span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container overflow-hidden">
+<div class="bg-accent-cyan/60 h-full rounded-full transition-all duration-500" style="width: 10.1%;"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-5 mt-4">
+<a class="inline-flex items-center gap-1.5 text-accent-cyan hover:text-primary transition-colors font-body-sm text-body-sm font-medium" href="#">
+<span>Explore all 18 categories</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Bottom Section: High-Priority Wards & Recent Incident Ledger -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- Left Split (5 cols): High-Priority Wards -->
+<div class="lg:col-span-5 bg-surface-charcoal p-6 rounded-xl flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-4">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-text-primary">Highest Volume Wards</h2>
+<p class="font-body-sm text-body-sm text-text-muted">Priority wards requiring immediate dispatch</p>
+</div>
+<span class="material-symbols-outlined text-text-muted text-[20px]">warning</span>
+</div>
+<div class="space-y-3 mt-4">
+<!-- Ward 1 -->
+<div class="p-3.5 rounded-lg bg-surface-subtle flex items-center justify-between hover:bg-surface-elevated transition-colors">
+<div class="space-y-0.5">
+<div class="flex items-center gap-2">
+<span class="font-body-md text-body-md font-medium text-text-primary">Andheri West</span>
+<span class="font-annotation-mono text-annotation-mono text-text-muted bg-surface-container-high px-1.5 py-0.5 rounded">Ward K/W</span>
+</div>
+<div class="font-body-sm text-body-sm text-text-muted">41,830 active / 2.4k backlogged</div>
+</div>
+<div class="text-right">
+<span class="inline-flex items-center gap-1 font-annotation-mono text-annotation-mono text-status-critical bg-status-critical/10 px-2 py-0.5 rounded">
+<span class="w-1.5 h-1.5 rounded-full bg-status-critical"></span>
+                Critical Load
+              </span>
+</div>
+</div>
+<!-- Ward 2 -->
+<div class="p-3.5 rounded-lg bg-surface-subtle flex items-center justify-between hover:bg-surface-elevated transition-colors">
+<div class="space-y-0.5">
+<div class="flex items-center gap-2">
+<span class="font-body-md text-body-md font-medium text-text-primary">Dharavi / Dadar</span>
+<span class="font-annotation-mono text-annotation-mono text-text-muted bg-surface-container-high px-1.5 py-0.5 rounded">Ward G/N</span>
+</div>
+<div class="font-body-sm text-body-sm text-text-muted">36,410 active / 1.1k backlogged</div>
+</div>
+<div class="text-right">
+<span class="inline-flex items-center gap-1 font-annotation-mono text-annotation-mono text-status-warning bg-status-warning/10 px-2 py-0.5 rounded">
+<span class="w-1.5 h-1.5 rounded-full bg-status-warning"></span>
+                Elevated
+              </span>
+</div>
+</div>
+<!-- Ward 3 -->
+<div class="p-3.5 rounded-lg bg-surface-subtle flex items-center justify-between hover:bg-surface-elevated transition-colors">
+<div class="space-y-0.5">
+<div class="flex items-center gap-2">
+<span class="font-body-md text-body-md font-medium text-text-primary">Bandra East</span>
+<span class="font-annotation-mono text-annotation-mono text-text-muted bg-surface-container-high px-1.5 py-0.5 rounded">Ward H/E</span>
+</div>
+<div class="font-body-sm text-body-sm text-text-muted">28,920 active / 420 backlogged</div>
+</div>
+<div class="text-right">
+<span class="inline-flex items-center gap-1 font-annotation-mono text-annotation-mono text-status-warning bg-status-warning/10 px-2 py-0.5 rounded">
+<span class="w-1.5 h-1.5 rounded-full bg-status-warning"></span>
+                Elevated
+              </span>
+</div>
+</div>
+<!-- Ward 4 -->
+<div class="p-3.5 rounded-lg bg-surface-subtle flex items-center justify-between hover:bg-surface-elevated transition-colors">
+<div class="space-y-0.5">
+<div class="flex items-center gap-2">
+<span class="font-body-md text-body-md font-medium text-text-primary">Matunga</span>
+<span class="font-annotation-mono text-annotation-mono text-text-muted bg-surface-container-high px-1.5 py-0.5 rounded">Ward F/N</span>
+</div>
+<div class="font-body-sm text-body-sm text-text-muted">22,140 active / 190 backlogged</div>
+</div>
+<div class="text-right">
+<span class="inline-flex items-center gap-1 font-annotation-mono text-annotation-mono text-status-success bg-status-success/10 px-2 py-0.5 rounded">
+<span class="w-1.5 h-1.5 rounded-full bg-status-success"></span>
+                Stable
+              </span>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-4 mt-2">
+<a class="inline-flex items-center gap-1.5 text-text-secondary hover:text-text-primary transition-colors font-body-sm text-body-sm font-medium" href="#">
+<span>Inspect Ward Distribution Map</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Right Split (7 cols): Recent Incident Ledger -->
+<div class="lg:col-span-7 bg-surface-charcoal p-6 rounded-xl flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-4">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-text-primary">Recent Incident Ledger</h2>
+<p class="font-body-sm text-body-sm text-text-muted">Live incoming ingestion feed from BMC Citizen Portal</p>
+</div>
+<span class="flex items-center gap-1.5 font-annotation-mono text-annotation-mono text-status-success">
+<span class="w-2 h-2 rounded-full bg-status-success animate-pulse"></span>
+            Syncing
+          </span>
+</div>
+<!-- Tabular Clean Feed -->
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead>
+<tr class="font-annotation-mono text-annotation-mono text-text-muted uppercase">
+<th class="py-2.5 px-3">Complaint ID</th>
+<th class="py-2.5 px-3">Ward</th>
+<th class="py-2.5 px-3">Department</th>
+<th class="py-2.5 px-3">Elapsed</th>
+<th class="py-2.5 px-3 text-right">Status</th>
+</tr>
+</thead>
+<tbody class="text-text-secondary divide-y-0">
+<tr class="hover:bg-surface-subtle transition-colors group">
+<td class="py-3 px-3 font-code-md text-code-md text-text-primary font-medium">BMC-24-98421</td>
+<td class="py-3 px-3 font-annotation-mono text-annotation-mono text-text-secondary">K/W</td>
+<td class="py-3 px-3 text-text-secondary">Pothole craters on Link Rd</td>
+<td class="py-3 px-3 text-text-muted font-code-md text-code-md">12m ago</td>
+<td class="py-3 px-3 text-right">
+<span class="inline-flex items-center gap-1 font-annotation-mono text-annotation-mono text-status-warning bg-status-warning/10 px-2 py-0.5 rounded">
+                    In-Progress
+                  </span>
+</td>
+</tr>
+<tr class="hover:bg-surface-subtle transition-colors group">
+<td class="py-3 px-3 font-code-md text-code-md text-text-primary font-medium">BMC-24-98420</td>
+<td class="py-3 px-3 font-annotation-mono text-annotation-mono text-text-secondary">G/N</td>
+<td class="py-3 px-3 text-text-secondary">SWM Garbage dump cleared</td>
+<td class="py-3 px-3 text-text-muted font-code-md text-code-md">34m ago</td>
+<td class="py-3 px-3 text-right">
+<span class="inline-flex items-center gap-1 font-annotation-mono text-annotation-mono text-status-success bg-status-success/10 px-2 py-0.5 rounded">
+                    Resolved
+                  </span>
+</td>
+</tr>
+<tr class="hover:bg-surface-subtle transition-colors group">
+<td class="py-3 px-3 font-code-md text-code-md text-text-primary font-medium">BMC-24-98419</td>
+<td class="py-3 px-3 font-annotation-mono text-annotation-mono text-text-secondary">H/E</td>
+<td class="py-3 px-3 text-text-secondary">Water main leakage (low press.)</td>
+<td class="py-3 px-3 text-text-muted font-code-md text-code-md">1h ago</td>
+<td class="py-3 px-3 text-right">
+<span class="inline-flex items-center gap-1 font-annotation-mono text-annotation-mono text-accent-cyan bg-accent-cyan/10 px-2 py-0.5 rounded">
+                    Assigned
+                  </span>
+</td>
+</tr>
+<tr class="hover:bg-surface-subtle transition-colors group">
+<td class="py-3 px-3 font-code-md text-code-md text-text-primary font-medium">BMC-24-98418</td>
+<td class="py-3 px-3 font-annotation-mono text-annotation-mono text-text-secondary">F/N</td>
+<td class="py-3 px-3 text-text-secondary">Feeder pillar unlatched / spark</td>
+<td class="py-3 px-3 text-text-muted font-code-md text-code-md">2h ago</td>
+<td class="py-3 px-3 text-right">
+<span class="inline-flex items-center gap-1 font-annotation-mono text-annotation-mono text-status-warning bg-status-warning/10 px-2 py-0.5 rounded">
+                    In-Progress
+                  </span>
+</td>
+</tr>
+<tr class="hover:bg-surface-subtle transition-colors group">
+<td class="py-3 px-3 font-code-md text-code-md text-text-primary font-medium">BMC-24-98417</td>
+<td class="py-3 px-3 font-annotation-mono text-annotation-mono text-text-secondary">K/E</td>
+<td class="py-3 px-3 text-text-secondary">Stormwater drain desilting</td>
+<td class="py-3 px-3 text-text-muted font-code-md text-code-md">3h ago</td>
+<td class="py-3 px-3 text-right">
+<span class="inline-flex items-center gap-1 font-annotation-mono text-annotation-mono text-status-success bg-status-success/10 px-2 py-0.5 rounded">
+                    Resolved
+                  </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="pt-4 mt-2">
+<a class="inline-flex items-center gap-1.5 text-accent-cyan hover:text-primary transition-colors font-body-sm text-body-sm font-medium" href="#">
+<span>View all in Complaint Explorer</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</section>
+</div>
+<script>
+  // Refresh button micro-interaction
+  const refreshBtn = document.getElementById('refreshBtn');
+  const refreshIcon = document.getElementById('refreshIcon');
+  if (refreshBtn && refreshIcon) {
+    refreshBtn.addEventListener('click', () => {
+      refreshIcon.classList.add('rotate-180');
+      setTimeout(() => {
+        refreshIcon.classList.remove('rotate-180');
+      }, 500);
+    });
+  }
+
+  // Monthly / Quarterly Granularity Switcher
+  const viewMonth = document.getElementById('viewMonth');
+  const viewQuarter = document.getElementById('viewQuarter');
+  const temporalPath = document.getElementById('temporalPath');
+
+  if (viewMonth && viewQuarter && temporalPath) {
+    viewQuarter.addEventListener('click', () => {
+      viewQuarter.classList.add('bg-surface-container-high', 'text-text-primary');
+      viewQuarter.classList.remove('text-text-muted');
+      viewMonth.classList.remove('bg-surface-container-high', 'text-text-primary');
+      viewMonth.classList.add('text-text-muted');
+
+      // Adjust path to flatter quarterly representation
+      temporalPath.setAttribute('d', 'M 0 140 Q 90 130, 180 120 T 270 45 T 360 80 T 450 115 T 540 130');
+    });
+
+    viewMonth.addEventListener('click', () => {
+      viewMonth.classList.add('bg-surface-container-high', 'text-text-primary');
+      viewMonth.classList.remove('text-text-muted');
+      viewQuarter.classList.remove('bg-surface-container-high', 'text-text-primary');
+      viewQuarter.classList.add('text-text-muted');
+
+      // Restore sharp monthly trajectory
+      temporalPath.setAttribute('d', 'M 0 160 Q 45 155, 90 148 T 180 135 T 270 30 T 360 85 T 450 140 T 540 152');
+    });
+  }
+</script></main></div></body></html>

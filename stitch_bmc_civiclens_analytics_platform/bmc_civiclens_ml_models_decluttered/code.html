@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "surface-container-low": "#1b1b1b", "on-secondary": "#003061", "on-primary": "#002e6b", "surface-pitch": "#000000", "surface-container-highest": "#353535", "on-error-container": "#ffdad6", "primary-fixed-dim": "#aec6ff", "inverse-on-surface": "#303030", "surface-dim": "#131313", "status-critical": "#e00000", "on-tertiary": "#581e00", "tertiary-fixed-dim": "#ffb596", "on-surface": "#e2e2e2", "on-tertiary-container": "#fffeff", "surface-container": "#1f1f1f", "on-tertiary-fixed": "#360f00", "error-container": "#93000a", "accent-cyan": "#3291ff", "text-secondary": "#ededed", "on-secondary-fixed": "#001b3c", "background": "#131313", "on-secondary-fixed-variant": "#004788", "primary-container": "#0070f3", "surface-charcoal": "#0a0a0a", "tertiary": "#ffb596", "text-faint": "#444444", "tertiary-fixed": "#ffdbcd", "on-tertiary-fixed-variant": "#7d2d00", "border-subtle": "#1f1f1f", "secondary-container": "#3291ff", "outline-variant": "#414754", "surface-bright": "#393939", "on-secondary-container": "#002a55", "surface-subtle": "#111111", "secondary-fixed": "#d5e3ff", "text-muted": "#888888", "secondary-fixed-dim": "#a7c8ff", "border-contrast": "#2e2e2e", "on-background": "#e2e2e2", "surface-container-lowest": "#0e0e0e", "primary": "#aec6ff", "surface-container-high": "#2a2a2a", "secondary": "#a7c8ff", "surface-variant": "#353535", "status-warning": "#f5a623", "text-primary": "#ffffff", "inverse-primary": "#0059c5", "on-primary-container": "#ffffff", "on-error": "#690005", "error": "#ffb4ab", "status-success": "#10b981", "surface": "#131313", "inverse-surface": "#e2e2e2", "on-primary-fixed-variant": "#004397", "surface-elevated": "#171717", "outline": "#8b90a0", "surface-tint": "#aec6ff", "on-primary-fixed": "#001a43", "on-surface-variant": "#c1c6d7", "primary-fixed": "#d8e2ff", "tertiary-container": "#ca4e00" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-sm": "0.5rem", "gutter": "1.5rem", "space-md": "1rem", "gutter-mobile": "1rem", "margin-mobile": "1rem", "margin": "2rem", "space-lg": "1.5rem", "space-xs": "0.25rem", "space-xl": "2.5rem" }, "fontFamily": { "display-hero": ["Geist"], "headline-md": ["Geist"], "display-hero-mobile": ["Geist"], "body-sm": ["Geist"], "headline-sm": ["Geist"], "headline-lg": ["Geist"], "headline-lg-mobile": ["Geist"], "code-md": ["JetBrains Mono"], "body-lg": ["Geist"], "body-md": ["Geist"], "annotation-mono": ["JetBrains Mono"] }, "fontSize": { "display-hero": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.04em", "fontWeight": "600" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.02em", "fontWeight": "500" }], "display-hero-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.03em", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0em", "fontWeight": "400" }], "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "500" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.03em", "fontWeight": "600" }], "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "code-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }], "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "400" }], "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "-0.005em", "fontWeight": "400" }], "annotation-mono": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "500" }] } } } };</script></head><body class="bg-surface-pitch font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-charcoal z-50 flex flex-col border-r border-border-subtle"><div class="h-14 px-space-md border-b border-border-subtle flex items-center justify-between"><div class="flex items-center gap-space-sm"><div class="w-6 h-6 rounded bg-text-primary flex items-center justify-center"><span class="material-symbols-outlined text-surface-pitch text-[16px]">polyline</span></div><div><div class="font-headline-sm text-headline-sm text-text-primary tracking-tight font-medium">CivicLens</div><div class="font-annotation-mono text-annotation-mono text-text-muted uppercase tracking-wider">BMC Civic Analytics</div></div></div><div class="w-1.5 h-1.5 rounded-full bg-status-success"></div></div><div class="flex-1 overflow-y-auto px-space-sm py-space-md"><div class="mb-space-lg"><div class="px-space-sm pb-space-xs font-annotation-mono text-annotation-mono text-text-faint uppercase tracking-wider">Explore</div><nav class="space-y-0.5" data-active-classes="bg-surface-elevated text-text-primary font-medium border border-border-contrast"><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-subtle hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="overview" href="#"><span class="material-symbols-outlined text-[18px]">grid_view</span><span>Overview</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-subtle hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="complaint-explorer" href="#"><span class="material-symbols-outlined text-[18px]">search_insights</span><span>Complaint Explorer</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-subtle hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="trends-and-geography" href="#"><span class="material-symbols-outlined text-[18px]">map</span><span>Trends & Geography</span></a></nav></div><div class="mb-space-lg"><div class="px-space-sm pb-space-xs font-annotation-mono text-annotation-mono text-text-faint uppercase tracking-wider">Analyse</div><nav class="space-y-0.5" data-active-classes="bg-surface-elevated text-text-primary font-medium border border-border-contrast"><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-subtle hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="olap-laboratory" href="#"><span class="material-symbols-outlined text-[18px]">biotech</span><span>OLAP Laboratory</span></a><a aria-current="page" class="flex items-center gap-space-sm px-space-sm py-1.5 rounded transition-colors bg-surface-elevated text-text-primary font-medium border border-border-contrast" data-path="ml-models" href="#"><span class="material-symbols-outlined text-[18px]">neurology</span><span>ML Models</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-subtle hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="patterns-and-clusters" href="#"><span class="material-symbols-outlined text-[18px]">hub</span><span>Patterns & Clusters</span></a></nav></div><div><div class="px-space-sm pb-space-xs font-annotation-mono text-annotation-mono text-text-faint uppercase tracking-wider">System</div><nav class="space-y-0.5" data-active-classes="bg-surface-elevated text-text-primary font-medium border border-border-contrast"><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-subtle hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="data-quality" href="#"><span class="material-symbols-outlined text-[18px]">verified</span><span>Data Quality</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-subtle hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="data-warehouse" href="#"><span class="material-symbols-outlined text-[18px]">database</span><span>Data Warehouse</span></a></nav></div></div><div class="p-space-sm border-t border-border-subtle bg-surface-pitch/40"><div class="flex items-center justify-between px-space-sm py-space-xs"><div class="flex items-center gap-space-xs"><span class="w-1.5 h-1.5 rounded-full bg-status-success animate-pulse"></span><span class="font-annotation-mono text-annotation-mono text-text-muted">v2.4.1-rc3</span></div><span class="font-annotation-mono text-annotation-mono text-text-faint uppercase">Zone: West</span></div></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-14 bg-surface-charcoal/90 backdrop-blur-md border-b border-border-subtle z-40 flex items-center justify-between px-gutter"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs font-annotation-mono text-annotation-mono"><span class="text-text-muted">BMC</span><span class="text-text-faint">/</span><span class="text-text-muted">Municipal Intelligence</span><span class="text-text-faint">/</span><span class="text-text-primary">Live Telemetry</span></div><div class="h-4 w-[1px] bg-border-contrast"></div><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-2.5 text-[16px] text-text-muted">search</span><input class="h-8 w-64 bg-surface-subtle border border-border-contrast rounded px-space-sm pl-8 font-body-sm text-body-sm text-text-secondary placeholder-text-faint focus:outline-none focus:border-accent-cyan transition-colors" placeholder="Search complaints, wards, codes (⌘K)..." type="text"/></div></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-subtle border border-border-subtle font-annotation-mono text-annotation-mono text-text-secondary"><span class="material-symbols-outlined text-[14px] text-text-muted">calendar_today</span><span>FY 2018-2024</span><span class="material-symbols-outlined text-[14px] text-text-faint">arrow_drop_down</span></div><div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-subtle border border-border-subtle font-annotation-mono text-annotation-mono"><span class="w-1.5 h-1.5 rounded-full bg-status-success"></span><span class="text-text-secondary">Engine Online</span></div><div class="h-4 w-[1px] bg-border-contrast"></div><button class="p-1 text-on-surface-variant hover:text-on-surface transition-colors flex items-center justify-center"><span class="material-symbols-outlined text-[18px]">notifications</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><main class="w-full pt-14 min-h-screen bg-surface-pitch px-gutter py-space-lg"><div class="flex flex-col w-full">
+<!-- Top Control Bar / Model Context Header -->
+<header class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-md pb-space-lg mb-space-lg border-b border-border-subtle">
+<div class="space-y-space-xs">
+<div class="flex items-center gap-space-xs font-annotation-mono text-annotation-mono text-text-muted">
+<span>EXPERIMENT REGISTRY</span>
+<span class="text-text-faint">/</span>
+<span class="text-accent-cyan">RUN #4092-PROD</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container-high text-status-success font-medium">LIVE SERVING</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-text-primary tracking-tight">Machine Learning Models & Classification</h1>
+<p class="font-body-md text-body-md text-text-muted">Supervised classification evaluation and real-time civic grievance inference pipeline.</p>
+</div>
+<!-- Model Switcher Tabs -->
+<div class="flex items-center p-1 rounded-lg bg-surface-charcoal border border-border-contrast self-start lg:self-end">
+<button class="flex items-center gap-2 px-3 py-1.5 rounded text-body-sm font-body-sm font-medium bg-surface-elevated text-text-primary shadow-sm border border-border-contrast transition-all">
+<span class="w-1.5 h-1.5 rounded-full bg-status-success"></span>
+<span>Random Forest</span>
+<span class="font-annotation-mono text-annotation-mono text-text-faint uppercase ml-1">v2.1</span>
+</button>
+<button class="flex items-center gap-2 px-3 py-1.5 rounded text-body-sm font-body-sm text-text-muted hover:text-text-primary hover:bg-surface-subtle transition-all">
+<span>XGBoost</span>
+<span class="font-annotation-mono text-annotation-mono text-text-faint uppercase ml-1">v1.8</span>
+</button>
+<button class="flex items-center gap-2 px-3 py-1.5 rounded text-body-sm font-body-sm text-text-muted hover:text-text-primary hover:bg-surface-subtle transition-all">
+<span>Logistic Regression Baseline</span>
+</button>
+</div>
+</header>
+<!-- Performance KPI Band -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md mb-space-xl">
+<div class="p-space-md rounded-lg bg-surface-charcoal border border-border-subtle flex flex-col justify-between hover:border-border-contrast transition-colors">
+<div class="flex items-center justify-between text-text-muted font-annotation-mono text-annotation-mono uppercase">
+<span>Global Accuracy</span>
+<span class="text-status-success font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>Pass
+        </span>
+</div>
+<div class="my-space-sm flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg text-text-primary font-semibold tracking-tight">89.4%</span>
+<span class="font-annotation-mono text-annotation-mono text-text-faint">threshold > 85%</span>
+</div>
+<div class="font-body-sm text-body-sm text-text-muted">Benchmark Pass across 42,800 validation samples</div>
+</div>
+<div class="p-space-md rounded-lg bg-surface-charcoal border border-border-subtle flex flex-col justify-between hover:border-border-contrast transition-colors">
+<div class="flex items-center justify-between text-text-muted font-annotation-mono text-annotation-mono uppercase">
+<span>Macro-F1 Score</span>
+<span class="text-accent-cyan font-medium">Balanced Mean</span>
+</div>
+<div class="my-space-sm flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg text-text-primary font-semibold tracking-tight">0.862</span>
+<span class="font-annotation-mono text-annotation-mono text-text-faint">unweighted</span>
+</div>
+<div class="font-body-sm text-body-sm text-text-muted">Even distribution parity across underrepresented wards</div>
+</div>
+<div class="p-space-md rounded-lg bg-surface-charcoal border border-border-subtle flex flex-col justify-between hover:border-border-contrast transition-colors">
+<div class="flex items-center justify-between text-text-muted font-annotation-mono text-annotation-mono uppercase">
+<span>Weighted-F1</span>
+<span class="text-status-success font-medium flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>+2.1% YoY
+        </span>
+</div>
+<div class="my-space-sm flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg text-text-primary font-semibold tracking-tight">0.891</span>
+<span class="font-annotation-mono text-annotation-mono text-text-faint">top tier</span>
+</div>
+<div class="font-body-sm text-body-sm text-text-muted">Trained on FY2018-2024 standardized ward corpus</div>
+</div>
+<div class="p-space-md rounded-lg bg-surface-charcoal border border-border-subtle flex flex-col justify-between hover:border-border-contrast transition-colors">
+<div class="flex items-center justify-between text-text-muted font-annotation-mono text-annotation-mono uppercase">
+<span>Log-Loss</span>
+<span class="text-text-secondary font-medium">Calibrated</span>
+</div>
+<div class="my-space-sm flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg text-text-primary font-semibold tracking-tight">0.341</span>
+<span class="font-annotation-mono text-annotation-mono text-text-faint">-0.048 vs v2.0</span>
+</div>
+<div class="font-body-sm text-body-sm text-text-muted">Probability confidence variance within 3.2% limits</div>
+</div>
+</section>
+<!-- Workspace Grid (2 Columns) -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-space-lg items-start">
+<!-- LEFT: Diagnostics & Confusion Matrix -->
+<div class="flex flex-col gap-space-lg">
+<section class="p-space-lg rounded-lg bg-surface-charcoal border border-border-subtle">
+<div class="flex items-center justify-between pb-space-md border-b border-border-subtle mb-space-md">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-accent-cyan text-[20px]">grid_4x4</span>
+<h2 class="font-headline-sm text-headline-sm text-text-primary">Confusion Matrix (Normalized)</h2>
+</div>
+<span class="font-annotation-mono text-annotation-mono text-text-faint">N = 10,480 TEST SET</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-muted mb-space-md">Diagonal represents recall per domain. Off-diagonal represents inter-class classification leakage.</p>
+<!-- Matrix Component -->
+<div class="overflow-x-auto pb-2">
+<div class="min-w-[480px]">
+<!-- Header row -->
+<div class="grid grid-cols-5 gap-1.5 mb-1.5 items-end text-center font-annotation-mono text-annotation-mono text-text-muted uppercase">
+<div class="text-left font-body-sm text-text-faint normal-case">Actual \ Pred</div>
+<div class="p-1">Waste</div>
+<div class="p-1">Potholes</div>
+<div class="p-1">Water</div>
+<div class="p-1">Drainage</div>
+</div>
+<!-- Row 1: Solid Waste -->
+<div class="grid grid-cols-5 gap-1.5 mb-1.5 items-center">
+<div class="font-body-sm text-body-sm text-text-secondary truncate pr-2 text-right">Solid Waste</div>
+<div class="bg-primary-container/90 text-on-primary-container p-3 rounded flex flex-col items-center justify-center font-code-md text-code-md font-medium border border-accent-cyan/40 shadow-sm">
+<span>0.914</span>
+<span class="text-[10px] opacity-75 font-annotation-mono">3,892</span>
+</div>
+<div class="bg-surface-elevated text-text-muted p-3 rounded flex flex-col items-center justify-center font-code-md text-code-md border border-border-subtle">
+<span>0.031</span>
+<span class="text-[10px] text-text-faint font-annotation-mono">132</span>
+</div>
+<div class="bg-surface-subtle text-text-faint p-3 rounded flex flex-col items-center justify-center font-code-md text-code-md border border-border-subtle">
+<span>0.015</span>
+<span class="text-[10px] text-text-faint font-annotation-mono">64</span>
+</div>
+<div class="bg-surface-elevated text-text-muted p-3 rounded flex flex-col items-center justify-center font-code-md text-code-md border border-border-subtle">
+<span>0.040</span>
+<span class="text-[10px] text-text-faint font-annotation-mono">170</span>
+</div>
+</div>
+<!-- Row 2: Potholes -->
+<div class="grid grid-cols-5 gap-1.5 mb-1.5 items-center">
+<div class="font-body-sm text-body-sm text-text-secondary truncate pr-2 text-right">Potholes & Rds</div>
+<div class="bg-surface-elevated text-text-muted p-3 rounded flex flex-col items-center justify-center font-code-md text-code-md border border-border-subtle">
+<span>0.024</span>
+<span class="text-[10px] text-text-faint font-annotation-mono">68</span>
+</div>
+<div class="bg-primary-container/80 text-on-primary-container p-3 rounded flex flex-col items-center justify-center font-code-md text-code-md font-medium border border-accent-cyan/40 shadow-sm">
+<span>0.892</span>
+<span class="text-[10px] opacity-75 font-annotation-mono">2,514</span>
+</div>
+<div class="bg-surface-subtle text-text-faint p-3 rounded flex flex-col items-center justify-center font-code-md text-code-md border border-border-subtle">
+<span>0.018</span>
+<span class="text-[10px] text-text-faint font-annotation-mono">51</span>
+</div>
+<div class="bg-surface-elevated text-text-muted p-3 rounded flex flex-col items-center justify-center font-code-md text-code-md border border-border-subtle">
+<span>0.066</span>
+<span class="text-[10px] text-text-faint font-annotation-mono">186</span>
+</div>
+</div>
+<!-- Row 3: Water Quality -->
+<div class="grid grid-cols-5 gap-1.5 mb-1.5 items-center">
+<div class="font-body-sm text-body-sm text-text-secondary truncate pr-2 text-right">Water Supply</div>
+<div class="bg-surface-subtle text-text-faint p-3 rounded flex flex-col items-center justify-center font-code-md text-code-md border border-border-subtle">
+<span>0.022</span>
+<span class="text-[10px] text-text-faint font-annotation-mono">42</span>
+</div>
+<div class="bg-surface-subtle text-text-faint p-3 rounded flex flex-col items-center justify-center font-code-md text-code-md border border-border-subtle">
+<span>0.016</span>
+<span class="text-[10px] text-text-faint font-annotation-mono">31</span>
+</div>
+<div class="bg-primary-container/70 text-on-primary-container p-3 rounded flex flex-col items-center justify-center font-code-md text-code-md font-medium border border-accent-cyan/30 shadow-sm">
+<span>0.850</span>
+<span class="text-[10px] opacity-75 font-annotation-mono">1,632</span>
+</div>
+<div class="bg-surface-elevated text-text-secondary p-3 rounded flex flex-col items-center justify-center font-code-md text-code-md border border-border-subtle">
+<span>0.112</span>
+<span class="text-[10px] text-text-faint font-annotation-mono">215</span>
+</div>
+</div>
+<!-- Row 4: Drainage -->
+<div class="grid grid-cols-5 gap-1.5 items-center">
+<div class="font-body-sm text-body-sm text-text-secondary truncate pr-2 text-right">Drainage & SWM</div>
+<div class="bg-surface-elevated text-text-muted p-3 rounded flex flex-col items-center justify-center font-code-md text-code-md border border-border-subtle">
+<span>0.041</span>
+<span class="text-[10px] text-text-faint font-annotation-mono">68</span>
+</div>
+<div class="bg-surface-subtle text-text-faint p-3 rounded flex flex-col items-center justify-center font-code-md text-code-md border border-border-subtle">
+<span>0.021</span>
+<span class="text-[10px] text-text-faint font-annotation-mono">35</span>
+</div>
+<div class="bg-surface-elevated text-text-muted p-3 rounded flex flex-col items-center justify-center font-code-md text-code-md border border-border-subtle">
+<span>0.051</span>
+<span class="text-[10px] text-text-faint font-annotation-mono">85</span>
+</div>
+<div class="bg-primary-container/85 text-on-primary-container p-3 rounded flex flex-col items-center justify-center font-code-md text-code-md font-medium border border-accent-cyan/40 shadow-sm">
+<span>0.887</span>
+<span class="text-[10px] opacity-75 font-annotation-mono">1,481</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Per-Class Performance Table -->
+<section class="p-space-lg rounded-lg bg-surface-charcoal border border-border-subtle">
+<div class="flex items-center justify-between pb-space-md border-b border-border-subtle mb-space-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-text-muted text-[20px]">table_chart</span>
+<h2 class="font-headline-sm text-headline-sm text-text-primary">Per-Class Disaggregated Metrics</h2>
+</div>
+<span class="font-annotation-mono text-annotation-mono text-status-success">ALL MEETS TARGET</span>
+</div>
+<div class="w-full overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-border-contrast text-text-muted font-annotation-mono text-annotation-mono uppercase">
+<th class="py-2.5 px-3">Domain</th>
+<th class="py-2.5 px-3 text-right">Sample (N)</th>
+<th class="py-2.5 px-3 text-right">Precision</th>
+<th class="py-2.5 px-3 text-right">Recall</th>
+<th class="py-2.5 px-3 text-right">F1-Score</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-subtle font-body-sm text-body-sm">
+<tr class="hover:bg-surface-elevated transition-colors">
+<td class="py-3 px-3 font-medium text-text-primary flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-accent-cyan"></span>
+<span>Solid Waste Management</span>
+</td>
+<td class="py-3 px-3 text-right font-code-md text-code-md text-text-muted">4,258</td>
+<td class="py-3 px-3 text-right font-code-md text-code-md text-text-secondary">0.928</td>
+<td class="py-3 px-3 text-right font-code-md text-code-md text-text-secondary">0.914</td>
+<td class="py-3 px-3 text-right font-code-md text-code-md text-text-primary font-medium">0.921</td>
+</tr>
+<tr class="hover:bg-surface-elevated transition-colors">
+<td class="py-3 px-3 font-medium text-text-primary flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary-fixed-dim"></span>
+<span>Potholes & Road Defects</span>
+</td>
+<td class="py-3 px-3 text-right font-code-md text-code-md text-text-muted">2,819</td>
+<td class="py-3 px-3 text-right font-code-md text-code-md text-text-secondary">0.902</td>
+<td class="py-3 px-3 text-right font-code-md text-code-md text-text-secondary">0.892</td>
+<td class="py-3 px-3 text-right font-code-md text-code-md text-text-primary font-medium">0.897</td>
+</tr>
+<tr class="hover:bg-surface-elevated transition-colors">
+<td class="py-3 px-3 font-medium text-text-primary flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-status-warning"></span>
+<span>Water Quality & Pipeline</span>
+</td>
+<td class="py-3 px-3 text-right font-code-md text-code-md text-text-muted">1,920</td>
+<td class="py-3 px-3 text-right font-code-md text-code-md text-text-secondary">0.839</td>
+<td class="py-3 px-3 text-right font-code-md text-code-md text-text-secondary">0.850</td>
+<td class="py-3 px-3 text-right font-code-md text-code-md text-text-primary font-medium">0.844</td>
+</tr>
+<tr class="hover:bg-surface-elevated transition-colors">
+<td class="py-3 px-3 font-medium text-text-primary flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span>Drainage & Stormwater</span>
+</td>
+<td class="py-3 px-3 text-right font-code-md text-code-md text-text-muted">1,670</td>
+<td class="py-3 px-3 text-right font-code-md text-code-md text-text-secondary">0.871</td>
+<td class="py-3 px-3 text-right font-code-md text-code-md text-text-secondary">0.887</td>
+<td class="py-3 px-3 text-right font-code-md text-code-md text-text-primary font-medium">0.879</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+<!-- RIGHT: Live Inference Sandbox & Attribution -->
+<div class="flex flex-col gap-space-lg">
+<section class="p-space-lg rounded-lg bg-surface-charcoal border border-border-subtle relative overflow-hidden">
+<div class="flex items-center justify-between pb-space-md border-b border-border-subtle mb-space-md">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-status-success text-[20px]">bolt</span>
+<h2 class="font-headline-sm text-headline-sm text-text-primary">Live Inference Sandbox & Feature Attribution</h2>
+</div>
+<span class="px-2 py-0.5 rounded bg-surface-elevated border border-border-contrast text-text-muted font-annotation-mono text-annotation-mono">
+            ENDPOINT: /v1/predict
+          </span>
+</div>
+<!-- Testing Form Inputs -->
+<div class="space-y-space-md">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<div>
+<label class="block font-annotation-mono text-annotation-mono text-text-muted uppercase mb-1.5">Administrative Ward</label>
+<div class="relative">
+<select class="w-full h-9 bg-surface-subtle border border-border-contrast rounded px-3 pr-8 font-body-sm text-body-sm text-text-secondary appearance-none focus:outline-none focus:border-accent-cyan cursor-pointer">
+<option selected="">Ward K/West - Andheri West</option>
+<option>Ward G/North - Dharavi / Dadar</option>
+<option>Ward H/East - Bandra East</option>
+<option>Ward D - Malabar Hill</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-2 text-[18px] text-text-faint pointer-events-none">arrow_drop_down</span>
+</div>
+</div>
+<div>
+<label class="block font-annotation-mono text-annotation-mono text-text-muted uppercase mb-1.5">Ingestion Channel</label>
+<div class="relative">
+<select class="w-full h-9 bg-surface-subtle border border-border-contrast rounded px-3 pr-8 font-body-sm text-body-sm text-text-secondary appearance-none focus:outline-none focus:border-accent-cyan cursor-pointer">
+<option selected="">Citizen Mobile App (BMC 24/7)</option>
+<option>WhatsApp Helplines (+91 84529 19191)</option>
+<option>Toll-Free Control Room (1916)</option>
+<option>Web Portal Grievance Desk</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-2 text-[18px] text-text-faint pointer-events-none">arrow_drop_down</span>
+</div>
+</div>
+</div>
+<div>
+<div class="flex items-center justify-between mb-1.5">
+<label class="font-annotation-mono text-annotation-mono text-text-muted uppercase">Grievance Payload (Raw Text)</label>
+<span class="font-annotation-mono text-annotation-mono text-text-faint">78 characters / Token count: 14</span>
+</div>
+<textarea class="w-full bg-surface-subtle border border-border-contrast rounded p-space-sm font-code-md text-code-md text-text-primary focus:outline-none focus:border-accent-cyan transition-colors resize-none leading-relaxed" rows="3">Overflowing garbage dump and uncleared debris blocking street corner near metro station.</textarea>
+</div>
+<button class="w-full h-10 rounded bg-text-primary hover:bg-[#eaeaea] text-surface-pitch font-body-sm font-semibold flex items-center justify-center gap-2 transition-all shadow-sm active:scale-[0.99]" id="inferenceBtn">
+<span class="material-symbols-outlined text-[18px]">play_arrow</span>
+<span>Run Model Inference</span>
+</button>
+</div>
+<!-- Result Card -->
+<div class="mt-space-lg pt-space-lg border-t border-border-subtle space-y-space-md">
+<div class="flex items-center justify-between">
+<span class="font-annotation-mono text-annotation-mono uppercase text-text-muted">Inference Output & Confidence</span>
+<div class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-status-success/10 border border-status-success/30 font-annotation-mono text-annotation-mono text-status-success">
+<span class="w-1.5 h-1.5 rounded-full bg-status-success"></span>
+<span>CALIBRATED (94.6%)</span>
+</div>
+</div>
+<div class="p-space-md rounded bg-surface-subtle border border-border-contrast">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-space-sm">
+<div>
+<span class="font-annotation-mono text-annotation-mono text-text-faint uppercase">Primary Prediction</span>
+<div class="font-headline-md text-headline-md text-text-primary font-medium tracking-tight">Solid Waste Management</div>
+</div>
+<div class="text-right sm:text-right">
+<span class="font-annotation-mono text-annotation-mono text-text-faint uppercase">Routing Target</span>
+<div class="font-body-sm text-body-sm text-accent-cyan font-code-md">Dept-SWM-K/West-Zone4</div>
+</div>
+</div>
+<!-- Probability breakdown bar -->
+<div class="space-y-1 mb-space-md">
+<div class="flex justify-between font-annotation-mono text-annotation-mono text-text-muted">
+<span>Confidence Threshold</span>
+<span>Secondary: Encroachment & Hawking (3.2%)</span>
+</div>
+<div class="w-full h-2 rounded bg-surface-container-high overflow-hidden flex">
+<div class="h-full bg-accent-cyan" style="width: 94.6%"></div>
+<div class="h-full bg-status-warning" style="width: 3.2%"></div>
+<div class="h-full bg-text-faint" style="width: 2.2%"></div>
+</div>
+</div>
+<!-- SHAP attribution section -->
+<div class="pt-space-sm border-t border-border-subtle">
+<div class="flex items-center justify-between mb-2">
+<span class="font-annotation-mono text-annotation-mono text-text-muted uppercase">Top Token Contributors (TreeSHAP)</span>
+<span class="font-annotation-mono text-annotation-mono text-text-faint">Baseline: 0.124</span>
+</div>
+<div class="flex flex-wrap gap-2">
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-elevated border border-accent-cyan/30 text-text-primary font-annotation-mono text-annotation-mono">
+<span class="text-accent-cyan">dump</span>
+<span class="text-status-success font-medium">+0.48</span>
+</div>
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-elevated border border-accent-cyan/30 text-text-primary font-annotation-mono text-annotation-mono">
+<span class="text-accent-cyan">garbage</span>
+<span class="text-status-success font-medium">+0.39</span>
+</div>
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-elevated border border-accent-cyan/20 text-text-primary font-annotation-mono text-annotation-mono">
+<span class="text-text-secondary">debris</span>
+<span class="text-status-success font-medium">+0.22</span>
+</div>
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-elevated border border-border-subtle text-text-muted font-annotation-mono text-annotation-mono">
+<span class="text-text-muted">corner</span>
+<span class="text-text-muted">+0.03</span>
+</div>
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-elevated border border-border-subtle text-text-muted font-annotation-mono text-annotation-mono">
+<span class="text-text-muted">metro</span>
+<span class="text-status-critical font-medium">-0.04</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Telemetry Footer inside panel -->
+<div class="flex items-center justify-between pt-space-xs font-annotation-mono text-annotation-mono text-text-faint">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-text-muted">terminal</span>
+<span>POST /api/v1/ml/predict</span>
+</div>
+<div class="flex items-center gap-3">
+<span>Latency: <strong class="text-text-secondary font-medium">4.8ms</strong></span>
+<span>Workers: <strong class="text-text-secondary font-medium">8 pods</strong></span>
+</div>
+</div>
+</div>
+</section>
+<!-- Pattern Mining & Anomaly Quick Digest -->
+<section class="p-space-md rounded-lg bg-surface-charcoal border border-border-subtle flex items-center justify-between gap-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-surface-elevated border border-border-contrast flex items-center justify-center">
+<span class="material-symbols-outlined text-accent-cyan text-[18px]">hub</span>
+</div>
+<div>
+<div class="font-body-sm font-medium text-text-primary">Clustering Engine Auto-Report</div>
+<div class="font-annotation-mono text-annotation-mono text-text-muted">DBSCAN isolated 3 unmapped seasonal clusters in Ward K/West</div>
+</div>
+</div>
+<button class="px-3 py-1.5 rounded border border-border-contrast bg-surface-subtle hover:bg-surface-elevated text-text-secondary font-annotation-mono text-annotation-mono uppercase transition-colors shrink-0">
+          Inspect Clusters →
+        </button>
+</section>
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    const btn = document.getElementById('inferenceBtn');
+    if (!btn) return;
+    
+    btn.addEventListener('click', function() {
+      const originalHtml = btn.innerHTML;
+      btn.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin">refresh</span><span>Computing SHAP Attributions...</span>';
+      btn.classList.add('opacity-75');
+      
+      setTimeout(function() {
+        btn.innerHTML = originalHtml;
+        btn.classList.remove('opacity-75');
+      }, 350);
+    });
+  })();
+</script></main></div></body></html>
