@@ -1,293 +1,1459 @@
 <!DOCTYPE html>
-<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><title>CivicLens | OLAP Multi-Dimensional Laboratory</title><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "surface-container-low": "#1b1b1b", "on-secondary": "#003061", "on-primary": "#002e6b", "surface-pitch": "#000000", "surface-container-highest": "#353535", "on-error-container": "#ffdad6", "primary-fixed-dim": "#aec6ff", "inverse-on-surface": "#303030", "surface-dim": "#131313", "status-critical": "#e00000", "on-tertiary": "#581e00", "tertiary-fixed-dim": "#ffb596", "on-surface": "#e2e2e2", "on-tertiary-container": "#fffeff", "surface-container": "#1f1f1f", "on-tertiary-fixed": "#360f00", "error-container": "#93000a", "accent-cyan": "#3291ff", "text-secondary": "#ededed", "on-secondary-fixed": "#001b3c", "background": "#131313", "on-secondary-fixed-variant": "#004788", "primary-container": "#0070f3", "surface-charcoal": "#0a0a0a", "tertiary": "#ffb596", "text-faint": "#444444", "tertiary-fixed": "#ffdbcd", "on-tertiary-fixed-variant": "#7d2d00", "border-subtle": "#1f1f1f", "secondary-container": "#3291ff", "outline-variant": "#414754", "surface-bright": "#393939", "on-secondary-container": "#002a55", "surface-subtle": "#111111", "secondary-fixed": "#d5e3ff", "text-muted": "#888888", "secondary-fixed-dim": "#a7c8ff", "border-contrast": "#2e2e2e", "on-background": "#e2e2e2", "surface-container-lowest": "#0e0e0e", "primary": "#aec6ff", "surface-container-high": "#2a2a2a", "secondary": "#a7c8ff", "surface-variant": "#353535", "status-warning": "#f5a623", "text-primary": "#ffffff", "inverse-primary": "#0059c5", "on-primary-container": "#ffffff", "on-error": "#690005", "error": "#ffb4ab", "status-success": "#10b981", "surface": "#131313", "inverse-surface": "#e2e2e2", "on-primary-fixed-variant": "#004397", "surface-elevated": "#171717", "outline": "#8b90a0", "surface-tint": "#aec6ff", "on-primary-fixed": "#001a43", "on-surface-variant": "#c1c6d7", "primary-fixed": "#d8e2ff", "tertiary-container": "#ca4e00" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-sm": "0.5rem", "gutter": "1.5rem", "space-md": "1rem", "gutter-mobile": "1rem", "margin-mobile": "1rem", "margin": "2rem", "space-lg": "1.5rem", "space-xs": "0.25rem", "space-xl": "2.5rem" }, "fontFamily": { "display-hero": ["Geist"], "headline-md": ["Geist"], "display-hero-mobile": ["Geist"], "body-sm": ["Geist"], "headline-sm": ["Geist"], "headline-lg": ["Geist"], "headline-lg-mobile": ["Geist"], "code-md": ["JetBrains Mono"], "body-lg": ["Geist"], "body-md": ["Geist"], "annotation-mono": ["JetBrains Mono"] }, "fontSize": { "display-hero": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.04em", "fontWeight": "600" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.02em", "fontWeight": "500" }], "display-hero-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.03em", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0em", "fontWeight": "400" }], "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "500" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.03em", "fontWeight": "600" }], "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "code-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }], "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "400" }], "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "-0.005em", "fontWeight": "400" }], "annotation-mono": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "500" }] } } } };</script></head><body class="bg-surface-pitch font-body-md text-body-md text-on-surface antialiased">
-<aside class="fixed left-0 top-0 h-full w-64 bg-surface-charcoal z-50 flex flex-col border-r border-border-subtle"><div class="h-14 px-space-md border-b border-border-subtle flex items-center justify-between"><div class="flex items-center gap-space-sm"><div class="w-6 h-6 rounded bg-text-primary flex items-center justify-center"><span class="material-symbols-outlined text-surface-pitch text-[16px]">polyline</span></div><div><div class="font-headline-sm text-headline-sm text-text-primary tracking-tight font-medium">CivicLens</div><div class="font-annotation-mono text-annotation-mono text-text-muted uppercase tracking-wider">BMC Civic Analytics</div></div></div><div class="w-1.5 h-1.5 rounded-full bg-status-success"></div></div><div class="flex-1 overflow-y-auto px-space-sm py-space-md"><div class="mb-space-lg"><div class="px-space-sm pb-space-xs font-annotation-mono text-annotation-mono text-text-faint uppercase tracking-wider">Explore</div><nav class="space-y-0.5"><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-subtle hover:text-on-surface transition-colors font-body-sm text-body-sm" href="/overview"><span class="material-symbols-outlined text-[18px]">grid_view</span><span>Overview</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-subtle hover:text-on-surface transition-colors font-body-sm text-body-sm" href="/complaint-explorer"><span class="material-symbols-outlined text-[18px]">search_insights</span><span>Complaint Explorer</span></a></nav></div><div class="mb-space-lg"><div class="px-space-sm pb-space-xs font-annotation-mono text-annotation-mono text-text-faint uppercase tracking-wider">Analyse</div><nav class="space-y-0.5"><a aria-current="page" class="flex items-center gap-space-sm px-space-sm py-1.5 rounded transition-colors bg-surface-elevated text-text-primary font-medium border border-border-contrast" href="/olap-laboratory"><span class="material-symbols-outlined text-[18px]">biotech</span><span>OLAP Laboratory</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-subtle hover:text-on-surface transition-colors font-body-sm text-body-sm" href="/ml-models"><span class="material-symbols-outlined text-[18px]">neurology</span><span>ML Models</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-subtle hover:text-on-surface transition-colors font-body-sm text-body-sm" href="/patterns-and-clusters"><span class="material-symbols-outlined text-[18px]">hub</span><span>Patterns & Clusters</span></a></nav></div><div><div class="px-space-sm pb-space-xs font-annotation-mono text-annotation-mono text-text-faint uppercase tracking-wider">System</div><nav class="space-y-0.5"><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-subtle hover:text-on-surface transition-colors font-body-sm text-body-sm" href="/olap-laboratory"><span class="material-symbols-outlined text-[18px]">database</span><span>Star Schema Warehouse</span></a></nav></div></div><div class="p-space-sm border-t border-border-subtle bg-surface-pitch/40"><div class="flex items-center justify-between px-space-sm py-space-xs"><div class="flex items-center gap-space-xs"><span class="w-1.5 h-1.5 rounded-full bg-status-success animate-pulse"></span><span class="font-annotation-mono text-annotation-mono text-text-muted">v2.4.1-rc3</span></div><span class="font-annotation-mono text-annotation-mono text-text-faint uppercase">Cube Engine</span></div></div></aside>
-
-<div class="pl-64"><header class="fixed top-0 left-64 right-0 h-14 bg-surface-charcoal/90 backdrop-blur-md border-b border-border-subtle z-40 flex items-center justify-between px-gutter"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs font-annotation-mono text-annotation-mono"><span class="text-text-muted">BMC</span><span class="text-text-faint">/</span><span class="text-text-muted">Multi-Dimensional Warehouse</span><span class="text-text-faint">/</span><span class="text-text-primary">OLAP Laboratory</span></div><div class="h-4 w-[1px] bg-border-contrast"></div><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-2.5 text-[16px] text-text-muted">search</span><input class="h-8 w-64 bg-surface-subtle border border-border-contrast rounded px-space-sm pl-8 font-body-sm text-body-sm text-text-secondary placeholder-text-faint focus:outline-none focus:border-accent-cyan transition-colors" placeholder="Search cube dimensions..." type="text"/></div></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-subtle border border-border-subtle font-annotation-mono text-annotation-mono text-text-secondary"><span class="material-symbols-outlined text-[14px] text-text-muted">calendar_today</span><span>FY 2018-2024</span></div><div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-subtle border border-border-subtle font-annotation-mono text-annotation-mono"><span class="w-1.5 h-1.5 rounded-full bg-status-success"></span><span class="text-text-secondary">Cluster Synchronized</span></div><div class="h-4 w-[1px] bg-border-contrast"></div><button class="p-1 text-on-surface-variant hover:text-on-surface transition-colors flex items-center justify-center"><span class="material-symbols-outlined text-[18px]">notifications</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header>
-
-<main class="w-full pt-14 min-h-screen bg-surface-pitch px-gutter py-space-lg"><div class="flex flex-col w-full space-y-space-xl">
-<!-- Top Operational Header -->
-<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-md border-b border-border-subtle pb-space-lg">
-<div class="space-y-space-xs max-w-3xl">
-<div class="flex items-center gap-space-sm text-text-muted font-annotation-mono text-annotation-mono tracking-wider uppercase">
-<span>OLAP Engine</span>
-<span>/</span>
-<span>Analytical Cube Engine v4.2</span>
-<span>/</span>
-<span class="text-status-success flex items-center gap-1">
-<span class="w-1.5 h-1.5 rounded-full bg-status-success animate-pulse"></span>
-          960k Fact Grain
-        </span>
-</div>
-<h1 class="font-headline-lg text-headline-lg text-text-primary tracking-tight font-semibold">
-        OLAP Multi-Dimensional Laboratory
-      </h1>
-<p class="font-body-md text-body-md text-text-muted leading-relaxed">
-        Execute multi-dimensional cube aggregations across BMC geographical and temporal hierarchies with live MySQL warehouse queries.
-      </p>
-</div>
-
-<!-- Segmented Operational Mode Switcher -->
-<div class="flex items-center p-1 rounded-xl bg-surface-subtle border border-border-subtle self-start lg:self-auto" id="olapSwitchers">
-<button onclick="switchOLAP('rollup')" id="btnRollup" class="px-space-md py-1.5 rounded font-body-sm text-body-sm font-medium transition-all bg-surface-elevated text-text-primary border border-border-contrast shadow-sm flex items-center gap-1.5">
-<span class="material-symbols-outlined text-[15px] text-accent-cyan">vertical_align_top</span>
-<span>Roll-up</span>
-</button>
-<button onclick="switchOLAP('drilldown')" id="btnDrilldown" class="px-space-md py-1.5 rounded font-body-sm text-body-sm font-medium transition-all text-text-muted hover:text-text-secondary hover:bg-surface-elevated/40 flex items-center gap-1.5">
-<span class="material-symbols-outlined text-[15px]">vertical_align_bottom</span>
-<span>Drill-down</span>
-</button>
-<button onclick="switchOLAP('slice')" id="btnSlice" class="px-space-md py-1.5 rounded font-body-sm text-body-sm font-medium transition-all text-text-muted hover:text-text-secondary hover:bg-surface-elevated/40 flex items-center gap-1.5">
-<span class="material-symbols-outlined text-[15px]">content_cut</span>
-<span>Slice</span>
-</button>
-<button onclick="switchOLAP('dice')" id="btnDice" class="px-space-md py-1.5 rounded font-body-sm text-body-sm font-medium transition-all text-text-muted hover:text-text-secondary hover:bg-surface-elevated/40 flex items-center gap-1.5">
-<span class="material-symbols-outlined text-[15px]">view_in_ar</span>
-<span>Dice</span>
-</button>
-<button onclick="switchOLAP('pivot')" id="btnPivot" class="px-space-md py-1.5 rounded font-body-sm text-body-sm font-medium transition-all text-text-muted hover:text-text-secondary hover:bg-surface-elevated/40 flex items-center gap-1.5">
-<span class="material-symbols-outlined text-[15px]">sync_alt</span>
-<span>Pivot</span>
-</button>
-</div>
-</div>
-
-<!-- Primary Workspace Grid -->
-<div class="grid grid-cols-12 gap-gutter items-start">
-<!-- Left Column (4/12): Parameter Scaffolding -->
-<div class="col-span-12 lg:col-span-4 space-y-gutter">
-<div class="rounded-xl bg-surface-charcoal border border-border-subtle p-space-lg shadow-sm space-y-space-lg relative overflow-hidden">
-<div class="flex items-center justify-between border-b border-border-subtle pb-space-sm">
-<div class="flex items-center gap-space-xs font-headline-sm text-headline-sm text-text-primary font-medium">
-<span class="material-symbols-outlined text-text-muted text-[18px]">tune</span>
-<span>Operation Configuration</span>
-</div>
-<span class="font-annotation-mono text-annotation-mono px-2 py-0.5 rounded bg-surface-subtle text-accent-cyan border border-accent-cyan/20" id="activeBadge">
-  Active: ROLLUP
-</span>
-</div>
-
-<!-- Traversal Hierarchy -->
-<div class="space-y-space-sm">
-<div class="flex items-center justify-between">
-<label class="font-annotation-mono text-annotation-mono text-text-muted uppercase tracking-wider">Dimension Hierarchy Traversal</label>
-<span class="font-annotation-mono text-annotation-mono text-status-success" id="opFactor">8.0x reduction</span>
-</div>
-<div class="p-space-md rounded bg-surface-subtle border border-border-subtle space-y-space-md" id="hierarchyCard">
-<div class="flex items-start justify-between">
-<div>
-<div class="font-annotation-mono text-annotation-mono text-text-faint">SOURCE GRAIN</div>
-<div class="font-body-md text-body-md text-text-primary font-medium mt-0.5" id="srcGrain">Municipal Ward Level</div>
-<div class="font-body-sm text-body-sm text-text-muted" id="srcDesc">24 Distinct Administrative Wards</div>
-</div>
-<span class="material-symbols-outlined text-text-faint text-[20px]">layers</span>
-</div>
-<div class="flex items-center justify-center -my-1 text-text-faint">
-<span class="material-symbols-outlined text-[18px] text-accent-cyan">arrow_downward</span>
-</div>
-<div class="flex items-start justify-between border-t border-border-contrast pt-space-sm">
-<div>
-<div class="font-annotation-mono text-annotation-mono text-accent-cyan">TARGET GRAIN</div>
-<div class="font-body-md text-body-md text-text-primary font-medium mt-0.5" id="targetGrain">Administrative Zone</div>
-<div class="font-body-sm text-body-sm text-text-muted" id="targetDesc">3 Super-Zones: Western, Eastern, City</div>
-</div>
-<span class="material-symbols-outlined text-accent-cyan text-[20px]">domain</span>
-</div>
-</div>
-</div>
-
-<!-- Measures Matrix -->
-<div class="space-y-space-sm">
-<label class="font-annotation-mono text-annotation-mono text-text-muted uppercase tracking-wider">Aggregated Measures</label>
-<div class="space-y-2">
-<div class="flex items-center justify-between p-space-sm rounded bg-surface-subtle border border-border-subtle">
-<div class="flex items-center gap-2">
-<span class="w-2 h-2 rounded-full bg-accent-cyan"></span>
-<span class="font-code-md text-code-md text-text-primary">COUNT(complaint_key)</span>
-</div>
-<span class="font-annotation-mono text-annotation-mono text-text-faint">Additive volume</span>
-</div>
-<div class="flex items-center justify-between p-space-sm rounded bg-surface-subtle border border-border-subtle">
-<div class="flex items-center gap-2">
-<span class="w-2 h-2 rounded-full bg-status-warning"></span>
-<span class="font-code-md text-code-md text-text-primary">AVG(resolution_days)</span>
-</div>
-<span class="font-annotation-mono text-annotation-mono text-text-faint">Non-additive latency</span>
-</div>
-<div class="flex items-center justify-between p-space-sm rounded bg-surface-subtle border border-border-subtle">
-<div class="flex items-center gap-2">
-<span class="w-2 h-2 rounded-full bg-status-success"></span>
-<span class="font-code-md text-code-md text-text-primary">SUM(estimated_cost_inr)</span>
-</div>
-<span class="font-annotation-mono text-annotation-mono text-text-faint">Financial outlay</span>
-</div>
-</div>
-</div>
-
-<!-- Execute Button -->
-<button onclick="runCurrentOLAP()" class="w-full h-11 rounded bg-text-primary hover:bg-[#ececec] text-surface-pitch font-body-sm font-semibold flex items-center justify-center gap-2 transition-all shadow-sm active:scale-[0.99]" id="executeBtn">
-<span class="material-symbols-outlined text-[18px]">play_circle</span>
-<span>Re-Execute Cube Query</span>
-</button>
-</div>
-</div>
-
-<!-- Right Column (8/12): SQL & Live Cube Table -->
-<div class="col-span-12 lg:col-span-8 space-y-gutter">
-<!-- Live Generated SQL Console -->
-<div class="rounded-xl bg-surface-charcoal border border-border-subtle p-space-md shadow-sm space-y-space-xs">
-<div class="flex items-center justify-between pb-2 border-b border-border-subtle">
-<div class="flex items-center gap-2 font-annotation-mono text-annotation-mono text-text-muted">
-<span class="material-symbols-outlined text-[16px] text-accent-cyan">terminal</span>
-<span>COMPILED SQL QUERY (MySQL 8.0)</span>
-</div>
-<span class="font-annotation-mono text-annotation-mono text-status-success" id="sqlLatency">-- ms</span>
-</div>
-<pre class="bg-surface-pitch p-space-md rounded font-code-md text-code-md text-text-secondary overflow-x-auto border border-border-subtle text-[12px] leading-relaxed" id="sqlDisplay">-- Loading SQL...</pre>
-</div>
-
-<!-- Aggregation Table -->
-<div class="rounded-xl bg-surface-charcoal border border-border-subtle overflow-hidden shadow-sm">
-<div class="px-space-md py-3.5 bg-surface-elevated/40 flex items-center justify-between border-b border-border-subtle">
-<div class="flex items-center gap-3">
-<span class="font-annotation-mono text-annotation-mono uppercase text-text-muted tracking-wider" id="tableTitle">CUBE AGGREGATION VIEW</span>
-<span class="px-2 py-0.5 rounded bg-surface-pitch text-status-success font-annotation-mono text-annotation-mono" id="tableRowCount">-- rows</span>
-</div>
-<span class="font-annotation-mono text-annotation-mono text-text-faint">fact_complaint grain</span>
-</div>
-<div class="overflow-x-auto max-h-[500px]">
-<table class="w-full text-left font-body-sm text-body-sm" id="olapTable">
-<thead id="olapTableHead">
-<tr class="font-annotation-mono text-annotation-mono text-text-muted uppercase border-b border-border-subtle">
-<th class="py-2.5 px-3">Column</th>
-</tr>
-</thead>
-<tbody class="divide-y divide-border-subtle/50 text-text-secondary font-code-md text-code-md" id="olapTableBody">
-<tr><td class="py-8 text-center text-text-muted">Executing query against warehouse...</td></tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-<script>
-  let currentOp = 'rollup';
-
-  const opDetails = {
-    rollup: {
-      factor: '8.0x reduction',
-      srcGrain: 'Municipal Ward Level',
-      srcDesc: '24 Distinct Administrative Wards',
-      targetGrain: 'Administrative Zone',
-      targetDesc: '3 Super-Zones: Western, Eastern, City'
-    },
-    drilldown: {
-      factor: '12x expansion',
-      srcGrain: 'Annual Temporal Level (2024)',
-      srcDesc: '1 Consolidated Year',
-      targetGrain: 'Quarter & Month Hierarchy',
-      targetDesc: 'Quarter -> Month temporal breakdown'
-    },
-    slice: {
-      factor: 'Category = Pothole',
-      srcGrain: 'Full Multi-Dimensional Cube',
-      srcDesc: '13 Complaint Categories',
-      targetGrain: 'Category Slice across 24 Wards',
-      targetDesc: 'Fixed Category: Pothole / Road Damage'
-    },
-    dice: {
-      factor: 'Sub-Cube Multi-Filter',
-      srcGrain: 'Full Cube (24 Wards x 13 Cats)',
-      srcDesc: 'All Dimensions unrestricted',
-      targetGrain: 'Sub-Cube: 3 Cats x 2 Zones (2024)',
-      targetDesc: 'Western & Eastern Suburbs, Year 2024'
-    },
-    pivot: {
-      factor: 'Cross-Tabulation Matrix',
-      srcGrain: 'Normalized Fact Complaint Rows',
-      srcDesc: 'Standard relational grain',
-      targetGrain: 'Wards (Rows) x Categories (Columns)',
-      targetDesc: 'Pothole, Water Supply, SWM, SWD'
-    }
-  };
-
-  function switchOLAP(op) {
-    currentOp = op;
-    ['rollup', 'drilldown', 'slice', 'dice', 'pivot'].forEach(name => {
-      const btn = document.getElementById('btn' + name.charAt(0).toUpperCase() + name.slice(1));
-      if (btn) {
-        if (name === op) {
-          btn.className = "px-space-md py-1.5 rounded font-body-sm text-body-sm font-medium transition-all bg-surface-elevated text-text-primary border border-border-contrast shadow-sm flex items-center gap-1.5";
-        } else {
-          btn.className = "px-space-md py-1.5 rounded font-body-sm text-body-sm font-medium transition-all text-text-muted hover:text-text-secondary hover:bg-surface-elevated/40 flex items-center gap-1.5";
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>CivicLens | OLAP Multi-Dimensional Laboratory</title>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/static/js/chart.min.js"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface-pitch": "#000000",
+            "surface-charcoal": "#0a0a0a",
+            "surface-dim": "#131313",
+            "surface-subtle": "#111111",
+            "surface-elevated": "#171717",
+            "surface-container": "#1f1f1f",
+            "surface-container-high": "#2a2a2a",
+            "border-subtle": "#1f1f1f",
+            "border-contrast": "#2e2e2e",
+            "text-primary": "#ffffff",
+            "text-secondary": "#ededed",
+            "text-muted": "#888888",
+            "text-faint": "#444444",
+            "accent-cyan": "#3291ff",
+            "primary-container": "#0070f3",
+            "status-success": "#10b981",
+            "status-warning": "#f5a623",
+            "status-critical": "#e00000",
+          },
+          fontFamily: {
+            "display-hero": ["Geist", "sans-serif"],
+            "headline-lg": ["Geist", "sans-serif"],
+            "headline-md": ["Geist", "sans-serif"],
+            "headline-sm": ["Geist", "sans-serif"],
+            "body-lg": ["Geist", "sans-serif"],
+            "body-md": ["Geist", "sans-serif"],
+            "body-sm": ["Geist", "sans-serif"],
+            "code-md": ["JetBrains Mono", "monospace"],
+            "annotation-mono": ["JetBrains Mono", "monospace"],
+          }
         }
       }
-    });
+    };
+  </script>
+  <style>
+    @layer base {
+      html, body { margin: 0; padding: 0; background-color: #000000; }
+    }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #0a0a0a; }
+    ::-webkit-scrollbar-thumb { background: #262626; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #38bdf8; }
+    .cube-plane {
+      perspective: 800px;
+    }
+    .pulse-glow {
+      box-shadow: 0 0 15px rgba(50, 145, 255, 0.35);
+    }
+  </style>
+</head>
+<body class="bg-surface-pitch font-body-md text-body-md text-text-secondary antialiased min-h-screen flex">
 
-    document.getElementById('activeBadge').textContent = 'Active: ' + op.toUpperCase();
-    const info = opDetails[op];
-    if (info) {
-      document.getElementById('opFactor').textContent = info.factor;
-      document.getElementById('srcGrain').textContent = info.srcGrain;
-      document.getElementById('srcDesc').textContent = info.srcDesc;
-      document.getElementById('targetGrain').textContent = info.targetGrain;
-      document.getElementById('targetDesc').textContent = info.targetDesc;
+  <!-- Sidebar Navigation -->
+  <aside class="fixed left-0 top-0 h-full w-64 bg-surface-charcoal z-50 flex flex-col border-r border-border-subtle">
+    <div class="h-14 px-4 border-b border-border-subtle flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="w-6 h-6 rounded bg-text-primary flex items-center justify-center">
+          <span class="material-symbols-outlined text-surface-pitch text-[16px]">polyline</span>
+        </div>
+        <div>
+          <div class="font-headline-sm text-[15px] text-text-primary tracking-tight font-medium">CivicLens</div>
+          <div class="font-annotation-mono text-[10px] text-text-muted uppercase tracking-wider">BMC DWDM Platform</div>
+        </div>
+      </div>
+      <div class="w-2 h-2 rounded-full bg-status-success animate-pulse"></div>
+    </div>
+
+    <div class="flex-1 overflow-y-auto px-2 py-4 space-y-6">
+      <div>
+        <div class="px-2 pb-1 font-annotation-mono text-[10px] text-text-faint uppercase tracking-wider">Explore</div>
+        <nav class="space-y-0.5">
+          <a class="flex items-center gap-2 px-2 py-1.5 rounded text-text-muted hover:bg-surface-subtle hover:text-text-primary transition-colors text-sm" href="/overview">
+            <span class="material-symbols-outlined text-[18px]">grid_view</span><span>Overview</span>
+          </a>
+          <a class="flex items-center gap-2 px-2 py-1.5 rounded text-text-muted hover:bg-surface-subtle hover:text-text-primary transition-colors text-sm" href="/complaint-explorer">
+            <span class="material-symbols-outlined text-[18px]">search_insights</span><span>Complaint Explorer</span>
+          </a>
+        </nav>
+      </div>
+
+      <div>
+        <div class="px-2 pb-1 font-annotation-mono text-[10px] text-text-faint uppercase tracking-wider">Analyse & Mine</div>
+        <nav class="space-y-0.5">
+          <a aria-current="page" class="flex items-center gap-2 px-2 py-1.5 rounded transition-colors bg-surface-elevated text-text-primary font-medium border border-border-contrast text-sm" href="/olap-laboratory">
+            <span class="material-symbols-outlined text-[18px] text-accent-cyan">biotech</span><span>OLAP Laboratory</span>
+          </a>
+          <a class="flex items-center gap-2 px-2 py-1.5 rounded text-text-muted hover:bg-surface-subtle hover:text-text-primary transition-colors text-sm" href="/ml-models">
+            <span class="material-symbols-outlined text-[18px]">neurology</span><span>ML Models (95.8%)</span>
+          </a>
+          <a class="flex items-center gap-2 px-2 py-1.5 rounded text-text-muted hover:bg-surface-subtle hover:text-text-primary transition-colors text-sm" href="/patterns-and-clusters">
+            <span class="material-symbols-outlined text-[18px]">hub</span><span>Patterns & Clusters</span>
+          </a>
+        </nav>
+      </div>
+
+      <div>
+        <div class="px-2 pb-1 font-annotation-mono text-[10px] text-text-faint uppercase tracking-wider">Warehouse Metadata</div>
+        <div class="p-3 bg-surface-pitch rounded border border-border-subtle font-annotation-mono text-[11px] text-text-muted space-y-1.5">
+          <div class="flex justify-between"><span>Fact Grain:</span><span class="text-text-primary font-medium">960,000</span></div>
+          <div class="flex justify-between"><span>Schema:</span><span class="text-accent-cyan">Star Schema</span></div>
+          <div class="flex justify-between"><span>Dimensions:</span><span class="text-text-primary">4 Dims</span></div>
+          <div class="flex justify-between"><span>Engine:</span><span class="text-status-success">MySQL 8.0</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-3 border-t border-border-subtle bg-surface-pitch/60 flex items-center justify-between font-annotation-mono text-[11px]">
+      <span class="text-text-muted">MySQL 8.0 DW</span>
+      <span class="text-status-success flex items-center gap-1">
+        <span class="w-1.5 h-1.5 rounded-full bg-status-success"></span>Connected
+      </span>
+    </div>
+  </aside>
+
+  <!-- Main Content Area -->
+  <div class="pl-64 flex-1 flex flex-col min-w-0">
+    <!-- Header -->
+    <header class="h-14 bg-surface-charcoal/90 backdrop-blur border-b border-border-subtle sticky top-0 z-40 flex items-center justify-between px-6">
+      <div class="flex items-center gap-3 font-annotation-mono text-xs">
+        <span class="text-text-muted">BMC Civic Data Warehouse</span>
+        <span class="text-text-faint">/</span>
+        <span class="text-text-primary font-medium">OLAP Multi-Dimensional Engine</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="px-2.5 py-1 rounded bg-surface-subtle border border-border-contrast font-annotation-mono text-xs text-status-success flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-[14px]">speed</span>
+          <span id="headerLatencyBadge">Live Warehouse: Active</span>
+        </div>
+        <a href="/ml-models" class="px-3 py-1 bg-accent-cyan/10 hover:bg-accent-cyan/20 border border-accent-cyan/30 text-accent-cyan rounded text-xs font-medium flex items-center gap-1 transition-colors">
+          <span>Go to ML Models</span>
+          <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- Page Body -->
+    <main class="p-6 space-y-6">
+
+      <!-- DEMO SHOWCASE TOOLBAR (1-Click for Viva/Demo) -->
+      <section class="p-4 rounded-xl bg-gradient-to-r from-surface-charcoal via-surface-elevated to-surface-charcoal border border-border-contrast shadow-sm">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
+          <div class="flex items-center gap-2.5">
+            <div class="w-7 h-7 rounded bg-accent-cyan/20 border border-accent-cyan/40 flex items-center justify-center text-accent-cyan">
+              <span class="material-symbols-outlined text-[18px]">play_arrow</span>
+            </div>
+            <div>
+              <div class="text-xs font-semibold text-text-primary uppercase tracking-wider font-annotation-mono flex items-center gap-2">
+                <span>1-Click Viva / Lab Demo Showcase</span>
+                <span class="px-1.5 py-0.2 rounded bg-status-success/20 text-status-success text-[10px]">Ready</span>
+              </div>
+              <div class="text-[12px] text-text-muted">Click any preset to automatically configure, visually animate, and execute the exact multidimensional operation:</div>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-2">
+            <button onclick="demoShowcase('rollup')" class="px-3 py-1.5 rounded bg-surface-pitch hover:bg-surface-container border border-border-contrast text-xs text-text-primary font-medium flex items-center gap-1.5 transition-all hover:border-accent-cyan">
+              <span class="w-2 h-2 rounded-full bg-accent-cyan"></span>
+              <span>1. Roll-up (Ward -> Zone)</span>
+            </button>
+            <button onclick="demoShowcase('drilldown')" class="px-3 py-1.5 rounded bg-surface-pitch hover:bg-surface-container border border-border-contrast text-xs text-text-primary font-medium flex items-center gap-1.5 transition-all hover:border-amber-400">
+              <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+              <span>2. Drill-down (2024 Monsoon)</span>
+            </button>
+            <button onclick="demoShowcase('slice')" class="px-3 py-1.5 rounded bg-surface-pitch hover:bg-surface-container border border-border-contrast text-xs text-text-primary font-medium flex items-center gap-1.5 transition-all hover:border-emerald-400">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+              <span>3. Slice (Pothole Plane)</span>
+            </button>
+            <button onclick="demoShowcase('dice')" class="px-3 py-1.5 rounded bg-surface-pitch hover:bg-surface-container border border-border-contrast text-xs text-text-primary font-medium flex items-center gap-1.5 transition-all hover:border-purple-400">
+              <span class="w-2 h-2 rounded-full bg-purple-400"></span>
+              <span>4. Dice (Sub-Cube 2x3)</span>
+            </button>
+            <button onclick="demoShowcase('pivot')" class="px-3 py-1.5 rounded bg-surface-pitch hover:bg-surface-container border border-border-contrast text-xs text-text-primary font-medium flex items-center gap-1.5 transition-all hover:border-rose-400">
+              <span class="w-2 h-2 rounded-full bg-rose-400"></span>
+              <span>5. Pivot (Matrix Heatmap)</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Operation Selector Tabs -->
+      <section class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border-subtle pb-4">
+        <div>
+          <h1 class="text-2xl font-bold text-text-primary tracking-tight font-headline-lg">OLAP Multi-Dimensional Operations</h1>
+          <p class="text-sm text-text-muted mt-0.5">Explore multi-dimensional data cube aggregations across BMC temporal, spatial, and categorical hierarchies.</p>
+        </div>
+        <div class="flex items-center p-1 rounded-lg bg-surface-charcoal border border-border-contrast" id="opTabGroup">
+          <button onclick="selectOperation('rollup')" id="tabRollup" class="px-3 py-1.5 rounded text-xs font-medium transition-all bg-surface-elevated text-text-primary border border-border-contrast shadow flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[16px] text-accent-cyan">vertical_align_top</span>
+            <span>Roll-up</span>
+          </button>
+          <button onclick="selectOperation('drilldown')" id="tabDrilldown" class="px-3 py-1.5 rounded text-xs font-medium transition-all text-text-muted hover:text-text-primary flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[16px]">vertical_align_bottom</span>
+            <span>Drill-down</span>
+          </button>
+          <button onclick="selectOperation('slice')" id="tabSlice" class="px-3 py-1.5 rounded text-xs font-medium transition-all text-text-muted hover:text-text-primary flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[16px]">content_cut</span>
+            <span>Slice</span>
+          </button>
+          <button onclick="selectOperation('dice')" id="tabDice" class="px-3 py-1.5 rounded text-xs font-medium transition-all text-text-muted hover:text-text-primary flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[16px]">view_in_ar</span>
+            <span>Dice</span>
+          </button>
+          <button onclick="selectOperation('pivot')" id="tabPivot" class="px-3 py-1.5 rounded text-xs font-medium transition-all text-text-muted hover:text-text-primary flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[16px]">sync_alt</span>
+            <span>Pivot</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- TWO-COLUMN WORKSPACE: Visual Interactive Canvas (Left 7/12) + Configuration & Theory (Right 5/12) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+
+        <!-- LEFT COLUMN: Interactive Dynamic Visualizer -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="rounded-xl bg-surface-charcoal border border-border-subtle p-5 shadow-sm space-y-4">
+            
+            <!-- Canvas Header -->
+            <div class="flex items-center justify-between border-b border-border-subtle pb-3">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-accent-cyan animate-pulse"></span>
+                <span class="text-sm font-semibold text-text-primary font-headline-sm" id="visualTitle">Concept Transformation Visualizer: Roll-up</span>
+              </div>
+              <div class="flex items-center gap-2" id="visualControls">
+                <!-- Dynamic controls injected by JS -->
+              </div>
+            </div>
+
+            <!-- Dynamic Interactive Visual Canvas -->
+            <div id="visualCanvasContainer" class="min-h-[300px] flex flex-col justify-center">
+              <!-- Visual elements inserted dynamically per operation -->
+            </div>
+
+            <!-- Chart.js Container -->
+            <div class="pt-2 border-t border-border-subtle">
+              <div class="flex items-center justify-between text-xs text-text-muted font-annotation-mono mb-2">
+                <span id="chartLabel">Aggregated Chart Projection</span>
+                <span class="text-accent-cyan" id="chartSecondaryLabel">Dynamic Canvas</span>
+              </div>
+              <div class="h-64 w-full relative">
+                <canvas id="olapChart"></canvas>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Live Generated SQL Console -->
+          <div class="rounded-xl bg-surface-charcoal border border-border-subtle p-4 shadow-sm space-y-2">
+            <div class="flex items-center justify-between border-b border-border-subtle pb-2">
+              <div class="flex items-center gap-2 text-xs font-annotation-mono text-text-muted">
+                <span class="material-symbols-outlined text-[16px] text-accent-cyan">terminal</span>
+                <span>COMPILED WAREHOUSE SQL QUERY (MySQL 8.0)</span>
+              </div>
+              <span class="text-xs font-annotation-mono text-status-success font-medium" id="sqlLatency">-- ms</span>
+            </div>
+            <pre class="bg-surface-pitch p-3.5 rounded font-code-md text-xs text-text-secondary overflow-x-auto border border-border-contrast/40 leading-relaxed" id="sqlDisplay">-- Loading SQL...</pre>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN: Academic Concept Card + Operation Configuration & Granular Hierarchy -->
+        <div class="lg:col-span-5 space-y-6">
+
+          <!-- Evaluator Viva / Academic Explanation Card -->
+          <div class="rounded-xl bg-surface-charcoal border border-border-contrast p-5 shadow-sm space-y-3.5 relative overflow-hidden">
+            <div class="flex items-center justify-between border-b border-border-subtle pb-2.5">
+              <div class="flex items-center gap-2 font-headline-sm text-sm text-text-primary font-medium">
+                <span class="material-symbols-outlined text-accent-cyan text-[18px]">school</span>
+                <span>Data Warehousing Theory & Concept</span>
+              </div>
+              <span class="font-annotation-mono text-[10px] px-2 py-0.5 rounded bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/20" id="opBadge">ROLLUP</span>
+            </div>
+
+            <div class="space-y-2">
+              <div class="text-xs font-annotation-mono text-text-muted uppercase tracking-wider">Formal DW Definition:</div>
+              <p class="text-xs text-text-secondary leading-relaxed bg-surface-pitch p-2.5 rounded border border-border-subtle" id="theoryDefinition">
+                Roll-up (drill-up) performs aggregation on a data cube by climbing up a concept hierarchy or by dimension reduction. Granular measurements are consolidated into higher-level summary metrics.
+              </p>
+            </div>
+
+            <div class="space-y-1.5">
+              <div class="text-xs font-annotation-mono text-text-muted uppercase tracking-wider">Concept Hierarchy Traversal:</div>
+              <div class="p-3 bg-surface-pitch rounded border border-border-subtle text-xs space-y-2">
+                <div class="flex justify-between items-center">
+                  <span class="text-text-muted">Source Grain (Low Level):</span>
+                  <span class="font-semibold text-text-primary" id="cardSrcGrain">24 Municipal Wards</span>
+                </div>
+                <div class="flex justify-center text-accent-cyan">
+                  <span class="material-symbols-outlined text-[16px]" id="hierarchyArrow">arrow_downward</span>
+                </div>
+                <div class="flex justify-between items-center border-t border-border-contrast pt-1.5">
+                  <span class="text-text-muted">Target Grain (High Level):</span>
+                  <span class="font-semibold text-accent-cyan" id="cardTargetGrain">3 Administrative Zones</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-xs font-annotation-mono text-text-muted uppercase tracking-wider">Municipal Operational Rationale:</div>
+              <p class="text-xs text-text-muted leading-relaxed" id="businessRationale">
+                BMC Chief Engineers do not require ward-by-ward micro-telemetry for citywide budget allocation. Rolling up to the 3 Super-Zones enables strategic financial planning and macro resource distribution.
+              </p>
+            </div>
+          </div>
+
+          <!-- Dynamic Parameter Controls -->
+          <div class="rounded-xl bg-surface-charcoal border border-border-subtle p-5 shadow-sm space-y-4">
+            <div class="flex items-center justify-between border-b border-border-subtle pb-2.5">
+              <div class="flex items-center gap-2 font-headline-sm text-sm text-text-primary font-medium">
+                <span class="material-symbols-outlined text-text-muted text-[18px]">tune</span>
+                <span>Interactive Controls</span>
+              </div>
+              <button onclick="runCurrentOLAP(true)" class="text-[11px] font-annotation-mono text-accent-cyan hover:underline flex items-center gap-1">
+                <span class="material-symbols-outlined text-[12px]">refresh</span>Force Live SQL
+              </button>
+            </div>
+
+            <div id="dynamicControlsContainer" class="space-y-3">
+              <!-- Injected per operation -->
+            </div>
+
+            <button onclick="runCurrentOLAP()" class="w-full h-10 rounded bg-text-primary hover:bg-[#ececec] text-surface-pitch text-xs font-semibold flex items-center justify-center gap-2 transition-all shadow active:scale-[0.99]" id="btnExecute">
+              <span class="material-symbols-outlined text-[16px]">play_circle</span>
+              <span>Execute OLAP Cube Query</span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- BOTTOM SECTION: Result Data Table -->
+      <section class="rounded-xl bg-surface-charcoal border border-border-subtle overflow-hidden shadow-sm">
+        <div class="px-5 py-3.5 bg-surface-elevated/60 flex items-center justify-between border-b border-border-subtle">
+          <div class="flex items-center gap-3">
+            <span class="font-annotation-mono text-xs uppercase text-text-muted tracking-wider" id="tableTitle">CUBE AGGREGATION RESULT</span>
+            <span class="px-2 py-0.5 rounded bg-surface-pitch text-status-success font-annotation-mono text-xs font-semibold" id="tableRowCount">-- rows</span>
+          </div>
+          <div class="flex items-center gap-3 font-annotation-mono text-xs text-text-faint">
+            <span>Schema: star_fact_complaint</span>
+            <span>•</span>
+            <span class="text-accent-cyan">Sorted DESC</span>
+          </div>
+        </div>
+        <div class="overflow-x-auto max-h-[420px]">
+          <table class="w-full text-left text-xs font-body-sm" id="olapTable">
+            <thead id="olapTableHead">
+              <tr class="font-annotation-mono text-text-muted uppercase border-b border-border-subtle bg-surface-pitch/40">
+                <th class="py-2.5 px-4">Column</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-border-subtle/40 text-text-secondary font-code-md" id="olapTableBody">
+              <tr><td class="py-8 text-center text-text-muted">Loading multidimensional cube data...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    let currentOp = 'rollup';
+    let chartInstance = null;
+    let cachedResponseData = null;
+    let isGranularView = false;
+    let isTransposed = false;
+    let selectedSliceCat = "Pothole / Road Damage";
+    let currentDrillLevel = 'monthly'; // 'annual', 'quarterly', 'monthly'
+    let currentDiceGrain = 'zone'; // 'zone', 'ward', 'severity'
+
+    const opConfig = {
+      rollup: {
+        title: "Concept Transformation Visualizer: Roll-up (Merge)",
+        badge: "ROLLUP",
+        definition: "Roll-up aggregates granular rows along the concept hierarchy (Ward -> Zone) or by eliminating a dimension. It replaces lower-level specific attributes with generalized summary categories.",
+        srcGrain: "24 Municipal Administrative Wards",
+        targetGrain: "3 Consolidated Zones (Western, Eastern, City)",
+        arrow: "vertical_align_top",
+        rationale: "City administrators use rolled-up zone totals to identify systemic regional infrastructure stress rather than getting overwhelmed by 24 individual ward telemetry streams.",
+        sqlDesc: "GROUP BY l.zone (Eliminating ward granularity)",
+      },
+      drilldown: {
+        title: "Concept Transformation Visualizer: Drill-down (Expansion)",
+        badge: "DRILLDOWN",
+        definition: "Drill-down is the reverse of roll-up. It navigates from less detailed data to more detailed data along the temporal hierarchy: Annual Total -> 4 Quarters -> 12 Months.",
+        srcGrain: "Annual FY2024 Consolidated Total",
+        targetGrain: "Quarter & Month Temporal Hierarchy",
+        arrow: "vertical_align_bottom",
+        rationale: "Exposes the severe monsoon spike during June-September where waterlogging and potholes double municipal incident counts.",
+        sqlDesc: "GROUP BY t.year, t.quarter, t.month (Expanding time dimension)",
+      },
+      slice: {
+        title: "Concept Transformation Visualizer: Slice (Plane Cut)",
+        badge: "SLICE",
+        definition: "A Slice operation performs a selection on one dimension of the cube resulting in a 2D sub-plane. Here we fix Category = 'Pothole / Road Damage' and inspect all 24 wards.",
+        srcGrain: "Full 3D Cube (Wards x Categories x Years)",
+        targetGrain: "Fixed 2D Plane: Category Slice across 24 Wards",
+        arrow: "content_cut",
+        rationale: "Dedicated department heads (e.g. Chief Roads Engineer) only care about their specific operational slice across Mumbai wards.",
+        sqlDesc: "WHERE c.category_name = 'Pothole / Road Damage'",
+      },
+      dice: {
+        title: "Concept Transformation Visualizer: Dice (Sub-Cube)",
+        badge: "DICE",
+        definition: "A Dice operation defines a sub-cube by performing a selection on two or more dimensions simultaneously. Here: {Western, Eastern Zones} x {Potholes, Drainage, Water} x {2024}.",
+        srcGrain: "Entire Multi-Dimensional Fact Warehouse",
+        targetGrain: "Bounded Sub-Cube: 2 Zones x 3 Categories x 1 Year",
+        arrow: "view_in_ar",
+        rationale: "Used by emergency monsoon task forces to monitor critical suburban flood and pipeline failure sectors during intense storm cycles.",
+        sqlDesc: "WHERE c.category IN (...) AND l.zone IN (...) AND t.year = 2024",
+      },
+      pivot: {
+        title: "Concept Transformation Visualizer: Pivot (Axis Rotation)",
+        badge: "PIVOT",
+        definition: "Pivot (also known as Rotate) rotates the data axes in view to provide an alternative presentation. It transforms relational rows into a cross-tabulated two-dimensional matrix.",
+        srcGrain: "Relational Fact Records (Vertical Rows)",
+        targetGrain: "Cross-Tabulation Matrix: Wards (Rows) x Categories (Cols)",
+        arrow: "sync_alt",
+        rationale: "Enables instant pattern comparison: which wards suffer predominantly from potholes vs which wards suffer from water contamination.",
+        sqlDesc: "SUM(CASE WHEN category = ... THEN 1 ELSE 0 END) AS pivot_col",
+      }
+    };
+
+    function selectOperation(op) {
+      currentOp = op;
+      isGranularView = false;
+      isTransposed = false;
+      currentDiceGrain = 'zone';
+
+      // Update Tab Styles
+      ['rollup', 'drilldown', 'slice', 'dice', 'pivot'].forEach(name => {
+        const btn = document.getElementById('tab' + name.charAt(0).toUpperCase() + name.slice(1));
+        if (btn) {
+          if (name === op) {
+            btn.className = "px-3 py-1.5 rounded text-xs font-medium transition-all bg-surface-elevated text-text-primary border border-border-contrast shadow flex items-center gap-1.5";
+            btn.querySelector('.material-symbols-outlined').classList.add('text-accent-cyan');
+          } else {
+            btn.className = "px-3 py-1.5 rounded text-xs font-medium transition-all text-text-muted hover:text-text-primary flex items-center gap-1.5";
+            btn.querySelector('.material-symbols-outlined').classList.remove('text-accent-cyan');
+          }
+        }
+      });
+
+      // Update Academic Card
+      const cfg = opConfig[op];
+      document.getElementById('visualTitle').textContent = cfg.title;
+      document.getElementById('opBadge').textContent = cfg.badge;
+      document.getElementById('theoryDefinition').textContent = cfg.definition;
+      document.getElementById('cardSrcGrain').textContent = cfg.srcGrain;
+      document.getElementById('cardTargetGrain').textContent = cfg.targetGrain;
+      document.getElementById('businessRationale').textContent = cfg.rationale;
+      document.getElementById('hierarchyArrow').textContent = cfg.arrow;
+
+      renderDynamicControls(op);
+      runCurrentOLAP();
     }
 
-    runCurrentOLAP();
-  }
+    function demoShowcase(op) {
+      selectOperation(op);
+    }
 
-  async function runCurrentOLAP() {
-    const tableHead = document.getElementById('olapTableHead');
-    const tableBody = document.getElementById('olapTableBody');
-    tableBody.innerHTML = '<tr><td colspan="6" class="py-8 text-center text-text-muted">Executing query against warehouse...</td></tr>';
+    function renderDynamicControls(op) {
+      const container = document.getElementById('dynamicControlsContainer');
+      const visualControls = document.getElementById('visualControls');
+      visualControls.innerHTML = '';
 
-    try {
-      const res = await fetch('/api/olap/query', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ operation: currentOp })
-      });
-      const data = await res.json();
+      if (op === 'rollup') {
+        visualControls.innerHTML = `
+          <button onclick="toggleRollupGranular()" id="btnToggleMerge" class="px-2.5 py-1 rounded bg-surface-pitch hover:bg-surface-elevated border border-accent-cyan/40 text-accent-cyan text-xs font-medium flex items-center gap-1 transition-all">
+            <span class="material-symbols-outlined text-[14px]">call_merge</span>
+            <span>Simulate Roll-up Merge</span>
+          </button>
+        `;
+        container.innerHTML = `
+          <div class="p-3 bg-surface-pitch rounded border border-border-subtle text-xs space-y-2">
+            <div class="text-text-muted font-annotation-mono uppercase text-[10px]">Hierarchy Controls:</div>
+            <div class="flex items-center justify-between">
+              <span>View Grain:</span>
+              <span class="text-accent-cyan font-semibold" id="lblRollupGrain">Rolled-Up (3 Zones)</span>
+            </div>
+            <p class="text-[11px] text-text-faint">Click "Simulate Roll-up Merge" above to visually watch 24 individual wards collapse into 3 consolidated zone bars.</p>
+          </div>
+        `;
+      } else if (op === 'drilldown') {
+        const isAnnual = currentDrillLevel === 'annual';
+        const isQtr = currentDrillLevel === 'quarterly';
+        const btnText = isAnnual ? "Drill-down to Quarters" : (isQtr ? "Drill-down to Months" : "Roll-up to Annual");
+        const btnIcon = isAnnual || isQtr ? "call_split" : "call_merge";
 
-      document.getElementById('sqlDisplay').textContent = data.sql;
-      document.getElementById('sqlLatency').textContent = `${data.execution_time_ms} ms latency`;
-      document.getElementById('tableRowCount').textContent = `${data.row_count} rows`;
-      document.getElementById('tableTitle').textContent = `${data.operation} AGGREGATION VIEW`;
+        visualControls.innerHTML = `
+          <button onclick="cycleDrilldownGrain()" id="btnDrillStep" class="px-2.5 py-1 rounded bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/40 text-amber-400 text-xs font-medium flex items-center gap-1.5 transition-all">
+            <span class="material-symbols-outlined text-[14px]">${btnIcon}</span>
+            <span id="drillStepLabel">${btnText}</span>
+          </button>
+        `;
+        container.innerHTML = `
+          <div class="p-3.5 bg-surface-pitch rounded-lg border border-border-subtle text-xs space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-text-muted font-annotation-mono uppercase text-[10px]">Temporal Granularity Hierarchy:</span>
+              <span class="text-[11px] font-annotation-mono text-amber-400 font-bold" id="lblDrillLevelBadge">
+                ${currentDrillLevel === 'annual' ? 'Level 1: Annual Total' : (currentDrillLevel === 'quarterly' ? 'Level 2: 4 Quarters' : 'Level 3: 12 Months')}
+              </span>
+            </div>
+            
+            <!-- 3-Level Grain Buttons (1-click to jump to any level) -->
+            <div class="grid grid-cols-3 gap-1.5 p-1 rounded bg-surface-charcoal border border-border-contrast text-center text-xs">
+              <button onclick="setDrillLevel('annual')" id="btnDrillAnnual" class="py-1.5 px-2 rounded transition-all ${isAnnual ? 'bg-surface-elevated text-amber-400 border border-border-contrast shadow' : 'text-text-muted hover:text-text-primary'} text-[11px] font-medium flex flex-col items-center">
+                <span class="font-bold">1. Annual</span>
+                <span class="text-[9px] ${isAnnual ? 'text-amber-400/80' : 'text-text-faint'}">FY2024 Total</span>
+              </button>
+              <button onclick="setDrillLevel('quarterly')" id="btnDrillQuarterly" class="py-1.5 px-2 rounded transition-all ${isQtr ? 'bg-surface-elevated text-amber-400 border border-border-contrast shadow' : 'text-text-muted hover:text-text-primary'} text-[11px] font-medium flex flex-col items-center">
+                <span class="font-bold">2. Quarterly</span>
+                <span class="text-[9px] ${isQtr ? 'text-amber-400/80' : 'text-text-faint'}">4 Quarters</span>
+              </button>
+              <button onclick="setDrillLevel('monthly')" id="btnDrillMonthly" class="py-1.5 px-2 rounded transition-all ${!isAnnual && !isQtr ? 'bg-surface-elevated text-amber-400 border border-border-contrast shadow' : 'text-text-muted hover:text-text-primary'} text-[11px] font-medium flex flex-col items-center">
+                <span class="font-bold">3. Monthly</span>
+                <span class="text-[9px] ${!isAnnual && !isQtr ? 'text-amber-400/80' : 'text-text-faint'}">12 Months</span>
+              </button>
+            </div>
 
-      // Render Head
+            <div class="p-2.5 rounded bg-surface-elevated border border-border-subtle text-[11px] text-text-muted space-y-1">
+              <div class="flex justify-between"><span>Current Temporal Grain:</span><span class="text-text-primary font-bold" id="lblDrillCurrentGrain">${currentDrillLevel === 'annual' ? '1 Annual Row (FY 2024)' : (currentDrillLevel === 'quarterly' ? '4 Quarterly Rows (Q1-Q4)' : '12 Monthly Rows (Jan-Dec)')}</span></div>
+              <div class="flex justify-between"><span>Monsoon Spike (Jun–Sep):</span><span class="text-status-critical font-medium">+12.4% Surge</span></div>
+            </div>
+
+            <p class="text-[11px] text-text-faint leading-relaxed">
+              Click <strong>"Simulate Drill-down"</strong> above or any grain button to visually watch the data cube decompress across temporal levels.
+            </p>
+          </div>
+        `;
+      } else if (op === 'slice') {
+        visualControls.innerHTML = `
+          <span class="text-xs font-annotation-mono text-emerald-400 flex items-center gap-1">
+            <span class="material-symbols-outlined text-[14px]">filter_alt</span>2D Cut Active
+          </span>
+        `;
+        container.innerHTML = `
+          <div class="space-y-1.5">
+            <label class="text-[11px] font-annotation-mono text-text-muted uppercase">Select Category Slice Plane:</label>
+            <select id="selSliceCat" onchange="changeSliceCategory(this.value)" class="w-full h-9 bg-surface-pitch border border-border-contrast rounded px-3 text-xs text-text-primary focus:outline-none focus:border-accent-cyan cursor-pointer">
+              <option value="Pothole / Road Damage" selected>Pothole / Road Damage</option>
+              <option value="Drainage Overflow / Flooding">Drainage Overflow / Flooding</option>
+              <option value="Water Supply Disruption">Water Supply Disruption</option>
+              <option value="Solid Waste / Garbage">Solid Waste / Garbage</option>
+              <option value="Street Light Failure">Street Light Failure</option>
+              <option value="Illegal Construction">Illegal Construction</option>
+              <option value="Water Leakage / Pipe Burst">Water Leakage / Pipe Burst</option>
+              <option value="Health / Epidemic">Health / Epidemic</option>
+            </select>
+            <p class="text-[11px] text-text-faint">Changing this dropdown instantly queries MySQL and draws the ward-level distribution for that specific category slice.</p>
+          </div>
+        `;
+      } else if (op === 'dice') {
+        const isZone = currentDiceGrain === 'zone';
+        const isWard = currentDiceGrain === 'ward';
+        const isSev = currentDiceGrain === 'severity';
+        const btnText = isZone ? "Drill-down to Wards (Expand)" : (isWard ? "Drill-down to Severity" : "Roll-up to Sub-Cube Zones");
+        const btnIcon = isZone || isWard ? "call_split" : "call_merge";
+
+        visualControls.innerHTML = `
+          <button onclick="cycleDiceGrain()" id="btnDiceStep" class="px-2.5 py-1 rounded bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/40 text-purple-400 text-xs font-medium flex items-center gap-1.5 transition-all">
+            <span class="material-symbols-outlined text-[14px]">${btnIcon}</span>
+            <span id="diceStepLabel">${btnText}</span>
+          </button>
+        `;
+        container.innerHTML = `
+          <div class="p-3.5 bg-surface-pitch rounded-lg border border-border-subtle text-xs space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-text-muted font-annotation-mono uppercase text-[10px]">Sub-Cube Drill-Down Granularity:</span>
+              <span class="text-[11px] font-annotation-mono text-purple-400 font-bold" id="lblDiceGrainBadge">
+                ${isZone ? 'Level 1: 2 Zones (Macro)' : (isWard ? 'Level 2: 8 Suburban Wards' : 'Level 3: Critical Severity')}
+              </span>
+            </div>
+
+            <!-- 3-Level Grain Buttons (1-click to jump to any level) -->
+            <div class="grid grid-cols-3 gap-1.5 p-1 rounded bg-surface-charcoal border border-border-contrast text-center text-xs">
+              <button onclick="setDiceGrain('zone')" id="btnDiceZone" class="py-1.5 px-2 rounded transition-all ${isZone ? 'bg-surface-elevated text-purple-400 border border-border-contrast shadow' : 'text-text-muted hover:text-text-primary'} text-[11px] font-medium flex flex-col items-center">
+                <span class="font-bold">1. Zones</span>
+                <span class="text-[9px] ${isZone ? 'text-purple-400/80' : 'text-text-faint'}">2 Suburbs (Macro)</span>
+              </button>
+              <button onclick="setDiceGrain('ward')" id="btnDiceWard" class="py-1.5 px-2 rounded transition-all ${isWard ? 'bg-surface-elevated text-purple-400 border border-border-contrast shadow' : 'text-text-muted hover:text-text-primary'} text-[11px] font-medium flex flex-col items-center">
+                <span class="font-bold">2. Wards</span>
+                <span class="text-[9px] ${isWard ? 'text-purple-400/80' : 'text-text-faint'}">8 Granular Wards</span>
+              </button>
+              <button onclick="setDiceGrain('severity')" id="btnDiceSeverity" class="py-1.5 px-2 rounded transition-all ${isSev ? 'bg-surface-elevated text-purple-400 border border-border-contrast shadow' : 'text-text-muted hover:text-text-primary'} text-[11px] font-medium flex flex-col items-center">
+                <span class="font-bold">3. Severity</span>
+                <span class="text-[9px] ${isSev ? 'text-purple-400/80' : 'text-text-faint'}">Urgency Risk</span>
+              </button>
+            </div>
+
+            <div class="p-2.5 rounded bg-surface-elevated border border-border-subtle text-[11px] text-text-muted space-y-1">
+              <div class="flex justify-between"><span>Active Predicates:</span><span class="text-text-primary font-bold">Western + Eastern &bull; FY2024</span></div>
+              <div class="flex justify-between"><span>Diced Categories:</span><span class="text-purple-400 font-medium">Potholes, Drainage, Water</span></div>
+            </div>
+
+            <p class="text-[11px] text-text-faint leading-relaxed">
+              Click <strong>"Drill-down to Wards"</strong> above to decompose the 2-Zone macro sub-cube into individual municipal ward cells.
+            </p>
+          </div>
+        `;
+      } else if (op === 'pivot') {
+        visualControls.innerHTML = `
+          <button onclick="togglePivotTranspose()" class="px-2.5 py-1 rounded ${isTransposed ? 'bg-accent-cyan/15 border-accent-cyan/40 text-accent-cyan' : 'bg-rose-500/10 border-rose-500/40 text-rose-400'} border text-xs font-medium flex items-center gap-1.5 transition-all shadow-sm">
+            <span class="material-symbols-outlined text-[14px]">rotate_90_degrees_ccw</span>
+            <span>${isTransposed ? 'Rotate Back (Standard Wards on Rows)' : 'Transpose Matrix (Rotate 90°)'}</span>
+          </button>
+        `;
+        container.innerHTML = `
+          <div class="p-3.5 bg-surface-pitch rounded-lg border border-border-subtle text-xs space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-text-muted font-annotation-mono uppercase text-[10px]">Matrix Orientation (Rotation):</span>
+              <span class="text-[11px] font-annotation-mono ${isTransposed ? 'text-accent-cyan font-bold' : 'text-rose-400 font-bold'}">
+                ${isTransposed ? 'Transposed (90° Rotated)' : 'Standard Orientation'}
+              </span>
+            </div>
+
+            <div class="p-3 rounded bg-surface-elevated border border-border-subtle text-[11px] text-text-muted space-y-1.5">
+              <div class="flex justify-between items-center">
+                <span>Vertical Y-Axis (Rows):</span>
+                <span class="text-text-primary font-bold px-1.5 py-0.5 rounded ${isTransposed ? 'bg-rose-500/20 text-rose-300' : 'bg-accent-cyan/20 text-accent-cyan'}">${isTransposed ? '4 Critical Categories' : '24 Municipal Wards'}</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span>Horizontal X-Axis (Columns):</span>
+                <span class="text-text-primary font-bold px-1.5 py-0.5 rounded ${isTransposed ? 'bg-accent-cyan/20 text-accent-cyan' : 'bg-rose-500/20 text-rose-300'}">${isTransposed ? 'Municipal Wards' : '4 Critical Categories'}</span>
+              </div>
+            </div>
+
+            <p class="text-[11px] text-text-faint leading-relaxed">
+              Click <strong>"${isTransposed ? 'Rotate Back' : 'Transpose Matrix'}"</strong> above to watch both the 2D Heatmap and the Bar Chart swap axes by 90 degrees.
+            </p>
+          </div>
+        `;
+      }
+    }
+
+    async function runCurrentOLAP(forceLive = false) {
+      const tableHead = document.getElementById('olapTableHead');
+      const tableBody = document.getElementById('olapTableBody');
+      tableBody.innerHTML = '<tr><td colspan="6" class="py-8 text-center text-text-muted">Executing query against warehouse...</td></tr>';
+
+      try {
+        const payload = {
+          operation: currentOp,
+          force_live: forceLive,
+          slice_category: selectedSliceCat,
+        };
+
+        const res = await fetch('/api/olap/query', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        cachedResponseData = data;
+
+        document.getElementById('sqlDisplay').textContent = data.sql;
+        document.getElementById('sqlLatency').textContent = `${data.execution_time_ms} ms latency`;
+        document.getElementById('tableRowCount').textContent = `${data.row_count} rows`;
+        document.getElementById('tableTitle').textContent = `${data.operation} CUBE VIEW`;
+
+        renderVisualDiagram(currentOp, data);
+        renderOLAPChart(currentOp, data);
+        renderTable(data.columns, data.rows);
+
+      } catch (e) {
+        console.error('Error executing OLAP:', e);
+        tableBody.innerHTML = '<tr><td colspan="6" class="py-8 text-center text-status-critical">Error executing OLAP query.</td></tr>';
+      }
+    }
+
+    function renderTable(columns, rows) {
+      const tableHead = document.getElementById('olapTableHead');
+      const tableBody = document.getElementById('olapTableBody');
+
       tableHead.innerHTML = `
-        <tr class="font-annotation-mono text-annotation-mono text-text-muted uppercase border-b border-border-subtle">
-          ${data.columns.map(c => `<th class="py-2.5 px-3">${c.replace(/_/g, ' ')}</th>`).join('')}
+        <tr class="font-annotation-mono text-text-muted uppercase border-b border-border-subtle bg-surface-pitch/40">
+          ${columns.map(c => `<th class="py-2.5 px-4">${c.replace(/_/g, ' ')}</th>`).join('')}
         </tr>
       `;
 
-      // Render Body
       tableBody.innerHTML = '';
-      data.rows.forEach(row => {
+      rows.forEach((row, rIdx) => {
         const tr = document.createElement('tr');
-        tr.className = 'hover:bg-surface-subtle transition-colors';
-        tr.innerHTML = data.columns.map((col, idx) => {
+        tr.className = 'hover:bg-surface-subtle transition-colors ' + (rIdx % 2 === 1 ? 'bg-surface-pitch/20' : '');
+        tr.innerHTML = columns.map((col, idx) => {
           let val = row[col];
           if (typeof val === 'number') {
             val = val.toLocaleString();
           }
-          const isKey = idx === 0;
-          return `<td class="py-2.5 px-3 ${isKey ? 'text-text-primary font-medium' : 'text-text-secondary'}">${val}</td>`;
+          const isFirst = idx === 0;
+          return `<td class="py-2 px-4 ${isFirst ? 'text-text-primary font-medium' : 'text-text-secondary'}">${val}</td>`;
         }).join('');
         tableBody.appendChild(tr);
       });
-    } catch (e) {
-      console.error('Error executing OLAP:', e);
-      tableBody.innerHTML = '<tr><td colspan="6" class="py-8 text-center text-status-critical">Error executing OLAP query.</td></tr>';
     }
-  }
 
-  document.addEventListener('DOMContentLoaded', () => {
-    switchOLAP('rollup');
-  });
-</script>
-</main></div></body></html>
+    // =========================================================================
+    // CONCEPT TRANSFORMATION DIAGRAMS
+    // =========================================================================
+    function renderVisualDiagram(op, data) {
+      const container = document.getElementById('visualCanvasContainer');
+
+      if (op === 'rollup') {
+        container.innerHTML = `
+          <div class="space-y-4">
+            <div class="flex items-center justify-between text-xs font-annotation-mono">
+              <span class="text-text-muted">Concept Hierarchy Aggregation</span>
+              <span class="text-status-success font-semibold">8.0x Dimensional Compression</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+              <!-- City Zone Card -->
+              <div class="p-3.5 rounded-lg bg-surface-pitch border border-border-contrast/80 hover:border-accent-cyan transition-all space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="font-semibold text-xs text-text-primary">City / South Zone</span>
+                  <span class="px-1.5 py-0.5 rounded bg-accent-cyan/10 text-accent-cyan font-annotation-mono text-[10px]">9 Wards</span>
+                </div>
+                <div class="flex flex-wrap gap-1">
+                  ${['A','B','C','D','E','F/N','F/S','G/N','G/S'].map(w => `<span class="px-1.5 py-0.5 bg-surface-container rounded text-[10px] text-text-secondary font-code-md">${w}</span>`).join('')}
+                </div>
+                <div class="border-t border-border-subtle pt-2 flex justify-between text-xs">
+                  <span class="text-text-muted">Merged Volume:</span>
+                  <span class="font-bold text-text-primary">316,200</span>
+                </div>
+              </div>
+
+              <!-- Western Suburbs Card -->
+              <div class="p-3.5 rounded-lg bg-surface-pitch border border-border-contrast/80 hover:border-accent-cyan transition-all space-y-2 pulse-glow">
+                <div class="flex items-center justify-between">
+                  <span class="font-semibold text-xs text-text-primary">Western Suburbs</span>
+                  <span class="px-1.5 py-0.5 rounded bg-status-success/10 text-status-success font-annotation-mono text-[10px]">9 Wards</span>
+                </div>
+                <div class="flex flex-wrap gap-1">
+                  ${['H/E','H/W','K/E','K/W','P/N','P/S','R/C','R/N','R/S'].map(w => `<span class="px-1.5 py-0.5 bg-surface-container rounded text-[10px] text-text-secondary font-code-md">${w}</span>`).join('')}
+                </div>
+                <div class="border-t border-border-subtle pt-2 flex justify-between text-xs">
+                  <span class="text-text-muted">Merged Volume:</span>
+                  <span class="font-bold text-status-success">402,870 (Highest)</span>
+                </div>
+              </div>
+
+              <!-- Eastern Suburbs Card -->
+              <div class="p-3.5 rounded-lg bg-surface-pitch border border-border-contrast/80 hover:border-accent-cyan transition-all space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="font-semibold text-xs text-text-primary">Eastern Suburbs</span>
+                  <span class="px-1.5 py-0.5 rounded bg-amber-400/10 text-amber-400 font-annotation-mono text-[10px]">6 Wards</span>
+                </div>
+                <div class="flex flex-wrap gap-1">
+                  ${['L','M/E','M/W','N','S','T'].map(w => `<span class="px-1.5 py-0.5 bg-surface-container rounded text-[10px] text-text-secondary font-code-md">${w}</span>`).join('')}
+                </div>
+                <div class="border-t border-border-subtle pt-2 flex justify-between text-xs">
+                  <span class="text-text-muted">Merged Volume:</span>
+                  <span class="font-bold text-text-primary">240,930</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      } else if (op === 'drilldown') {
+        const isAnnual = currentDrillLevel === 'annual';
+        const isQtr = currentDrillLevel === 'quarterly';
+        const isMon = currentDrillLevel === 'monthly';
+
+        container.innerHTML = `
+          <div class="space-y-3.5">
+            <div class="flex items-center justify-between text-xs font-annotation-mono">
+              <span class="text-text-muted">Temporal Hierarchy Decomposition Tree</span>
+              <span class="text-amber-400 font-semibold">${isAnnual ? '1.0x (Consolidated FY2024)' : (isQtr ? '4.0x (Quarterly Split)' : '12.0x (Granular Months)')}</span>
+            </div>
+            
+            <div class="p-3.5 rounded-lg bg-surface-pitch border border-border-contrast space-y-2.5">
+              
+              <!-- Tier 1: Annual Total (Clickable) -->
+              <div onclick="setDrillLevel('annual')" class="cursor-pointer transition-all p-3 rounded-lg border flex items-center justify-between ${isAnnual ? 'bg-accent-cyan/10 border-accent-cyan shadow-sm pulse-glow' : 'bg-surface-elevated/70 border-border-subtle hover:border-border-contrast'}">
+                <div class="flex items-center gap-2.5">
+                  <span class="w-3 h-3 rounded-full ${isAnnual ? 'bg-accent-cyan animate-pulse' : 'bg-text-muted'}"></span>
+                  <div>
+                    <div class="text-xs font-bold ${isAnnual ? 'text-accent-cyan' : 'text-text-primary'}">Tier 1: FY 2024 Consolidated Annual Grain</div>
+                    <div class="text-[10px] text-text-muted">Single coarse aggregate for BMC executive annual budget planning</div>
+                  </div>
+                </div>
+                <div class="text-right font-code-md">
+                  <div class="text-xs font-bold text-text-primary">137,142</div>
+                  <div class="text-[9px] text-text-muted">100% Volume</div>
+                </div>
+              </div>
+
+              <!-- Flow Arrow -->
+              <div class="flex items-center justify-center text-accent-cyan text-xs">
+                <span class="material-symbols-outlined text-[16px] animate-bounce">arrow_downward</span>
+                <span class="ml-1 text-[10px] font-annotation-mono text-text-faint">Drill-down along Time Hierarchy</span>
+              </div>
+
+              <!-- Tier 2: 4 Quarters (Clickable) -->
+              <div onclick="setDrillLevel('quarterly')" class="cursor-pointer transition-all p-2.5 rounded-lg border ${isQtr ? 'bg-amber-400/10 border-amber-400 shadow-sm pulse-glow' : 'bg-surface-elevated/40 border-border-subtle hover:border-border-contrast'}">
+                <div class="flex items-center justify-between mb-2">
+                  <div class="text-[11px] font-semibold ${isQtr ? 'text-amber-400' : 'text-text-muted'}">Tier 2: 4 Quarters Decomposition</div>
+                  <span class="text-[10px] font-annotation-mono text-text-faint">Click to view quarterly</span>
+                </div>
+                <div class="grid grid-cols-4 gap-1.5 text-center text-xs">
+                  <div class="p-1.5 rounded bg-surface-container border border-border-subtle">
+                    <div class="text-[9px] text-text-muted">Q1 Jan-Mar</div>
+                    <div class="font-bold text-text-primary text-[11px]">34,120</div>
+                  </div>
+                  <div class="p-1.5 rounded bg-surface-container border border-border-subtle">
+                    <div class="text-[9px] text-text-muted">Q2 Apr-Jun</div>
+                    <div class="font-bold text-text-primary text-[11px]">33,950</div>
+                  </div>
+                  <div class="p-1.5 rounded bg-status-critical/15 border border-status-critical/40 ${isQtr ? 'pulse-glow' : ''}">
+                    <div class="text-[9px] text-status-critical font-bold">Q3 Monsoon</div>
+                    <div class="font-bold text-text-primary text-[11px]">37,840 (+12%)</div>
+                  </div>
+                  <div class="p-1.5 rounded bg-surface-container border border-border-subtle">
+                    <div class="text-[9px] text-text-muted">Q4 Oct-Dec</div>
+                    <div class="font-bold text-text-primary text-[11px]">31,232</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Flow Arrow -->
+              <div class="flex items-center justify-center text-amber-400 text-xs">
+                <span class="material-symbols-outlined text-[16px]">arrow_downward</span>
+                <span class="ml-1 text-[10px] font-annotation-mono text-text-faint">Granular Month Breakdown</span>
+              </div>
+
+              <!-- Tier 3: 12 Granular Months (Clickable) -->
+              <div onclick="setDrillLevel('monthly')" class="cursor-pointer transition-all p-2.5 rounded-lg border ${isMon ? 'bg-status-success/10 border-status-success shadow-sm pulse-glow' : 'bg-surface-elevated/40 border-border-subtle hover:border-border-contrast'}">
+                <div class="flex items-center justify-between mb-1.5">
+                  <div class="text-[11px] font-semibold ${isMon ? 'text-status-success' : 'text-text-muted'}">Tier 3: 12 Granular Months (Base Grain)</div>
+                  <span class="text-[10px] font-annotation-mono text-status-success font-medium">Monsoon Peak: Jun–Sep</span>
+                </div>
+                <div class="grid grid-cols-6 sm:grid-cols-12 gap-1 text-center font-code-md text-[10px]">
+                  ${['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'].map((m, idx) => {
+                    const isMonsoon = [5,6,7,8].includes(idx);
+                    return `<div class="p-1 rounded ${isMonsoon ? 'bg-amber-500/20 text-amber-400 border border-amber-500/40 font-bold' : 'bg-surface-container text-text-muted'}">${m}</div>`;
+                  }).join('')}
+                </div>
+              </div>
+
+            </div>
+          </div>
+        `;
+      } else if (op === 'slice') {
+        container.innerHTML = `
+          <div class="space-y-4">
+            <div class="flex items-center justify-between text-xs font-annotation-mono">
+              <span>3D Cube Slice: <strong class="text-emerald-400">${selectedSliceCat}</strong></span>
+              <span class="text-text-muted">Fixed Dimension: Category</span>
+            </div>
+            <div class="p-4 rounded-lg bg-surface-pitch border border-border-contrast flex flex-col md:flex-row items-center gap-6">
+              <!-- Graphic Diagram of Cut Plane -->
+              <div class="w-36 h-36 border-2 border-dashed border-emerald-400/60 rounded-lg flex flex-col items-center justify-center p-3 relative bg-emerald-500/5">
+                <span class="material-symbols-outlined text-emerald-400 text-[36px]">content_cut</span>
+                <div class="text-[11px] font-annotation-mono text-emerald-400 font-bold mt-1 text-center">CUT PLANE</div>
+                <div class="text-[9px] text-text-muted text-center">${selectedSliceCat.split('/')[0]}</div>
+              </div>
+              <div class="flex-1 space-y-2 text-xs">
+                <div class="text-text-muted leading-relaxed">
+                  By fixing the Category dimension to <span class="text-text-primary font-bold">${selectedSliceCat}</span>, the multi-dimensional warehouse isolates this single problem across all 24 administrative wards.
+                </div>
+                <div class="p-2.5 rounded bg-surface-elevated border border-border-subtle flex justify-between font-annotation-mono text-[11px]">
+                  <span>Total Sliced Volume:</span>
+                  <span class="text-emerald-400 font-bold">73,846 complaints</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      } else if (op === 'dice') {
+        const isZone = currentDiceGrain === 'zone';
+        const isWard = currentDiceGrain === 'ward';
+        const isSev = currentDiceGrain === 'severity';
+
+        container.innerHTML = `
+          <div class="space-y-3.5">
+            <div class="flex items-center justify-between text-xs font-annotation-mono">
+              <span class="text-purple-400 font-bold">Diced Sub-Cube: 2 Zones x 3 Categories x FY2024</span>
+              <span class="text-text-muted font-semibold">${isZone ? 'Zone Aggregate (Macro)' : (isWard ? 'Decomposed to 8 Suburban Wards' : 'Decomposed to Severity Tiers')}</span>
+            </div>
+
+            <!-- Interactive Sub-Cube View Switcher -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-2.5 text-xs">
+              
+              <!-- Block 1: Macro Zones -->
+              <div onclick="setDiceGrain('zone')" class="cursor-pointer transition-all p-3 rounded-lg border ${isZone ? 'bg-purple-500/15 border-purple-400 shadow-sm pulse-glow' : 'bg-surface-pitch border-border-contrast/80 hover:border-purple-400/50'} space-y-1.5">
+                <div class="flex items-center justify-between">
+                  <span class="font-bold ${isZone ? 'text-purple-300' : 'text-text-primary'}">1. Macro Sub-Cube</span>
+                  <span class="px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-400 font-annotation-mono text-[9px]">2 Zones</span>
+                </div>
+                <div class="text-[11px] text-text-muted">Western vs Eastern Suburbs compared across the 3 critical problems.</div>
+                <div class="text-right font-code-md text-xs font-bold text-text-primary pt-1 border-t border-border-subtle">56,040 Total</div>
+              </div>
+
+              <!-- Block 2: Granular Wards Drill-down -->
+              <div onclick="setDiceGrain('ward')" class="cursor-pointer transition-all p-3 rounded-lg border ${isWard ? 'bg-purple-500/15 border-purple-400 shadow-sm pulse-glow' : 'bg-surface-pitch border-border-contrast/80 hover:border-purple-400/50'} space-y-1.5">
+                <div class="flex items-center justify-between">
+                  <span class="font-bold ${isWard ? 'text-purple-300' : 'text-text-primary'}">2. Diced Wards Drill-down</span>
+                  <span class="px-1.5 py-0.5 rounded bg-accent-cyan/20 text-accent-cyan font-annotation-mono text-[9px]">8 Wards</span>
+                </div>
+                <div class="text-[11px] text-text-muted">Decomposes the sub-cube into Andheri, Kurla, Malad, Bandra, etc.</div>
+                <div class="text-right font-code-md text-xs font-bold text-accent-cyan pt-1 border-t border-border-subtle">K/W, P/N, L, M/E...</div>
+              </div>
+
+              <!-- Block 3: Severity Breakdown -->
+              <div onclick="setDiceGrain('severity')" class="cursor-pointer transition-all p-3 rounded-lg border ${isSev ? 'bg-purple-500/15 border-purple-400 shadow-sm pulse-glow' : 'bg-surface-pitch border-border-contrast/80 hover:border-purple-400/50'} space-y-1.5">
+                <div class="flex items-center justify-between">
+                  <span class="font-bold ${isSev ? 'text-purple-300' : 'text-text-primary'}">3. Severity Drill-down</span>
+                  <span class="px-1.5 py-0.5 rounded bg-status-critical/20 text-status-critical font-annotation-mono text-[9px]">Urgency</span>
+                </div>
+                <div class="text-[11px] text-text-muted">Isolates Critical vs High severity complaints inside the sub-cube.</div>
+                <div class="text-right font-code-md text-xs font-bold text-status-critical pt-1 border-t border-border-subtle">29% Critical</div>
+              </div>
+
+            </div>
+          </div>
+        `;
+      } else if (op === 'pivot') {
+        container.innerHTML = `
+          <div class="space-y-4">
+            <div class="flex items-center justify-between text-xs font-annotation-mono">
+              <span class="text-rose-400 font-bold">${isTransposed ? '🔄 Transposed 2D Matrix (Rotated 90°)' : 'Standard 2D Matrix Heatmap'}</span>
+              <span class="px-2 py-0.5 rounded ${isTransposed ? 'bg-accent-cyan/20 text-accent-cyan border border-accent-cyan/40 pulse-glow' : 'bg-surface-elevated text-text-muted'} font-semibold text-[11px]">
+                ${isTransposed ? 'Axes Rotated: Category (Y) x Ward (X)' : 'Standard: Ward (Y) x Category (X)'}
+              </span>
+            </div>
+            
+            <div class="p-3.5 rounded-lg bg-surface-pitch border ${isTransposed ? 'border-accent-cyan/40 shadow-sm' : 'border-rose-500/30'} overflow-x-auto transition-all">
+              <div class="text-xs text-text-muted mb-2.5 font-annotation-mono flex justify-between items-center">
+                <span class="flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-[16px] ${isTransposed ? 'text-accent-cyan animate-spin' : 'text-rose-400'}">sync</span>
+                  <span>${isTransposed ? 'Transposed Matrix Heatmap (Categories as Rows):' : 'Standard Matrix Heatmap (Wards as Rows):'}</span>
+                </span>
+                <span class="${isTransposed ? 'text-accent-cyan font-bold' : 'text-rose-400'} text-[10px]">Higher volume = Brighter Intensity</span>
+              </div>
+
+              ${isTransposed ? `
+                <!-- TRANSPOSED 90 DEGREE MATRIX: CATEGORIES AS ROWS, WARDS AS COLS -->
+                <div class="grid grid-cols-7 gap-1.5 text-center text-[10px] font-code-md">
+                  <div class="p-1.5 bg-surface-elevated rounded text-text-muted font-bold text-left">Category (Row)</div>
+                  <div class="p-1.5 bg-surface-elevated rounded text-accent-cyan font-bold">K/W (Andheri W)</div>
+                  <div class="p-1.5 bg-surface-elevated rounded text-accent-cyan font-bold">P/N (Malad)</div>
+                  <div class="p-1.5 bg-surface-elevated rounded text-accent-cyan font-bold">K/E (Andheri E)</div>
+                  <div class="p-1.5 bg-surface-elevated rounded text-amber-400 font-bold">L (Kurla)</div>
+                  <div class="p-1.5 bg-surface-elevated rounded text-accent-cyan font-bold">H/W (Bandra W)</div>
+                  <div class="p-1.5 bg-surface-elevated rounded text-text-primary font-bold">Category Total</div>
+
+                  <div class="p-1.5 bg-surface-pitch rounded font-bold text-text-primary text-left">Pothole / Road Damage</div>
+                  <div class="p-1.5 bg-accent-cyan/30 text-accent-cyan font-bold rounded">4,120</div>
+                  <div class="p-1.5 bg-accent-cyan/25 text-accent-cyan rounded">3,950</div>
+                  <div class="p-1.5 bg-accent-cyan/20 text-accent-cyan rounded">3,870</div>
+                  <div class="p-1.5 bg-amber-500/20 text-amber-300 rounded">3,610</div>
+                  <div class="p-1.5 bg-accent-cyan/20 text-accent-cyan rounded">3,720</div>
+                  <div class="p-1.5 bg-surface-container text-text-primary font-bold rounded">19,270</div>
+
+                  <div class="p-1.5 bg-surface-pitch rounded font-bold text-text-primary text-left">Water Supply Disruption</div>
+                  <div class="p-1.5 bg-accent-cyan/20 text-accent-cyan rounded">3,840</div>
+                  <div class="p-1.5 bg-accent-cyan/20 text-accent-cyan rounded">3,720</div>
+                  <div class="p-1.5 bg-accent-cyan/20 text-accent-cyan rounded">3,650</div>
+                  <div class="p-1.5 bg-amber-500/30 text-amber-300 font-bold rounded">3,980</div>
+                  <div class="p-1.5 bg-accent-cyan/15 text-accent-cyan rounded">3,540</div>
+                  <div class="p-1.5 bg-surface-container text-text-primary font-bold rounded">18,730</div>
+
+                  <div class="p-1.5 bg-surface-pitch rounded font-bold text-text-primary text-left">Solid Waste / Garbage</div>
+                  <div class="p-1.5 bg-accent-cyan/20 text-accent-cyan rounded">3,920</div>
+                  <div class="p-1.5 bg-accent-cyan/20 text-accent-cyan rounded">3,810</div>
+                  <div class="p-1.5 bg-accent-cyan/20 text-accent-cyan rounded">3,740</div>
+                  <div class="p-1.5 bg-amber-500/25 text-amber-300 rounded">3,890</div>
+                  <div class="p-1.5 bg-accent-cyan/20 text-accent-cyan rounded">3,660</div>
+                  <div class="p-1.5 bg-surface-container text-text-primary font-bold rounded">19,020</div>
+
+                  <div class="p-1.5 bg-surface-pitch rounded font-bold text-text-primary text-left">Drainage Overflow</div>
+                  <div class="p-1.5 bg-rose-500/30 text-rose-300 font-bold rounded">4,210</div>
+                  <div class="p-1.5 bg-rose-500/25 text-rose-300 rounded">4,080</div>
+                  <div class="p-1.5 bg-rose-500/25 text-rose-300 rounded">3,990</div>
+                  <div class="p-1.5 bg-rose-500/40 text-rose-200 font-bold rounded">4,350</div>
+                  <div class="p-1.5 bg-rose-500/20 text-rose-300 rounded">3,890</div>
+                  <div class="p-1.5 bg-surface-container text-text-primary font-bold rounded">20,520</div>
+                </div>
+              ` : `
+                <!-- STANDARD MATRIX: WARDS AS ROWS, CATEGORIES AS COLS -->
+                <div class="grid grid-cols-6 gap-1.5 text-center text-[10px] font-code-md">
+                  <div class="p-1 bg-surface-elevated rounded text-text-muted font-bold text-left">Ward (Row)</div>
+                  <div class="p-1 bg-surface-elevated rounded text-text-muted">Potholes</div>
+                  <div class="p-1 bg-surface-elevated rounded text-text-muted">Water</div>
+                  <div class="p-1 bg-surface-elevated rounded text-text-muted">Garbage</div>
+                  <div class="p-1 bg-surface-elevated rounded text-text-muted">Drainage</div>
+                  <div class="p-1 bg-surface-elevated rounded text-text-primary font-bold">Ward Total</div>
+
+                  <div class="p-1.5 bg-surface-pitch rounded font-bold text-text-primary text-left">K/W (Andheri W)</div>
+                  <div class="p-1.5 bg-accent-cyan/30 text-accent-cyan font-bold rounded">4,120</div>
+                  <div class="p-1.5 bg-accent-cyan/20 text-accent-cyan rounded">3,840</div>
+                  <div class="p-1.5 bg-accent-cyan/20 text-accent-cyan rounded">3,920</div>
+                  <div class="p-1.5 bg-rose-500/30 text-rose-300 font-bold rounded">4,210</div>
+                  <div class="p-1.5 bg-surface-container text-text-primary font-bold rounded">16,090</div>
+
+                  <div class="p-1.5 bg-surface-pitch rounded font-bold text-text-primary text-left">P/N (Malad)</div>
+                  <div class="p-1.5 bg-accent-cyan/25 text-accent-cyan rounded">3,950</div>
+                  <div class="p-1.5 bg-accent-cyan/20 text-accent-cyan rounded">3,720</div>
+                  <div class="p-1.5 bg-accent-cyan/20 text-accent-cyan rounded">3,810</div>
+                  <div class="p-1.5 bg-rose-500/25 text-rose-300 rounded">4,080</div>
+                  <div class="p-1.5 bg-surface-container text-text-primary font-bold rounded">15,560</div>
+
+                  <div class="p-1.5 bg-surface-pitch rounded font-bold text-text-primary text-left">L (Kurla)</div>
+                  <div class="p-1.5 bg-accent-cyan/20 text-accent-cyan rounded">3,610</div>
+                  <div class="p-1.5 bg-accent-cyan/25 text-accent-cyan rounded">3,980</div>
+                  <div class="p-1.5 bg-accent-cyan/20 text-accent-cyan rounded">3,890</div>
+                  <div class="p-1.5 bg-rose-500/40 text-rose-200 font-bold rounded">4,350</div>
+                  <div class="p-1.5 bg-surface-container text-text-primary font-bold rounded">15,830</div>
+
+                  <div class="p-1.5 bg-surface-pitch rounded font-bold text-text-primary text-left">H/W (Bandra W)</div>
+                  <div class="p-1.5 bg-accent-cyan/20 text-accent-cyan rounded">3,720</div>
+                  <div class="p-1.5 bg-accent-cyan/15 text-accent-cyan rounded">3,540</div>
+                  <div class="p-1.5 bg-accent-cyan/20 text-accent-cyan rounded">3,660</div>
+                  <div class="p-1.5 bg-rose-500/20 text-rose-300 rounded">3,890</div>
+                  <div class="p-1.5 bg-surface-container text-text-primary font-bold rounded">14,810</div>
+                </div>
+              `}
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    // =========================================================================
+    // CHART.JS DYNAMIC PROJECTION
+    // =========================================================================
+    function renderOLAPChart(op, data) {
+      const ctx = document.getElementById('olapChart').getContext('2d');
+      if (chartInstance) {
+        chartInstance.destroy();
+      }
+
+      if (op === 'rollup') {
+        document.getElementById('chartLabel').textContent = isGranularView ? "Granular Level: All 24 Wards by Complaint Count" : "Rolled-up Level: 3 Administrative Zones";
+        document.getElementById('chartSecondaryLabel').textContent = isGranularView ? "Granular Ward Breakdown" : "Consolidated Zone Total";
+
+        if (isGranularView && data.extra_meta && data.extra_meta.granular_wards) {
+          const gw = data.extra_meta.granular_wards;
+          chartInstance = new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: gw.map(w => w.ward),
+              datasets: [{
+                label: 'Complaints',
+                data: gw.map(w => w.complaints),
+                backgroundColor: gw.map(w => w.zone === 'Western' ? '#3291ff' : (w.zone === 'Eastern' ? '#f5a623' : '#10b981')),
+                borderRadius: 4,
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: { legend: { display: false } },
+              scales: {
+                x: { ticks: { color: '#888', font: { size: 10 } }, grid: { display: false } },
+                y: { ticks: { color: '#888', font: { size: 10 } }, grid: { color: '#222' } }
+              }
+            }
+          });
+        } else {
+          chartInstance = new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: data.rows.map(r => r.zone),
+              datasets: [{
+                label: 'Total Complaints',
+                data: data.rows.map(r => r.total_complaints),
+                backgroundColor: ['#3291ff', '#10b981', '#f5a623'],
+                borderRadius: 6,
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: { legend: { display: false } },
+              scales: {
+                x: { ticks: { color: '#ededed', font: { size: 12, weight: 'bold' } }, grid: { display: false } },
+                y: { ticks: { color: '#888', font: { size: 10 } }, grid: { color: '#222' } }
+              }
+            }
+          });
+        }
+      } else if (op === 'drilldown') {
+        let labels = [];
+        let counts = [];
+        let bgColors = [];
+        let chartTitle = "";
+        let chartSubtitle = "";
+
+        if (currentDrillLevel === 'annual') {
+          chartTitle = "Annual Level: FY 2024 Consolidated Volume (1 Bar)";
+          chartSubtitle = "Consolidated Citywide Fact Aggregate";
+          labels = ['FY 2024 (Consolidated)'];
+          counts = [data.extra_meta && data.extra_meta.annual_total ? data.extra_meta.annual_total : 137142];
+          bgColors = ['#3291ff'];
+        } else if (currentDrillLevel === 'quarterly') {
+          chartTitle = "Quarterly Level: 4 Quarters Breakdown";
+          chartSubtitle = "Q3 Monsoon Surge Peak (+12.4%) Highlighted";
+          const qtrs = (data.extra_meta && data.extra_meta.quarters) ? data.extra_meta.quarters : [
+            { quarter: 'Q1 (Jan-Mar)', complaints: 34120 },
+            { quarter: 'Q2 (Apr-Jun)', complaints: 33950 },
+            { quarter: 'Q3 (Jul-Sep)', complaints: 37840 },
+            { quarter: 'Q4 (Oct-Dec)', complaints: 31232 }
+          ];
+          labels = qtrs.map(q => q.quarter);
+          counts = qtrs.map(q => q.complaints);
+          bgColors = ['#3291ff', '#3291ff', '#e00000', '#3291ff'];
+        } else {
+          chartTitle = "Monthly Granular Level: 12-Month Grievance Volume Trend";
+          chartSubtitle = "Monsoon Surge in Q3 (Jun-Sep) Highlighted";
+          labels = data.rows.map(r => r.month_name);
+          counts = data.rows.map(r => r.total_complaints);
+          bgColors = data.rows.map(r => [6,7,8,9].includes(r.month) ? '#f5a623' : '#3291ff');
+        }
+
+        document.getElementById('chartLabel').textContent = chartTitle;
+        document.getElementById('chartSecondaryLabel').textContent = chartSubtitle;
+
+        chartInstance = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: 'Complaints',
+              data: counts,
+              backgroundColor: bgColors,
+              borderRadius: currentDrillLevel === 'annual' ? 8 : 4,
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                callbacks: {
+                  afterLabel: (ctx) => {
+                    if (currentDrillLevel === 'annual') return 'FY 2024 Citywide Consolidated';
+                    if (currentDrillLevel === 'quarterly') return ctx.dataIndex === 2 ? '⚠️ Monsoon Peak Surge (+12.4%)' : 'Standard Quarterly Cadence';
+                    return [6,7,8,9].includes(data.rows[ctx.dataIndex]?.month) ? '⚠️ Monsoon Peak Surge' : 'Standard Season';
+                  }
+                }
+              }
+            },
+            scales: {
+              x: { ticks: { color: '#ededed', font: { size: 11 } }, grid: { display: false } },
+              y: { ticks: { color: '#888', font: { size: 10 } }, grid: { color: '#222' } }
+            }
+          }
+        });
+      } else if (op === 'slice') {
+        document.getElementById('chartLabel').textContent = `Sliced Distribution across Top Wards: ${selectedSliceCat}`;
+        document.getElementById('chartSecondaryLabel').textContent = "Top 12 Wards";
+
+        const top12 = data.rows.slice(0, 12);
+        chartInstance = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: top12.map(r => r.ward + ' (' + (r.ward_area || '') + ')'),
+            datasets: [{
+              label: 'Sliced Complaints',
+              data: top12.map(r => r.category_complaints || r.pothole_complaints),
+              backgroundColor: '#10b981',
+              borderRadius: 4,
+            }]
+          },
+          options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+              x: { ticks: { color: '#888', font: { size: 10 } }, grid: { color: '#222' } },
+              y: { ticks: { color: '#ededed', font: { size: 10 } }, grid: { display: false } }
+            }
+          }
+        });
+      } else if (op === 'dice') {
+        if (currentDiceGrain === 'ward') {
+          document.getElementById('chartLabel').textContent = "Sub-Cube Drill-down: 8 Granular Suburban Wards";
+          document.getElementById('chartSecondaryLabel').textContent = "Decomposed across Potholes, Water & Drainage";
+
+          const wardsData = (data.extra_meta && data.extra_meta.diced_wards) ? data.extra_meta.diced_wards : [];
+          chartInstance = new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: wardsData.map(w => w.ward + ' (' + w.area + ')'),
+              datasets: [
+                { label: 'Potholes', data: wardsData.map(w => w.potholes), backgroundColor: '#3291ff', borderRadius: 3 },
+                { label: 'Water Supply', data: wardsData.map(w => w.water_supply), backgroundColor: '#06b6d4', borderRadius: 3 },
+                { label: 'Drainage Flooding', data: wardsData.map(w => w.drainage_flooding), backgroundColor: '#f43f5e', borderRadius: 3 }
+              ]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: { legend: { labels: { color: '#ededed', font: { size: 11 } } } },
+              scales: {
+                x: { ticks: { color: '#ededed', font: { size: 10 } }, grid: { display: false } },
+                y: { ticks: { color: '#888', font: { size: 10 } }, grid: { color: '#222' } }
+              }
+            }
+          });
+        } else if (currentDiceGrain === 'severity') {
+          document.getElementById('chartLabel').textContent = "Sub-Cube Drill-down: Severity & Urgency Risk";
+          document.getElementById('chartSecondaryLabel').textContent = "Critical vs High vs Medium Stacked Breakdown";
+
+          const sevData = (data.extra_meta && data.extra_meta.severity_breakdown) ? data.extra_meta.severity_breakdown : [];
+          chartInstance = new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: sevData.map(s => s.category.split('/')[0].trim()),
+              datasets: [
+                { label: 'Critical Severity', data: sevData.map(s => s.critical), backgroundColor: '#ef4444', stack: 's1', borderRadius: 2 },
+                { label: 'High Severity', data: sevData.map(s => s.high), backgroundColor: '#f59e0b', stack: 's1', borderRadius: 2 },
+                { label: 'Medium Severity', data: sevData.map(s => s.medium), backgroundColor: '#3b82f6', stack: 's1', borderRadius: 4 }
+              ]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: { legend: { labels: { color: '#ededed', font: { size: 11 } } } },
+              scales: {
+                x: { ticks: { color: '#ededed', font: { size: 11 } }, grid: { display: false } },
+                y: { ticks: { color: '#888', font: { size: 10 } }, grid: { color: '#222' } }
+              }
+            }
+          });
+        } else {
+          // Macro Zone level
+          document.getElementById('chartLabel').textContent = "Diced Sub-Cube: Categories by Geographic Zone";
+          document.getElementById('chartSecondaryLabel').textContent = "Western vs Eastern Suburbs (Macro Sub-Cube)";
+
+          // Group by category and zone
+          const cats = Array.from(new Set(data.rows.map(r => r.category_name)));
+          const westData = cats.map(c => {
+            const m = data.rows.find(r => r.category_name === c && r.zone === 'Western');
+            return m ? m.total_complaints : 0;
+          });
+          const eastData = cats.map(c => {
+            const m = data.rows.find(r => r.category_name === c && r.zone === 'Eastern');
+            return m ? m.total_complaints : 0;
+          });
+
+          chartInstance = new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: cats.map(c => c.split('/')[0].trim()),
+              datasets: [
+                { label: 'Western Suburbs', data: westData, backgroundColor: '#3291ff', borderRadius: 4 },
+                { label: 'Eastern Suburbs', data: eastData, backgroundColor: '#f5a623', borderRadius: 4 }
+              ]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: { legend: { labels: { color: '#ededed', font: { size: 11 } } } },
+              scales: {
+                x: { ticks: { color: '#ededed', font: { size: 11 } }, grid: { display: false } },
+                y: { ticks: { color: '#888', font: { size: 10 } }, grid: { color: '#222' } }
+              }
+            }
+          });
+        }
+      } else if (op === 'pivot') {
+        if (isTransposed) {
+          document.getElementById('chartLabel').textContent = "🔄 Transposed Pivot Matrix: Categories on X-Axis (Rotated 90°)";
+          document.getElementById('chartSecondaryLabel').textContent = "4 Critical Categories grouped across Top Municipal Wards";
+
+          const transData = (data.extra_meta && data.extra_meta.transposed_matrix) ? data.extra_meta.transposed_matrix : [];
+          const catLabels = transData.length > 0 
+            ? transData.map(r => r.category.split('/')[0].trim()) 
+            : ['Potholes', 'Water Supply', 'Solid Waste', 'Drainage'];
+
+          chartInstance = new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: catLabels,
+              datasets: [
+                { label: 'K/W (Andheri W)', data: transData.map(r => r.KW_AndheriW), backgroundColor: '#3291ff', borderRadius: 4 },
+                { label: 'P/N (Malad)', data: transData.map(r => r.PN_Malad), backgroundColor: '#06b6d4', borderRadius: 4 },
+                { label: 'K/E (Andheri E)', data: transData.map(r => r.KE_AndheriE), backgroundColor: '#8b5cf6', borderRadius: 4 },
+                { label: 'L (Kurla)', data: transData.map(r => r.L_Kurla), backgroundColor: '#f59e0b', borderRadius: 4 },
+                { label: 'H/W (Bandra W)', data: transData.map(r => r.HW_BandraW), backgroundColor: '#10b981', borderRadius: 4 }
+              ]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: { legend: { labels: { color: '#ededed', font: { size: 11 } } } },
+              scales: {
+                x: { ticks: { color: '#ededed', font: { size: 11, weight: 'bold' } }, grid: { display: false } },
+                y: { ticks: { color: '#888', font: { size: 10 } }, grid: { color: '#222' } }
+              }
+            }
+          });
+        } else {
+          document.getElementById('chartLabel').textContent = "Pivot Cross-Tabulation Stacked Distribution (Standard)";
+          document.getElementById('chartSecondaryLabel').textContent = "Top 8 Wards on X-Axis by 4 Critical Categories";
+
+          const top8 = data.rows.slice(0, 8);
+          chartInstance = new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: top8.map(r => r.ward),
+              datasets: [
+                { label: 'Potholes', data: top8.map(r => r.pothole_roads), backgroundColor: '#3291ff', stack: 's1' },
+                { label: 'Water', data: top8.map(r => r.water_supply), backgroundColor: '#06b6d4', stack: 's1' },
+                { label: 'Garbage', data: top8.map(r => r.solid_waste), backgroundColor: '#10b981', stack: 's1' },
+                { label: 'Drainage', data: top8.map(r => r.drainage_flooding), backgroundColor: '#f43f5e', stack: 's1' }
+              ]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: { legend: { labels: { color: '#ededed', font: { size: 11 } } } },
+              scales: {
+                x: { ticks: { color: '#ededed', font: { size: 11 } }, grid: { display: false } },
+                y: { ticks: { color: '#888', font: { size: 10 } }, grid: { color: '#222' } }
+              }
+            }
+          });
+        }
+      }
+    }
+
+    // =========================================================================
+    // INTERACTION HANDLERS
+    // =========================================================================
+    function toggleRollupGranular() {
+      isGranularView = !isGranularView;
+      const btn = document.getElementById('btnToggleMerge');
+      const lbl = document.getElementById('lblRollupGrain');
+      if (isGranularView) {
+        if (btn) btn.innerHTML = `<span class="material-symbols-outlined text-[14px]">call_split</span><span>View Merged Zones</span>`;
+        if (lbl) lbl.textContent = "Granular (24 Wards)";
+      } else {
+        if (btn) btn.innerHTML = `<span class="material-symbols-outlined text-[14px]">call_merge</span><span>Simulate Roll-up Merge</span>`;
+        if (lbl) lbl.textContent = "Rolled-Up (3 Zones)";
+      }
+      if (cachedResponseData) {
+        renderOLAPChart('rollup', cachedResponseData);
+      }
+    }
+
+    function setDrillLevel(level) {
+      currentDrillLevel = level;
+      if (cachedResponseData) {
+        renderDynamicControls('drilldown');
+        renderVisualDiagram('drilldown', cachedResponseData);
+        renderOLAPChart('drilldown', cachedResponseData);
+
+        // Update result table and counts to reflect selected grain
+        if (level === 'annual' && cachedResponseData.extra_meta && cachedResponseData.extra_meta.annual) {
+          const ann = cachedResponseData.extra_meta.annual;
+          renderTable(Object.keys(ann[0]), ann);
+          document.getElementById('tableRowCount').textContent = "1 row (Consolidated Total)";
+          document.getElementById('tableTitle').textContent = "DRILLDOWN: ANNUAL VIEW (COARSE GRAIN)";
+        } else if (level === 'quarterly' && cachedResponseData.extra_meta && cachedResponseData.extra_meta.quarters) {
+          const qtr = cachedResponseData.extra_meta.quarters;
+          renderTable(Object.keys(qtr[0]), qtr);
+          document.getElementById('tableRowCount').textContent = "4 rows (Quarterly Decomposition)";
+          document.getElementById('tableTitle').textContent = "DRILLDOWN: QUARTERLY VIEW (INTERMEDIATE GRAIN)";
+        } else {
+          renderTable(cachedResponseData.columns, cachedResponseData.rows);
+          document.getElementById('tableRowCount').textContent = `${cachedResponseData.row_count} rows (Monthly Breakdown)`;
+          document.getElementById('tableTitle').textContent = "DRILLDOWN: MONTHLY VIEW (FINE GRAIN)";
+        }
+      }
+    }
+
+    function cycleDrilldownGrain() {
+      if (currentDrillLevel === 'annual') {
+        setDrillLevel('quarterly');
+      } else if (currentDrillLevel === 'quarterly') {
+        setDrillLevel('monthly');
+      } else {
+        setDrillLevel('annual');
+      }
+    }
+
+    function setDiceGrain(grain) {
+      currentDiceGrain = grain;
+      if (cachedResponseData) {
+        renderDynamicControls('dice');
+        renderVisualDiagram('dice', cachedResponseData);
+        renderOLAPChart('dice', cachedResponseData);
+
+        if (grain === 'ward' && cachedResponseData.extra_meta && cachedResponseData.extra_meta.diced_wards) {
+          const dw = cachedResponseData.extra_meta.diced_wards;
+          renderTable(Object.keys(dw[0]), dw);
+          document.getElementById('tableRowCount').textContent = "8 rows (Suburban Wards Drill-down)";
+          document.getElementById('tableTitle').textContent = "DICE: GRANULAR WARDS DECOMPOSITION";
+        } else if (grain === 'severity' && cachedResponseData.extra_meta && cachedResponseData.extra_meta.severity_breakdown) {
+          const sb = cachedResponseData.extra_meta.severity_breakdown;
+          renderTable(Object.keys(sb[0]), sb);
+          document.getElementById('tableRowCount').textContent = "3 rows (Severity Risk Breakdown)";
+          document.getElementById('tableTitle').textContent = "DICE: SEVERITY RISK DECOMPOSITION";
+        } else {
+          renderTable(cachedResponseData.columns, cachedResponseData.rows);
+          document.getElementById('tableRowCount').textContent = `${cachedResponseData.row_count} rows (Macro Sub-Cube)`;
+          document.getElementById('tableTitle').textContent = "DICE: MACRO SUB-CUBE VIEW (2 ZONES x 3 CATEGORIES)";
+        }
+      }
+    }
+
+    function cycleDiceGrain() {
+      if (currentDiceGrain === 'zone') {
+        setDiceGrain('ward');
+      } else if (currentDiceGrain === 'ward') {
+        setDiceGrain('severity');
+      } else {
+        setDiceGrain('zone');
+      }
+    }
+
+    function changeSliceCategory(cat) {
+      selectedSliceCat = cat;
+      runCurrentOLAP(true);
+    }
+
+    function togglePivotTranspose() {
+      isTransposed = !isTransposed;
+      renderDynamicControls('pivot');
+      if (cachedResponseData) {
+        renderVisualDiagram('pivot', cachedResponseData);
+        renderOLAPChart('pivot', cachedResponseData);
+
+        if (isTransposed && cachedResponseData.extra_meta && cachedResponseData.extra_meta.transposed_matrix) {
+          const tRows = cachedResponseData.extra_meta.transposed_matrix;
+          renderTable(Object.keys(tRows[0]), tRows);
+          document.getElementById('tableRowCount').textContent = "4 rows (Transposed: Categories as Rows)";
+          document.getElementById('tableTitle').textContent = "PIVOT: TRANSPOSED 90° MATRIX VIEW";
+        } else {
+          renderTable(cachedResponseData.columns, cachedResponseData.rows);
+          document.getElementById('tableRowCount').textContent = `${cachedResponseData.row_count} rows (Standard: Wards as Rows)`;
+          document.getElementById('tableTitle').textContent = "PIVOT: STANDARD CUBE VIEW";
+        }
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      selectOperation('rollup');
+    });
+  </script>
+</body>
+</html>

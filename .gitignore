@@ -7,6 +7,8 @@ __pycache__/
 *$py.class
 .ipynb_checkpoints/
 
-# System Files
+# System & Office Lock Files
 Thumbs.db
 .DS_Store
+~$*
+*.tmp
