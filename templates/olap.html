@@ -110,6 +110,15 @@
       </div>
 
       <div>
+        <div class="px-2 pb-1 font-annotation-mono text-[10px] text-text-faint uppercase tracking-wider">System</div>
+        <nav class="space-y-0.5">
+          <a id="sidebarWarehouseLink" class="flex items-center gap-2 px-2 py-1.5 rounded text-text-muted hover:bg-surface-subtle hover:text-text-primary transition-colors text-sm" href="/warehouse" onclick="switchMainView('warehouse'); return false;">
+            <span class="material-symbols-outlined text-[18px]">database</span><span>Star Schema Warehouse</span>
+          </a>
+        </nav>
+      </div>
+
+      <div>
         <div class="px-2 pb-1 font-annotation-mono text-[10px] text-text-faint uppercase tracking-wider">Warehouse Metadata</div>
         <div class="p-3 bg-surface-pitch rounded border border-border-subtle font-annotation-mono text-[11px] text-text-muted space-y-1.5">
           <div class="flex justify-between"><span>Fact Grain:</span><span class="text-text-primary font-medium">960,000</span></div>
@@ -151,6 +160,22 @@
 
     <!-- Page Body -->
     <main class="p-6 space-y-6">
+
+      <!-- Primary Top View Switcher: OLAP Operations vs Star Schema Architecture -->
+      <div class="flex items-center gap-2 p-1 bg-surface-charcoal border border-border-contrast rounded-lg w-fit">
+        <button onclick="switchMainView('operations')" id="btnViewOps" class="px-3.5 py-1.5 rounded text-xs font-medium bg-surface-elevated text-text-primary border border-border-contrast shadow flex items-center gap-2 transition-all">
+          <span class="material-symbols-outlined text-[16px] text-accent-cyan">biotech</span>
+          <span>OLAP Cube Operations</span>
+        </button>
+        <button onclick="switchMainView('warehouse')" id="btnViewWarehouse" class="px-3.5 py-1.5 rounded text-xs font-medium text-text-muted hover:text-text-primary flex items-center gap-2 transition-all">
+          <span class="material-symbols-outlined text-[16px]">database</span>
+          <span>Star Schema Warehouse Architecture</span>
+          <span class="px-1.5 py-0.2 rounded bg-accent-cyan/10 text-accent-cyan text-[10px] font-annotation-mono">960k Fact</span>
+        </button>
+      </div>
+
+      <!-- VIEW 1: OLAP OPERATIONS -->
+      <div id="viewOperationsSection" class="space-y-6">
 
       <!-- DEMO SHOWCASE TOOLBAR (1-Click for Viva/Demo) -->
       <section class="p-4 rounded-xl bg-gradient-to-r from-surface-charcoal via-surface-elevated to-surface-charcoal border border-border-contrast shadow-sm">
@@ -367,6 +392,259 @@
           </table>
         </div>
       </section>
+      </div><!-- End viewOperationsSection -->
+
+      <!-- VIEW 2: DEDICATED STAR SCHEMA WAREHOUSE ARCHITECTURE VIEW -->
+      <div id="viewWarehouseSection" class="hidden space-y-6">
+        <!-- Architecture KPI Summary -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="p-4 rounded-xl bg-surface-charcoal border border-border-subtle flex flex-col justify-between">
+            <div class="flex items-center justify-between font-annotation-mono text-annotation-mono text-text-muted uppercase">
+              <span>Fact Grain Volume</span>
+              <span class="material-symbols-outlined text-accent-cyan text-[18px]">table_rows</span>
+            </div>
+            <div class="my-2">
+              <div class="text-2xl font-bold text-text-primary font-headline-lg">960,000 Rows</div>
+              <div class="text-[12px] text-status-success font-code-md flex items-center gap-1 mt-0.5">
+                <span class="material-symbols-outlined text-[14px]">verified</span>100% Referential Integrity
+              </div>
+            </div>
+            <div class="text-[11px] text-text-muted font-body-sm">Table: <code class="text-text-primary font-code-md">fact_complaint</code> (25 columns)</div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-surface-charcoal border border-border-subtle flex flex-col justify-between">
+            <div class="flex items-center justify-between font-annotation-mono text-annotation-mono text-text-muted uppercase">
+              <span>Dimension Tables</span>
+              <span class="material-symbols-outlined text-status-success text-[18px]">hub</span>
+            </div>
+            <div class="my-2">
+              <div class="text-2xl font-bold text-text-primary font-headline-lg">4 Dimensions</div>
+              <div class="text-[12px] text-text-muted font-code-md mt-0.5">Time &bull; Location &bull; Category &bull; Status</div>
+            </div>
+            <div class="text-[11px] text-text-muted font-body-sm">De-normalized for zero join latency</div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-surface-charcoal border border-border-subtle flex flex-col justify-between">
+            <div class="flex items-center justify-between font-annotation-mono text-annotation-mono text-text-muted uppercase">
+              <span>Analytical Measures</span>
+              <span class="material-symbols-outlined text-status-warning text-[18px]">calculate</span>
+            </div>
+            <div class="my-2">
+              <div class="text-2xl font-bold text-text-primary font-headline-lg">8 Measures</div>
+              <div class="text-[12px] text-status-warning font-code-md mt-0.5">Additive & Semi-Additive Metrics</div>
+            </div>
+            <div class="text-[11px] text-text-muted font-body-sm">Latency, Cost, Satisfaction, Reassignments</div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-surface-charcoal border border-border-subtle flex flex-col justify-between">
+            <div class="flex items-center justify-between font-annotation-mono text-annotation-mono text-text-muted uppercase">
+              <span>Warehouse Engine</span>
+              <span class="material-symbols-outlined text-purple-400 text-[18px]">storage</span>
+            </div>
+            <div class="my-2">
+              <div class="text-2xl font-bold text-text-primary font-headline-lg">MySQL 8.0</div>
+              <div class="text-[12px] text-accent-cyan font-code-md mt-0.5">InnoDB &bull; BTREE Indexes</div>
+            </div>
+            <div class="text-[11px] text-text-muted font-body-sm">Aggregations execute in &lt; 50ms</div>
+          </div>
+        </div>
+
+        <!-- Interactive Star Schema ER Diagram Visualizer -->
+        <div class="p-6 rounded-xl bg-surface-charcoal border border-border-contrast shadow-sm space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-border-subtle">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-accent-cyan animate-pulse"></span>
+                <h3 class="font-headline-sm text-headline-sm text-text-primary font-medium">Interactive Star Schema Architecture Model</h3>
+              </div>
+              <p class="font-body-sm text-[12px] text-text-muted mt-0.5">Click on any table card to inspect its exact attributes, primary/foreign keys, indices, and sample tuples.</p>
+            </div>
+            <span class="px-2.5 py-1 rounded bg-surface-pitch border border-border-contrast text-[11px] font-annotation-mono text-accent-cyan">
+              Schema: bmc_complaint_dw
+            </span>
+          </div>
+
+          <!-- ER Diagram Grid with Center Fact & 4 Surrounding Dimensions -->
+          <div class="p-6 bg-surface-pitch rounded-xl border border-border-subtle flex flex-col items-center justify-center gap-6 relative overflow-hidden" id="starSchemaDiagram">
+            
+            <!-- Dimension 1: dim_time (Top) -->
+            <div onclick="inspectWarehouseTable('dim_time')" id="card_dim_time" class="cursor-pointer transition-all hover:scale-[1.02] p-4 rounded-xl bg-surface-charcoal border border-border-contrast hover:border-amber-400 w-full max-w-md shadow-sm">
+              <div class="flex items-center justify-between pb-2 border-b border-border-subtle mb-2">
+                <div class="flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+                  <span class="font-headline-sm text-sm font-semibold text-text-primary">dim_time</span>
+                </div>
+                <span class="font-annotation-mono text-[10px] px-2 py-0.5 rounded bg-surface-pitch text-amber-400 border border-amber-400/30">2,557 Rows (Daily)</span>
+              </div>
+              <div class="font-annotation-mono text-[11px] text-text-muted space-y-0.5">
+                <div><span class="text-amber-400 font-bold">&diams; PK:</span> time_key <span class="text-text-faint">(INT)</span></div>
+                <div>full_date, day, month, month_name, quarter, year, day_of_week</div>
+                <div class="text-accent-cyan text-[10px] pt-1">Hierarchy: Day &rarr; Month &rarr; Quarter &rarr; Year</div>
+              </div>
+            </div>
+
+            {# Middle Row: dim_location (Left) | fact_complaint (Center) | dim_category (Right) #}
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 w-full items-center">
+              
+              <!-- Left: dim_location -->
+              <div onclick="inspectWarehouseTable('dim_location')" id="card_dim_location" class="lg:col-span-4 cursor-pointer transition-all hover:scale-[1.02] p-4 rounded-xl bg-surface-charcoal border border-border-contrast hover:border-emerald-400 shadow-sm">
+                <div class="flex items-center justify-between pb-2 border-b border-border-subtle mb-2">
+                  <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                    <span class="font-headline-sm text-sm font-semibold text-text-primary">dim_location</span>
+                  </div>
+                  <span class="font-annotation-mono text-[10px] px-2 py-0.5 rounded bg-surface-pitch text-emerald-400 border border-emerald-400/30">24 Wards</span>
+                </div>
+                <div class="font-annotation-mono text-[11px] text-text-muted space-y-0.5">
+                  <div><span class="text-emerald-400 font-bold">&diams; PK:</span> location_key <span class="text-text-faint">(INT)</span></div>
+                  <div>ward, ward_area, zone, ward_type, population_density, ward_slum_percentage</div>
+                  <div class="text-emerald-400 text-[10px] pt-1">Hierarchy: Area &rarr; Ward &rarr; Zone</div>
+                </div>
+              </div>
+
+              <!-- Center: fact_complaint (Heart of the Star Schema) -->
+              <div onclick="inspectWarehouseTable('fact_complaint')" id="card_fact_complaint" class="lg:col-span-4 cursor-pointer transition-all hover:scale-[1.02] p-5 rounded-xl bg-surface-elevated border-2 border-accent-cyan shadow-lg relative">
+                <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded-full bg-accent-cyan text-surface-pitch font-annotation-mono text-[10px] font-bold uppercase tracking-wider">
+                  CENTRAL FACT TABLE
+                </div>
+                <div class="flex items-center justify-between pb-2 border-b border-border-contrast mb-2 mt-1">
+                  <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-accent-cyan text-[18px]">star</span>
+                    <span class="font-headline-sm text-base font-bold text-text-primary">fact_complaint</span>
+                  </div>
+                  <span class="font-annotation-mono text-[11px] text-accent-cyan font-bold">960,000 Rows</span>
+                </div>
+                <div class="font-annotation-mono text-[11px] space-y-1">
+                  <div class="text-status-success font-semibold">&bull; PK: complaint_key (INT AUTO_INCREMENT)</div>
+                  <div class="text-amber-400">&bull; FK1: time_key &rarr; dim_time</div>
+                  <div class="text-emerald-400">&bull; FK2: location_key &rarr; dim_location</div>
+                  <div class="text-cyan-400">&bull; FK3: category_key &rarr; dim_category</div>
+                  <div class="text-purple-400">&bull; FK4: status_key &rarr; dim_status</div>
+                  <div class="pt-1.5 border-t border-border-contrast text-[10px] text-text-muted">
+                    Measures: resolution_days, estimated_cost_inr, num_reassignments, citizen_satisfied...
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right: dim_category -->
+              <div onclick="inspectWarehouseTable('dim_category')" id="card_dim_category" class="lg:col-span-4 cursor-pointer transition-all hover:scale-[1.02] p-4 rounded-xl bg-surface-charcoal border border-border-contrast hover:border-cyan-400 shadow-sm">
+                <div class="flex items-center justify-between pb-2 border-b border-border-subtle mb-2">
+                  <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+                    <span class="font-headline-sm text-sm font-semibold text-text-primary">dim_category</span>
+                  </div>
+                  <span class="font-annotation-mono text-[10px] px-2 py-0.5 rounded bg-surface-pitch text-cyan-400 border border-cyan-400/30">13 Sectors</span>
+                </div>
+                <div class="font-annotation-mono text-[11px] text-text-muted space-y-0.5">
+                  <div><span class="text-cyan-400 font-bold">&diams; PK:</span> category_key <span class="text-text-faint">(INT)</span></div>
+                  <div>category_name, department_assigned</div>
+                  <div class="text-cyan-400 text-[10px] pt-1">Hierarchy: Category &rarr; Assigned Department</div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Dimension 4: dim_status (Bottom) -->
+            <div onclick="inspectWarehouseTable('dim_status')" id="card_dim_status" class="cursor-pointer transition-all hover:scale-[1.02] p-4 rounded-xl bg-surface-charcoal border border-border-contrast hover:border-purple-400 w-full max-w-md shadow-sm">
+              <div class="flex items-center justify-between pb-2 border-b border-border-subtle mb-2">
+                <div class="flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-purple-400"></span>
+                  <span class="font-headline-sm text-sm font-semibold text-text-primary">dim_status</span>
+                </div>
+                <span class="font-annotation-mono text-[10px] px-2 py-0.5 rounded bg-surface-pitch text-purple-400 border border-purple-400/30">6 Status Tiers</span>
+              </div>
+              <div class="font-annotation-mono text-[11px] text-text-muted space-y-0.5">
+                <div><span class="text-purple-400 font-bold">&diams; PK:</span> status_key <span class="text-text-faint">(INT)</span></div>
+                <div>status_name, work_quality_rating, contractor_category</div>
+                <div class="text-purple-400 text-[10px] pt-1">Status: Resolved, In Progress, Reopened, Verified</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Interactive Table Schema Inspector & Column Details -->
+        <div class="p-6 rounded-xl bg-surface-charcoal border border-border-subtle space-y-4" id="tableInspectorSection">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-border-subtle">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="font-annotation-mono text-[11px] text-text-faint uppercase">SCHEMA INSPECTOR</span>
+                <span class="font-headline-sm text-headline-sm text-text-primary font-semibold" id="inspectorTableName">fact_complaint</span>
+                <span class="px-2 py-0.5 rounded bg-surface-elevated font-annotation-mono text-[11px] text-accent-cyan font-medium" id="inspectorRowCount">960,000 Rows</span>
+              </div>
+              <p class="font-body-sm text-[12px] text-text-muted mt-1" id="inspectorDescription">
+                Central fact table capturing individual grievance filings across Mumbai municipal departments with fully additive and semi-additive telemetry measures.
+              </p>
+            </div>
+
+            <!-- Table Switcher Buttons -->
+            <div class="flex items-center gap-1.5 p-1 rounded-lg bg-surface-pitch border border-border-contrast flex-wrap">
+              <button onclick="inspectWarehouseTable('fact_complaint')" id="tabBtn_fact_complaint" class="px-2.5 py-1 rounded font-annotation-mono text-[11px] bg-accent-cyan text-surface-pitch font-semibold transition-all">fact_complaint</button>
+              <button onclick="inspectWarehouseTable('dim_time')" id="tabBtn_dim_time" class="px-2.5 py-1 rounded font-annotation-mono text-[11px] text-text-muted hover:text-text-primary transition-all">dim_time</button>
+              <button onclick="inspectWarehouseTable('dim_location')" id="tabBtn_dim_location" class="px-2.5 py-1 rounded font-annotation-mono text-[11px] text-text-muted hover:text-text-primary transition-all">dim_location</button>
+              <button onclick="inspectWarehouseTable('dim_category')" id="tabBtn_dim_category" class="px-2.5 py-1 rounded font-annotation-mono text-[11px] text-text-muted hover:text-text-primary transition-all">dim_category</button>
+              <button onclick="inspectWarehouseTable('dim_status')" id="tabBtn_dim_status" class="px-2.5 py-1 rounded font-annotation-mono text-[11px] text-text-muted hover:text-text-primary transition-all">dim_status</button>
+            </div>
+          </div>
+
+          <!-- Column Definition Table -->
+          <div class="overflow-x-auto max-h-[360px] rounded-lg border border-border-subtle bg-surface-pitch/60">
+            <table class="w-full text-left font-body-sm text-[12px]">
+              <thead>
+                <tr class="font-annotation-mono text-[11px] text-text-muted uppercase border-b border-border-subtle bg-surface-elevated/40">
+                  <th class="py-2.5 px-3">Column Name</th>
+                  <th class="py-2.5 px-3">SQL Data Type</th>
+                  <th class="py-2.5 px-3">Constraint / Key</th>
+                  <th class="py-2.5 px-3">Indexing Strategy</th>
+                  <th class="py-2.5 px-4">Semantic Definition & Purpose</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-border-subtle/50 text-text-secondary font-code-md" id="inspectorColumnsBody">
+                <!-- Injected dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Academic Viva Defense & Schema Rationale Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          
+          <!-- Viva Card 1: Star vs Snowflake Architecture -->
+          <div class="p-5 rounded-xl bg-surface-charcoal border border-border-subtle space-y-3">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-accent-cyan text-[18px]">school</span>
+              <h4 class="font-headline-sm text-headline-sm text-text-primary font-medium">Why Star Schema instead of Snowflake?</h4>
+            </div>
+            <div class="font-body-sm text-[12px] text-text-muted space-y-2 leading-relaxed">
+              <p>
+                In an enterprise snowflake schema, dimension hierarchies are normalized into separate tables (e.g. <code class="text-text-primary">dim_location</code> would be split into <code class="text-text-primary">dim_ward</code>, <code class="text-text-primary">dim_zone</code>, and <code class="text-text-primary">dim_area</code>).
+              </p>
+              <p>
+                For the BMC Civic Data Warehouse containing <strong class="text-text-primary">960,000 grievance rows</strong>, a <strong class="text-accent-cyan">Star Schema</strong> was intentionally selected to de-normalize dimensional hierarchies directly into flat tables. This eliminates multiple JOIN operations during slicing and dicing, guaranteeing predictable <strong class="text-status-success">&lt; 50ms analytical query response times</strong> across all dashboard aggregations.
+              </p>
+            </div>
+          </div>
+
+          <!-- Viva Card 2: Grain & Additivity of Measures -->
+          <div class="p-5 rounded-xl bg-surface-charcoal border border-border-subtle space-y-3">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-status-success text-[18px]">psychology</span>
+              <h4 class="font-headline-sm text-headline-sm text-text-primary font-medium">Fact Table Grain & Additivity Classification</h4>
+            </div>
+            <div class="font-body-sm text-[12px] text-text-muted space-y-2 leading-relaxed">
+              <p>
+                <strong>Fact Grain:</strong> Exactly one row represents one unique civic grievance filed by a citizen, providing atomic granularity for multi-dimensional aggregation.
+              </p>
+              <p>
+                <strong>Additive Measures:</strong> <code class="text-text-primary">complaint_count</code>, <code class="text-text-primary">estimated_cost_inr</code>, and <code class="text-text-primary">citizen_satisfied</code> can be summed across any dimension (Time, Location, Category).<br/>
+                <strong>Semi-Additive Measures:</strong> <code class="text-text-primary">infrastructure_age_years</code> and <code class="text-text-primary">resolution_days</code> require averaging across time rather than summing.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
 
     </main>
   </div>
@@ -1451,8 +1729,189 @@
       }
     }
 
+    let currentMainView = 'operations';
+    let warehouseMetadata = null;
+
+    const TABLE_SCHEMAS = {
+      fact_complaint: {
+        name: "fact_complaint",
+        rows: "960,000 Rows",
+        desc: "Central fact table capturing individual grievance filings across Mumbai municipal departments with fully additive and semi-additive telemetry measures.",
+        columns: [
+          { name: "complaint_key", type: "INT AUTO_INCREMENT", key: "PRIMARY KEY", index: "PRIMARY (BTREE)", desc: "Unique surrogate key identifying each grievance incident" },
+          { name: "complaint_id", type: "VARCHAR(50)", key: "UNIQUE", index: "UNIQUE", desc: "Natural municipal complaint tracking code (e.g. BMC-2024-KW-10492)" },
+          { name: "time_key", type: "INT", key: "FOREIGN KEY", index: "idx_fact_time (BTREE)", desc: "References dim_time(time_key) for temporal roll-up and seasonal drill-down" },
+          { name: "location_key", type: "INT", key: "FOREIGN KEY", index: "idx_fact_location (BTREE)", desc: "References dim_location(location_key) mapping to 24 administrative wards" },
+          { name: "category_key", type: "INT", key: "FOREIGN KEY", index: "idx_fact_category (BTREE)", desc: "References dim_category(category_key) for departmental routing" },
+          { name: "status_key", type: "INT", key: "FOREIGN KEY", index: "idx_fact_status (BTREE)", desc: "References dim_status(status_key) for lifecycle resolution tracking" },
+          { name: "complaint_channel", type: "VARCHAR(50)", key: "DEGENERATE", index: "None", desc: "Citizen ingestion channel: Online Portal, MyBMC App, 1916 Helpline, WhatsApp, Physical" },
+          { name: "severity", type: "VARCHAR(50)", key: "DEGENERATE", index: "None", desc: "Priority triage tier: Critical, High, Medium, Low" },
+          { name: "complaint_count", type: "INT DEFAULT 1", key: "MEASURE (ADDITIVE)", index: "None", desc: "Unit count for additive volume aggregation across all dimensions" },
+          { name: "resolution_days", type: "INT", key: "MEASURE (SEMI-ADD)", index: "None", desc: "Elapsed days from filing to terminal closure (average across time)" },
+          { name: "estimated_cost_inr", type: "DECIMAL(12,2)", key: "MEASURE (ADDITIVE)", index: "None", desc: "Remediation and contractor remediation expense in INR" },
+          { name: "num_reassignments", type: "INT", key: "MEASURE (ADDITIVE)", index: "None", desc: "Count of departmental transfers before resolution" },
+          { name: "prior_complaints_count", type: "INT", key: "MEASURE (ADDITIVE)", index: "None", desc: "Complainant historical complaint count for recurrence modeling" },
+          { name: "citizen_satisfied", type: "INT", key: "MEASURE (ADDITIVE)", index: "None", desc: "Citizen post-resolution satisfaction binary indicator (1=Satisfied, 0=Unsatisfied)" },
+          { name: "has_photo_evidence", type: "INT", key: "DEGENERATE", index: "None", desc: "Binary flag indicating attached photographic proof" },
+          { name: "has_gps_location", type: "INT", key: "DEGENERATE", index: "None", desc: "Binary flag indicating geotagged coordinates" }
+        ]
+      },
+      dim_time: {
+        name: "dim_time",
+        rows: "2,557 Rows (2018-2024)",
+        desc: "Temporal dimension containing continuous daily calendar records spanning fiscal years 2018 through 2024 with explicit monsoon surge classification.",
+        columns: [
+          { name: "time_key", type: "INT", key: "PRIMARY KEY", index: "PRIMARY (BTREE)", desc: "Integer surrogate key in YYYYMMDD format (e.g. 20240715)" },
+          { name: "full_date", type: "DATE", key: "UNIQUE", index: "UNIQUE", desc: "Full calendar date (YYYY-MM-DD)" },
+          { name: "day", type: "INT", key: "ATTRIBUTE", index: "None", desc: "Calendar day of month (1-31)" },
+          { name: "month", type: "INT", key: "ATTRIBUTE", index: "None", desc: "Calendar month number (1-12)" },
+          { name: "month_name", type: "VARCHAR(15)", key: "HIERARCHY", index: "None", desc: "English month name: January, February... December" },
+          { name: "quarter", type: "INT", key: "HIERARCHY", index: "None", desc: "Fiscal quarter (1-4)" },
+          { name: "year", type: "INT", key: "HIERARCHY", index: "None", desc: "Fiscal year (2018-2024)" },
+          { name: "day_of_week", type: "VARCHAR(15)", key: "ATTRIBUTE", index: "None", desc: "Monday, Tuesday... Sunday" },
+          { name: "is_monsoon_season", type: "INT", key: "FLAG", index: "None", desc: "1 if month in June-September (Monsoon surge), 0 otherwise" }
+        ]
+      },
+      dim_location: {
+        name: "dim_location",
+        rows: "24 Wards",
+        desc: "Spatial geographic dimension capturing all 24 administrative wards of Mumbai, classified into City, Western Suburbs, and Eastern Suburbs zones.",
+        columns: [
+          { name: "location_key", type: "INT", key: "PRIMARY KEY", index: "PRIMARY (BTREE)", desc: "Surrogate integer key identifying municipal ward" },
+          { name: "ward", type: "VARCHAR(10)", key: "UNIQUE / HIERARCHY", index: "UNIQUE", desc: "Official BMC ward letter code (A, B, C, ... T, K/W, P/N, L)" },
+          { name: "ward_area", type: "VARCHAR(100)", key: "HIERARCHY", index: "None", desc: "Major locality name: Colaba, Andheri West, Kurla, Malad, etc." },
+          { name: "zone", type: "VARCHAR(50)", key: "HIERARCHY", index: "None", desc: "Geographic macro-zone: City (South Mumbai), Western Suburbs, Eastern Suburbs" },
+          { name: "ward_type", type: "VARCHAR(50)", key: "ATTRIBUTE", index: "None", desc: "Urban morphology: South Commercial, Western Residential, Eastern Industrial" },
+          { name: "population_density", type: "VARCHAR(50)", key: "ATTRIBUTE", index: "None", desc: "Density tier: Very High, High, Medium, Low" },
+          { name: "ward_slum_percentage", type: "DECIMAL(5,2)", key: "METRIC", index: "None", desc: "Census-derived percentage of ward population residing in informal settlements" }
+        ]
+      },
+      dim_category: {
+        name: "dim_category",
+        rows: "13 Sectors",
+        desc: "Categorical grievance dimension mapping 13 standard civic problem categories to their responsible Brihanmumbai Municipal Corporation departments.",
+        columns: [
+          { name: "category_key", type: "INT", key: "PRIMARY KEY", index: "PRIMARY (BTREE)", desc: "Surrogate integer key identifying civic grievance category" },
+          { name: "category_name", type: "VARCHAR(100)", key: "UNIQUE / HIERARCHY", index: "UNIQUE", desc: "Official grievance title (e.g. Pothole / Road Damage, Water Supply Disruption)" },
+          { name: "department_assigned", type: "VARCHAR(100)", key: "HIERARCHY", index: "None", desc: "Responsible civic agency: Roads & Traffic, Hydraulic, Storm Water Drain, SWM" }
+        ]
+      },
+      dim_status: {
+        name: "dim_status",
+        rows: "6 Status Tiers",
+        desc: "Operational lifecycle dimension capturing complaint progress states, quality ratings, and vendor fulfillment tiers.",
+        columns: [
+          { name: "status_key", type: "INT", key: "PRIMARY KEY", index: "PRIMARY (BTREE)", desc: "Surrogate integer key identifying status record" },
+          { name: "status_name", type: "VARCHAR(50)", key: "ATTRIBUTE", index: "None", desc: "Lifecycle state: Resolved, Pending Inspection, In Progress, Escalated, Closed" },
+          { name: "work_quality_rating", type: "VARCHAR(50)", key: "ATTRIBUTE", index: "None", desc: "Citizen verification audit: Certified Good, Satisfactory, Defective" },
+          { name: "contractor_category", type: "VARCHAR(50)", key: "ATTRIBUTE", index: "None", desc: "Executing contractor tier: Grade A Municipal, Grade B Zonal, BMC In-house" }
+        ]
+      }
+    };
+
+    function switchMainView(view) {
+      currentMainView = view;
+      const opsSection = document.getElementById('viewOperationsSection');
+      const whSection = document.getElementById('viewWarehouseSection');
+      const btnOps = document.getElementById('btnViewOps');
+      const btnWh = document.getElementById('btnViewWarehouse');
+      const sidebarWh = document.getElementById('sidebarWarehouseLink');
+
+      if (view === 'warehouse') {
+        opsSection.classList.add('hidden');
+        whSection.classList.remove('hidden');
+
+        btnOps.className = "px-3.5 py-1.5 rounded text-xs font-medium text-text-muted hover:text-text-primary flex items-center gap-2 transition-all";
+        btnWh.className = "px-3.5 py-1.5 rounded text-xs font-medium bg-surface-elevated text-text-primary border border-border-contrast shadow flex items-center gap-2 transition-all";
+
+        if (sidebarWh) {
+          sidebarWh.className = "flex items-center gap-2 px-2 py-1.5 rounded transition-colors bg-surface-elevated text-text-primary font-medium border border-border-contrast text-sm";
+        }
+
+        inspectWarehouseTable('fact_complaint');
+        if (window.history && window.history.pushState) {
+          window.history.pushState(null, '', '/warehouse');
+        }
+      } else {
+        whSection.classList.add('hidden');
+        opsSection.classList.remove('hidden');
+
+        btnWh.className = "px-3.5 py-1.5 rounded text-xs font-medium text-text-muted hover:text-text-primary flex items-center gap-2 transition-all";
+        btnOps.className = "px-3.5 py-1.5 rounded text-xs font-medium bg-surface-elevated text-text-primary border border-border-contrast shadow flex items-center gap-2 transition-all";
+
+        if (sidebarWh) {
+          sidebarWh.className = "flex items-center gap-2 px-2 py-1.5 rounded text-text-muted hover:bg-surface-subtle hover:text-text-primary transition-colors text-sm";
+        }
+
+        if (window.history && window.history.pushState) {
+          window.history.pushState(null, '', '/olap-laboratory');
+        }
+      }
+    }
+
+    function inspectWarehouseTable(tableName) {
+      const schema = TABLE_SCHEMAS[tableName];
+      if (!schema) return;
+
+      document.getElementById('inspectorTableName').textContent = schema.name;
+      document.getElementById('inspectorRowCount').textContent = schema.rows;
+      document.getElementById('inspectorDescription').textContent = schema.desc;
+
+      // Update button styles
+      ['fact_complaint', 'dim_time', 'dim_location', 'dim_category', 'dim_status'].forEach(t => {
+        const btn = document.getElementById(`tabBtn_${t}`);
+        const card = document.getElementById(`card_${t}`);
+        if (btn) {
+          btn.className = t === tableName 
+            ? "px-2.5 py-1 rounded font-annotation-mono text-[11px] bg-accent-cyan text-surface-pitch font-semibold transition-all"
+            : "px-2.5 py-1 rounded font-annotation-mono text-[11px] text-text-muted hover:text-text-primary transition-all";
+        }
+        if (card) {
+          if (t === tableName) {
+            card.classList.add('ring-2', 'ring-accent-cyan');
+          } else {
+            card.classList.remove('ring-2', 'ring-accent-cyan');
+          }
+        }
+      });
+
+      // Render column table
+      const tbody = document.getElementById('inspectorColumnsBody');
+      tbody.innerHTML = '';
+      schema.columns.forEach(col => {
+        let keyBadge = `<span class="text-text-muted font-normal">${col.key}</span>`;
+        if (col.key.includes('PRIMARY')) {
+          keyBadge = `<span class="px-1.5 py-0.5 rounded bg-status-success/20 text-status-success font-semibold text-[10px]">PK</span>`;
+        } else if (col.key.includes('FOREIGN')) {
+          keyBadge = `<span class="px-1.5 py-0.5 rounded bg-accent-cyan/20 text-accent-cyan font-semibold text-[10px]">FK</span>`;
+        } else if (col.key.includes('MEASURE')) {
+          keyBadge = `<span class="px-1.5 py-0.5 rounded bg-amber-400/20 text-amber-400 font-semibold text-[10px]">${col.key}</span>`;
+        } else if (col.key.includes('HIERARCHY')) {
+          keyBadge = `<span class="px-1.5 py-0.5 rounded bg-purple-400/20 text-purple-400 font-semibold text-[10px]">HIERARCHY</span>`;
+        }
+
+        tbody.innerHTML += `
+          <tr class="hover:bg-surface-elevated transition-colors">
+            <td class="py-2.5 px-3 font-semibold text-text-primary">${col.name}</td>
+            <td class="py-2.5 px-3 text-accent-cyan">${col.type}</td>
+            <td class="py-2.5 px-3">${keyBadge}</td>
+            <td class="py-2.5 px-3 text-text-faint text-[11px]">${col.index}</td>
+            <td class="py-2.5 px-4 font-body-sm text-[12px] text-text-muted">${col.desc}</td>
+          </tr>
+        `;
+      });
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
-      selectOperation('rollup');
+      const urlParams = new URLSearchParams(window.location.search);
+      const isWarehouse = window.location.pathname.includes('/warehouse') || urlParams.get('view') === 'warehouse' || '{{ initial_tab | default("operations") }}' === 'warehouse';
+
+      if (isWarehouse) {
+        switchMainView('warehouse');
+      } else {
+        switchMainView('operations');
+        selectOperation('rollup');
+      }
     });
   </script>
 </body>

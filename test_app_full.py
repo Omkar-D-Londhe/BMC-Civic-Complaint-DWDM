@@ -20,6 +20,7 @@ from app import (
     get_clusters,
     get_association_rules,
     get_recurrence_patterns,
+    get_warehouse_metadata,
 )
 
 results = []
@@ -51,6 +52,8 @@ def test_template_overview():
     assert "Municipal Civic Overview" in resp
     assert "monthlyTrendChart" in resp
     assert "categoryDonutChart" in resp
+    assert "wardTelemetryChartCanvas" in resp
+    assert "slaHealthChartCanvas" in resp
     assert "filterKW" in resp
     return "Template renders correctly with Chart.js canvases & 1-click ward buttons"
 
@@ -64,29 +67,45 @@ def test_template_explorer():
 
 def test_template_olap():
     from app import templates
-    resp = templates.get_template("olap.html").render({"active_page": "olap-laboratory"})
+    resp = templates.get_template("olap.html").render({"active_page": "olap-laboratory", "initial_tab": "operations"})
     assert "OLAP Multi-Dimensional Engine" in resp
     assert "1-Click Viva / Lab Demo Showcase" in resp
     assert "Data Warehousing Theory & Concept" in resp
-    return "Template renders correctly with 1-click presets & dimensional transform visualizers"
+    assert "viewWarehouseSection" in resp
+    return "Template renders correctly with operations tab & star schema architecture section"
+
+def test_template_warehouse():
+    from app import templates
+    resp = templates.get_template("olap.html").render({"active_page": "warehouse", "initial_tab": "warehouse"})
+    assert "Star Schema Warehouse Architecture" in resp
+    assert "fact_complaint" in resp
+    assert "dim_location" in resp
+    assert "dim_time" in resp
+    return "Dedicated Star Schema Warehouse view renders with interactive ER model & schema inspector"
 
 def test_template_ml():
     from app import templates
     resp = templates.get_template("ml_models.html").render({"active_page": "ml-models"})
     assert "Supervised Machine Learning & Grievance Triage" in resp
     assert "loadDemoPreset('pothole')" in resp
-    assert "recRiskScore" in resp
-    assert "predSlaDays" in resp
-    return "Template renders correctly with multi-head predictions & 5 demo presets"
+    assert "predProbChartCanvas" in resp
+    assert "predRecurrenceGaugeCanvas" in resp
+    assert "predSlaChartCanvas" in resp
+    assert "predAttributionChartCanvas" in resp
+    assert "predLoadingOverlay" in resp
+    return "Template renders correctly with 4 interactive inference visualizers & loading overlay"
 
 def test_template_patterns():
     from app import templates
     resp = templates.get_template("patterns_and_clusters.html").render({"active_page": "patterns-and-clusters"})
     assert "Civic Patterns, Clusters & Association Rules" in resp
     assert "clusterRadarChart" in resp
+    assert "kEvalChartCanvas" in resp
+    assert "ruleScatterChartCanvas" in resp
+    assert "suppSlider" in resp
+    assert "confSlider" in resp
     assert "liftSlider" in resp
-    assert "wardDossierCard" in resp
-    return "Template renders correctly with 5D radar chart, PCA scatter & rule studio"
+    return "Template renders correctly with dual-axis K-eval accuracy chart & rule bubble scatter"
 
 # 2. Overview APIs
 def test_api_kpis():
@@ -268,13 +287,33 @@ def test_ml_preset_construction():
     assert "Illegal Construction" in res["prediction"] or "Encroachment" in res["prediction"]
     return f"Predicted: {res['prediction']} ({res['confidence']}%) | Route: {res['routing_target']} | Recurrence: {res['recurrence_prediction']['risk_score_pct']}%"
 
+def test_warehouse_metadata():
+    data = get_warehouse_metadata()
+    assert data["fact_table"]["name"] == "fact_complaint"
+    assert data["fact_table"]["total_rows"] == 960000
+    assert len(data["dimensions"]) == 4
+    assert len(data["fact_table"]["measures"]) >= 8
+    assert data["integrity_score_pct"] == 100.0
+    return f"Star schema verified: {data['fact_table']['total_rows']:,} rows, 4 dimensions, 8 measures, {data['integrity_score_pct']}% referential integrity"
+
 # 6. Data Mining (Clusters, FP-Growth, Recurrence)
 def test_mining_clusters():
     data = get_clusters()
     assert data["k"] == 3
     assert len(data["cluster_profiles"]) == 3
     assert len(data["wards"]) == 24
-    return f"k={data['k']} optimal clusters loaded: {len(data['wards'])} wards with 2D PCA spatial coordinates"
+    assert "k_evaluation" in data
+    assert len(data["k_evaluation"]) == 5  # k=2..6
+    return f"k={data['k']} optimal clusters loaded: {len(data['wards'])} wards, k-eval curve ({len(data['k_evaluation'])} points)"
+
+def test_dynamic_clustering_k4():
+    data = get_clusters(k=4)
+    assert data["k"] == 4
+    assert len(data["cluster_profiles"]) == 4
+    assert len(data["wards"]) == 24
+    assert "active_inertia" in data
+    assert "active_silhouette" in data
+    return f"Dynamic K-Means (k=4): Inertia={data['active_inertia']:.2f}, Silhouette={data['active_silhouette']:.3f}"
 
 def test_mining_association_rules():
     data = get_association_rules()
@@ -283,6 +322,17 @@ def test_mining_association_rules():
     top_rule = data["top_rules"][0]
     assert "lift" in top_rule
     return f"{data['total_rules_found']} rules loaded | Peak Lift = {top_rule['lift']:.2f}x | Min Support = {data['min_support']}"
+
+def test_mining_rules_filtered():
+    data = get_association_rules(min_support=0.03, min_confidence=0.4, min_lift=1.2)
+    assert data["min_support"] == 0.03
+    assert data["min_confidence"] == 0.4
+    assert data["min_lift"] == 1.2
+    for r in data["top_rules"]:
+        assert r["support"] >= 0.03
+        assert r["confidence"] >= 0.4
+        assert r["lift"] >= 1.2
+    return f"Filtered rules studio: {data['total_rules_found']} rules satisfy min_supp=0.03, min_conf=0.4, min_lift=1.2"
 
 def test_mining_recurrence():
     data = get_recurrence_patterns()
@@ -297,6 +347,7 @@ if __name__ == "__main__":
         ("T01", "UI Templates", "Overview Page Template", test_template_overview),
         ("T02", "UI Templates", "Complaint Explorer Page Template", test_template_explorer),
         ("T03", "UI Templates", "OLAP Laboratory Page Template", test_template_olap),
+        ("T03B", "UI Templates", "Star Schema Warehouse View", test_template_warehouse),
         ("T04", "UI Templates", "ML Models Page Template", test_template_ml),
         ("T05", "UI Templates", "Patterns & Clusters Page Template", test_template_patterns),
         
@@ -314,6 +365,7 @@ if __name__ == "__main__":
         ("T15", "OLAP Engine", "Slice Operation (3D Plane Cut on Category)", test_olap_slice),
         ("T16", "OLAP Engine", "Dice Operation (Sub-Cube 3x2x1 Filter)", test_olap_dice),
         ("T17", "OLAP Engine", "Pivot Operation (Cross-Tabulation & Transpose)", test_olap_pivot),
+        ("T17B", "Warehouse API", "Star Schema Metadata (/api/warehouse/metadata)", test_warehouse_metadata),
         
         ("T18", "ML Pipeline", "Evaluation Metrics (/api/ml/metrics)", test_ml_metrics),
         ("T19", "ML Pipeline", "Live Preset 1: Monsoon Pothole (K/W)", test_ml_preset_pothole),
@@ -323,7 +375,9 @@ if __name__ == "__main__":
         ("T23", "ML Pipeline", "Live Preset 5: Illegal Demolition (H/W Bandra)", test_ml_preset_construction),
         
         ("T24", "Data Mining", "K-Means Ward Clusters (/api/mining/clusters)", test_mining_clusters),
+        ("T24B", "Data Mining", "Dynamic K-Means (k=4 & Elbow Evaluation)", test_dynamic_clustering_k4),
         ("T25", "Data Mining", "FP-Growth Rules (/api/mining/association-rules)", test_mining_association_rules),
+        ("T25B", "Data Mining", "FP-Growth Multi-Filter (supp=0.03, conf=0.4, lift=1.2)", test_mining_rules_filtered),
         ("T26", "Data Mining", "Recurrence Patterns (/api/mining/recurrence)", test_mining_recurrence),
     ]
 

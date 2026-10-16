@@ -105,7 +105,7 @@
     <div>
       <div class="px-2 pb-1 font-annotation-mono text-[10px] text-text-faint uppercase tracking-wider">System</div>
       <nav class="space-y-0.5">
-        <a class="flex items-center gap-2 px-2 py-1.5 rounded text-text-muted hover:bg-surface-subtle hover:text-text-primary transition-colors font-body-sm text-body-sm" href="/olap-laboratory">
+        <a class="flex items-center gap-2 px-2 py-1.5 rounded text-text-muted hover:bg-surface-subtle hover:text-text-primary transition-colors font-body-sm text-body-sm" href="/warehouse">
           <span class="material-symbols-outlined text-[18px]">database</span><span>Star Schema Warehouse</span>
         </a>
       </nav>
@@ -332,61 +332,157 @@
 
     </section>
 
-    <!-- Bottom Section: High Volume Wards & Live Incident Ledger -->
+    <!-- Bottom Section: High Volume Wards & Live Incident Ledger with Visual Enhancements -->
     <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
       
       <!-- High Volume Wards (5 cols) -->
       <div class="lg:col-span-5 bg-surface-charcoal p-5 rounded-xl border border-border-subtle flex flex-col justify-between">
         <div>
-          <div class="flex items-center justify-between mb-3">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
             <div>
               <h2 class="font-headline-sm text-headline-sm text-text-primary font-medium">Highest Volume Wards</h2>
               <p class="font-body-sm text-[12px] text-text-muted">Administrative units with acute complaint density</p>
             </div>
-            <span class="material-symbols-outlined text-status-warning text-[20px]">warning</span>
+            <!-- View Mode Switcher -->
+            <div class="flex items-center gap-1 bg-surface-base p-1 rounded-lg border border-border-subtle">
+              <button id="btnWardChart" onclick="switchWardView('chart')" class="px-2.5 py-1 text-[11px] font-annotation-mono rounded bg-accent-cyan/15 text-accent-cyan font-medium flex items-center gap-1 transition-all">
+                <span class="material-symbols-outlined text-[14px]">bar_chart</span>
+                <span>Chart</span>
+              </button>
+              <button id="btnWardList" onclick="switchWardView('list')" class="px-2.5 py-1 text-[11px] font-annotation-mono rounded text-text-muted hover:text-text-primary flex items-center gap-1 transition-all">
+                <span class="material-symbols-outlined text-[14px]">view_list</span>
+                <span>Cards</span>
+              </button>
+            </div>
           </div>
-          <div class="space-y-2 mt-2" id="wardsContainer">
-            <!-- Populated dynamically via JS -->
+
+          <!-- Chart View (Default) -->
+          <div id="wardChartView" class="space-y-2">
+            <div class="flex items-center justify-between text-[11px] font-annotation-mono text-text-muted px-1">
+              <span>Top 8 Wards by Volume</span>
+              <span class="text-accent-cyan">Click bar to filter ledger</span>
+            </div>
+            <div class="relative w-full h-56">
+              <canvas id="wardTelemetryChartCanvas"></canvas>
+            </div>
+          </div>
+
+          <!-- Cards View (Alternative) -->
+          <div id="wardListView" class="space-y-2 mt-2 hidden">
+            <div class="space-y-2" id="wardsContainer">
+              <!-- Populated dynamically via JS -->
+            </div>
           </div>
         </div>
-        <div class="pt-4 mt-3 border-t border-border-subtle">
+        <div class="pt-4 mt-3 border-t border-border-subtle flex items-center justify-between">
           <a class="inline-flex items-center gap-1 text-accent-cyan hover:underline font-body-sm text-[12px] font-medium" href="/patterns-and-clusters">
             <span>Inspect Ward Clusters & Risk Tiers</span>
             <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
           </a>
+          <span class="font-annotation-mono text-[10px] text-text-muted">24 Wards Monitored</span>
         </div>
       </div>
 
-      <!-- Live Incident Ledger (7 cols) -->
+      <!-- Live Incident Ledger & SLA Health Analytics (7 cols) -->
       <div class="lg:col-span-7 bg-surface-charcoal p-5 rounded-xl border border-border-subtle flex flex-col justify-between">
         <div>
-          <div class="flex items-center justify-between mb-3">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
             <div>
-              <h2 class="font-headline-sm text-headline-sm text-text-primary font-medium">Recent Incident Ledger</h2>
-              <p class="font-body-sm text-[12px] text-text-muted" id="ledgerSubtitle">Live grievance intake sample from warehouse</p>
+              <h2 class="font-headline-sm text-headline-sm text-text-primary font-medium">Incident Telemetry & SLA Health</h2>
+              <p class="font-body-sm text-[12px] text-text-muted" id="ledgerSubtitle">Live grievance intake and resolution telemetry</p>
             </div>
-            <span class="flex items-center gap-1.5 font-annotation-mono text-[11px] text-status-success">
-              <span class="w-2 h-2 rounded-full bg-status-success animate-pulse"></span>
-              Warehouse Synced
-            </span>
+            <!-- View Mode Switcher -->
+            <div class="flex items-center gap-2">
+              <div class="flex items-center gap-1 bg-surface-base p-1 rounded-lg border border-border-subtle">
+                <button id="btnLedgerTable" onclick="switchLedgerView('table')" class="px-2.5 py-1 text-[11px] font-annotation-mono rounded bg-accent-cyan/15 text-accent-cyan font-medium flex items-center gap-1 transition-all">
+                  <span class="material-symbols-outlined text-[14px]">table_rows</span>
+                  <span>Ledger</span>
+                </button>
+                <button id="btnLedgerAnalytics" onclick="switchLedgerView('analytics')" class="px-2.5 py-1 text-[11px] font-annotation-mono rounded text-text-muted hover:text-text-primary flex items-center gap-1 transition-all">
+                  <span class="material-symbols-outlined text-[14px]">donut_small</span>
+                  <span>SLA Health</span>
+                </button>
+              </div>
+              <span class="hidden sm:flex items-center gap-1.5 font-annotation-mono text-[11px] text-status-success">
+                <span class="w-2 h-2 rounded-full bg-status-success animate-pulse"></span>
+                Synced
+              </span>
+            </div>
           </div>
-          <div class="overflow-x-auto">
-            <table class="w-full text-left font-body-sm text-[12px]">
-              <thead>
-                <tr class="font-annotation-mono text-[11px] text-text-muted uppercase border-b border-border-subtle bg-surface-elevated/40">
-                  <th class="py-2 px-3">Complaint ID</th>
-                  <th class="py-2 px-3">Ward</th>
-                  <th class="py-2 px-3">Category</th>
-                  <th class="py-2 px-3">Severity</th>
-                  <th class="py-2 px-3 text-right">Channel</th>
-                </tr>
-              </thead>
-              <tbody class="text-text-secondary divide-y divide-border-subtle/50" id="ledgerTableBody">
-                <!-- Populated dynamically via JS -->
-              </tbody>
-            </table>
+
+          <!-- Table View (Default) -->
+          <div id="ledgerTableView">
+            <!-- Ward Quick Filter Chips -->
+            <div class="flex items-center gap-1.5 mb-2 overflow-x-auto pb-1 text-[11px] font-annotation-mono">
+              <span class="text-text-muted mr-1">Filter:</span>
+              <button onclick="selectWardFilter('ALL')" id="filterAll" class="px-2 py-0.5 rounded bg-accent-cyan/20 text-accent-cyan font-medium border border-accent-cyan/40">ALL</button>
+              <button onclick="selectWardFilter('K/W')" id="filterKW" class="px-2 py-0.5 rounded bg-surface-base text-text-secondary hover:text-text-primary border border-border-subtle">K/W (Andheri W)</button>
+              <button onclick="selectWardFilter('L')" id="filterL" class="px-2 py-0.5 rounded bg-surface-base text-text-secondary hover:text-text-primary border border-border-subtle">L (Kurla)</button>
+              <button onclick="selectWardFilter('G/N')" id="filterGN" class="px-2 py-0.5 rounded bg-surface-base text-text-secondary hover:text-text-primary border border-border-subtle">G/N (Dharavi)</button>
+              <button onclick="selectWardFilter('D')" id="filterD" class="px-2 py-0.5 rounded bg-surface-base text-text-secondary hover:text-text-primary border border-border-subtle">D (Grant Rd)</button>
+            </div>
+
+            <div class="overflow-x-auto relative min-h-[170px]">
+              <!-- Loading Spinner Overlay -->
+              <div id="ledgerLoadingOverlay" class="absolute inset-0 bg-surface-charcoal/80 backdrop-blur-[2px] flex items-center justify-center hidden z-10 transition-opacity">
+                <div class="flex items-center gap-2 font-annotation-mono text-[12px] text-accent-cyan">
+                  <span class="material-symbols-outlined animate-spin text-[18px]">progress_activity</span>
+                  <span>Filtering warehouse ledger...</span>
+                </div>
+              </div>
+
+              <table class="w-full text-left font-body-sm text-[12px]">
+                <thead>
+                  <tr class="font-annotation-mono text-[11px] text-text-muted uppercase border-b border-border-subtle bg-surface-elevated/40">
+                    <th class="py-2 px-3">Complaint ID</th>
+                    <th class="py-2 px-3">Ward</th>
+                    <th class="py-2 px-3">Category</th>
+                    <th class="py-2 px-3">Severity</th>
+                    <th class="py-2 px-3 text-right">Channel</th>
+                  </tr>
+                </thead>
+                <tbody class="text-text-secondary divide-y divide-border-subtle/50" id="ledgerTableBody">
+                  <!-- Populated dynamically via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Analytics View: SLA Compliance & Channel Mix -->
+          <div id="ledgerAnalyticsView" class="hidden">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+              <!-- SLA Resolution Doughnut -->
+              <div class="p-3 bg-surface-subtle rounded-lg border border-border-subtle/50 flex flex-col items-center">
+                <span class="font-annotation-mono text-[11px] text-text-muted mb-1 text-center">SLA Compliance Distribution</span>
+                <div class="relative w-full h-40">
+                  <canvas id="slaHealthChartCanvas"></canvas>
+                </div>
+                <div class="flex items-center justify-center gap-4 mt-2 font-annotation-mono text-[10px]">
+                  <span class="flex items-center gap-1 text-status-success">
+                    <span class="w-2 h-2 rounded-full bg-status-success"></span>
+                    Within SLA (76.8%)
+                  </span>
+                  <span class="flex items-center gap-1 text-status-critical">
+                    <span class="w-2 h-2 rounded-full bg-status-critical"></span>
+                    Breached (23.2%)
+                  </span>
+                </div>
+              </div>
+
+              <!-- Channel Mix Bar Chart -->
+              <div class="p-3 bg-surface-subtle rounded-lg border border-border-subtle/50 flex flex-col items-center">
+                <span class="font-annotation-mono text-[11px] text-text-muted mb-1 text-center">Intake Channel Volume</span>
+                <div class="relative w-full h-40">
+                  <canvas id="channelBreakdownChartCanvas"></canvas>
+                </div>
+                <div class="text-[10px] font-annotation-mono text-text-muted text-center mt-2">
+                  Portal (38%) | Helpline 1916 (27%) | App (21%) | Twitter (14%)
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+
         <div class="pt-4 mt-3 border-t border-border-subtle flex items-center justify-between">
           <a class="inline-flex items-center gap-1 text-accent-cyan hover:underline font-body-sm text-[12px] font-medium" href="/complaint-explorer">
             <span>Open Complaint Explorer Console</span>
@@ -404,6 +500,10 @@
 <script>
   let monthlyChartInstance = null;
   let donutChartInstance = null;
+  let wardTelemetryChartInstance = null;
+  let slaHealthChartInstance = null;
+  let channelBreakdownChartInstance = null;
+  let cachedWards = [];
   let activeWardFilter = 'ALL';
 
   async function loadOverviewData() {
@@ -424,12 +524,17 @@
       // 3. Render Monthly Trend Chart
       renderMonthlyTrendChart();
 
-      // 4. Fetch Ward Telemetry
+      // 4. Fetch Ward Telemetry & Render Chart + List
       const wardRes = await fetch('/api/overview/ward-telemetry');
       const wardData = await wardRes.json();
-      renderWardTelemetry(wardData.wards);
+      cachedWards = wardData.wards || [];
+      renderWardTelemetryChart(cachedWards);
+      renderWardTelemetry(cachedWards);
 
-      // 5. Fetch Ledger
+      // 5. Render SLA Health & Channel Analytics
+      renderSlaAndChannelCharts();
+
+      // 6. Fetch Ledger
       loadLedger('ALL');
 
     } catch (e) {
@@ -476,7 +581,20 @@
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
-          legend: { display: false }
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#111111',
+            borderColor: '#333333',
+            borderWidth: 1,
+            titleColor: '#ffffff',
+            bodyColor: '#cccccc',
+            padding: 8,
+            callbacks: {
+              label: function(ctx) {
+                return ` ${ctx.label}: ${ctx.parsed.toLocaleString()} (${((ctx.parsed / 960000) * 100).toFixed(1)}%)`;
+              }
+            }
+          }
         },
         cutout: '72%'
       }
@@ -514,6 +632,12 @@
         plugins: {
           legend: { display: false },
           tooltip: {
+            backgroundColor: '#111111',
+            borderColor: '#333333',
+            borderWidth: 1,
+            titleColor: '#ffffff',
+            bodyColor: '#cccccc',
+            padding: 8,
             callbacks: {
               afterLabel: function(context) {
                 if (context.dataIndex >= 5 && context.dataIndex <= 8) {
@@ -542,8 +666,117 @@
     });
   }
 
+  function switchWardView(mode) {
+    const chartView = document.getElementById('wardChartView');
+    const listView = document.getElementById('wardListView');
+    const btnChart = document.getElementById('btnWardChart');
+    const btnList = document.getElementById('btnWardList');
+
+    if (mode === 'chart') {
+      chartView.classList.remove('hidden');
+      listView.classList.add('hidden');
+      btnChart.className = 'px-2.5 py-1 text-[11px] font-annotation-mono rounded bg-accent-cyan/15 text-accent-cyan font-medium flex items-center gap-1 transition-all';
+      btnList.className = 'px-2.5 py-1 text-[11px] font-annotation-mono rounded text-text-muted hover:text-text-primary flex items-center gap-1 transition-all';
+      if (wardTelemetryChartInstance) wardTelemetryChartInstance.resize();
+    } else {
+      chartView.classList.add('hidden');
+      listView.classList.remove('hidden');
+      btnList.className = 'px-2.5 py-1 text-[11px] font-annotation-mono rounded bg-accent-cyan/15 text-accent-cyan font-medium flex items-center gap-1 transition-all';
+      btnChart.className = 'px-2.5 py-1 text-[11px] font-annotation-mono rounded text-text-muted hover:text-text-primary flex items-center gap-1 transition-all';
+    }
+  }
+
+  function renderWardTelemetryChart(wards) {
+    const ctx = document.getElementById('wardTelemetryChartCanvas');
+    if (!ctx) return;
+    if (wardTelemetryChartInstance) wardTelemetryChartInstance.destroy();
+
+    const top8 = (wards || []).slice(0, 8);
+    const labels = top8.map(w => `${w.ward} (${w.ward_area})`);
+    const volumes = top8.map(w => w.total_complaints);
+
+    // Color gradient based on volume density
+    const bgColors = top8.map((w, idx) => {
+      if (idx === 0) return 'rgba(239, 68, 68, 0.85)';   // Critical Red
+      if (idx < 3) return 'rgba(245, 166, 35, 0.85)';    // Warning Amber
+      if (idx < 6) return 'rgba(50, 145, 255, 0.85)';    // Cyan Blue
+      return 'rgba(16, 185, 129, 0.85)';                 // Emerald
+    });
+
+    wardTelemetryChartInstance = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Grievance Volume',
+          data: volumes,
+          backgroundColor: bgColors,
+          borderColor: '#111111',
+          borderWidth: 1,
+          borderRadius: 4,
+          barPercentage: 0.72
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
+        onClick: (event, elements) => {
+          if (elements.length > 0) {
+            const index = elements[0].index;
+            const clickedWard = top8[index];
+            if (clickedWard) selectWardFilter(clickedWard.ward);
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#111111',
+            borderColor: '#333333',
+            borderWidth: 1,
+            titleColor: '#ffffff',
+            bodyColor: '#cccccc',
+            padding: 10,
+            callbacks: {
+              title: function(items) {
+                const w = top8[items[0].dataIndex];
+                return `Ward ${w.ward}: ${w.ward_area}`;
+              },
+              label: function(item) {
+                const w = top8[item.dataIndex];
+                return [
+                  ` Total Grievances: ${w.total_complaints.toLocaleString()} reqs`,
+                  ` Mean SLA Latency: ${w.avg_resolution_days} Days`,
+                  ` Click bar to filter ledger table below`
+                ];
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            grid: { color: '#1a1a1a' },
+            ticks: {
+              color: '#888888',
+              font: { family: 'JetBrains Mono', size: 9 },
+              callback: function(v) { return (v / 1000) + 'k'; }
+            }
+          },
+          y: {
+            grid: { display: false },
+            ticks: {
+              color: '#ffffff',
+              font: { family: 'Geist', size: 10 }
+            }
+          }
+        }
+      }
+    });
+  }
+
   function renderWardTelemetry(wards) {
     const wardContainer = document.getElementById('wardsContainer');
+    if (!wardContainer) return;
     wardContainer.innerHTML = '';
     wards.slice(0, 4).forEach((w, idx) => {
       const badgeClass = idx === 0 ? 'text-status-critical bg-status-critical/10' : idx < 3 ? 'text-status-warning bg-status-warning/10' : 'text-status-success bg-status-success/10';
@@ -567,38 +800,160 @@
     });
   }
 
+  function switchLedgerView(mode) {
+    const tableView = document.getElementById('ledgerTableView');
+    const analyticsView = document.getElementById('ledgerAnalyticsView');
+    const btnTable = document.getElementById('btnLedgerTable');
+    const btnAnalytics = document.getElementById('btnLedgerAnalytics');
+
+    if (mode === 'table') {
+      tableView.classList.remove('hidden');
+      analyticsView.classList.add('hidden');
+      btnTable.className = 'px-2.5 py-1 text-[11px] font-annotation-mono rounded bg-accent-cyan/15 text-accent-cyan font-medium flex items-center gap-1 transition-all';
+      btnAnalytics.className = 'px-2.5 py-1 text-[11px] font-annotation-mono rounded text-text-muted hover:text-text-primary flex items-center gap-1 transition-all';
+    } else {
+      tableView.classList.add('hidden');
+      analyticsView.classList.remove('hidden');
+      btnAnalytics.className = 'px-2.5 py-1 text-[11px] font-annotation-mono rounded bg-accent-cyan/15 text-accent-cyan font-medium flex items-center gap-1 transition-all';
+      btnTable.className = 'px-2.5 py-1 text-[11px] font-annotation-mono rounded text-text-muted hover:text-text-primary flex items-center gap-1 transition-all';
+      if (slaHealthChartInstance) slaHealthChartInstance.resize();
+      if (channelBreakdownChartInstance) channelBreakdownChartInstance.resize();
+    }
+  }
+
+  function renderSlaAndChannelCharts() {
+    // 1. SLA Health Doughnut
+    const slaCtx = document.getElementById('slaHealthChartCanvas');
+    if (slaCtx) {
+      if (slaHealthChartInstance) slaHealthChartInstance.destroy();
+      slaHealthChartInstance = new Chart(slaCtx, {
+        type: 'doughnut',
+        data: {
+          labels: ['Within SLA', 'Breached SLA'],
+          datasets: [{
+            data: [737280, 222720],
+            backgroundColor: ['#10b981', '#ef4444'],
+            borderColor: '#0a0a0a',
+            borderWidth: 2
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: '#111111',
+              borderColor: '#333333',
+              borderWidth: 1,
+              titleColor: '#ffffff',
+              bodyColor: '#cccccc',
+              callbacks: {
+                label: function(ctx) {
+                  return ` ${ctx.label}: ${ctx.parsed.toLocaleString()} (${((ctx.parsed / 960000) * 100).toFixed(1)}%)`;
+                }
+              }
+            }
+          },
+          cutout: '70%'
+        }
+      });
+    }
+
+    // 2. Channel Breakdown Bar Chart
+    const chanCtx = document.getElementById('channelBreakdownChartCanvas');
+    if (chanCtx) {
+      if (channelBreakdownChartInstance) channelBreakdownChartInstance.destroy();
+      channelBreakdownChartInstance = new Chart(chanCtx, {
+        type: 'bar',
+        data: {
+          labels: ['Portal', '1916 Helpline', 'Mobile App', 'Social / X'],
+          datasets: [{
+            label: 'Intake Share (%)',
+            data: [38.2, 26.8, 21.0, 14.0],
+            backgroundColor: ['#3291ff', '#0070f3', '#10b981', '#f5a623'],
+            borderRadius: 4,
+            barPercentage: 0.6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: '#111111',
+              borderColor: '#333333',
+              borderWidth: 1,
+              titleColor: '#ffffff',
+              bodyColor: '#cccccc',
+              callbacks: {
+                label: function(ctx) {
+                  return ` Share: ${ctx.parsed.y}% of Grievance Inflow`;
+                }
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: '#888888', font: { family: 'Geist', size: 9 } }
+            },
+            y: {
+              grid: { color: '#1a1a1a' },
+              ticks: {
+                color: '#888888',
+                font: { family: 'JetBrains Mono', size: 9 },
+                callback: function(v) { return v + '%'; }
+              }
+            }
+          }
+        }
+      });
+    }
+  }
+
   async function loadLedger(ward) {
-    const url = ward === 'ALL' ? '/api/explorer/search?limit=5' : `/api/explorer/search?ward=${encodeURIComponent(ward)}&limit=5`;
-    const res = await fetch(url);
-    const data = await res.json();
-    const tbody = document.getElementById('ledgerTableBody');
-    tbody.innerHTML = '';
+    const overlay = document.getElementById('ledgerLoadingOverlay');
+    if (overlay) overlay.classList.remove('hidden');
 
-    document.getElementById('ledgerSubtitle').textContent = ward === 'ALL' ? 'Live grievance intake sample from warehouse' : `Filtered by Ward ${ward} active complaints`;
+    try {
+      const url = ward === 'ALL' ? '/api/explorer/search?limit=5' : `/api/explorer/search?ward=${encodeURIComponent(ward)}&limit=5`;
+      const res = await fetch(url);
+      const data = await res.json();
+      const tbody = document.getElementById('ledgerTableBody');
+      tbody.innerHTML = '';
 
-    data.records.forEach(rec => {
-      const sevClass = rec.severity === 'Critical' ? 'text-status-critical bg-status-critical/10' : rec.severity === 'High' ? 'text-status-warning bg-status-warning/10' : 'text-accent-cyan bg-accent-cyan/10';
-      tbody.innerHTML += `
-        <tr class="hover:bg-surface-subtle transition-colors">
-          <td class="py-2.5 px-3 font-code-md text-accent-cyan font-medium">${rec.complaint_id}</td>
-          <td class="py-2.5 px-3 font-annotation-mono text-text-secondary">${rec.ward} (${rec.ward_area})</td>
-          <td class="py-2.5 px-3 text-text-primary">${rec.category_name}</td>
-          <td class="py-2.5 px-3">
-            <span class="font-annotation-mono text-[10px] px-2 py-0.5 rounded ${sevClass}">
-              ${rec.severity}
-            </span>
-          </td>
-          <td class="py-2.5 px-3 text-right font-body-sm text-text-muted">${rec.complaint_channel}</td>
-        </tr>
-      `;
-    });
+      document.getElementById('ledgerSubtitle').textContent = ward === 'ALL' ? 'Live grievance intake sample from warehouse' : `Filtered by Ward ${ward} active complaints`;
+
+      data.records.forEach(rec => {
+        const sevClass = rec.severity === 'Critical' ? 'text-status-critical bg-status-critical/10' : rec.severity === 'High' ? 'text-status-warning bg-status-warning/10' : 'text-accent-cyan bg-accent-cyan/10';
+        tbody.innerHTML += `
+          <tr class="hover:bg-surface-subtle transition-colors">
+            <td class="py-2.5 px-3 font-code-md text-accent-cyan font-medium">${rec.complaint_id}</td>
+            <td class="py-2.5 px-3 font-annotation-mono text-text-secondary">${rec.ward} (${rec.ward_area})</td>
+            <td class="py-2.5 px-3 text-text-primary">${rec.category_name}</td>
+            <td class="py-2.5 px-3">
+              <span class="font-annotation-mono text-[10px] px-2 py-0.5 rounded ${sevClass}">
+                ${rec.severity}
+              </span>
+            </td>
+            <td class="py-2.5 px-3 text-right font-body-sm text-text-muted">${rec.complaint_channel}</td>
+          </tr>
+        `;
+      });
+    } catch (err) {
+      console.error('Error fetching ledger:', err);
+    } finally {
+      if (overlay) overlay.classList.add('hidden');
+    }
   }
 
   function selectWardFilter(ward) {
     activeWardFilter = ward;
     ['filterAll', 'filterKW', 'filterL', 'filterGN', 'filterD'].forEach(id => {
       const b = document.getElementById(id);
-      if (b) b.className = "px-3 py-1 rounded text-body-sm text-text-muted hover:text-text-primary transition-all flex items-center gap-1.5";
+      if (b) b.className = "px-2 py-0.5 rounded bg-surface-base text-text-secondary hover:text-text-primary border border-border-subtle";
     });
 
     let btnId = 'filterAll';
@@ -609,7 +964,7 @@
 
     const activeBtn = document.getElementById(btnId);
     if (activeBtn) {
-      activeBtn.className = "px-3 py-1 rounded text-body-sm font-medium bg-surface-elevated text-text-primary border border-border-contrast transition-all flex items-center gap-1.5";
+      activeBtn.className = "px-2 py-0.5 rounded bg-accent-cyan/20 text-accent-cyan font-medium border border-accent-cyan/40";
     }
 
     loadLedger(ward);

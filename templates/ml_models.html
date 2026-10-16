@@ -106,7 +106,7 @@
     <div>
       <div class="px-2 pb-1 font-annotation-mono text-[10px] text-text-faint uppercase tracking-wider">System</div>
       <nav class="space-y-0.5">
-        <a class="flex items-center gap-2 px-2 py-1.5 rounded text-text-muted hover:bg-surface-subtle hover:text-text-primary transition-colors font-body-sm text-body-sm" href="/olap-laboratory">
+        <a class="flex items-center gap-2 px-2 py-1.5 rounded text-text-muted hover:bg-surface-subtle hover:text-text-primary transition-colors font-body-sm text-body-sm" href="/warehouse">
           <span class="material-symbols-outlined text-[18px]">database</span><span>Star Schema Warehouse</span>
         </a>
       </nav>
@@ -395,79 +395,110 @@
             </button>
           </div>
 
-          <!-- Multi-Head Inference Result Dashboard -->
-          <div class="mt-6 pt-5 border-t border-border-subtle space-y-4" id="inferenceResultCard">
+          <!-- Multi-Head Inference Result Dashboard with Interactive Charts & Loading Overlay -->
+          <div class="mt-6 pt-5 border-t border-border-subtle relative" id="inferenceResultWrapper">
             
+            <!-- High-Tech Loading State Overlay -->
+            <div id="predLoadingOverlay" class="hidden absolute inset-0 z-30 bg-surface-charcoal/90 backdrop-blur-sm rounded-xl flex flex-col items-center justify-center gap-3 p-6 text-center border border-accent-cyan/30 transition-all duration-300">
+              <div class="w-10 h-10 rounded-full border-2 border-accent-cyan/30 border-t-accent-cyan animate-spin"></div>
+              <div>
+                <div class="font-headline-sm text-headline-sm text-text-primary font-medium tracking-tight">Evaluating Multi-Head ML Pipeline...</div>
+                <div class="font-annotation-mono text-[11px] text-accent-cyan mt-1">LightGBM V2 &bull; 88 Feature Vectors &bull; Recurrence Risk Gauge</div>
+              </div>
+            </div>
+
             <!-- Result Header -->
-            <div class="flex items-center justify-between">
-              <span class="font-annotation-mono text-annotation-mono uppercase text-text-muted">Multi-Head Pipeline Predictions</span>
-              <div class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-status-success/10 border border-status-success/30 font-annotation-mono text-[11px] text-status-success" id="predConfidenceBadge">
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-accent-cyan text-[18px]">insights</span>
+                <span class="font-annotation-mono text-annotation-mono uppercase text-text-muted">Multi-Head Pipeline Prediction Visualizations</span>
+              </div>
+              <div class="flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-status-success/10 border border-status-success/30 font-annotation-mono text-[11px] text-status-success" id="predConfidenceBadge">
                 <span class="w-1.5 h-1.5 rounded-full bg-status-success"></span>
                 <span id="predConfidenceText">CALIBRATED (96.8%)</span>
               </div>
             </div>
 
-            <!-- Head 1: Triage Classification -->
-            <div class="p-4 rounded-xl bg-surface-subtle border border-border-contrast">
-              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+            <div class="space-y-4" id="inferenceResultContent">
+              <!-- Head 1: Triage Classification with Interactive Horizontal Probability Distribution Chart -->
+              <div class="p-4 rounded-xl bg-surface-subtle border border-border-contrast">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3 pb-2.5 border-b border-border-subtle">
+                  <div>
+                    <span class="font-annotation-mono text-[10px] text-text-faint uppercase">Predicted Primary Category</span>
+                    <div class="font-headline-md text-headline-md text-text-primary font-semibold tracking-tight" id="predCategoryName">Pothole / Road Damage</div>
+                  </div>
+                  <div class="text-left sm:text-right">
+                    <span class="font-annotation-mono text-[10px] text-text-faint uppercase">Assigned BMC Department</span>
+                    <div class="font-body-sm text-accent-cyan font-code-md font-medium" id="predRoutingTarget">Dept-Roads-K/W</div>
+                  </div>
+                </div>
+
+                <!-- Interactive Chart.js Horizontal Probability Distribution Canvas -->
                 <div>
-                  <span class="font-annotation-mono text-[10px] text-text-faint uppercase">Primary Category Triage</span>
-                  <div class="font-headline-md text-headline-md text-text-primary font-semibold tracking-tight" id="predCategoryName">Pothole / Road Damage</div>
-                </div>
-                <div class="text-left sm:text-right">
-                  <span class="font-annotation-mono text-[10px] text-text-faint uppercase">Assigned BMC Department</span>
-                  <div class="font-body-sm text-accent-cyan font-code-md font-medium" id="predRoutingTarget">Dept-Roads-K/W</div>
-                </div>
-              </div>
-
-              <!-- Top 4 Probability Confidence Distribution -->
-              <div class="space-y-2 mt-3" id="probBarsContainer">
-                <!-- Populated dynamically via JS -->
-              </div>
-            </div>
-
-            <!-- Head 2 & 3: Recurrence Risk & SLA Turnaround Forecast Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              
-              <!-- Head 2: Recurrence Risk Badge -->
-              <div class="p-3.5 rounded-xl bg-surface-subtle border border-border-contrast flex flex-col justify-between">
-                <div class="flex items-center justify-between mb-1">
-                  <span class="font-annotation-mono text-[10px] text-text-muted uppercase">Grievance Recurrence Risk</span>
-                  <span class="material-symbols-outlined text-[16px] text-status-warning" id="recIcon">warning</span>
-                </div>
-                <div class="my-1.5 flex items-baseline gap-2">
-                  <span class="font-headline-md text-headline-md font-bold" id="recRiskScore">98.4%</span>
-                  <span class="px-2 py-0.5 rounded font-annotation-mono text-[10px] font-semibold" id="recRiskBadge">HIGH RECURRENCE RISK</span>
-                </div>
-                <div class="font-body-sm text-[12px] text-text-muted" id="recActionText">
-                  Citizen profile indicates high re-filing risk within 45 days.
+                  <div class="flex items-center justify-between font-annotation-mono text-[10px] text-text-muted mb-1.5">
+                    <span>TOP 5 CATEGORY PROBABILITY SPECTRUM</span>
+                    <span class="text-accent-cyan">HOVER BARS FOR CALIBRATED POSTERIOR PROBABILITY</span>
+                  </div>
+                  <div class="relative w-full h-44">
+                    <canvas id="predProbChartCanvas"></canvas>
+                  </div>
                 </div>
               </div>
 
-              <!-- Head 3: Resolution Days Forecast -->
-              <div class="p-3.5 rounded-xl bg-surface-subtle border border-border-contrast flex flex-col justify-between">
-                <div class="flex items-center justify-between mb-1">
-                  <span class="font-annotation-mono text-[10px] text-text-muted uppercase">Forecasted SLA Turnaround</span>
-                  <span class="material-symbols-outlined text-[16px] text-accent-cyan">schedule</span>
-                </div>
-                <div class="my-1.5 flex items-baseline gap-2">
-                  <span class="font-headline-md text-headline-md text-text-primary font-bold" id="predSlaDays">7.2 Days</span>
-                  <span class="font-annotation-mono text-[10px] text-text-faint">± 6.8d MAE</span>
-                </div>
-                <div class="font-body-sm text-[12px] text-text-muted">
-                  Multi-variable regression based on asset stress & monsoon load.
-                </div>
-              </div>
-            </div>
+              <!-- Head 2 & 3: Recurrence Risk Gauge & SLA Turnaround Comparison Grid -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                
+                <!-- Head 2: Recurrence Risk Doughnut Gauge Chart -->
+                <div class="p-4 rounded-xl bg-surface-subtle border border-border-contrast flex flex-col justify-between">
+                  <div class="flex items-center justify-between mb-2 pb-2 border-b border-border-subtle">
+                    <span class="font-annotation-mono text-[10px] text-text-muted uppercase">Grievance Recurrence Risk Gauge</span>
+                    <span class="px-2 py-0.5 rounded font-annotation-mono text-[10px] font-semibold" id="recRiskBadge">CHRONIC RISK</span>
+                  </div>
+                  
+                  <div class="relative w-full h-36 flex items-center justify-center my-1">
+                    <canvas id="predRecurrenceGaugeCanvas"></canvas>
+                    <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                      <span class="font-headline-lg text-headline-lg font-bold" id="recRiskScore">98.4%</span>
+                      <span class="font-annotation-mono text-[9px] text-text-faint uppercase">Risk Probability</span>
+                    </div>
+                  </div>
 
-            <!-- Key Feature Drivers / Attributions -->
-            <div class="pt-3 border-t border-border-subtle">
-              <div class="flex items-center justify-between mb-2">
-                <span class="font-annotation-mono text-[11px] text-text-muted uppercase">Key Feature Drivers (Tree Splitting Signals)</span>
-                <span class="font-annotation-mono text-[11px] text-text-faint">SHAP Contribution</span>
+                  <div class="font-body-sm text-[11px] text-text-muted mt-2 pt-2 border-t border-border-subtle" id="recActionText">
+                    Citizen profile indicates high re-filing likelihood within 45 days.
+                  </div>
+                </div>
+
+                <!-- Head 3: Forecasted SLA Turnaround vs Benchmark Chart -->
+                <div class="p-4 rounded-xl bg-surface-subtle border border-border-contrast flex flex-col justify-between">
+                  <div class="flex items-center justify-between mb-2 pb-2 border-b border-border-subtle">
+                    <span class="font-annotation-mono text-[10px] text-text-muted uppercase">SLA Turnaround vs Benchmarks</span>
+                    <span class="font-annotation-mono text-[11px] text-accent-cyan font-semibold" id="predSlaDays">7.2 Days</span>
+                  </div>
+                  
+                  <div class="relative w-full h-36 flex items-center justify-center my-1">
+                    <canvas id="predSlaChartCanvas"></canvas>
+                  </div>
+
+                  <div class="font-body-sm text-[11px] text-text-muted mt-2 pt-2 border-t border-border-subtle">
+                    Regression estimate: Asset stress, monsoon load &plusmn; 6.8d MAE.
+                  </div>
+                </div>
               </div>
-              <div class="flex flex-wrap gap-2" id="attributionPills">
-                <!-- Populated dynamically -->
+
+              <!-- Head 4: Interactive Feature Attribution & SHAP Impact Bar Chart -->
+              <div class="p-4 rounded-xl bg-surface-subtle border border-border-contrast">
+                <div class="flex items-center justify-between mb-2 pb-2 border-b border-border-subtle">
+                  <span class="font-annotation-mono text-[11px] text-text-muted uppercase">Tree Splitting Drivers & Feature Attributions (SHAP)</span>
+                  <span class="font-annotation-mono text-[10px] text-text-faint">Decision Boundary Shift</span>
+                </div>
+                
+                <div class="relative w-full h-32">
+                  <canvas id="predAttributionChartCanvas"></canvas>
+                </div>
+
+                <div class="flex flex-wrap gap-1.5 mt-2.5 pt-2 border-t border-border-subtle" id="attributionPills">
+                  <!-- Pills populated dynamically -->
+                </div>
               </div>
             </div>
           </div>
@@ -757,10 +788,17 @@
     });
   }
 
+  let predProbChartInstance = null;
+  let predRecurrenceGaugeInstance = null;
+  let predSlaChartInstance = null;
+  let predAttributionChartInstance = null;
+
   async function runInference() {
     const btn = document.getElementById('inferenceBtn');
+    const overlay = document.getElementById('predLoadingOverlay');
     btn.disabled = true;
     btn.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin">refresh</span><span>Evaluating Multi-Head Pipeline...</span>';
+    if (overlay) overlay.classList.remove('hidden');
 
     const payload = {
       ward_code: document.getElementById('predWard').value,
@@ -780,59 +818,47 @@
       });
       const data = await res.json();
 
-      // Head 1: Classification
+      // Head 1: Classification text & badge
       document.getElementById('predCategoryName').textContent = data.prediction;
       document.getElementById('predRoutingTarget').textContent = data.routing_target;
       document.getElementById('predConfidenceText').textContent = `CALIBRATED (${data.confidence}%)`;
 
-      // Prob bars
-      const probContainer = document.getElementById('probBarsContainer');
-      probContainer.innerHTML = '';
-      data.probabilities.slice(0, 4).forEach((p, idx) => {
-        const barColor = idx === 0 ? 'bg-accent-cyan' : 'bg-surface-container-high';
-        probContainer.innerHTML += `
-          <div>
-            <div class="flex justify-between font-annotation-mono text-[11px] text-text-secondary mb-1">
-              <span>${p.category}</span>
-              <span class="font-code-md">${p.probability}%</span>
-            </div>
-            <div class="w-full h-1.5 rounded-full bg-surface-container overflow-hidden">
-              <div class="${barColor} h-full rounded-full transition-all duration-500" style="width: ${p.probability}%"></div>
-            </div>
-          </div>
-        `;
-      });
+      // 1. Chart: Category Probability Distribution Horizontal Bars
+      renderPredProbChart(data.probabilities, data.department_assigned);
 
       // Head 2: Recurrence Risk
       if (data.recurrence_prediction) {
         const rec = data.recurrence_prediction;
         const recScoreEl = document.getElementById('recRiskScore');
         const recBadgeEl = document.getElementById('recRiskBadge');
-        const recIconEl = document.getElementById('recIcon');
         const recActionEl = document.getElementById('recActionText');
 
         recScoreEl.textContent = `${rec.risk_score_pct}%`;
         if (rec.risk_score_pct >= 50) {
-          recScoreEl.className = "font-headline-md text-headline-md font-bold text-status-critical";
+          recScoreEl.className = "font-headline-lg text-headline-lg font-bold text-status-critical";
           recBadgeEl.className = "px-2 py-0.5 rounded font-annotation-mono text-[10px] font-semibold bg-status-critical/10 text-status-critical border border-status-critical/30";
           recBadgeEl.textContent = "CHRONIC RECURRENCE RISK";
-          recIconEl.className = "material-symbols-outlined text-[16px] text-status-critical";
-          recActionEl.textContent = "Citizen profile indicates high re-filing likelihood. Mandate preventive QA audit before resolution closure.";
+          recActionEl.textContent = "Citizen profile indicates acute re-filing likelihood. Mandate preventive QA audit before closure.";
         } else {
-          recScoreEl.className = "font-headline-md text-headline-md font-bold text-status-success";
+          recScoreEl.className = "font-headline-lg text-headline-lg font-bold text-status-success";
           recBadgeEl.className = "px-2 py-0.5 rounded font-annotation-mono text-[10px] font-semibold bg-status-success/10 text-status-success border border-status-success/30";
           recBadgeEl.textContent = "ISOLATED INCIDENT";
-          recIconEl.className = "material-symbols-outlined text-[16px] text-status-success";
           recActionEl.textContent = "Single occurrence incident. Standard SLA resolution workflow applicable.";
         }
+
+        renderPredRecurrenceGauge(rec.risk_score_pct);
       }
 
       // Head 3: Operational Turnaround
       if (data.operational_forecast) {
-        document.getElementById('predSlaDays').textContent = `${data.operational_forecast.predicted_resolution_days} Days`;
+        const estDays = data.operational_forecast.predicted_resolution_days;
+        document.getElementById('predSlaDays').textContent = `${estDays} Days`;
+        renderPredSlaChart(estDays, data.prediction);
       }
 
-      // Attribution pills
+      // Head 4: Attribution Chart & Pills
+      renderPredAttributionChart(data.feature_attributions);
+
       const attrPills = document.getElementById('attributionPills');
       attrPills.innerHTML = '';
       data.feature_attributions.forEach(item => {
@@ -847,9 +873,207 @@
     } catch (e) {
       console.error('Inference error:', e);
     } finally {
+      if (overlay) overlay.classList.add('hidden');
       btn.disabled = false;
       btn.innerHTML = '<span class="material-symbols-outlined text-[18px]">play_arrow</span><span>Execute Live Model Inference Pipeline</span>';
     }
+  }
+
+  function renderPredProbChart(probs, dept) {
+    const ctx = document.getElementById('predProbChartCanvas');
+    if (!ctx) return;
+    if (predProbChartInstance) predProbChartInstance.destroy();
+
+    const labels = probs.map(p => p.category.length > 20 ? p.category.substring(0, 18) + '...' : p.category);
+    const values = probs.map(p => p.probability);
+    const colors = probs.map((_, idx) => idx === 0 ? '#3291ff' : (idx === 1 ? '#0070f3' : '#333333'));
+
+    predProbChartInstance = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          data: values,
+          backgroundColor: colors,
+          borderRadius: 4,
+          borderWidth: 1,
+          borderColor: probs.map((_, idx) => idx === 0 ? '#58a6ff' : '#222222')
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#111111',
+            titleColor: '#ffffff',
+            bodyColor: '#cccccc',
+            borderColor: '#333333',
+            borderWidth: 1,
+            padding: 10,
+            callbacks: {
+              title: (ctx) => probs[ctx[0].dataIndex].category,
+              label: (ctx) => `Calibrated Probability: ${ctx.parsed.x}%`,
+              afterLabel: (ctx) => ctx.dataIndex === 0 ? `Target Department: ${dept}` : `Rank #${ctx.dataIndex + 1} Alternative Triage`
+            }
+          }
+        },
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            grid: { color: '#222222' },
+            ticks: { color: '#888888', font: { family: 'JetBrains Mono', size: 10 }, callback: v => v + '%' }
+          },
+          y: {
+            grid: { display: false },
+            ticks: { color: '#e2e2e2', font: { family: 'Geist', size: 11 } }
+          }
+        }
+      }
+    });
+  }
+
+  function renderPredRecurrenceGauge(riskPct) {
+    const ctx = document.getElementById('predRecurrenceGaugeCanvas');
+    if (!ctx) return;
+    if (predRecurrenceGaugeInstance) predRecurrenceGaugeInstance.destroy();
+
+    const isHigh = riskPct >= 50;
+    const color = isHigh ? '#ef4444' : '#10b981';
+
+    predRecurrenceGaugeInstance = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Recurrence Risk', 'Safe Turnaround'],
+        datasets: [{
+          data: [riskPct, 100 - riskPct],
+          backgroundColor: [color, '#222222'],
+          borderWidth: 0,
+          circumference: 220,
+          rotation: 250
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: '76%',
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#111111',
+            titleColor: '#ffffff',
+            bodyColor: '#cccccc',
+            borderColor: '#333333',
+            borderWidth: 1,
+            callbacks: {
+              label: (ctx) => `${ctx.label}: ${ctx.parsed}%`
+            }
+          }
+        }
+      }
+    });
+  }
+
+  function renderPredSlaChart(predDays, category) {
+    const ctx = document.getElementById('predSlaChartCanvas');
+    if (!ctx) return;
+    if (predSlaChartInstance) predSlaChartInstance.destroy();
+
+    const benchmarkDays = 10.0;
+    const worstCaseDays = 24.0;
+
+    predSlaChartInstance = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Predicted', 'BMC Std SLA', 'Worst Delay'],
+        datasets: [{
+          data: [predDays, benchmarkDays, worstCaseDays],
+          backgroundColor: ['#3291ff', '#10b981', '#f5a623'],
+          borderRadius: 4
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#111111',
+            titleColor: '#ffffff',
+            bodyColor: '#cccccc',
+            borderColor: '#333333',
+            borderWidth: 1,
+            callbacks: {
+              label: (ctx) => `${ctx.parsed.y} Days (${ctx.label})`
+            }
+          }
+        },
+        scales: {
+          y: {
+            min: 0,
+            grid: { color: '#222222' },
+            ticks: { color: '#888888', font: { family: 'JetBrains Mono', size: 10 }, callback: v => v + 'd' }
+          },
+          x: {
+            grid: { display: false },
+            ticks: { color: '#aaaaaa', font: { family: 'Geist', size: 10 } }
+          }
+        }
+      }
+    });
+  }
+
+  function renderPredAttributionChart(attributions) {
+    const ctx = document.getElementById('predAttributionChartCanvas');
+    if (!ctx) return;
+    if (predAttributionChartInstance) predAttributionChartInstance.destroy();
+
+    const labels = attributions.map(a => a.token);
+    const weights = attributions.map(a => parseFloat(a.weight.replace('+', '')));
+
+    predAttributionChartInstance = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          data: weights,
+          backgroundColor: '#10b981',
+          borderRadius: 4
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#111111',
+            titleColor: '#ffffff',
+            bodyColor: '#cccccc',
+            borderColor: '#333333',
+            borderWidth: 1,
+            callbacks: {
+              label: (ctx) => `SHAP Impact Weight: +${ctx.parsed.x} shift`
+            }
+          }
+        },
+        scales: {
+          x: {
+            min: 0,
+            grid: { color: '#222222' },
+            ticks: { color: '#888888', font: { family: 'JetBrains Mono', size: 10 } }
+          },
+          y: {
+            grid: { display: false },
+            ticks: { color: '#cccccc', font: { family: 'JetBrains Mono', size: 10 } }
+          }
+        }
+      }
+    });
   }
 
   document.addEventListener('DOMContentLoaded', () => {

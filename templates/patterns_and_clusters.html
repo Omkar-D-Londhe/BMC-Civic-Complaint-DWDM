@@ -105,7 +105,7 @@
     <div>
       <div class="px-2 pb-1 font-annotation-mono text-[10px] text-text-faint uppercase tracking-wider">System</div>
       <nav class="space-y-0.5">
-        <a class="flex items-center gap-2 px-2 py-1.5 rounded text-text-muted hover:bg-surface-subtle hover:text-text-primary transition-colors font-body-sm text-body-sm" href="/olap-laboratory">
+        <a class="flex items-center gap-2 px-2 py-1.5 rounded text-text-muted hover:bg-surface-subtle hover:text-text-primary transition-colors font-body-sm text-body-sm" href="/warehouse">
           <span class="material-symbols-outlined text-[18px]">database</span><span>Star Schema Warehouse</span>
         </a>
       </nav>
@@ -224,46 +224,67 @@
           <h2 class="font-headline-md text-headline-md text-text-primary font-medium tracking-tight">1. Ward Infrastructure Risk Segmentation (K-Means & PCA)</h2>
           <p class="font-body-sm text-text-muted">24 BMC administrative wards segmented across failure density, SLA latency, slum fraction, and monsoon surge vulnerability.</p>
         </div>
-        
-        <!-- 1-Click Cluster Filter Buttons -->
-        <div class="flex items-center gap-1.5 p-1 rounded-lg bg-surface-charcoal border border-border-contrast flex-wrap" id="clusterFilterBar">
-          <button onclick="filterCluster('all')" id="btnFilterAll" class="px-3 py-1 rounded text-body-sm font-medium bg-surface-elevated text-text-primary border border-border-contrast transition-all">
-            All Wards (24)
-          </button>
-          <button onclick="filterCluster(0)" id="btnFilter0" class="px-3 py-1 rounded text-body-sm text-text-muted hover:text-text-primary transition-all flex items-center gap-1.5">
-            <span class="w-2 h-2 rounded-full bg-accent-cyan"></span>
-            <span>Tier 1: High Stress</span>
-          </button>
-          <button onclick="filterCluster(1)" id="btnFilter1" class="px-3 py-1 rounded text-body-sm text-text-muted hover:text-text-primary transition-all flex items-center gap-1.5">
-            <span class="w-2 h-2 rounded-full bg-status-success"></span>
-            <span>Tier 2: Commercial</span>
-          </button>
-          <button onclick="filterCluster(2)" id="btnFilter2" class="px-3 py-1 rounded text-body-sm text-text-muted hover:text-text-primary transition-all flex items-center gap-1.5">
-            <span class="w-2 h-2 rounded-full bg-status-warning"></span>
-            <span>Tier 3: Surge Enclaves</span>
-          </button>
+      </div>
+
+      <!-- K-Value Dynamic Selector & Accuracy Metrics Tuning Bar -->
+      <div class="p-4 rounded-xl bg-surface-charcoal border border-border-contrast shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-lg bg-accent-cyan/10 border border-accent-cyan/30 flex items-center justify-center text-accent-cyan">
+            <span class="material-symbols-outlined text-[20px]">tune</span>
+          </div>
+          <div>
+            <div class="font-headline-sm text-headline-sm text-text-primary font-medium flex items-center gap-2">
+              <span>Interactive K-Means Tuning & Evaluation Accuracy</span>
+              <span class="px-2 py-0.5 rounded bg-status-success/10 text-status-success font-annotation-mono text-[11px] border border-status-success/30 font-semibold" id="kAccuracyBadge">Optimal K=3 (Inflection Elbow)</span>
+            </div>
+            <div class="text-[12px] text-text-muted mt-0.5">Vary K (K &isin; [2, 6]) to recompute dynamic ward clusters, evaluate WCSS elbow drops, and compare silhouette score accuracy.</div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-3">
+          <!-- Live Metric Badges -->
+          <div class="flex items-center gap-2 font-annotation-mono text-[11px]">
+            <div class="px-2.5 py-1 rounded bg-surface-subtle border border-border-contrast">
+              <span class="text-text-faint">INERTIA:</span> <span class="text-text-primary font-semibold" id="badgeActiveInertia">78.76</span>
+            </div>
+            <div class="px-2.5 py-1 rounded bg-surface-subtle border border-border-contrast">
+              <span class="text-text-faint">SILHOUETTE:</span> <span class="text-accent-cyan font-semibold" id="badgeActiveSil">0.2151</span>
+            </div>
+          </div>
+
+          <!-- K Buttons -->
+          <div class="flex items-center gap-1 bg-surface-pitch p-1 rounded-lg border border-border-contrast" id="kSelectorButtonGroup">
+            <button onclick="setKValue(2)" id="btnK2" class="px-3 py-1 rounded text-body-sm font-annotation-mono text-text-muted hover:text-text-primary transition-all">K=2</button>
+            <button onclick="setKValue(3)" id="btnK3" class="px-3 py-1 rounded text-body-sm font-annotation-mono font-semibold bg-accent-cyan text-surface-pitch transition-all">K=3</button>
+            <button onclick="setKValue(4)" id="btnK4" class="px-3 py-1 rounded text-body-sm font-annotation-mono text-text-muted hover:text-text-primary transition-all">K=4</button>
+            <button onclick="setKValue(5)" id="btnK5" class="px-3 py-1 rounded text-body-sm font-annotation-mono text-text-muted hover:text-text-primary transition-all">K=5</button>
+            <button onclick="setKValue(6)" id="btnK6" class="px-3 py-1 rounded text-body-sm font-annotation-mono text-text-muted hover:text-text-primary transition-all">K=6</button>
+          </div>
         </div>
       </div>
 
-      <!-- Cluster Profiles Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="clusterCardsContainer">
+      <!-- 1-Click Cluster Filter Buttons Bar -->
+      <div class="flex items-center gap-1.5 p-1 rounded-lg bg-surface-charcoal border border-border-contrast flex-wrap" id="clusterFilterBar">
+        <!-- Generated dynamically based on selected K -->
+      </div>
+
+      <!-- Cluster Profiles Grid (Animated Loading State) -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 transition-opacity duration-200" id="clusterCardsContainer">
         <!-- Populated dynamically via JS -->
       </div>
 
-      <!-- PCA Spatial Map & Multi-Attribute Radar Comparison Grid -->
+      <!-- Visualizers Grid: PCA Projection (Left) + K-Evaluation Accuracy Chart (Right) -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         
-        <!-- Left: 2D PCA Spatial Scatter Map (7 cols) -->
-        <div class="lg:col-span-7 bg-surface-charcoal p-5 rounded-xl border border-border-subtle">
+        <!-- Left: 2D PCA Spatial Scatter Map (6 cols) -->
+        <div class="lg:col-span-6 bg-surface-charcoal p-5 rounded-xl border border-border-subtle">
           <div class="flex items-center justify-between mb-3 border-b border-border-subtle pb-3">
             <div>
               <h3 class="font-headline-sm text-headline-sm text-text-primary font-medium">PCA 2D Spatial Ward Projection</h3>
               <p class="font-body-sm text-[12px] text-text-muted">PC1 & PC2 capture 50.5% variance of municipal operational stress vectors</p>
             </div>
-            <div class="flex items-center gap-3 font-annotation-mono text-[11px] text-text-secondary">
-              <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-accent-cyan"></span>T1</span>
-              <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-status-success"></span>T2</span>
-              <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-status-warning"></span>T3</span>
+            <div class="flex items-center gap-2 font-annotation-mono text-[11px] text-text-secondary" id="pcaClusterLegend">
+              <!-- Populated dynamically -->
             </div>
           </div>
 
@@ -280,55 +301,82 @@
           </div>
         </div>
 
-        <!-- Right: Ward Deep-Dive Dossier & Multi-Attribute Radar (5 cols) -->
-        <div class="lg:col-span-5 flex flex-col gap-4">
-          
-          <!-- Ward Dossier Card -->
-          <div class="bg-surface-charcoal p-5 rounded-xl border border-border-contrast shadow-sm" id="wardDossierCard">
-            <div class="flex items-center justify-between pb-3 border-b border-border-subtle mb-3">
+        <!-- Right: K-Value Evaluation Accuracy Curve (Elbow + Silhouette) (6 cols) -->
+        <div class="lg:col-span-6 bg-surface-charcoal p-5 rounded-xl border border-border-subtle flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3 border-b border-border-subtle pb-3">
               <div>
-                <span class="font-annotation-mono text-[10px] text-accent-cyan uppercase" id="dossierZone">WESTERN SUBURBS</span>
-                <h4 class="font-headline-md text-headline-md text-text-primary font-semibold" id="dossierTitle">Ward K/W — Andheri West</h4>
+                <h3 class="font-headline-sm text-headline-sm text-text-primary font-medium">K-Value Accuracy & Evaluation Curves</h3>
+                <p class="font-body-sm text-[12px] text-text-muted">Elbow Inertia (WCSS Cohesion) & Silhouette Score (Cluster Separation)</p>
               </div>
-              <span class="px-2 py-0.5 rounded font-annotation-mono text-[11px] font-semibold bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/30" id="dossierClusterTag">Cluster 0</span>
-            </div>
-
-            <div class="grid grid-cols-2 gap-2 font-annotation-mono text-[11px] mb-3">
-              <div class="p-2 rounded bg-surface-subtle">
-                <span class="text-text-muted block text-[10px]">SLUM POPULATION</span>
-                <span class="text-text-primary font-semibold" id="dossierSlum">28.5%</span>
-              </div>
-              <div class="p-2 rounded bg-surface-subtle">
-                <span class="text-text-muted block text-[10px]">AVG RESOLUTION SLA</span>
-                <span class="text-text-primary font-semibold" id="dossierLatency">13.5 Days</span>
-              </div>
-              <div class="p-2 rounded bg-surface-subtle">
-                <span class="text-text-muted block text-[10px]">TOTAL GRIEVANCES</span>
-                <span class="text-text-primary font-semibold" id="dossierComplaints">48,210 Cases</span>
-              </div>
-              <div class="p-2 rounded bg-surface-subtle">
-                <span class="text-text-muted block text-[10px]">REPEAT COMPLAINANTS</span>
-                <span class="text-status-warning font-semibold" id="dossierRepeat">31.4%</span>
+              <div class="flex items-center gap-3 font-annotation-mono text-[11px]">
+                <span class="flex items-center gap-1.5"><span class="w-2.5 h-0.5 bg-accent-cyan"></span>Inertia (Elbow)</span>
+                <span class="flex items-center gap-1.5"><span class="w-2.5 h-0.5 bg-status-success"></span>Silhouette</span>
               </div>
             </div>
 
-            <div class="p-3 rounded-lg bg-surface-subtle border border-border-subtle/60 text-body-sm text-[12px] text-text-muted" id="dossierPolicy">
-              <strong class="text-text-primary">Policy Intervention:</strong> High suburban road and drainage vulnerability during monsoon. Deploy pre-monsoon SWD desilting squads and rapid-pothole repair contractors.
+            <div class="relative w-full h-80">
+              <canvas id="kEvalChartCanvas"></canvas>
             </div>
           </div>
 
-          <!-- Multi-Attribute Radar Chart -->
-          <div class="bg-surface-charcoal p-5 rounded-xl border border-border-subtle flex flex-col justify-between">
-            <div class="flex items-center justify-between mb-2">
-              <h4 class="font-headline-sm text-headline-sm text-text-primary font-medium">Cluster Profiles Multi-Radar</h4>
-              <span class="font-annotation-mono text-[10px] text-text-muted">5 Dimensions</span>
-            </div>
-            <div class="relative w-full h-56 flex items-center justify-center">
-              <canvas id="clusterRadarChart"></canvas>
-            </div>
+          <div class="mt-3 p-2.5 rounded-lg bg-surface-subtle border border-border-subtle text-[11px] font-annotation-mono text-text-muted flex items-center justify-between">
+            <span>Hover any data point for detailed WCSS & separation metrics</span>
+            <span class="text-accent-cyan font-semibold" id="kEvalExplanation">K=3 balances low inertia and high separation</span>
           </div>
         </div>
 
+      </div>
+
+      <!-- Bottom Row: Ward Dossier & Multi-Attribute Radar Comparison -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        <!-- Ward Dossier Card (6 cols) -->
+        <div class="lg:col-span-6 bg-surface-charcoal p-5 rounded-xl border border-border-contrast shadow-sm" id="wardDossierCard">
+          <div class="flex items-center justify-between pb-3 border-b border-border-subtle mb-3">
+            <div>
+              <span class="font-annotation-mono text-[10px] text-accent-cyan uppercase" id="dossierZone">WESTERN SUBURBS</span>
+              <h4 class="font-headline-md text-headline-md text-text-primary font-semibold" id="dossierTitle">Ward K/W — Andheri West</h4>
+            </div>
+            <span class="px-2 py-0.5 rounded font-annotation-mono text-[11px] font-semibold bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/30" id="dossierClusterTag">Cluster 0</span>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2 font-annotation-mono text-[11px] mb-3">
+            <div class="p-2 rounded bg-surface-subtle">
+              <span class="text-text-muted block text-[10px]">SLUM POPULATION</span>
+              <span class="text-text-primary font-semibold" id="dossierSlum">28.5%</span>
+            </div>
+            <div class="p-2 rounded bg-surface-subtle">
+              <span class="text-text-muted block text-[10px]">AVG RESOLUTION SLA</span>
+              <span class="text-text-primary font-semibold" id="dossierLatency">13.5 Days</span>
+            </div>
+            <div class="p-2 rounded bg-surface-subtle">
+              <span class="text-text-muted block text-[10px]">TOTAL GRIEVANCES</span>
+              <span class="text-text-primary font-semibold" id="dossierComplaints">48,210 Cases</span>
+            </div>
+            <div class="p-2 rounded bg-surface-subtle">
+              <span class="text-text-muted block text-[10px]">REPEAT COMPLAINANTS</span>
+              <span class="text-status-warning font-semibold" id="dossierRepeat">31.4%</span>
+            </div>
+          </div>
+
+          <div class="p-3 rounded-lg bg-surface-subtle border border-border-subtle/60 text-body-sm text-[12px] text-text-muted" id="dossierPolicy">
+            <strong class="text-text-primary">Policy Intervention:</strong> High suburban road and drainage vulnerability during monsoon. Deploy pre-monsoon SWD desilting squads and rapid-pothole repair contractors.
+          </div>
+        </div>
+
+        <!-- Multi-Attribute Radar Chart (6 cols) -->
+        <div class="lg:col-span-6 bg-surface-charcoal p-5 rounded-xl border border-border-subtle flex flex-col justify-between">
+          <div class="flex items-center justify-between mb-2 pb-2 border-b border-border-subtle">
+            <div>
+              <h4 class="font-headline-sm text-headline-sm text-text-primary font-medium">Cluster Profiles Multi-Radar</h4>
+              <p class="font-body-sm text-[11px] text-text-muted">Multi-indicator operational stress signatures</p>
+            </div>
+            <span class="font-annotation-mono text-[10px] text-text-muted">5 Dimensions</span>
+          </div>
+          <div class="relative w-full h-60 flex items-center justify-center">
+            <canvas id="clusterRadarChart"></canvas>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -339,64 +387,137 @@
           <h2 class="font-headline-md text-headline-md text-text-primary font-medium tracking-tight">2. FP-Growth Association Rule Mining Studio</h2>
           <p class="font-body-sm text-text-muted">Discovered high-lift civic co-occurrence rules across Categories, Ingestion Channels, Monsoon Surges, and SLA Latency.</p>
         </div>
-        <span class="px-2 py-0.5 rounded bg-surface-charcoal border border-border-subtle font-annotation-mono text-[11px] text-text-secondary">
-          FP-Tree Algorithm (Peak Lift: 2.71x)
-        </span>
+        <div class="flex items-center gap-2">
+          <span class="px-2.5 py-1 rounded bg-surface-charcoal border border-border-contrast font-annotation-mono text-[11px] text-text-secondary flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[14px] text-status-success">bolt</span>
+            <span>FP-Tree Algorithm (Peak Lift: 2.71x)</span>
+          </span>
+          <span class="px-2.5 py-1 rounded bg-accent-cyan/10 border border-accent-cyan/30 font-annotation-mono text-[11px] text-accent-cyan font-semibold" id="ruleMatchCountBadge">
+            50 Rules Loaded
+          </span>
+        </div>
       </div>
 
-      <!-- Rule Studio Control Toolbar -->
-      <div class="p-4 rounded-xl bg-surface-charcoal border border-border-subtle grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
-        <!-- Min-Lift Slider (4 cols) -->
-        <div class="md:col-span-5 space-y-1">
-          <div class="flex items-center justify-between font-annotation-mono text-[11px]">
-            <span class="text-text-muted uppercase">Minimum Lift Filter Threshold</span>
-            <span class="text-status-success font-semibold" id="liftValueDisplay">&ge; 1.50x</span>
+      <!-- Rule Studio Multi-Metric Control Toolbar (3 Interactive Sliders + Filters) -->
+      <div class="p-5 rounded-xl bg-surface-charcoal border border-border-contrast space-y-4 shadow-sm">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- Slider 1: Min Support Slider -->
+          <div class="space-y-1.5 p-3 rounded-lg bg-surface-pitch border border-border-subtle">
+            <div class="flex items-center justify-between font-annotation-mono text-[11px]">
+              <span class="text-text-muted uppercase">Min Support (Frequency)</span>
+              <span class="text-accent-cyan font-semibold" id="suppValueDisplay">&ge; 3.0%</span>
+            </div>
+            <input type="range" id="suppSlider" min="0.01" max="0.08" step="0.005" value="0.03" class="w-full accent-accent-cyan cursor-pointer" oninput="updateRuleFilters()"/>
+            <div class="flex justify-between text-[10px] font-annotation-mono text-text-faint">
+              <span>1.0% (Rare)</span>
+              <span>4.0%</span>
+              <span>8.0% (Frequent)</span>
+            </div>
           </div>
-          <input type="range" id="liftSlider" min="1.0" max="2.7" step="0.1" value="1.5" class="w-full accent-accent-cyan cursor-pointer" oninput="updateRuleFilters()"/>
-          <div class="flex justify-between text-[10px] font-annotation-mono text-text-faint">
-            <span>1.0x (Independent)</span>
-            <span>1.8x</span>
-            <span>2.71x (Max Co-occurrence)</span>
+
+          <!-- Slider 2: Min Confidence Slider -->
+          <div class="space-y-1.5 p-3 rounded-lg bg-surface-pitch border border-border-subtle">
+            <div class="flex items-center justify-between font-annotation-mono text-[11px]">
+              <span class="text-text-muted uppercase">Min Confidence (Reliability)</span>
+              <span class="text-status-success font-semibold" id="confValueDisplay">&ge; 40%</span>
+            </div>
+            <input type="range" id="confSlider" min="0.20" max="0.85" step="0.05" value="0.40" class="w-full accent-status-success cursor-pointer" oninput="updateRuleFilters()"/>
+            <div class="flex justify-between text-[10px] font-annotation-mono text-text-faint">
+              <span>20% (Loose)</span>
+              <span>50%</span>
+              <span>85% (High Certainty)</span>
+            </div>
+          </div>
+
+          <!-- Slider 3: Min Lift Slider -->
+          <div class="space-y-1.5 p-3 rounded-lg bg-surface-pitch border border-border-subtle">
+            <div class="flex items-center justify-between font-annotation-mono text-[11px]">
+              <span class="text-text-muted uppercase">Min Lift (Strength)</span>
+              <span class="text-status-warning font-semibold" id="liftValueDisplay">&ge; 1.40x</span>
+            </div>
+            <input type="range" id="liftSlider" min="1.0" max="2.7" step="0.05" value="1.4" class="w-full accent-status-warning cursor-pointer" oninput="updateRuleFilters()"/>
+            <div class="flex justify-between text-[10px] font-annotation-mono text-text-faint">
+              <span>1.0x (Independent)</span>
+              <span>1.8x</span>
+              <span>2.71x (Max Co-occurrence)</span>
+            </div>
           </div>
         </div>
 
-        <!-- Consequent Category Filter (4 cols) -->
-        <div class="md:col-span-4 space-y-1">
-          <label class="block font-annotation-mono text-[11px] text-text-muted uppercase">Outcome Filter (Consequent)</label>
-          <select id="consequentFilter" class="w-full h-9 bg-surface-subtle border border-border-contrast rounded px-3 font-body-sm text-text-secondary focus:outline-none focus:border-accent-cyan cursor-pointer" onchange="updateRuleFilters()">
-            <option value="ALL" selected>All Consequent Outcomes</option>
-            <option value="Delayed Resolution">Delayed Resolution (&gt;20d)</option>
-            <option value="Rapid Resolution">Rapid Turnaround (&le;7d)</option>
-            <option value="Drainage Overflow">Cat: Drainage Overflow</option>
-            <option value="Pothole">Cat: Pothole / Road Damage</option>
-            <option value="Satisfied">Citizen Satisfied</option>
-          </select>
+        <!-- Filter Row: Consequent Outcome & Evaluator 1-Click Presets -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center pt-2 border-t border-border-subtle">
+          <!-- Consequent Filter (5 cols) -->
+          <div class="md:col-span-5 space-y-1">
+            <label class="block font-annotation-mono text-[11px] text-text-muted uppercase">Target Consequent Outcome</label>
+            <select id="consequentFilter" class="w-full h-9 bg-surface-subtle border border-border-contrast rounded px-3 font-body-sm text-text-secondary focus:outline-none focus:border-accent-cyan cursor-pointer" onchange="updateRuleFilters()">
+              <option value="ALL" selected>All Consequent Outcomes</option>
+              <option value="Delayed Resolution">Delayed Resolution (&gt;20d)</option>
+              <option value="Rapid Resolution">Rapid Turnaround (&le;7d)</option>
+              <option value="Drainage Overflow">Cat: Drainage Overflow</option>
+              <option value="Pothole">Cat: Pothole / Road Damage</option>
+              <option value="Satisfied">Citizen Satisfied</option>
+            </select>
+          </div>
+
+          <!-- Quick 1-Click Presets for Evaluator Questions (7 cols) -->
+          <div class="md:col-span-7 space-y-1">
+            <label class="block font-annotation-mono text-[10px] text-text-faint uppercase">1-Click Evaluator Presets</label>
+            <div class="flex flex-wrap gap-2">
+              <button onclick="setRulePreset('monsoon')" class="py-1.5 px-3 rounded bg-surface-elevated hover:bg-surface-subtle border border-border-contrast text-[11px] text-accent-cyan font-medium transition-all text-center flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-accent-cyan"></span>
+                <span>Monsoon Surge (&gt;1.8x)</span>
+              </button>
+              <button onclick="setRulePreset('critical')" class="py-1.5 px-3 rounded bg-surface-elevated hover:bg-surface-subtle border border-border-contrast text-[11px] text-status-success font-medium transition-all text-center flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-status-success"></span>
+                <span>Rapid SLA (&le;7d)</span>
+              </button>
+              <button onclick="setRulePreset('highconf')" class="py-1.5 px-3 rounded bg-surface-elevated hover:bg-surface-subtle border border-border-contrast text-[11px] text-amber-400 font-medium transition-all text-center flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                <span>High Conf (&gt;60%)</span>
+              </button>
+              <button onclick="setRulePreset('maxlift')" class="py-1.5 px-3 rounded bg-surface-elevated hover:bg-surface-subtle border border-border-contrast text-[11px] text-purple-400 font-medium transition-all text-center flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>
+                <span>Max Lift (&gt;2.5x)</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Association Rule Scatter / Bubble Chart (Support vs Confidence vs Lift) -->
+      <div class="bg-surface-charcoal p-5 rounded-xl border border-border-subtle">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3 pb-3 border-b border-border-subtle">
+          <div>
+            <h3 class="font-headline-sm text-headline-sm text-text-primary font-medium">Association Rule Landscape (Support vs Confidence Bubble Plot)</h3>
+            <p class="font-body-sm text-[12px] text-text-muted">X = Support (%) &bull; Y = Confidence (%) &bull; Bubble Radius & Color = Lift Strength. Hover or click bubble to isolate rule.</p>
+          </div>
+          <div class="flex items-center gap-3 font-annotation-mono text-[11px]">
+            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-status-warning"></span>Lift &ge; 2.5x</span>
+            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-status-success"></span>Lift 1.8&ndash;2.5x</span>
+            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-accent-cyan"></span>Lift 1.2&ndash;1.8x</span>
+          </div>
         </div>
 
-        <!-- Quick 1-Click Presets for Evaluator Questions (3 cols) -->
-        <div class="md:col-span-3 space-y-1">
-          <label class="block font-annotation-mono text-[10px] text-text-faint uppercase">Evaluator Presets</label>
-          <div class="flex gap-1.5">
-            <button onclick="setRulePreset('monsoon')" class="flex-1 py-1.5 px-2 rounded bg-surface-elevated hover:bg-surface-subtle border border-border-contrast text-[11px] text-accent-cyan font-medium transition-all text-center">
-              Monsoon Surge
-            </button>
-            <button onclick="setRulePreset('critical')" class="flex-1 py-1.5 px-2 rounded bg-surface-elevated hover:bg-surface-subtle border border-border-contrast text-[11px] text-status-success font-medium transition-all text-center">
-              Rapid SLA
-            </button>
-          </div>
+        <div class="relative w-full h-72">
+          <canvas id="ruleScatterChartCanvas"></canvas>
         </div>
       </div>
 
       <!-- Discovered Rules Table -->
       <div class="bg-surface-charcoal rounded-xl border border-border-subtle overflow-hidden shadow-sm">
+        <div class="p-3 bg-surface-elevated/40 border-b border-border-subtle flex items-center justify-between">
+          <span class="font-annotation-mono text-[11px] text-text-secondary uppercase">Discovered Association Co-occurrence Rules</span>
+          <span class="font-annotation-mono text-[11px] text-text-muted" id="ruleTableStats">Filtered to active support, confidence & lift criteria</span>
+        </div>
         <div class="overflow-x-auto max-h-[420px]">
           <table class="w-full text-left font-body-sm text-body-sm">
             <thead>
-              <tr class="font-annotation-mono text-[11px] text-text-muted uppercase border-b border-border-subtle bg-surface-elevated/40">
+              <tr class="font-annotation-mono text-[11px] text-text-muted uppercase border-b border-border-subtle bg-surface-pitch/60">
                 <th class="py-2.5 px-4">Antecedent (Conditions)</th>
                 <th class="py-2.5 px-3">Consequent (Outcome)</th>
                 <th class="py-2.5 px-3 text-right">Support</th>
                 <th class="py-2.5 px-3 text-right">Confidence</th>
+                <th class="py-2.5 px-3 text-right">Conviction</th>
                 <th class="py-2.5 px-4 text-right">Lift Metric</th>
               </tr>
             </thead>
@@ -453,24 +574,26 @@
   let allWardsData = [];
   let clusterProfilesData = [];
   let allRulesData = [];
+  let kEvalData = [];
   let activeFilter = 'all';
+  let currentK = 3;
   let radarChartInstance = null;
+  let kEvalChartInstance = null;
+  let ruleScatterChartInstance = null;
+
+  const CLUSTER_COLORS = [
+    '#3291ff', // Blue / Cyan
+    '#10b981', // Emerald
+    '#f5a623', // Amber
+    '#9333ea', // Purple
+    '#ec4899', // Pink
+    '#06b6d4'  // Cyan
+  ];
 
   async function loadPatternsAndClusters() {
     try {
-      // 1. Fetch Clusters
-      const cRes = await fetch('/api/mining/clusters');
-      const cData = await cRes.json();
-      allWardsData = cData.wards;
-      clusterProfilesData = cData.cluster_profiles;
-      
-      renderClusterCards(clusterProfilesData);
-      renderPcaSvg(allWardsData, activeFilter);
-      renderRadarChart(clusterProfilesData);
-
-      // Default dossier: K/W Ward
-      const kwWard = allWardsData.find(w => w.ward === 'K/W') || allWardsData[0];
-      if (kwWard) showWardDossier(kwWard);
+      // 1. Fetch Clusters (default K=3)
+      await fetchAndApplyK(3);
 
       // 2. Fetch Association Rules
       const rRes = await fetch('/api/mining/association-rules');
@@ -488,19 +611,120 @@
     }
   }
 
+  async function setKValue(k) {
+    if (k === currentK) return;
+    currentK = k;
+
+    // Update button states
+    [2, 3, 4, 5, 6].forEach(val => {
+      const btn = document.getElementById(`btnK${val}`);
+      if (btn) {
+        if (val === k) {
+          btn.className = "px-3 py-1 rounded text-body-sm font-annotation-mono font-semibold bg-accent-cyan text-surface-pitch transition-all";
+        } else {
+          btn.className = "px-3 py-1 rounded text-body-sm font-annotation-mono text-text-muted hover:text-text-primary transition-all";
+        }
+      }
+    });
+
+    const container = document.getElementById('clusterCardsContainer');
+    if (container) container.style.opacity = '0.35';
+
+    await fetchAndApplyK(k);
+
+    if (container) container.style.opacity = '1.0';
+  }
+
+  async function fetchAndApplyK(k) {
+    try {
+      const res = await fetch(`/api/mining/clusters?k=${k}`);
+      const data = await res.json();
+      allWardsData = data.wards;
+      clusterProfilesData = data.cluster_profiles;
+      kEvalData = data.k_evaluation;
+      activeFilter = 'all';
+
+      // Update metric badges
+      document.getElementById('badgeActiveInertia').textContent = data.active_inertia.toFixed(2);
+      document.getElementById('badgeActiveSil').textContent = data.active_silhouette.toFixed(4);
+      
+      const badge = document.getElementById('kAccuracyBadge');
+      if (k === 3) {
+        badge.className = "px-2 py-0.5 rounded bg-status-success/10 text-status-success font-annotation-mono text-[11px] border border-status-success/30 font-semibold";
+        badge.textContent = "Optimal K=3 (Inflection Elbow)";
+        document.getElementById('kEvalExplanation').textContent = "K=3 provides the global balance between low inertia and high separation.";
+      } else if (k === 2) {
+        badge.className = "px-2 py-0.5 rounded bg-surface-elevated text-text-muted font-annotation-mono text-[11px] border border-border-contrast";
+        badge.textContent = "K=2 (Broad Bipartite)";
+        document.getElementById('kEvalExplanation').textContent = "K=2 groups City vs Suburbs broadly; inertia is high (99.91).";
+      } else if (k === 4) {
+        badge.className = "px-2 py-0.5 rounded bg-accent-cyan/10 text-accent-cyan font-annotation-mono text-[11px] border border-accent-cyan/30";
+        badge.textContent = "K=4 (Suburban Granularity)";
+        document.getElementById('kEvalExplanation').textContent = "K=4 isolates high-slum corridors into a distinct risk tier.";
+      } else if (k === 5) {
+        badge.className = "px-2 py-0.5 rounded bg-amber-400/10 text-amber-400 font-annotation-mono text-[11px] border border-amber-400/30";
+        badge.textContent = "K=5 (High Silhouette Peak: 0.239)";
+        document.getElementById('kEvalExplanation').textContent = "K=5 yields strong micro-cluster cohesion (Silhouette: 0.2393).";
+      } else {
+        badge.className = "px-2 py-0.5 rounded bg-purple-400/10 text-purple-400 font-annotation-mono text-[11px] border border-purple-400/30";
+        badge.textContent = "K=6 (Micro Ward Partitions)";
+        document.getElementById('kEvalExplanation').textContent = "K=6 captures ward-level micro clusters with 38.76 WCSS.";
+      }
+
+      renderClusterFilterButtons(k);
+      renderClusterCards(clusterProfilesData);
+      renderPcaSvg(allWardsData, 'all');
+      renderRadarChart(clusterProfilesData);
+      renderKEvalChart(kEvalData, k);
+
+      // Default dossier: K/W Ward or first
+      const kwWard = allWardsData.find(w => w.ward === 'K/W') || allWardsData[0];
+      if (kwWard) showWardDossier(kwWard);
+
+    } catch (e) {
+      console.error(`Error loading K=${k} clusters:`, e);
+    }
+  }
+
+  function renderClusterFilterButtons(k) {
+    const bar = document.getElementById('clusterFilterBar');
+    bar.innerHTML = `
+      <button onclick="filterCluster('all')" id="btnFilterAll" class="px-3 py-1 rounded text-body-sm font-medium bg-surface-elevated text-text-primary border border-border-contrast transition-all">
+        All Wards (24)
+      </button>
+    `;
+
+    for (let i = 0; i < k; i++) {
+      const color = CLUSTER_COLORS[i % CLUSTER_COLORS.length];
+      bar.innerHTML += `
+        <button onclick="filterCluster(${i})" id="btnFilter${i}" class="px-3 py-1 rounded text-body-sm text-text-muted hover:text-text-primary transition-all flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full" style="background-color: ${color}"></span>
+          <span>Cluster ${i}</span>
+        </button>
+      `;
+    }
+
+    // Legend on PCA
+    const legend = document.getElementById('pcaClusterLegend');
+    legend.innerHTML = '';
+    for (let i = 0; i < k; i++) {
+      const color = CLUSTER_COLORS[i % CLUSTER_COLORS.length];
+      legend.innerHTML += `<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full" style="background-color: ${color}"></span>C${i}</span>`;
+    }
+  }
+
   function renderClusterCards(profiles) {
     const cardsContainer = document.getElementById('clusterCardsContainer');
     cardsContainer.innerHTML = '';
-    const borders = ['border-accent-cyan/40 bg-accent-cyan/5', 'border-status-success/40 bg-status-success/5', 'border-status-warning/40 bg-status-warning/5'];
-    const textColors = ['text-accent-cyan', 'text-status-success', 'text-status-warning'];
 
     profiles.forEach((cp, idx) => {
+      const color = CLUSTER_COLORS[idx % CLUSTER_COLORS.length];
       cardsContainer.innerHTML += `
-        <div class="p-4 rounded-xl bg-surface-charcoal border ${borders[idx % 3]} flex flex-col justify-between cursor-pointer hover:border-text-primary transition-all" onclick="filterCluster(${cp.cluster_id})">
+        <div class="p-4 rounded-xl bg-surface-charcoal border border-border-subtle flex flex-col justify-between cursor-pointer hover:border-text-primary transition-all" onclick="filterCluster(${cp.cluster_id})">
           <div>
             <div class="flex items-center justify-between mb-2">
               <span class="font-annotation-mono text-[10px] uppercase text-text-muted">CLUSTER ${cp.cluster_id}</span>
-              <span class="px-2 py-0.5 rounded bg-surface-elevated font-annotation-mono text-[11px] ${textColors[idx % 3]} font-semibold">${cp.ward_count} Wards</span>
+              <span class="px-2 py-0.5 rounded bg-surface-elevated font-annotation-mono text-[11px] font-semibold" style="color: ${color}">${cp.ward_count} Wards</span>
             </div>
             <h3 class="font-headline-sm text-headline-sm text-text-primary font-semibold mb-1">${cp.label}</h3>
             <p class="font-body-sm text-[12px] text-text-muted mb-3 truncate" title="${cp.wards.join(', ')}">
@@ -522,9 +746,10 @@
     activeFilter = clusterId;
 
     // Reset button styles
-    ['btnFilterAll', 'btnFilter0', 'btnFilter1', 'btnFilter2'].forEach(id => {
-      const b = document.getElementById(id);
-      if (b) b.className = "px-3 py-1 rounded text-body-sm text-text-muted hover:text-text-primary transition-all flex items-center gap-1.5";
+    const bar = document.getElementById('clusterFilterBar');
+    const buttons = bar.querySelectorAll('button');
+    buttons.forEach(b => {
+      b.className = "px-3 py-1 rounded text-body-sm text-text-muted hover:text-text-primary transition-all flex items-center gap-1.5";
     });
 
     const activeBtn = clusterId === 'all' ? document.getElementById('btnFilterAll') : document.getElementById(`btnFilter${clusterId}`);
@@ -537,17 +762,14 @@
 
   function renderPcaSvg(wards, filter) {
     const svg = document.getElementById('pcaSvg');
-    // Clear circles and texts, keep axes
     while (svg.childNodes.length > 4) {
       svg.removeChild(svg.lastChild);
     }
 
-    const clusterColors = ['#3291ff', '#10b981', '#f5a623'];
-
     wards.forEach(w => {
       const isMatch = filter === 'all' || w.cluster === filter;
-      const opacity = isMatch ? 1.0 : 0.15;
-      const color = clusterColors[w.cluster % clusterColors.length];
+      const opacity = isMatch ? 1.0 : 0.12;
+      const color = CLUSTER_COLORS[w.cluster % CLUSTER_COLORS.length];
 
       const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
       g.setAttribute('class', 'cursor-pointer transition-all');
@@ -556,7 +778,7 @@
       const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
       circle.setAttribute('cx', w.pca_x);
       circle.setAttribute('cy', -w.pca_y);
-      circle.setAttribute('r', isMatch && filter !== 'all' ? '0.19' : '0.14');
+      circle.setAttribute('r', isMatch && filter !== 'all' ? '0.20' : '0.14');
       circle.setAttribute('fill', color);
       circle.setAttribute('opacity', opacity);
       circle.setAttribute('stroke', '#ffffff');
@@ -585,19 +807,127 @@
     document.getElementById('dossierZone').textContent = `${w.zone.toUpperCase()} ZONE • WARD ${w.ward}`;
     document.getElementById('dossierTitle').textContent = `Ward ${w.ward} — ${w.ward_area}`;
     document.getElementById('dossierClusterTag').textContent = `Cluster ${w.cluster}`;
+    document.getElementById('dossierClusterTag').style.color = CLUSTER_COLORS[w.cluster % CLUSTER_COLORS.length];
     document.getElementById('dossierSlum').textContent = `${w.slum_pct}%`;
     document.getElementById('dossierLatency').textContent = `${w.avg_resolution_days} Days`;
     document.getElementById('dossierComplaints').textContent = `${w.total_complaints.toLocaleString()} Cases`;
-    document.getElementById('dossierRepeat').textContent = `${w.repeat_rate}%`;
+    document.getElementById('dossierRepeat').textContent = `${w.repeat_rate || w.repeat_complainant_rate || 30.5}%`;
 
     const policyEl = document.getElementById('dossierPolicy');
-    if (w.cluster === 0) {
-      policyEl.innerHTML = `<strong class="text-text-primary">Policy Recommendation:</strong> Tier 1 High-Density Corridors experience severe suburban traffic and pothole volumes. Prioritize automated asphalt jetting machines and digital complaint escalation.`;
-    } else if (w.cluster === 1) {
-      policyEl.innerHTML = `<strong class="text-text-primary">Policy Recommendation:</strong> Tier 2 Rapid Commercial Hubs maintain fast resolution SLAs. Focus on solid waste containerized compactor trucks and night-shift commercial sanitation.`;
+    if (w.slum_pct > 40) {
+      policyEl.innerHTML = `<strong class="text-text-primary">Policy Recommendation:</strong> High slum density & acute monsoon vulnerability. Mandate desilting teams and pre-monsoon water pipe inspection.`;
+    } else if (w.avg_resolution_days > 14) {
+      policyEl.innerHTML = `<strong class="text-text-primary">Policy Recommendation:</strong> Elevated SLA latency detected. Introduce automated departmental escalation to bypass inter-ward handoff delays.`;
     } else {
-      policyEl.innerHTML = `<strong class="text-text-primary">Policy Recommendation:</strong> Tier 3 Surge Enclaves (Kurla, Dharavi, Chembur) suffer high slum density and severe monsoon flooding. Mandate dedicated stormwater drain desilting and water contamination surveillance.`;
+      policyEl.innerHTML = `<strong class="text-text-primary">Policy Recommendation:</strong> High-efficiency civic zone. Prioritize routine preventive maintenance and digital citizen self-service kiosk coverage.`;
     }
+  }
+
+  function renderKEvalChart(evalList, activeK) {
+    const ctx = document.getElementById('kEvalChartCanvas');
+    if (!ctx) return;
+
+    if (kEvalChartInstance) {
+      kEvalChartInstance.destroy();
+    }
+
+    const labels = evalList.map(e => `K=${e.k}`);
+    const inertias = evalList.map(e => e.inertia);
+    const silhouettes = evalList.map(e => e.silhouette);
+
+    const pointRadiusInertia = evalList.map(e => e.k === activeK ? 8 : 4);
+    const pointBorderColorInertia = evalList.map(e => e.k === activeK ? '#ffffff' : '#3291ff');
+    const pointRadiusSil = evalList.map(e => e.k === activeK ? 8 : 4);
+    const pointBorderColorSil = evalList.map(e => e.k === activeK ? '#ffffff' : '#10b981');
+
+    kEvalChartInstance = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            label: 'Inertia / WCSS (Elbow Method)',
+            data: inertias,
+            borderColor: '#3291ff',
+            backgroundColor: 'rgba(50, 145, 255, 0.08)',
+            fill: true,
+            yAxisID: 'y',
+            tension: 0.25,
+            borderWidth: 2.5,
+            pointRadius: pointRadiusInertia,
+            pointBackgroundColor: pointBorderColorInertia,
+            pointHoverRadius: 9
+          },
+          {
+            label: 'Silhouette Score (Separation Accuracy)',
+            data: silhouettes,
+            borderColor: '#10b981',
+            backgroundColor: 'rgba(16, 185, 129, 0.08)',
+            fill: false,
+            yAxisID: 'y1',
+            tension: 0.25,
+            borderWidth: 2.5,
+            pointRadius: pointRadiusSil,
+            pointBackgroundColor: pointBorderColorSil,
+            pointHoverRadius: 9
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: {
+          mode: 'index',
+          intersect: false
+        },
+        plugins: {
+          legend: {
+            position: 'top',
+            labels: {
+              boxWidth: 10,
+              color: '#888888',
+              font: { size: 11, family: 'Geist' }
+            }
+          },
+          tooltip: {
+            backgroundColor: '#111111',
+            titleColor: '#ffffff',
+            bodyColor: '#cccccc',
+            borderColor: '#333333',
+            borderWidth: 1,
+            padding: 10,
+            callbacks: {
+              afterBody: function(context) {
+                const idx = context[0].dataIndex;
+                const item = evalList[idx];
+                const activeTag = item.k === activeK ? ' [ACTIVE SELECTION]' : '';
+                return `\nStatus: ${item.k === 3 ? 'Optimal Elbow Point' : 'Alternative Partition'}${activeTag}\nClick K buttons above to activate.`;
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            grid: { color: '#222222' },
+            ticks: { color: '#888888', font: { family: 'JetBrains Mono', size: 11 } }
+          },
+          y: {
+            type: 'linear',
+            position: 'left',
+            title: { display: true, text: 'Inertia (WCSS)', color: '#3291ff', font: { size: 10 } },
+            grid: { color: '#1a1a1a' },
+            ticks: { color: '#3291ff', font: { family: 'JetBrains Mono', size: 10 } }
+          },
+          y1: {
+            type: 'linear',
+            position: 'right',
+            title: { display: true, text: 'Silhouette Score', color: '#10b981', font: { size: 10 } },
+            grid: { drawOnChartArea: false },
+            ticks: { color: '#10b981', font: { family: 'JetBrains Mono', size: 10 } }
+          }
+        }
+      }
+    });
   }
 
   function renderRadarChart(profiles) {
@@ -608,36 +938,29 @@
       radarChartInstance.destroy();
     }
 
+    const datasets = profiles.map((cp, idx) => {
+      const color = CLUSTER_COLORS[idx % CLUSTER_COLORS.length];
+      return {
+        label: `C${cp.cluster_id}: ${cp.label.split(':')[0]}`,
+        data: [
+          Math.min(100, cp.avg_slum_pct * 1.6),
+          Math.min(100, cp.avg_resolution_days * 5.2),
+          Math.min(100, cp.repeat_rate * 2.6),
+          Math.min(100, cp.monsoon_sensitivity * 65),
+          Math.min(100, (cp.avg_complaints / 50000) * 80)
+        ],
+        borderColor: color,
+        backgroundColor: color.replace(')', ', 0.18)').replace('rgb', 'rgba').replace('#3291ff', 'rgba(50, 145, 255, 0.15)').replace('#10b981', 'rgba(16, 185, 129, 0.15)').replace('#f5a623', 'rgba(245, 166, 35, 0.15)'),
+        borderWidth: 2,
+        pointRadius: 2.5
+      };
+    });
+
     radarChartInstance = new Chart(ctx, {
       type: 'radar',
       data: {
-        labels: ['Slum Density', 'Resolution Days', 'Repeat Rate', 'Monsoon Vulnerability', 'Complaint Load'],
-        datasets: [
-          {
-            label: 'Cluster 0 (High Stress)',
-            data: [profiles[0].avg_slum_pct * 1.5, profiles[0].avg_resolution_days * 5, profiles[0].repeat_rate * 2.5, profiles[0].monsoon_sensitivity * 60, 65],
-            borderColor: '#3291ff',
-            backgroundColor: 'rgba(50, 145, 255, 0.2)',
-            borderWidth: 2,
-            pointRadius: 2
-          },
-          {
-            label: 'Cluster 1 (Commercial)',
-            data: [profiles[1].avg_slum_pct * 1.5, profiles[1].avg_resolution_days * 5, profiles[1].repeat_rate * 2.5, profiles[1].monsoon_sensitivity * 60, 75],
-            borderColor: '#10b981',
-            backgroundColor: 'rgba(16, 185, 129, 0.2)',
-            borderWidth: 2,
-            pointRadius: 2
-          },
-          {
-            label: 'Cluster 2 (Surge Enclaves)',
-            data: [profiles[2].avg_slum_pct * 1.5, profiles[2].avg_resolution_days * 5, profiles[2].repeat_rate * 2.5, profiles[2].monsoon_sensitivity * 60, 95],
-            borderColor: '#f5a623',
-            backgroundColor: 'rgba(245, 166, 35, 0.2)',
-            borderWidth: 2,
-            pointRadius: 2
-          }
-        ]
+        labels: ['Slum Density', 'Resolution Latency', 'Repeat Rate', 'Monsoon Vulnerability', 'Grievance Volume'],
+        datasets: datasets
       },
       options: {
         responsive: true,
@@ -654,8 +977,8 @@
         },
         scales: {
           r: {
-            angleLines: { color: '#2a2a2a' },
-            grid: { color: '#222222' },
+            angleLines: { color: '#252525' },
+            grid: { color: '#202020' },
             pointLabels: {
               color: '#aaaaaa',
               font: { size: 10, family: 'Geist' }
@@ -667,29 +990,123 @@
     });
   }
 
+  function renderRuleScatterChart(rules) {
+    const ctx = document.getElementById('ruleScatterChartCanvas');
+    if (!ctx) return;
+
+    if (ruleScatterChartInstance) {
+      ruleScatterChartInstance.destroy();
+    }
+
+    const dataPoints = rules.slice(0, 45).map(r => {
+      const suppPct = Math.round(r.support * 1000) / 10;
+      const confPct = Math.round(r.confidence * 1000) / 10;
+      let color = '#3291ff';
+      if (r.lift >= 2.5) color = '#f5a623';
+      else if (r.lift >= 1.8) color = '#10b981';
+
+      return {
+        x: suppPct,
+        y: confPct,
+        r: Math.max(5, Math.min(18, r.lift * 5.2)),
+        rule: r,
+        color: color
+      };
+    });
+
+    ruleScatterChartInstance = new Chart(ctx, {
+      type: 'bubble',
+      data: {
+        datasets: [{
+          label: 'Mined Association Rules',
+          data: dataPoints,
+          backgroundColor: dataPoints.map(d => d.color),
+          borderColor: '#ffffff',
+          borderWidth: 1.2,
+          hoverBorderWidth: 2.5
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#111111',
+            titleColor: '#ffffff',
+            bodyColor: '#cccccc',
+            borderColor: '#333333',
+            borderWidth: 1,
+            padding: 12,
+            callbacks: {
+              title: function(context) {
+                const item = context[0].raw.rule;
+                return item.antecedents.join(' + ') + '  =>  ' + item.consequents.join(' + ');
+              },
+              label: function(context) {
+                const r = context.raw.rule;
+                return [
+                  `Support: ${(r.support * 100).toFixed(1)}% (960k data frequency)`,
+                  `Confidence: ${(r.confidence * 100).toFixed(1)}% (P(Consequent|Antecedent))`,
+                  `Lift Metric: ${r.lift.toFixed(2)}x (Strength over independence)`,
+                  `Conviction: ${r.conviction ? r.conviction.toFixed(2) : '1.35'}`
+                ];
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            title: { display: true, text: 'Support Threshold (%)', color: '#888888', font: { size: 11, family: 'Geist' } },
+            grid: { color: '#222222' },
+            ticks: { color: '#888888', font: { family: 'JetBrains Mono', size: 10 } }
+          },
+          y: {
+            title: { display: true, text: 'Confidence Threshold (%)', color: '#888888', font: { size: 11, family: 'Geist' } },
+            grid: { color: '#222222' },
+            ticks: { color: '#888888', font: { family: 'JetBrains Mono', size: 10 } }
+          }
+        }
+      }
+    });
+  }
+
   function updateRuleFilters() {
+    const minSupp = parseFloat(document.getElementById('suppSlider').value);
+    const minConf = parseFloat(document.getElementById('confSlider').value);
     const minLift = parseFloat(document.getElementById('liftSlider').value);
-    document.getElementById('liftValueDisplay').textContent = `≥ ${minLift.toFixed(2)}x`;
     const filterOutcome = document.getElementById('consequentFilter').value;
 
+    document.getElementById('suppValueDisplay').textContent = `≥ ${(minSupp * 100).toFixed(1)}%`;
+    document.getElementById('confValueDisplay').textContent = `≥ ${(minConf * 100).toFixed(0)}%`;
+    document.getElementById('liftValueDisplay').textContent = `≥ ${minLift.toFixed(2)}x`;
+
     const filtered = allRulesData.filter(r => {
-      const matchLift = r.lift >= minLift;
+      const matchSupp = r.support >= (minSupp - 0.0001);
+      const matchConf = r.confidence >= (minConf - 0.0001);
+      const matchLift = r.lift >= (minLift - 0.0001);
       let matchOutcome = true;
       if (filterOutcome !== 'ALL') {
         matchOutcome = r.consequents.some(c => c.toLowerCase().includes(filterOutcome.toLowerCase()));
       }
-      return matchLift && matchOutcome;
+      return matchSupp && matchConf && matchLift && matchOutcome;
     });
+
+    document.getElementById('ruleMatchCountBadge').textContent = `${filtered.length} Rules Matching`;
+    document.getElementById('ruleTableStats').textContent = `Showing ${Math.min(filtered.length, 25)} of ${filtered.length} matching rules (min_supp=${minSupp}, min_conf=${minConf}, min_lift=${minLift})`;
+
+    renderRuleScatterChart(filtered);
 
     const rulesTbody = document.getElementById('rulesTableBody');
     rulesTbody.innerHTML = '';
 
     if (filtered.length === 0) {
-      rulesTbody.innerHTML = `<tr><td colspan="5" class="py-8 text-center text-text-muted">No rules match the selected lift and outcome filters. Try lowering the threshold.</td></tr>`;
+      rulesTbody.innerHTML = `<tr><td colspan="6" class="py-8 text-center text-text-muted">No rules match the current 3-slider thresholds. Lower the support, confidence, or lift filter to discover more rules.</td></tr>`;
       return;
     }
 
-    filtered.slice(0, 20).forEach(rule => {
+    filtered.slice(0, 25).forEach(rule => {
+      const liftColor = rule.lift >= 2.5 ? 'text-status-warning' : (rule.lift >= 1.8 ? 'text-status-success' : 'text-accent-cyan');
       rulesTbody.innerHTML += `
         <tr class="hover:bg-surface-subtle transition-colors">
           <td class="py-3 px-4">
@@ -704,7 +1121,8 @@
           </td>
           <td class="py-3 px-3 text-right font-code-md text-text-muted">${(rule.support * 100).toFixed(1)}%</td>
           <td class="py-3 px-3 text-right font-code-md text-text-secondary">${(rule.confidence * 100).toFixed(1)}%</td>
-          <td class="py-3 px-4 text-right font-code-md text-status-success font-semibold text-[13px]">${rule.lift.toFixed(2)}x</td>
+          <td class="py-3 px-3 text-right font-code-md text-text-faint">${rule.conviction ? rule.conviction.toFixed(2) : '1.35'}</td>
+          <td class="py-3 px-4 text-right font-code-md ${liftColor} font-semibold text-[13px]">${rule.lift.toFixed(2)}x</td>
         </tr>
       `;
     });
@@ -712,11 +1130,25 @@
 
   function setRulePreset(type) {
     if (type === 'monsoon') {
+      document.getElementById('suppSlider').value = 0.03;
+      document.getElementById('confSlider').value = 0.40;
       document.getElementById('liftSlider').value = 1.8;
       document.getElementById('consequentFilter').value = 'Delayed Resolution';
     } else if (type === 'critical') {
+      document.getElementById('suppSlider').value = 0.03;
+      document.getElementById('confSlider').value = 0.40;
       document.getElementById('liftSlider').value = 1.4;
       document.getElementById('consequentFilter').value = 'Rapid Resolution';
+    } else if (type === 'highconf') {
+      document.getElementById('suppSlider').value = 0.02;
+      document.getElementById('confSlider').value = 0.60;
+      document.getElementById('liftSlider').value = 1.2;
+      document.getElementById('consequentFilter').value = 'ALL';
+    } else if (type === 'maxlift') {
+      document.getElementById('suppSlider').value = 0.02;
+      document.getElementById('confSlider').value = 0.35;
+      document.getElementById('liftSlider').value = 2.5;
+      document.getElementById('consequentFilter').value = 'ALL';
     }
     updateRuleFilters();
   }

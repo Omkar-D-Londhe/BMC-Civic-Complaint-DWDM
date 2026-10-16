@@ -402,41 +402,61 @@ The frontend was built by directly adapting the provided `stitch_bmc_civiclens_a
 
 | Application Page | Route | Description & Data Source |
 | :--- | :--- | :--- |
-| **Municipal Overview** | `/overview` | Real-time KPIs (960k volume, 13 categories, 24 wards, 13.7d latency), monsoon surge temporal trends, category progress bars, high-volume wards, and live incident ledger. |
+| **Municipal Overview** | `/overview` | Real-time KPIs (960k volume, 13 categories, 24 wards, 13.7d latency), monsoon surge temporal trends, category distribution doughnut, interactive **Ward Telemetry Bar Chart** (with density tiers, rich hover tooltips & click-to-filter), **SLA Resolution Compliance Doughnut** (76.8% Within SLA vs 23.2% Breached), **Intake Channel Volume Mix Bar Chart**, and synced live incident ledger. |
 | **Complaint Explorer** | `/complaint-explorer` | Operational master-detail console with live search, multi-select filters (Ward, Category, Severity, Channel), paginated table, and right-pane incident detail inspector querying `fact_complaint`. |
-| **OLAP Laboratory** | `/olap-laboratory` | Multi-dimensional aggregation console supporting interactive execution of all 5 OLAP operations (Roll-up, Drill-down, Slice, Dice, Pivot) with syntax-highlighted SQL and query latency benchmarks. |
-| **ML Models & Classification** | `/ml-models` | Model registry comparison (Random Forest, HistGradientBoosting, Logistic Regression), normalized confusion matrix, per-class metrics, and **Live Inference Sandbox** with intake department triage. |
-| **Patterns & Clusters** | `/patterns-and-clusters` | Ward K-Means risk tiers, interactive 2D PCA spatial scatter plot, FP-Growth association rules table, and recurrence dynamics breakdown. |
+| **OLAP Laboratory** | `/olap-laboratory` | Multi-dimensional aggregation console supporting interactive execution of all 5 OLAP operations (Roll-up, Drill-down, Slice, Dice, Pivot) with syntax-highlighted SQL, 1-click lab demo showcases, and query latency benchmarks. |
+| **Star Schema Warehouse** | `/warehouse` | Dedicated dimensional data warehouse architecture view featuring an interactive ER diagram connecting central `fact_complaint` (960,000 rows) to 4 dimensions (`dim_time`, `dim_location`, `dim_category`, `dim_status`), interactive table & schema attribute inspector, referential integrity metrics (100% verified, 0 orphans), and academic viva cards on Star vs Snowflake normalization and measure additivity. |
+| **ML Models & Classification** | `/ml-models` | Model registry comparison (LightGBM, Random Forest, HistGradientBoosting, Logistic Regression), normalized confusion matrix, per-class metrics, and **Live Multi-Head Inference Dashboard** with glassmorphism loading overlay and 4 dynamic visualizers: Category Probability Distribution (Horizontal Bar Chart), Recurrence Risk Speedometer Gauge (Half-Doughnut), Forecasted SLA Turnaround vs Departmental Benchmark (Bar Chart), and Feature Attribution Impact (Bar Chart). |
+| **Patterns & Clusters** | `/patterns-and-clusters` | Ward K-Means risk tiers with **User-Selectable $K$ ($K \in [2, 6]$)**, live **Dual-Axis $K$-Evaluation Accuracy Chart** (Inertia Elbow + Silhouette Score with active $K$ highlight), 2D PCA spatial scatter plot, **FP-Growth Multi-Metric Filter Studio** (interactive sliders for `min_support`, `min_confidence`, and `min_lift`), dynamic **Association Rule Bubble/Scatter Plot** with hover details and click-to-table cross-filtering, and grievance recurrence dynamics. |
 
 ### Running the Web Application:
 ```bash
 # Start the FastAPI / Uvicorn server on port 8000
 python -m uvicorn app:app --host 127.0.0.1 --port 8000 --reload
 ```
-Open your browser to: **`http://127.0.0.1:8000/overview`**
+Open your browser to: **`http://127.0.0.1:8000/overview`** (or **`http://127.0.0.1:8000/warehouse`** for the Star Schema architecture).
 
 ---
 
 ## 13. REST API Specification
 
-| Method | Endpoint | Description |
-| :--- | :--- | :--- |
-| `GET` | `/api/overview/kpis` | Aggregated high-level metrics (volume, satisfaction, latency). |
-| `GET` | `/api/overview/monthly-trends` | Time-series monthly complaint volume and monsoon flags. |
-| `GET` | `/api/overview/category-distribution`| Distribution of complaints across 13 BMC categories. |
-| `GET` | `/api/overview/ward-telemetry` | Ward-level complaint density and SLA performance. |
-| `GET` | `/api/explorer/search` | Paginated search with filtering (`q`, `ward`, `category`, `severity`, `channel`, `page`, `limit`). |
-| `GET` | `/api/explorer/complaint/{id}` | Full 35-attribute record for a specific complaint ID. |
-| `POST` | `/api/olap/query` | Executes OLAP operations (`rollup`, `drilldown`, `slice`, `dice`, `pivot`) returning SQL and tabular result. |
-| `GET` | `/api/ml/metrics` | Evaluation metrics, confusion matrix, and per-class reports for trained ML models. |
-| `POST` | `/api/ml/predict` | Live inference pipeline predicting category and department routing. |
-| `GET` | `/api/mining/clusters` | K-Means cluster profiles, silhouette scores, and 2D PCA coordinates. |
-| `GET` | `/api/mining/association-rules` | Top association rules sorted by lift. |
-| `GET` | `/api/mining/recurrence` | Recurrence rates, category hotspots, and prior complaint distributions. |
+| Method | Endpoint | Parameters | Description |
+| :--- | :--- | :--- | :--- |
+| `GET` | `/api/overview/kpis` | — | Aggregated high-level metrics (volume, satisfaction, latency). |
+| `GET` | `/api/overview/monthly-trends` | — | Time-series monthly complaint volume and monsoon surge flags. |
+| `GET` | `/api/overview/category-distribution`| — | Distribution of complaints across 13 BMC categories. |
+| `GET` | `/api/overview/ward-telemetry` | — | Ward-level complaint density, slum percentage, and SLA performance. |
+| `GET` | `/api/explorer/search` | `q`, `ward`, `category`, `severity`, `channel`, `page`, `limit` | Paginated search with filtering across 960,000 warehouse records. |
+| `GET` | `/api/explorer/complaint/{id}` | `id` (path) | Full 35-attribute record for a specific complaint ID. |
+| `POST` | `/api/olap/query` | JSON body (`operation`, `options`) | Executes OLAP operations (`rollup`, `drilldown`, `slice`, `dice`, `pivot`) returning SQL and tabular result. |
+| `GET` | `/api/warehouse/metadata` | — | Star schema metadata, fact row counts, dimension definitions, FK relationships, and referential integrity scores. |
+| `GET` | `/api/ml/metrics` | — | Evaluation metrics, confusion matrix, and per-class reports for trained ML models. |
+| `POST` | `/api/ml/predict` | JSON body (`PredictRequest`) | Multi-head inference pipeline predicting category, routing department, recurrence risk, and SLA turnaround. |
+| `GET` | `/api/mining/clusters` | `k` (optional, default 3, range 2–6) | Dynamic K-Means clustering, active inertia, active silhouette score, full k-evaluation curve, and 2D PCA spatial coordinates. |
+| `GET` | `/api/mining/association-rules` | `min_support`, `min_confidence`, `min_lift` (optional) | Dynamic multi-metric filtered association rules sorted by lift with antecedent/consequent tokens. |
+| `GET` | `/api/mining/recurrence` | — | Recurrence rates, category hotspots, and prior complaint distributions. |
 
 ---
 
-## 14. Phase 2 V2: Advanced Feature Engineering & Mining Pipeline
+## 14. Automated End-to-End Verification Test Suite
+
+The platform includes a comprehensive automated test suite verifying all HTML templates, REST API endpoints, ML inference pipelines, OLAP operations, dynamic K-Means, and FP-Growth rule mining:
+
+```bash
+python test_app_full.py
+```
+
+### Verification Results (30 / 30 Tests Passing):
+- **UI Templates (6 tests):** Overview (`/overview`), Complaint Explorer (`/complaint-explorer`), OLAP Lab (`/olap-laboratory`), Star Schema Warehouse View (`/warehouse`), ML Models Dashboard (`/ml-models`), Patterns & Clusters Studio (`/patterns-and-clusters`).
+- **Overview & Warehouse APIs (4 tests):** Executive KPIs, Category Distribution, Ward Telemetry, Star Schema Metadata (`/api/warehouse/metadata`).
+- **Explorer Search APIs (4 tests):** Default Search, Ward-Filtered Search (`?ward=K/W`), Full-Text Search (`?q=Andheri`), Deep-Dive Record Inspection (`/api/explorer/complaint/{id}`).
+- **OLAP Multi-Dimensional Engine (5 tests):** Roll-up, Drill-down, Slice, Dice, Pivot.
+- **Supervised ML Inference Pipeline (6 tests):** Offline Metrics Registry, Live Preset 1 (Pothole K/W), Live Preset 2 (Drainage L Kurla), Live Preset 3 (Garbage G/N Dharavi), Live Preset 4 (Water Pipe D Malabar), Live Preset 5 (Construction H/W Bandra).
+- **Data Mining & Unsupervised Analytics (5 tests):** K-Means Ward Clusters, Dynamic $K$-Means ($K=4$ & Elbow/Silhouette Evaluation), FP-Growth Default Rules, FP-Growth Multi-Filter (`min_supp=0.03`, `min_conf=0.4`, `min_lift=1.2`), Recurrence Dynamics.
+
+---
+
+## 15. Phase 2 V2: Advanced Feature Engineering & Mining Pipeline
 
 To overcome demographic feature sparsity, we engineered **88 multi-dimensional domain features (Blocks A–G)** that capture physical asset age, maintenance backlog, financial repair velocity, calendar seasonal lags, and cross-domain interaction terms.
 

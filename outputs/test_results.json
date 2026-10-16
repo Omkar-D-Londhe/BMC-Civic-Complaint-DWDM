@@ -4,7 +4,7 @@
     "category": "UI Templates",
     "feature": "Overview Page Template",
     "status": "PASS",
-    "latency_ms": 6.78,
+    "latency_ms": 10.21,
     "details": "Template renders correctly with Chart.js canvases & 1-click ward buttons"
   },
   {
@@ -12,7 +12,7 @@
     "category": "UI Templates",
     "feature": "Complaint Explorer Page Template",
     "status": "PASS",
-    "latency_ms": 5.04,
+    "latency_ms": 4.82,
     "details": "Template renders correctly with master-detail inspector & search"
   },
   {
@@ -20,31 +20,39 @@
     "category": "UI Templates",
     "feature": "OLAP Laboratory Page Template",
     "status": "PASS",
-    "latency_ms": 15.11,
-    "details": "Template renders correctly with 1-click presets & dimensional transform visualizers"
+    "latency_ms": 19.73,
+    "details": "Template renders correctly with operations tab & star schema architecture section"
+  },
+  {
+    "id": "T03B",
+    "category": "UI Templates",
+    "feature": "Star Schema Warehouse View",
+    "status": "PASS",
+    "latency_ms": 0.34,
+    "details": "Dedicated Star Schema Warehouse view renders with interactive ER model & schema inspector"
   },
   {
     "id": "T04",
     "category": "UI Templates",
     "feature": "ML Models Page Template",
     "status": "PASS",
-    "latency_ms": 6.38,
-    "details": "Template renders correctly with multi-head predictions & 5 demo presets"
+    "latency_ms": 6.31,
+    "details": "Template renders correctly with 4 interactive inference visualizers & loading overlay"
   },
   {
     "id": "T05",
     "category": "UI Templates",
     "feature": "Patterns & Clusters Page Template",
     "status": "PASS",
-    "latency_ms": 5.23,
-    "details": "Template renders correctly with 5D radar chart, PCA scatter & rule studio"
+    "latency_ms": 9.43,
+    "details": "Template renders correctly with dual-axis K-eval accuracy chart & rule bubble scatter"
   },
   {
     "id": "T06",
     "category": "Overview API",
     "feature": "Executive KPIs (/api/overview/kpis)",
     "status": "PASS",
-    "latency_ms": 0.52,
+    "latency_ms": 0.51,
     "details": "Total: 960,000 | Wards: 24 | SLA: 13.7d"
   },
   {
@@ -52,7 +60,7 @@
     "category": "Overview API",
     "feature": "Category Distribution (/api/overview/category-distribution)",
     "status": "PASS",
-    "latency_ms": 0.82,
+    "latency_ms": 0.63,
     "details": "13 categories loaded, top: Pothole / Road Damage (18.0%)"
   },
   {
@@ -60,7 +68,7 @@
     "category": "Overview API",
     "feature": "Ward Telemetry (/api/overview/ward-telemetry)",
     "status": "PASS",
-    "latency_ms": 0.93,
+    "latency_ms": 0.55,
     "details": "All 24 wards verified, highest volume: Ward K/E (59,673)"
   },
   {
@@ -68,15 +76,15 @@
     "category": "Explorer API",
     "feature": "Default Grievance Search (/api/explorer/search)",
     "status": "PASS",
-    "latency_ms": 65.61,
-    "details": "Retrieved 5 records (Total: 960,000), First ID: BMC20240942049"
+    "latency_ms": 36.87,
+    "details": "Retrieved 5 records (Total: 960,000), First ID: BMC20220182653"
   },
   {
     "id": "T10",
     "category": "Explorer API",
     "feature": "Ward Filter Search (?ward=K/W)",
     "status": "PASS",
-    "latency_ms": 13.56,
+    "latency_ms": 1259.5,
     "details": "Filtered by Ward K/W: verified all 5 records belong to K/W"
   },
   {
@@ -84,7 +92,7 @@
     "category": "Explorer API",
     "feature": "Full-Text Search (?q=Andheri)",
     "status": "PASS",
-    "latency_ms": 15.57,
+    "latency_ms": 28571.6,
     "details": "Search 'Andheri' matched 5 records successfully"
   },
   {
@@ -92,15 +100,15 @@
     "category": "Explorer API",
     "feature": "Complaint Deep-Dive Detail (/api/explorer/complaint/{id})",
     "status": "PASS",
-    "latency_ms": 4.33,
-    "details": "Verified deep-dive lookup for Complaint ID BMC20240942049 in Ward A"
+    "latency_ms": 66.29,
+    "details": "Verified deep-dive lookup for Complaint ID BMC20220182653 in Ward B"
   },
   {
     "id": "T13",
     "category": "OLAP Engine",
     "feature": "Roll-up Operation (Ward -> Zone)",
     "status": "PASS",
-    "latency_ms": 0.04,
+    "latency_ms": 0.06,
     "details": "Roll-up verified: 24 wards aggregated into 3 zones (3 rows)"
   },
   {
@@ -108,7 +116,7 @@
     "category": "OLAP Engine",
     "feature": "Drill-down Operation (Year -> Qtr -> Month)",
     "status": "PASS",
-    "latency_ms": 0.01,
+    "latency_ms": 0.02,
     "details": "Drill-down verified: temporal breakdown loaded (12 quarter/month rows)"
   },
   {
@@ -116,15 +124,15 @@
     "category": "OLAP Engine",
     "feature": "Slice Operation (3D Plane Cut on Category)",
     "status": "PASS",
-    "latency_ms": 1.8,
-    "details": "Slice verified: 3D plane cut across 'Drainage Overflow / Flooding' (10 rows)"
+    "latency_ms": 4022.17,
+    "details": "Slice verified: 3D plane cut across 'Drainage Overflow / Flooding' (24 rows)"
   },
   {
     "id": "T16",
     "category": "OLAP Engine",
     "feature": "Dice Operation (Sub-Cube 3x2x1 Filter)",
     "status": "PASS",
-    "latency_ms": 0.02,
+    "latency_ms": 0.03,
     "details": "Dice sub-cube verified: 3 Cats x 2 Zones x FY2024 (6 rows, 8-Ward drill-down & severity breakdown)"
   },
   {
@@ -136,11 +144,19 @@
     "details": "Pivot verified: Cross-tabulation heatmap with transposed rotation matrix (24 rows, 4 categories x 5 wards transposed)"
   },
   {
+    "id": "T17B",
+    "category": "Warehouse API",
+    "feature": "Star Schema Metadata (/api/warehouse/metadata)",
+    "status": "PASS",
+    "latency_ms": 0.01,
+    "details": "Star schema verified: 960,000 rows, 4 dimensions, 8 measures, 100.0% referential integrity"
+  },
+  {
     "id": "T18",
     "category": "ML Pipeline",
     "feature": "Evaluation Metrics (/api/ml/metrics)",
     "status": "PASS",
-    "latency_ms": 1.03,
+    "latency_ms": 1.16,
     "details": "Metrics loaded: LightGBM V2 accuracy = 95.6%, 13 categories evaluated"
   },
   {
@@ -148,7 +164,7 @@
     "category": "ML Pipeline",
     "feature": "Live Preset 1: Monsoon Pothole (K/W)",
     "status": "PASS",
-    "latency_ms": 7.17,
+    "latency_ms": 6.75,
     "details": "Predicted: Pothole / Road Damage (100.0%) | Route: Dept-Roads-K/W | Recurrence: High Risk"
   },
   {
@@ -156,7 +172,7 @@
     "category": "ML Pipeline",
     "feature": "Live Preset 2: SWD Drainage Burst (L Kurla)",
     "status": "PASS",
-    "latency_ms": 4.79,
+    "latency_ms": 4.47,
     "details": "Predicted: Drainage Overflow / Flooding (100.0%) | Route: Dept-Storm-L | SLA Forecast: 5.0d"
   },
   {
@@ -164,7 +180,7 @@
     "category": "ML Pipeline",
     "feature": "Live Preset 3: Solid Waste Dump (G/N Dharavi)",
     "status": "PASS",
-    "latency_ms": 4.15,
+    "latency_ms": 4.19,
     "details": "Predicted: Solid Waste / Garbage (100.0%) | Route: Dept-Solid-G/N | SLA Forecast: 7.1d"
   },
   {
@@ -172,7 +188,7 @@
     "category": "ML Pipeline",
     "feature": "Live Preset 4: Water Pipe Burst (D Malabar)",
     "status": "PASS",
-    "latency_ms": 4.94,
+    "latency_ms": 4.35,
     "details": "Predicted: Water Leakage / Pipe Burst (75.8%) | Route: Dept-Hydraulic-D | Turnaround: 2.1d"
   },
   {
@@ -180,7 +196,7 @@
     "category": "ML Pipeline",
     "feature": "Live Preset 5: Illegal Demolition (H/W Bandra)",
     "status": "PASS",
-    "latency_ms": 4.77,
+    "latency_ms": 4.27,
     "details": "Predicted: Illegal Construction (100.0%) | Route: Dept-Building-H/W | Recurrence: 100.0%"
   },
   {
@@ -188,23 +204,39 @@
     "category": "Data Mining",
     "feature": "K-Means Ward Clusters (/api/mining/clusters)",
     "status": "PASS",
-    "latency_ms": 1.11,
-    "details": "k=3 optimal clusters loaded: 24 wards with 2D PCA spatial coordinates"
+    "latency_ms": 162.96,
+    "details": "k=3 optimal clusters loaded: 24 wards, k-eval curve (5 points)"
+  },
+  {
+    "id": "T24B",
+    "category": "Data Mining",
+    "feature": "Dynamic K-Means (k=4 & Elbow Evaluation)",
+    "status": "PASS",
+    "latency_ms": 41.27,
+    "details": "Dynamic K-Means (k=4): Inertia=65.47, Silhouette=0.209"
   },
   {
     "id": "T25",
     "category": "Data Mining",
     "feature": "FP-Growth Rules (/api/mining/association-rules)",
     "status": "PASS",
-    "latency_ms": 0.7,
-    "details": "717 rules loaded | Peak Lift = 2.71x | Min Support = 0.03"
+    "latency_ms": 1.31,
+    "details": "50 rules loaded | Peak Lift = 2.71x | Min Support = 0.03"
+  },
+  {
+    "id": "T25B",
+    "category": "Data Mining",
+    "feature": "FP-Growth Multi-Filter (supp=0.03, conf=0.4, lift=1.2)",
+    "status": "PASS",
+    "latency_ms": 0.52,
+    "details": "Filtered rules studio: 50 rules satisfy min_supp=0.03, min_conf=0.4, min_lift=1.2"
   },
   {
     "id": "T26",
     "category": "Data Mining",
     "feature": "Recurrence Patterns (/api/mining/recurrence)",
     "status": "PASS",
-    "latency_ms": 0.79,
+    "latency_ms": 0.74,
     "details": "Recurrence dynamics loaded: 13 categories & 6 prior-case tiers"
   }
 ]
