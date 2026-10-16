@@ -1,0 +1,721 @@
+[
+  {
+    "antecedents": [
+      "WardType: Central",
+      "Citizen Satisfied"
+    ],
+    "consequents": [
+      "First-Time Complainant",
+      "High-Slum Area",
+      "Dry Season"
+    ],
+    "support": 0.0537,
+    "confidence": 0.3804,
+    "lift": 3.1645
+  },
+  {
+    "antecedents": [
+      "Cause: Drainage Overflow / Flooding",
+      "First-Time Complainant",
+      "High-Slum Area",
+      "Dry Season"
+    ],
+    "consequents": [
+      "WardType: Central",
+      "Citizen Satisfied"
+    ],
+    "support": 0.0537,
+    "confidence": 0.447,
+    "lift": 3.1645
+  },
+  {
+    "antecedents": [
+      "WardType: Central",
+      "Citizen Satisfied"
+    ],
+    "consequents": [
+      "Cause: Drainage Overflow / Flooding",
+      "First-Time Complainant",
+      "High-Slum Area",
+      "Dry Season"
+    ],
+    "support": 0.0537,
+    "confidence": 0.3804,
+    "lift": 3.1645
+  },
+  {
+    "antecedents": [
+      "First-Time Complainant",
+      "High-Slum Area",
+      "Dry Season"
+    ],
+    "consequents": [
+      "WardType: Central",
+      "Citizen Satisfied"
+    ],
+    "support": 0.0537,
+    "confidence": 0.447,
+    "lift": 3.1645
+  },
+  {
+    "antecedents": [
+      "First-Time Complainant",
+      "High-Slum Area",
+      "Dry Season"
+    ],
+    "consequents": [
+      "Cause: Drainage Overflow / Flooding",
+      "WardType: Central",
+      "Citizen Satisfied"
+    ],
+    "support": 0.0537,
+    "confidence": 0.447,
+    "lift": 3.1645
+  },
+  {
+    "antecedents": [
+      "Cause: Drainage Overflow / Flooding",
+      "WardType: Central",
+      "Citizen Satisfied"
+    ],
+    "consequents": [
+      "First-Time Complainant",
+      "High-Slum Area",
+      "Dry Season"
+    ],
+    "support": 0.0537,
+    "confidence": 0.3804,
+    "lift": 3.1645
+  },
+  {
+    "antecedents": [
+      "First-Time Complainant",
+      "High-Slum Area",
+      "Citizen Satisfied"
+    ],
+    "consequents": [
+      "WardType: Central",
+      "Dry Season"
+    ],
+    "support": 0.0537,
+    "confidence": 0.3931,
+    "lift": 3.148
+  },
+  {
+    "antecedents": [
+      "First-Time Complainant",
+      "High-Slum Area",
+      "Citizen Satisfied"
+    ],
+    "consequents": [
+      "Cause: Drainage Overflow / Flooding",
+      "WardType: Central",
+      "Dry Season"
+    ],
+    "support": 0.0537,
+    "confidence": 0.3931,
+    "lift": 3.148
+  },
+  {
+    "antecedents": [
+      "Cause: Drainage Overflow / Flooding",
+      "First-Time Complainant",
+      "High-Slum Area",
+      "Citizen Satisfied"
+    ],
+    "consequents": [
+      "WardType: Central",
+      "Dry Season"
+    ],
+    "support": 0.0537,
+    "confidence": 0.3931,
+    "lift": 3.148
+  },
+  {
+    "antecedents": [
+      "WardType: Central",
+      "Dry Season"
+    ],
+    "consequents": [
+      "Cause: Drainage Overflow / Flooding",
+      "First-Time Complainant",
+      "High-Slum Area",
+      "Citizen Satisfied"
+    ],
+    "support": 0.0537,
+    "confidence": 0.4303,
+    "lift": 3.148
+  },
+  {
+    "antecedents": [
+      "Cause: Drainage Overflow / Flooding",
+      "WardType: Central",
+      "Dry Season"
+    ],
+    "consequents": [
+      "First-Time Complainant",
+      "High-Slum Area",
+      "Citizen Satisfied"
+    ],
+    "support": 0.0537,
+    "confidence": 0.4303,
+    "lift": 3.148
+  },
+  {
+    "antecedents": [
+      "WardType: Central",
+      "Dry Season"
+    ],
+    "consequents": [
+      "First-Time Complainant",
+      "High-Slum Area",
+      "Citizen Satisfied"
+    ],
+    "support": 0.0537,
+    "confidence": 0.4303,
+    "lift": 3.148
+  },
+  {
+    "antecedents": [
+      "Cause: Drainage Overflow / Flooding",
+      "First-Time Complainant",
+      "WardType: Central",
+      "Dry Season"
+    ],
+    "consequents": [
+      "High-Slum Area",
+      "Citizen Satisfied"
+    ],
+    "support": 0.0537,
+    "confidence": 0.6134,
+    "lift": 3.129
+  },
+  {
+    "antecedents": [
+      "First-Time Complainant",
+      "WardType: Central",
+      "Dry Season"
+    ],
+    "consequents": [
+      "Cause: Drainage Overflow / Flooding",
+      "High-Slum Area",
+      "Citizen Satisfied"
+    ],
+    "support": 0.0537,
+    "confidence": 0.6134,
+    "lift": 3.129
+  },
+  {
+    "antecedents": [
+      "First-Time Complainant",
+      "WardType: Central",
+      "Dry Season"
+    ],
+    "consequents": [
+      "High-Slum Area",
+      "Citizen Satisfied"
+    ],
+    "support": 0.0537,
+    "confidence": 0.6134,
+    "lift": 3.129
+  },
+  {
+    "antecedents": [
+      "First-Time Complainant",
+      "WardType: Central",
+      "Citizen Satisfied"
+    ],
+    "consequents": [
+      "Cause: Drainage Overflow / Flooding",
+      "High-Slum Area",
+      "Dry Season"
+    ],
+    "support": 0.0537,
+    "confidence": 0.539,
+    "lift": 3.1219
+  },
+  {
+    "antecedents": [
+      "First-Time Complainant",
+      "WardType: Central",
+      "Citizen Satisfied"
+    ],
+    "consequents": [
+      "High-Slum Area",
+      "Dry Season"
+    ],
+    "support": 0.0537,
+    "confidence": 0.539,
+    "lift": 3.1219
+  },
+  {
+    "antecedents": [
+      "Cause: Drainage Overflow / Flooding",
+      "First-Time Complainant",
+      "WardType: Central",
+      "Citizen Satisfied"
+    ],
+    "consequents": [
+      "High-Slum Area",
+      "Dry Season"
+    ],
+    "support": 0.0537,
+    "confidence": 0.539,
+    "lift": 3.1219
+  },
+  {
+    "antecedents": [
+      "High-Slum Area",
+      "Dry Season"
+    ],
+    "consequents": [
+      "Cause: Drainage Overflow / Flooding",
+      "WardType: Central",
+      "Citizen Satisfied"
+    ],
+    "support": 0.0759,
+    "confidence": 0.4397,
+    "lift": 3.1123
+  },
+  {
+    "antecedents": [
+      "WardType: Central",
+      "Citizen Satisfied"
+    ],
+    "consequents": [
+      "High-Slum Area",
+      "Dry Season"
+    ],
+    "support": 0.0759,
+    "confidence": 0.5373,
+    "lift": 3.1123
+  },
+  {
+    "antecedents": [
+      "WardType: Central",
+      "Citizen Satisfied"
+    ],
+    "consequents": [
+      "Cause: Drainage Overflow / Flooding",
+      "High-Slum Area",
+      "Dry Season"
+    ],
+    "support": 0.0759,
+    "confidence": 0.5373,
+    "lift": 3.1123
+  },
+  {
+    "antecedents": [
+      "High-Slum Area",
+      "Dry Season"
+    ],
+    "consequents": [
+      "WardType: Central",
+      "Citizen Satisfied"
+    ],
+    "support": 0.0759,
+    "confidence": 0.4397,
+    "lift": 3.1123
+  },
+  {
+    "antecedents": [
+      "Cause: Drainage Overflow / Flooding",
+      "High-Slum Area",
+      "Dry Season"
+    ],
+    "consequents": [
+      "WardType: Central",
+      "Citizen Satisfied"
+    ],
+    "support": 0.0759,
+    "confidence": 0.4397,
+    "lift": 3.1123
+  },
+  {
+    "antecedents": [
+      "Cause: Drainage Overflow / Flooding",
+      "WardType: Central",
+      "Citizen Satisfied"
+    ],
+    "consequents": [
+      "High-Slum Area",
+      "Dry Season"
+    ],
+    "support": 0.0759,
+    "confidence": 0.5373,
+    "lift": 3.1123
+  },
+  {
+    "antecedents": [
+      "First-Time Complainant",
+      "WardType: Central"
+    ],
+    "consequents": [
+      "Cause: Drainage Overflow / Flooding",
+      "High-Slum Area",
+      "Dry Season",
+      "Citizen Satisfied"
+    ],
+    "support": 0.0537,
+    "confidence": 0.4171,
+    "lift": 3.1102
+  },
+  {
+    "antecedents": [
+      "High-Slum Area",
+      "Dry Season",
+      "Citizen Satisfied"
+    ],
+    "consequents": [
+      "Cause: Drainage Overflow / Flooding",
+      "First-Time Complainant",
+      "WardType: Central"
+    ],
+    "support": 0.0537,
+    "confidence": 0.4007,
+    "lift": 3.1102
+  },
+  {
+    "antecedents": [
+      "Cause: Drainage Overflow / Flooding",
+      "First-Time Complainant",
+      "WardType: Central"
+    ],
+    "consequents": [
+      "High-Slum Area",
+      "Dry Season",
+      "Citizen Satisfied"
+    ],
+    "support": 0.0537,
+    "confidence": 0.4171,
+    "lift": 3.1102
+  },
+  {
+    "antecedents": [
+      "Cause: Drainage Overflow / Flooding",
+      "High-Slum Area",
+      "Dry Season",
+      "Citizen Satisfied"
+    ],
+    "consequents": [
+      "First-Time Complainant",
+      "WardType: Central"
+    ],
+    "support": 0.0537,
+    "confidence": 0.4007,
+    "lift": 3.1102
+  },
+  {
+    "antecedents": [
+      "High-Slum Area",
+      "Dry Season",
+      "Citizen Satisfied"
+    ],
+    "consequents": [
+      "First-Time Complainant",
+      "WardType: Central"
+    ],
+    "support": 0.0537,
+    "confidence": 0.4007,
+    "lift": 3.1102
+  },
+  {
+    "antecedents": [
+      "First-Time Complainant",
+      "WardType: Central"
+    ],
+    "consequents": [
+      "High-Slum Area",
+      "Dry Season",
+      "Citizen Satisfied"
+    ],
+    "support": 0.0537,
+    "confidence": 0.4171,
+    "lift": 3.1102
+  },
+  {
+    "antecedents": [
+      "WardType: Central",
+      "Dry Season"
+    ],
+    "consequents": [
+      "Cause: Drainage Overflow / Flooding",
+      "High-Slum Area",
+      "Citizen Satisfied"
+    ],
+    "support": 0.0759,
+    "confidence": 0.6078,
+    "lift": 3.1007
+  },
+  {
+    "antecedents": [
+      "High-Slum Area",
+      "Citizen Satisfied"
+    ],
+    "consequents": [
+      "Cause: Drainage Overflow / Flooding",
+      "WardType: Central",
+      "Dry Season"
+    ],
+    "support": 0.0759,
+    "confidence": 0.3872,
+    "lift": 3.1007
+  },
+  {
+    "antecedents": [
+      "Cause: Drainage Overflow / Flooding",
+      "High-Slum Area",
+      "Citizen Satisfied"
+    ],
+    "consequents": [
+      "WardType: Central",
+      "Dry Season"
+    ],
+    "support": 0.0759,
+    "confidence": 0.3872,
+    "lift": 3.1007
+  },
+  {
+    "antecedents": [
+      "Cause: Drainage Overflow / Flooding",
+      "WardType: Central",
+      "Dry Season"
+    ],
+    "consequents": [
+      "High-Slum Area",
+      "Citizen Satisfied"
+    ],
+    "support": 0.0759,
+    "confidence": 0.6078,
+    "lift": 3.1007
+  },
+  {
+    "antecedents": [
+      "High-Slum Area",
+      "Citizen Satisfied"
+    ],
+    "consequents": [
+      "WardType: Central",
+      "Dry Season"
+    ],
+    "support": 0.0759,
+    "confidence": 0.3872,
+    "lift": 3.1007
+  },
+  {
+    "antecedents": [
+      "WardType: Central",
+      "Dry Season"
+    ],
+    "consequents": [
+      "High-Slum Area",
+      "Citizen Satisfied"
+    ],
+    "support": 0.0759,
+    "confidence": 0.6078,
+    "lift": 3.1007
+  },
+  {
+    "antecedents": [
+      "Cause: Drainage Overflow / Flooding",
+      "WardType: Central",
+      "Standard Resolution (8-20d)",
+      "Dry Season"
+    ],
+    "consequents": [
+      "High-Slum Area",
+      "Citizen Satisfied"
+    ],
+    "support": 0.0387,
+    "confidence": 0.607,
+    "lift": 3.0965
+  },
+  {
+    "antecedents": [
+      "WardType: Central",
+      "Standard Resolution (8-20d)",
+      "Dry Season"
+    ],
+    "consequents": [
+      "Cause: Drainage Overflow / Flooding",
+      "High-Slum Area",
+      "Citizen Satisfied"
+    ],
+    "support": 0.0387,
+    "confidence": 0.607,
+    "lift": 3.0965
+  },
+  {
+    "antecedents": [
+      "WardType: Central",
+      "Standard Resolution (8-20d)",
+      "Dry Season"
+    ],
+    "consequents": [
+      "High-Slum Area",
+      "Citizen Satisfied"
+    ],
+    "support": 0.0387,
+    "confidence": 0.607,
+    "lift": 3.0965
+  },
+  {
+    "antecedents": [
+      "First-Time Complainant",
+      "WardType: Central",
+      "Standard Resolution (8-20d)"
+    ],
+    "consequents": [
+      "High-Slum Area",
+      "Citizen Satisfied"
+    ],
+    "support": 0.0403,
+    "confidence": 0.6063,
+    "lift": 3.0929
+  },
+  {
+    "antecedents": [
+      "Cause: Drainage Overflow / Flooding",
+      "First-Time Complainant",
+      "WardType: Central",
+      "Standard Resolution (8-20d)"
+    ],
+    "consequents": [
+      "High-Slum Area",
+      "Citizen Satisfied"
+    ],
+    "support": 0.0403,
+    "confidence": 0.6063,
+    "lift": 3.0929
+  },
+  {
+    "antecedents": [
+      "First-Time Complainant",
+      "WardType: Central",
+      "Standard Resolution (8-20d)"
+    ],
+    "consequents": [
+      "Cause: Drainage Overflow / Flooding",
+      "High-Slum Area",
+      "Citizen Satisfied"
+    ],
+    "support": 0.0403,
+    "confidence": 0.6063,
+    "lift": 3.0929
+  },
+  {
+    "antecedents": [
+      "Cause: Drainage Overflow / Flooding",
+      "WardType: Central",
+      "Standard Resolution (8-20d)",
+      "Dry Season"
+    ],
+    "consequents": [
+      "First-Time Complainant",
+      "High-Slum Area"
+    ],
+    "support": 0.0351,
+    "confidence": 0.551,
+    "lift": 3.0841
+  },
+  {
+    "antecedents": [
+      "WardType: Central",
+      "Standard Resolution (8-20d)",
+      "Dry Season"
+    ],
+    "consequents": [
+      "Cause: Drainage Overflow / Flooding",
+      "First-Time Complainant",
+      "High-Slum Area"
+    ],
+    "support": 0.0351,
+    "confidence": 0.551,
+    "lift": 3.0841
+  },
+  {
+    "antecedents": [
+      "WardType: Central",
+      "Standard Resolution (8-20d)",
+      "Dry Season"
+    ],
+    "consequents": [
+      "First-Time Complainant",
+      "High-Slum Area"
+    ],
+    "support": 0.0351,
+    "confidence": 0.551,
+    "lift": 3.0841
+  },
+  {
+    "antecedents": [
+      "WardType: Central",
+      "Severity: Medium"
+    ],
+    "consequents": [
+      "Cause: Drainage Overflow / Flooding",
+      "High-Slum Area",
+      "Citizen Satisfied"
+    ],
+    "support": 0.0441,
+    "confidence": 0.6043,
+    "lift": 3.0826
+  },
+  {
+    "antecedents": [
+      "WardType: Central",
+      "Severity: Medium"
+    ],
+    "consequents": [
+      "High-Slum Area",
+      "Citizen Satisfied"
+    ],
+    "support": 0.0441,
+    "confidence": 0.6043,
+    "lift": 3.0826
+  },
+  {
+    "antecedents": [
+      "Cause: Drainage Overflow / Flooding",
+      "WardType: Central",
+      "Severity: Medium"
+    ],
+    "consequents": [
+      "High-Slum Area",
+      "Citizen Satisfied"
+    ],
+    "support": 0.0441,
+    "confidence": 0.6043,
+    "lift": 3.0826
+  },
+  {
+    "antecedents": [
+      "WardType: Central",
+      "Dry Season",
+      "Citizen Satisfied"
+    ],
+    "consequents": [
+      "Cause: Drainage Overflow / Flooding",
+      "First-Time Complainant",
+      "High-Slum Area"
+    ],
+    "support": 0.0537,
+    "confidence": 0.5502,
+    "lift": 3.0793
+  },
+  {
+    "antecedents": [
+      "Cause: Drainage Overflow / Flooding",
+      "WardType: Central",
+      "Dry Season",
+      "Citizen Satisfied"
+    ],
+    "consequents": [
+      "First-Time Complainant",
+      "High-Slum Area"
+    ],
+    "support": 0.0537,
+    "confidence": 0.5502,
+    "lift": 3.0793
+  }
+]

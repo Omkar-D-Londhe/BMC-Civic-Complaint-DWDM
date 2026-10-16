@@ -1,0 +1,231 @@
+{
+  "clusters": [
+    {
+      "category_name": "Pothole / Road Damage",
+      "cluster_id": 0,
+      "cluster_name": "Cluster 0: Rapid Routine Public Services (Garbage, Street Lights, Trees, Toilets)",
+      "total_complaints": 172475,
+      "avg_resolution_days": 15.45,
+      "avg_estimated_cost": 17912.32,
+      "repeat_rate_pct": 31.09,
+      "satisfaction_rate_pct": 76.4,
+      "avg_slum_pct": 32.65,
+      "monsoon_pct": 33.51,
+      "high_severity_pct": 31.92,
+      "pca_x": -0.1918016973137503,
+      "pca_y": 0.7688242386699509
+    },
+    {
+      "category_name": "Water Supply Disruption",
+      "cluster_id": 0,
+      "cluster_name": "Cluster 0: Rapid Routine Public Services (Garbage, Street Lights, Trees, Toilets)",
+      "total_complaints": 153875,
+      "avg_resolution_days": 9.29,
+      "avg_estimated_cost": 9571.99,
+      "repeat_rate_pct": 30.81,
+      "satisfaction_rate_pct": 77.85,
+      "avg_slum_pct": 32.66,
+      "monsoon_pct": 33.3,
+      "high_severity_pct": 31.92,
+      "pca_x": 0.6569493998278196,
+      "pca_y": -1.0344651154259696
+    },
+    {
+      "category_name": "Solid Waste / Garbage",
+      "cluster_id": 0,
+      "cluster_name": "Cluster 0: Rapid Routine Public Services (Garbage, Street Lights, Trees, Toilets)",
+      "total_complaints": 134953,
+      "avg_resolution_days": 7.75,
+      "avg_estimated_cost": 3587.01,
+      "repeat_rate_pct": 30.89,
+      "satisfaction_rate_pct": 78.28,
+      "avg_slum_pct": 32.68,
+      "monsoon_pct": 33.49,
+      "high_severity_pct": 32.04,
+      "pca_x": 0.9579893246804259,
+      "pca_y": -0.20046432255991023
+    },
+    {
+      "category_name": "Drainage Overflow / Flooding",
+      "cluster_id": 0,
+      "cluster_name": "Cluster 0: Rapid Routine Public Services (Garbage, Street Lights, Trees, Toilets)",
+      "total_complaints": 105867,
+      "avg_resolution_days": 12.38,
+      "avg_estimated_cost": 29900.03,
+      "repeat_rate_pct": 30.77,
+      "satisfaction_rate_pct": 77.12,
+      "avg_slum_pct": 32.66,
+      "monsoon_pct": 33.5,
+      "high_severity_pct": 32.03,
+      "pca_x": 1.4611713867330272,
+      "pca_y": 0.551234714521962
+    },
+    {
+      "category_name": "Street Light Failure",
+      "cluster_id": 0,
+      "cluster_name": "Cluster 0: Rapid Routine Public Services (Garbage, Street Lights, Trees, Toilets)",
+      "total_complaints": 86380,
+      "avg_resolution_days": 10.78,
+      "avg_estimated_cost": 5977.61,
+      "repeat_rate_pct": 30.89,
+      "satisfaction_rate_pct": 77.31,
+      "avg_slum_pct": 32.64,
+      "monsoon_pct": 33.41,
+      "high_severity_pct": 31.92,
+      "pca_x": 0.09306945968886368,
+      "pca_y": -0.5920430974160142
+    },
+    {
+      "category_name": "Illegal Construction",
+      "cluster_id": 1,
+      "cluster_name": "Cluster 1: High-Cost Major Civil Infrastructure (Drainage Flooding, Health, Burst Pipes)",
+      "total_complaints": 66867,
+      "avg_resolution_days": 36.89,
+      "avg_estimated_cost": 2393.55,
+      "repeat_rate_pct": 31.12,
+      "satisfaction_rate_pct": 71.31,
+      "avg_slum_pct": 32.62,
+      "monsoon_pct": 33.32,
+      "high_severity_pct": 31.92,
+      "pca_x": -3.85395378059334,
+      "pca_y": 0.9060418595027446
+    },
+    {
+      "category_name": "Encroachment",
+      "cluster_id": 1,
+      "cluster_name": "Cluster 1: High-Cost Major Civil Infrastructure (Drainage Flooding, Health, Burst Pipes)",
+      "total_complaints": 57630,
+      "avg_resolution_days": 26.2,
+      "avg_estimated_cost": 2999.94,
+      "repeat_rate_pct": 31.05,
+      "satisfaction_rate_pct": 74.32,
+      "avg_slum_pct": 32.56,
+      "monsoon_pct": 33.32,
+      "high_severity_pct": 32.13,
+      "pca_x": -2.5735883138687763,
+      "pca_y": 0.7278169627952158
+    },
+    {
+      "category_name": "Tree Fallen / Dangerous Tree",
+      "cluster_id": 0,
+      "cluster_name": "Cluster 0: Rapid Routine Public Services (Garbage, Street Lights, Trees, Toilets)",
+      "total_complaints": 48117,
+      "avg_resolution_days": 6.32,
+      "avg_estimated_cost": 7216.46,
+      "repeat_rate_pct": 30.52,
+      "satisfaction_rate_pct": 78.49,
+      "avg_slum_pct": 32.74,
+      "monsoon_pct": 33.19,
+      "high_severity_pct": 31.9,
+      "pca_x": 2.0158845297468795,
+      "pca_y": -2.1956616697037385
+    },
+    {
+      "category_name": "Public Toilet Condition",
+      "cluster_id": 0,
+      "cluster_name": "Cluster 0: Rapid Routine Public Services (Garbage, Street Lights, Trees, Toilets)",
+      "total_complaints": 38225,
+      "avg_resolution_days": 9.3,
+      "avg_estimated_cost": 4789.19,
+      "repeat_rate_pct": 30.86,
+      "satisfaction_rate_pct": 77.9,
+      "avg_slum_pct": 32.65,
+      "monsoon_pct": 33.15,
+      "high_severity_pct": 32.13,
+      "pca_x": 0.33387677847402614,
+      "pca_y": -0.8332434929403143
+    },
+    {
+      "category_name": "Water Leakage / Pipe Burst",
+      "cluster_id": 0,
+      "cluster_name": "Cluster 0: Rapid Routine Public Services (Garbage, Street Lights, Trees, Toilets)",
+      "total_complaints": 38121,
+      "avg_resolution_days": 7.78,
+      "avg_estimated_cost": 14334.92,
+      "repeat_rate_pct": 31.0,
+      "satisfaction_rate_pct": 78.08,
+      "avg_slum_pct": 32.57,
+      "monsoon_pct": 33.27,
+      "high_severity_pct": 31.67,
+      "pca_x": -0.412555221873828,
+      "pca_y": -1.4852962749122856
+    },
+    {
+      "category_name": "Noise / Air Pollution",
+      "cluster_id": 0,
+      "cluster_name": "Cluster 0: Rapid Routine Public Services (Garbage, Street Lights, Trees, Toilets)",
+      "total_complaints": 28752,
+      "avg_resolution_days": 20.0,
+      "avg_estimated_cost": 1809.36,
+      "repeat_rate_pct": 30.97,
+      "satisfaction_rate_pct": 75.4,
+      "avg_slum_pct": 32.71,
+      "monsoon_pct": 33.44,
+      "high_severity_pct": 32.19,
+      "pca_x": -0.4043152608683238,
+      "pca_y": 0.9425329872656093
+    },
+    {
+      "category_name": "Stray Animal Menace",
+      "cluster_id": 0,
+      "cluster_name": "Cluster 0: Rapid Routine Public Services (Garbage, Street Lights, Trees, Toilets)",
+      "total_complaints": 18962,
+      "avg_resolution_days": 12.32,
+      "avg_estimated_cost": 4185.56,
+      "repeat_rate_pct": 31.14,
+      "satisfaction_rate_pct": 76.94,
+      "avg_slum_pct": 32.64,
+      "monsoon_pct": 33.29,
+      "high_severity_pct": 31.76,
+      "pca_x": -0.9677932961132576,
+      "pca_y": -0.7924550642017925
+    },
+    {
+      "category_name": "Health / Epidemic",
+      "cluster_id": 2,
+      "cluster_name": "Cluster 2: Prolonged Regulatory & Legal Grievances (Illegal Construction, Encroachment)",
+      "total_complaints": 9776,
+      "avg_resolution_days": 6.23,
+      "avg_estimated_cost": 23825.77,
+      "repeat_rate_pct": 31.04,
+      "satisfaction_rate_pct": 79.04,
+      "avg_slum_pct": 32.71,
+      "monsoon_pct": 34.11,
+      "high_severity_pct": 32.31,
+      "pca_x": 2.885066691480233,
+      "pca_y": 3.2371782744045423
+    }
+  ],
+  "archetypes": {
+    "0": "Cluster 0: Rapid Routine Public Services (Garbage, Street Lights, Trees, Toilets)",
+    "1": "Cluster 1: High-Cost Major Civil Infrastructure (Drainage Flooding, Health, Burst Pipes)",
+    "2": "Cluster 2: Prolonged Regulatory & Legal Grievances (Illegal Construction, Encroachment)"
+  },
+  "k_eval": [
+    {
+      "k": 2,
+      "inertia": 63.970914599406264,
+      "silhouette": 0.3133662367604536
+    },
+    {
+      "k": 3,
+      "inertia": 45.15089113145042,
+      "silhouette": 0.29922839640820864
+    },
+    {
+      "k": 4,
+      "inertia": 32.64432467529945,
+      "silhouette": 0.19924860796185542
+    },
+    {
+      "k": 5,
+      "inertia": 24.877040817033922,
+      "silhouette": 0.2262639852893743
+    },
+    {
+      "k": 6,
+      "inertia": 17.444979638460893,
+      "silhouette": 0.22895177569796854
+    }
+  ]
+}

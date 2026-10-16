@@ -22,14 +22,18 @@
 
 <!-- Model Switcher Tabs -->
 <div class="flex items-center p-1 rounded-lg bg-surface-charcoal border border-border-contrast self-start lg:self-end" id="modelSwitcher">
-<button onclick="selectModel('Random Forest')" id="tabRF" class="flex items-center gap-2 px-3 py-1.5 rounded text-body-sm font-body-sm font-medium bg-surface-elevated text-text-primary shadow-sm border border-border-contrast transition-all">
+<button onclick="selectModel('LightGBM (Feature Engineered V2)')" id="tabLGB" class="flex items-center gap-2 px-3 py-1.5 rounded text-body-sm font-body-sm font-medium bg-surface-elevated text-text-primary shadow-sm border border-border-contrast transition-all">
 <span class="w-1.5 h-1.5 rounded-full bg-status-success"></span>
-<span>Random Forest</span>
-<span class="font-annotation-mono text-annotation-mono text-text-faint uppercase ml-1">Ensemble</span>
+<span>LightGBM V2</span>
+<span class="font-annotation-mono text-annotation-mono text-status-success uppercase ml-1">95.8% (Best)</span>
 </button>
 <button onclick="selectModel('HistGradientBoosting')" id="tabHGB" class="flex items-center gap-2 px-3 py-1.5 rounded text-body-sm font-body-sm text-text-muted hover:text-text-primary hover:bg-surface-subtle transition-all">
-<span>HistGradientBoosting</span>
-<span class="font-annotation-mono text-annotation-mono text-text-faint uppercase ml-1">Boosting</span>
+<span>HistGradBoost</span>
+<span class="font-annotation-mono text-annotation-mono text-text-faint uppercase ml-1">95.8%</span>
+</button>
+<button onclick="selectModel('Random Forest')" id="tabRF" class="flex items-center gap-2 px-3 py-1.5 rounded text-body-sm font-body-sm text-text-muted hover:text-text-primary hover:bg-surface-subtle transition-all">
+<span>Random Forest</span>
+<span class="font-annotation-mono text-annotation-mono text-text-faint uppercase ml-1">Ensemble</span>
 </button>
 <button onclick="selectModel('Logistic Regression Baseline')" id="tabLR" class="flex items-center gap-2 px-3 py-1.5 rounded text-body-sm font-body-sm text-text-muted hover:text-text-primary hover:bg-surface-subtle transition-all">
 <span>Logistic Regression</span>
@@ -263,13 +267,16 @@ Diagonal indicates true class recall. Off-diagonal represents inter-category cro
 
 <script>
   let metricsData = null;
-  let currentModelKey = 'Random Forest';
+  let currentModelKey = 'LightGBM (Feature Engineered V2)';
 
   async function loadMetrics() {
     try {
       const res = await fetch('/api/ml/metrics');
       metricsData = await res.json();
-      updateModelView(currentModelKey);
+      if (!metricsData.models[currentModelKey]) {
+        currentModelKey = metricsData.best_model || Object.keys(metricsData.models)[0];
+      }
+      selectModel(currentModelKey);
     } catch (e) {
       console.error('Error loading ML metrics:', e);
     }
@@ -277,20 +284,23 @@ Diagonal indicates true class recall. Off-diagonal represents inter-category cro
 
   function selectModel(modelKey) {
     currentModelKey = modelKey;
-    const tabRF = document.getElementById('tabRF');
+    const tabLGB = document.getElementById('tabLGB');
     const tabHGB = document.getElementById('tabHGB');
+    const tabRF = document.getElementById('tabRF');
     const tabLR = document.getElementById('tabLR');
 
-    [tabRF, tabHGB, tabLR].forEach(tab => {
-      tab.className = "flex items-center gap-2 px-3 py-1.5 rounded text-body-sm font-body-sm text-text-muted hover:text-text-primary hover:bg-surface-subtle transition-all";
+    [tabLGB, tabHGB, tabRF, tabLR].forEach(tab => {
+      if (tab) tab.className = "flex items-center gap-2 px-3 py-1.5 rounded text-body-sm font-body-sm text-text-muted hover:text-text-primary hover:bg-surface-subtle transition-all";
     });
 
-    if (modelKey === 'Random Forest') {
-      tabRF.className = "flex items-center gap-2 px-3 py-1.5 rounded text-body-sm font-body-sm font-medium bg-surface-elevated text-text-primary shadow-sm border border-border-contrast transition-all";
-    } else if (modelKey === 'HistGradientBoosting') {
-      tabHGB.className = "flex items-center gap-2 px-3 py-1.5 rounded text-body-sm font-body-sm font-medium bg-surface-elevated text-text-primary shadow-sm border border-border-contrast transition-all";
-    } else {
-      tabLR.className = "flex items-center gap-2 px-3 py-1.5 rounded text-body-sm font-body-sm font-medium bg-surface-elevated text-text-primary shadow-sm border border-border-contrast transition-all";
+    let activeTab = null;
+    if (modelKey.includes('LightGBM')) activeTab = tabLGB;
+    else if (modelKey.includes('Hist')) activeTab = tabHGB;
+    else if (modelKey.includes('Random')) activeTab = tabRF;
+    else activeTab = tabLR;
+
+    if (activeTab) {
+      activeTab.className = "flex items-center gap-2 px-3 py-1.5 rounded text-body-sm font-body-sm font-medium bg-surface-elevated text-text-primary shadow-sm border border-border-contrast transition-all";
     }
 
     updateModelView(modelKey);
