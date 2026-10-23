@@ -99,12 +99,15 @@ if os.path.exists(REGRESSOR_V2_PATH):
     except Exception as e:
         print(f"Warning: Could not load regressor V2: {e}")
 
-if os.path.exists(CLASSIFIER_PATH):
+# In high-accuracy V2 mode, baseline Random Forest (314 MB) is lazy-loaded on-demand only if V2 is unavailable,
+# preventing memory bloat on cloud containers with 512MB RAM constraints (Render/Railway).
+if not os.path.exists(CLASSIFIER_V2_PATH) and os.path.exists(CLASSIFIER_PATH):
     try:
         classifier_pipeline = joblib.load(CLASSIFIER_PATH)
         print("Loaded ML Classifier baseline pipeline successfully.")
     except Exception as e:
         print(f"Warning: Could not load classifier baseline: {e}")
+
 
 
 # ============================================================================
